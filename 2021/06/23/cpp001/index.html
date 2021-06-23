@@ -6,12 +6,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>大森的博客</title>
+  <title>C++学习笔记（一）：输入输出 - 大森的博客</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  
+  <meta name="description" content="暂无内容。
+">
   <meta name="author" content="Dasen Sun">
   <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
@@ -57,7 +58,7 @@
     var CONFIG = window.CONFIG || {};
     var ZHAOO = window.ZHAOO || {};
     CONFIG = {
-      isHome: true,
+      isHome: false,
       fancybox: true,
       pjax: false,
       lazyload: {
@@ -135,6 +136,8 @@
   <nav class="navbar">
     <div class="left">
       
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
       
         <i class="iconfont iconqrcode j-navbar-qrcode"></i>
       
@@ -143,7 +146,7 @@
       
       
     </div>
-    <div class="center"> </div>
+    <div class="center">C++学习笔记（一）：输入输出</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -161,7 +164,7 @@
       <i class="iconfont iconbaseline-close-px"></i>
     </div>
     <ul class="menu-content"><li class="menu-item">
-        <a href="/ " class="underline active"> 首页</a>
+        <a href="/ " class="underline "> 首页</a>
       </li><li class="menu-item">
         <a href="/categories/cpp/ " class="underline "> C++</a>
       </li><li class="menu-item">
@@ -175,131 +178,76 @@
   </div>
 </nav>
   <main id="main">
-  
-    <div class="preview">
-  <!-- <nav class="navbar j-navbar-menu">
-    <i class="iconfont iconmenu"></i>
-  </nav> -->
-  <div class="preview-image">
-    
-        
-              <div class="preview-overlay">
-                <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                  viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                  <defs>
-                    <path id="gentle-wave"
-                      d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                  </defs>
-                  <g class="preview-parallax">
-                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb),0.7"></use>
-                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb),0.5)"></use>
-                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb),0.3)"></use>
-                    <use xlink:href="#gentle-wave" x="48" y="7" fill="var(--color-background)"></use>
-                  </g>
-                </svg>
-              </div>
-              
-  </div>
-  <div class="preview-motto-wrapper">
-    <h2 class="preview-motto" id="motto">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/cpp.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">C++学习笔记（一）：输入输出</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>June 23, 2021</span>
       
-    </h2>
-    
-      <span class="preview-cursor">_</span>
-      
-  </div>
-  <div class="preview-scroll">
-    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
-  </div>
-</div>
-  
-  <div class="container" id="container">
-    <section class="row post">
-  
-    
-
-<div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2021/06/23/markdown/" class="post-image">
-      <img   class="lazyload" data-original="/images/post/2021-06-23-markdown.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2021/06/23/markdown/" title="Markdown基本用法总结" >Markdown基本用法总结</a></h3>
-        <div class="post-excerpt">
-          <p class="substr-3">标题若一段文字被定义为标题，只要在这段文字前加#号即可。为规范书写格式，#号后应当添加一个空格。几个#号即代表几级标题。  
-引用引用的文字段落以 &amp;gt; 号开头，如：  
-
-这是引用的内容 ...</p>
-        </div>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>June 23, 2021</span>
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>406</span>
-      </div>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6</span>
     </div>
   </div>
-</div>
-
-  
-    
-
-<div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2021/06/23/cpp001/" class="post-image">
-      <img   class="lazyload" data-original="/images/post/cpp.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2021/06/23/cpp001/" title="C++学习笔记（一）：输入输出" >C++学习笔记（一）：输入输出</a></h3>
-        <div class="post-excerpt">
-          <p class="substr-3">暂无内容。
-</p>
-        </div>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>June 23, 2021</span>
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>6</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-  
-    
-
-<div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2021/06/22/hello-world/" class="post-image">
-      <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2021/06/22/hello-world/" title="Hello World" >Hello World</a></h3>
-        <div class="post-excerpt">
-          <p class="substr-3">第一次使用 Hexo + GitHub Pages 来搭建博客，逐渐弄明白了使用 Hexo 创建博客的基本流程，现作记录如下，当作是博客版的“Hello world”吧。
-1 安装切换到目录：c...</p>
-        </div>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>June 22, 2021</span>
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>599</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-  
 </section>
-    <section class="paginator">
+    <section class="main">
+      <section class="content">
+        <p>暂无内容。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
   
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/06/23/cpp001/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;06&#x2F;23&#x2F;cpp001&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;06&#x2F;23&#x2F;cpp001&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 如果文章内容帮到了您，您可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
 </section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/06/23/markdown/"><i class="iconfont iconleft"></i><i class="iconfont iconleft"></i> Markdown基本用法总结</a>
+    <a href="/2021/06/22/hello-world/">Hello World <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
   </div>
 </main>
   
