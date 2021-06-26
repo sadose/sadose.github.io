@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>C++学习笔记（一）：C++编程基础 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="C++程序结构主函数C++程序包含一个或多个函数，其中...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">C++学习笔记（一）：C++编程基础</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/cpp.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">C++学习笔记（一）：C++编程基础</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>June 26, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3714</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="C-程序结构"><a href="#C-程序结构" class="headerlink" title="C++程序结构"></a>C++程序结构</h1><h2 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h2><p>C++程序包含一个或多个函数，其中<strong>必须包括一个主函数</strong>，主函数是程序运行的入口。对于主函数，结构如下：<br><img   class="lazyload" data-original="/images/illustration/2021-06-23-cpp001/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>C++规定主函数返回值类型应当为<strong>int</strong>，且其返回值通常用来表示程序的运行状态，如：0代表程序正常结束，1代表出现了异常（或用若干非0值表示不同种类的异常）。<br>函数体是该函数的具体内容，实际为由一对花括号表示的代码块。  </p>
+<h1 id="编译、运行程序"><a href="#编译、运行程序" class="headerlink" title="编译、运行程序"></a>编译、运行程序</h1><h2 id="C-C-程序的编译过程"><a href="#C-C-程序的编译过程" class="headerlink" title="C/C++程序的编译过程"></a>C/C++程序的编译过程</h2><p>直接由程序员编写的C++程序的源代码文件命名为*.cpp，C语言源代码文件则为*.c，最终我们需要得到*.exe文件（Windows下）才可以执行C/C++程序。该过程分为以下几个步骤：  </p>
+<h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>处理前：*.cpp ；处理后：*.i/*.cpp 。<br>预处理是对源代码进行初步处理的过程，按照程序员编写在源代码中的以“#”开始的预处理指令（伪指令），对源代码进行分隔或处理成特殊的符号，这一过程实质为<strong>单纯的文本替换</strong>，并不对源代码进行解析。<br>预处理可执行的操作一般包括文件包含、条件编译、布局控制和宏替换等。<br>经过预处理得到的输出文件中，只有常量；如数字、字符串、变量的定义，以及C语言的关键字，如main, if , else , for , while , { , } , + , - , * , \ 等等。  </p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>处理前：*.i/*.cpp ；处理后： *.s 。<br>编译是读取源程序（字符流），对之进行词法和语法的分析，将高级语言指令转换为功能等效的汇编代码的过程。  </p>
+<h3 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h3><p>处理前： *.s ；处理后： *.o/*.obj 。<br>汇编过程实际上就是把汇编语言代码翻译成目标机器指令的过程。<br>对于被翻译系统处理的每一个C/C++语言源程序，都将最终经过这一处理而得到相应的目标文件。即：<strong>多文件项目的每个源文件都将生成目标文件</strong>。目标文件中所存放的也就是与源程序等效的机器语言代码。  </p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>处理前： *.o/*.obj ；处理后： *.exe/*.elf/*.axf 等 。<br>由汇编程序生成的目标文件由于<strong>引用问题</strong>而不能立即就被执行，主要包括以下两个方面的引用问题：<br>① 某个源文件中的函数可能引用了另一个源文件中定义的某个符号（如变量或者函数调用等）；<br>② 在程序中可能调用了某个库文件中的函数。<br>链接程序的主要工作就是将有关的目标文件彼此相连接，也就是将在一个文件中引用的符号同该符号在另外一个文件中的定义连接起来，使得所有的这些目标文件成为一个能够被操作系统装入执行的统一整体，成为可执行的文件。  </p>
+<h2 id="编译、汇编与链接"><a href="#编译、汇编与链接" class="headerlink" title="编译、汇编与链接"></a>编译、汇编与链接</h2><h3 id="编译-1"><a href="#编译-1" class="headerlink" title="编译"></a>编译</h3><p>在编译的同时往往需要进行优化，优化处理是编译系统中一项比较艰深的技术。<br>它涉及到的问题不仅同编译技术本身有关，而且同机器的硬件环境也有很大的关系。<br>第一种优化是对中间代码的优化，这种优化不依赖于具体的计算机，主要的工作是删除公共表达式、循环优化（代码外提、强度削弱、变换循环控制条件、已知量的合并等）、复写传播，以及无用赋值的删除等等；另一种优化则主要针对目标代码的生成而进行的，它同机器的硬件结构密切相关，最主要的是考虑是如何充分利用机器的各个硬件寄存器存放有关变量的值，以减少对于内存的访问次数。<br>此外，如何根据机器硬件执行指令的特点（如流水线、RISC、CISC、VLIW等）而对指令进行一些调整使目标代码比较短，执行的效率比较高，也是一个重要的研究课题。  </p>
+<h3 id="汇编-1"><a href="#汇编-1" class="headerlink" title="汇编"></a>汇编</h3><p>目标文件由段组成。通常一个目标文件中至少有两个段：<br>① <strong>代码段</strong>：该段中所包含的主要是程序的指令，一般是可读和可执行的，但一般不可写。<br>② <strong>数据段</strong>：主要存放程序中要用到的各种全局变量或静态的数据，一般数据段都是可读、可写、可执行的。<br>汇编程序生成的实际上是“可重定位文件”：包含有可配合其它目标文件进行链接来创建一个可执行的或者共享的目标文件的代码和数据。  </p>
+<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><p>根据开发人员指定的同库函数的链接方式的不同，链接处理可分为两种：<br>① <strong>静态链接</strong>：函数的代码将从其所在的静态链接库中被拷贝到最终的可执行程序中，这样这些引用的代码就成为了程序的一部分，该程序在被执行时这些代码将被装入到该进程的虚拟地址空间中。其中静态链接库实际上是一个目标文件的集合，其中的每个文件含有库中的一个或者一组相关函数的代码。<br>② <strong>动态链接</strong>：函数的代码被放到称作是动态链接库或共享对象的某个目标文件中，链接程序此时所作的只是在最终的可执行程序中记录下共享对象的名字以及其它少量的登记信息。在此可执行文件被执行时，动态链接库的全部内容将被映射到运行时相应进程的虚地址空间，动态链接程序将根据可执行程序中记录的信息找到相应的函数代码。<br>对静态链接在每个调用位置都将有一个代码副本，这样带来的后果是占用了更多空间，但是在使用这些代码时直接就能使用而不用寻找，在性能上更加优越。动态链接的基本思想是把程序按照模块拆分成各个相对独立部分，在程序运行时才将它们链接在一起形成一个完整的程序，而不是像静态链接一样把所有程序模块都链接成一个单独的可执行文件，这样多次调用的代码不会在内存中存在很多副本，节省了内存空间，并且分模块的方式使得程序更新容易。  </p>
+<h1 id="输入、输出"><a href="#输入、输出" class="headerlink" title="输入、输出"></a>输入、输出</h1><h2 id="IO标准库"><a href="#IO标准库" class="headerlink" title="IO标准库"></a>IO标准库</h2><p>C++语言的输入输出通过标准库<strong>iostream</strong>来实现。<br>iostream包含两个基础类：输入流istream和输出流ostream。<br>“流”代表字符是顺序产生和消耗的。  </p>
+<h2 id="标准输入输出对象"><a href="#标准输入输出对象" class="headerlink" title="标准输入输出对象"></a>标准输入输出对象</h2><p>标准库iostream定义了四个标准输入输出对象，分别是：  </p>
+<center>
+
+<table>
+<thead>
+<tr>
+<th align="center">对象</th>
+<th align="center">名称</th>
+<th align="center">类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">cin</td>
+<td align="center">标准输入</td>
+<td align="center">istream</td>
+</tr>
+<tr>
+<td align="center">cout</td>
+<td align="center">标准输出</td>
+<td align="center">ostream</td>
+</tr>
+<tr>
+<td align="center">cerr</td>
+<td align="center">标准错误输出</td>
+<td align="center">ostream</td>
+</tr>
+<tr>
+<td align="center">clog</td>
+<td align="center">日志输出</td>
+<td align="center">ostream</td>
+</tr>
+</tbody></table>
+</center>
+
+<p>系统通常将程序所运行的窗口与这些对象关联起来。因此，当我们读取cin时，数据将从程序正在运行的窗口读入，当我们向cout、cerr和clog写入数据时，将会写到同一个窗口（程序运行窗口）。  </p>
+<h2 id="使用输入输出对象"><a href="#使用输入输出对象" class="headerlink" title="使用输入输出对象"></a>使用输入输出对象</h2><p>① cin和cout等属于标准库iostream中提供的名称，要使用这些名称，首先要引入iostream库：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br></code></pre></td></tr></table></figure>
+<p>在引入标准库时使用尖括号包含头文件，并省略“.h”后缀，若使用自己编写的头文件，则使用双引号包含头文件，这样将告知编译器同时在项目目录和系统目录中查找头文件。<br>② 使用标准库中的名称时，要表明该名称来自于标准库的命名空间，因此需要使用std::cin和std::cout而不是直接使用它们。或者还可以直接在程序开始时声明默认使用的命名空间：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br></code></pre></td></tr></table></figure>
+<p>③ 向流写入和读出数据使用重载的“&lt;&lt;”“&gt;&gt;”运算符来实现，如：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cout&lt;&lt;<span class="hljs-string">&quot;Enter two numbers:&quot;</span>;<br>cout&lt;&lt;endl;<br>cin&gt;&gt;a&gt;&gt;b;<br></code></pre></td></tr></table></figure>
+<p>无论是重载的左移运算符还是右移运算符，均为从左到右的结合方向，并且运算后的内容依然是cin或cout，因此运算符可以连续使用，即：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cout&lt;&lt;<span class="hljs-string">&quot;Enter two numbers:&quot;</span>;<br>cout&lt;&lt;endl;<br>cin&gt;&gt;a&gt;&gt;b;<br></code></pre></td></tr></table></figure>
+<p>等价于  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cout&lt;&lt;<span class="hljs-string">&quot;Enter two numbers:&quot;</span>&lt;&lt;endl;<br>cin&gt;&gt;a;<br>cin&gt;&gt;b;<br></code></pre></td></tr></table></figure>
+<p>特殊地，当已经无内容可读时（遇到文件尾EOF）或无效输入时，cin&gt;&gt;a将返回NULL，因此可以通过此来读取任意数量的数（但需要手动输入EOF，Windows下即Ctrl+Z）。<br>④ 标准库iostream中还提供了一些其他的名称可供使用，如  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cout&lt;&lt;endl;<br></code></pre></td></tr></table></figure>
+<p>将输出一个换行符。  </p>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><h2 id="注释及分类"><a href="#注释及分类" class="headerlink" title="注释及分类"></a>注释及分类</h2><p>编译器对于注释将直接忽视，注释的作用仅仅是帮助程序员理解代码，对于程序的功能和性能均无任何影响。<br>C++的注释分为<strong>行注释</strong>和<strong>块注释</strong>。  </p>
+<h2 id="注释的规则"><a href="#注释的规则" class="headerlink" title="注释的规则"></a>注释的规则</h2><p>行注释是以 // 开始的，在此之后到该行末尾的所有内容均会被注释。<br>块注释是以 /* 开始，并以 */ 结束的注释，在此之间所有的内容均会被注释掉。<br>块注释的判定是非贪心的，也就是在 /* 之后遇到的第一个 */ 会被当成结束符，因此块注释<strong>无法嵌套</strong>（当然嵌套的注释也没有什么实际意义）。<br><img   class="lazyload" data-original="/images/illustration/2021-06-23-cpp001/002.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><h2 id="自定义类"><a href="#自定义类" class="headerlink" title="自定义类"></a>自定义类</h2><p>C++与C语言最大的区别就是面向对象的特性，类与对象是面向对象程序设计中的重要概念。<br>类与对象的关系为：对象是类的实例，类是对象的类型。<br>在C++中许多标准库提供了许多有用的类，同时开发者也可创建属于自己的类，并为类设计合适的成员变量和成员函数，使其发挥应有的作用。<br>在编写自定义类时，往往将类的声明写在单独的一个头文件中，头文件使用类名来命名；并将类定义写在源文件中，同样使用类名来命名。如：类MyString应对应两个文件，分别是包含声明的MyString.h文件和包含定义的MyString.cpp文件。  </p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/06/26/cpp001/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;06&#x2F;26&#x2F;cpp001&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;06&#x2F;26&#x2F;cpp001&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 如果文章内容帮到了您，您可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/06/23/markdown/">Markdown基本用法总结 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-text">C++程序结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="toc-text">主函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E3%80%81%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-text">编译、运行程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-C-%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="toc-text">C&#x2F;C++程序的编译过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-text">编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96"><span class="toc-text">汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-text">链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E3%80%81%E6%B1%87%E7%BC%96%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="toc-text">编译、汇编与链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91-1"><span class="toc-text">编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96-1"><span class="toc-text">汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5-1"><span class="toc-text">链接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E3%80%81%E8%BE%93%E5%87%BA"><span class="toc-text">输入、输出</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E6%A0%87%E5%87%86%E5%BA%93"><span class="toc-text">IO标准库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">标准输入输出对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">使用输入输出对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-text">注释</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A%E5%8F%8A%E5%88%86%E7%B1%BB"><span class="toc-text">注释及分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A%E7%9A%84%E8%A7%84%E5%88%99"><span class="toc-text">注释的规则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-text">类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="toc-text">自定义类</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
