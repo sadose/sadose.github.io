@@ -195,7 +195,7 @@
 </section>
     <section class="main">
       <section class="content">
-        <h1 id="C-程序结构"><a href="#C-程序结构" class="headerlink" title="C++程序结构"></a>C++程序结构</h1><h2 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h2><p>C++程序包含一个或多个函数，其中<strong>必须包括一个主函数</strong>，主函数是程序运行的入口。对于主函数，结构如下：<br><img   class="lazyload" data-original="/images/illustration/2021-06-23-cpp001/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>C++规定主函数返回值类型应当为<strong>int</strong>，且其返回值通常用来表示程序的运行状态，如：0代表程序正常结束，1代表出现了异常（或用若干非0值表示不同种类的异常）。<br>函数体是该函数的具体内容，实际为由一对花括号表示的代码块。  </p>
+        <h1 id="C-程序结构"><a href="#C-程序结构" class="headerlink" title="C++程序结构"></a>C++程序结构</h1><h2 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h2><p>C++程序包含一个或多个函数，其中<strong>必须包括一个主函数</strong>，主函数是程序运行的入口。对于主函数，结构如下：<br><img   class="lazyload" data-original="/images/illustration/2021-06-26-cpp001/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>C++规定主函数返回值类型应当为<strong>int</strong>，且其返回值通常用来表示程序的运行状态，如：0代表程序正常结束，1代表出现了异常（或用若干非0值表示不同种类的异常）。<br>函数体是该函数的具体内容，实际为由一对花括号表示的代码块。  </p>
 <h1 id="编译、运行程序"><a href="#编译、运行程序" class="headerlink" title="编译、运行程序"></a>编译、运行程序</h1><h2 id="C-C-程序的编译过程"><a href="#C-C-程序的编译过程" class="headerlink" title="C/C++程序的编译过程"></a>C/C++程序的编译过程</h2><p>直接由程序员编写的C++程序的源代码文件命名为*.cpp，C语言源代码文件则为*.c，最终我们需要得到*.exe文件（Windows下）才可以执行C/C++程序。该过程分为以下几个步骤：  </p>
 <h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>处理前：*.cpp ；处理后：*.i/*.cpp 。<br>预处理是对源代码进行初步处理的过程，按照程序员编写在源代码中的以“#”开始的预处理指令（伪指令），对源代码进行分隔或处理成特殊的符号，这一过程实质为<strong>单纯的文本替换</strong>，并不对源代码进行解析。<br>预处理可执行的操作一般包括文件包含、条件编译、布局控制和宏替换等。<br>经过预处理得到的输出文件中，只有常量；如数字、字符串、变量的定义，以及C语言的关键字，如main, if , else , for , while , { , } , + , - , * , \ 等等。  </p>
 <h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>处理前：*.i/*.cpp ；处理后： *.s 。<br>编译是读取源程序（字符流），对之进行词法和语法的分析，将高级语言指令转换为功能等效的汇编代码的过程。  </p>
@@ -254,7 +254,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cout&lt;&lt;endl;<br></code></pre></td></tr></table></figure>
 <p>将输出一个换行符。  </p>
 <h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><h2 id="注释及分类"><a href="#注释及分类" class="headerlink" title="注释及分类"></a>注释及分类</h2><p>编译器对于注释将直接忽视，注释的作用仅仅是帮助程序员理解代码，对于程序的功能和性能均无任何影响。<br>C++的注释分为<strong>行注释</strong>和<strong>块注释</strong>。  </p>
-<h2 id="注释的规则"><a href="#注释的规则" class="headerlink" title="注释的规则"></a>注释的规则</h2><p>行注释是以 // 开始的，在此之后到该行末尾的所有内容均会被注释。<br>块注释是以 /* 开始，并以 */ 结束的注释，在此之间所有的内容均会被注释掉。<br>块注释的判定是非贪心的，也就是在 /* 之后遇到的第一个 */ 会被当成结束符，因此块注释<strong>无法嵌套</strong>（当然嵌套的注释也没有什么实际意义）。<br><img   class="lazyload" data-original="/images/illustration/2021-06-23-cpp001/002.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="注释的规则"><a href="#注释的规则" class="headerlink" title="注释的规则"></a>注释的规则</h2><p>行注释是以 // 开始的，在此之后到该行末尾的所有内容均会被注释。<br>块注释是以 /* 开始，并以 */ 结束的注释，在此之间所有的内容均会被注释掉。<br>块注释的判定是非贪心的，也就是在 /* 之后遇到的第一个 */ 会被当成结束符，因此块注释<strong>无法嵌套</strong>（当然嵌套的注释也没有什么实际意义）。<br><img   class="lazyload" data-original="/images/illustration/2021-06-26-cpp001/002.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 <h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><h2 id="自定义类"><a href="#自定义类" class="headerlink" title="自定义类"></a>自定义类</h2><p>C++与C语言最大的区别就是面向对象的特性，类与对象是面向对象程序设计中的重要概念。<br>类与对象的关系为：对象是类的实例，类是对象的类型。<br>在C++中许多标准库提供了许多有用的类，同时开发者也可创建属于自己的类，并为类设计合适的成员变量和成员函数，使其发挥应有的作用。<br>在编写自定义类时，往往将类的声明写在单独的一个头文件中，头文件使用类名来命名；并将类定义写在源文件中，同样使用类名来命名。如：类MyString应对应两个文件，分别是包含声明的MyString.h文件和包含定义的MyString.cpp文件。  </p>
 
       </section>
@@ -289,7 +289,7 @@
         
         
   <nav class="nav">
-    <a></a>
+    <a href="/2021/06/27/cpp002/"><i class="iconfont iconleft"></i><i class="iconfont iconleft"></i> C++学习笔记（一）：G++的基本使用</a>
     <a href="/2021/06/23/markdown/">Markdown基本用法总结 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
   </nav>
 
@@ -315,14 +315,14 @@
 
 <footer class="footer">
   <div class="footer-social"><a 
-        href="https://www.instagram.com/ "
+        href="https://www.instagram.com/zhangsiyu_2/ "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#DA2E76'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconinstagram "></i>
       </a><a 
-        href="https://github.com/sadose "
+        href="https://github.com/sadose/ "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#9f7be1'" 
