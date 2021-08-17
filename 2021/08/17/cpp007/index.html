@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>C++学习笔记（7）：类 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="类类的使用类的定义类定义是以关键字class开头，后跟...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">C++学习笔记（7）：类</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/cpp.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">C++学习笔记（7）：类</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>August 17, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11361</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><h2 id="类的使用"><a href="#类的使用" class="headerlink" title="类的使用"></a>类的使用</h2><h3 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h3><p>类定义是以关键字class开头，后跟类的名称，类的主体是包含在一对花括号中的。类的主体又包括由访问修饰符（private/public/protected）标记的一系列成员（包括成员变量和成员函数）。如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Box</span></span><br><span class="hljs-class">&#123;</span><br>   <span class="hljs-keyword">public</span>:<br>      <span class="hljs-keyword">double</span> length;   <span class="hljs-comment">// 盒子的长度</span><br>      <span class="hljs-keyword">double</span> breadth;  <span class="hljs-comment">// 盒子的宽度</span><br>      <span class="hljs-keyword">double</span> height;   <span class="hljs-comment">// 盒子的高度</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="实例化类"><a href="#实例化类" class="headerlink" title="实例化类"></a>实例化类</h3><p>我们定义类就是要使用它，使用它就要创建一个该类的对象，称为该类的实例。定义一个Box类的对象的最简单方法就像定义一个内置类型的变量一样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">Box box;<br></code></pre></td></tr></table></figure>
+
+<h2 id="成员与成员函数"><a href="#成员与成员函数" class="headerlink" title="成员与成员函数"></a>成员与成员函数</h2><h3 id="声明和定义成员"><a href="#声明和定义成员" class="headerlink" title="声明和定义成员"></a>声明和定义成员</h3><p>类的成员变量直接在类中定义，成员函数则一般在<strong>类内声明、类外定义</strong>，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Box</span></span><br><span class="hljs-class">&#123;</span><br>   <span class="hljs-keyword">public</span>:<br>      <span class="hljs-keyword">double</span> length;<br>      <span class="hljs-keyword">double</span> breadth;<br>      <span class="hljs-keyword">double</span> height;<br>      <span class="hljs-comment">// 成员函数声明</span><br>      <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">volume</span><span class="hljs-params">()</span></span>;<br>&#125;;<br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">Box::volume</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> length*breadth*height;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>成员变量可以在类内指定初始值，但是<strong>类内初始值必须用=来指定</strong>，不能使用其他方式初始化对象。</p>
+<p>在类外定义成员函数时一定要指定命名空间（类名）。</p>
+<p>通常情况下，<strong>类的定义在头文件中，成员函数的定义在源文件中</strong>。</p>
+<h3 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h3><p>访问修饰符有private/public/protected三种，分别给成员了不同的访问权限。访问修饰符使得类的封装和抽象特性成为了可能，即封装不必要的细节，只给用户暴露使用的接口。</p>
+<ul>
+<li>public：表示是公开的，修饰对象可以直接调用的变量或者函数，在程序内可以直接访问。</li>
+<li>protect：表示是保护性的，只有本类和子类函数能够访问（只是访问，本类对象和子类对象都不可以直接调用）。</li>
+<li>private：只有在本类中能够访问（友元函数例外）。</li>
+</ul>
+<p>一个类内可以包含0个或多个访问说明符，每个访问说明符也可以出现多次，其有效范围直到出现下一个访问说明符或到达类的结尾。</p>
+<h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><p>类的成员函数也可以定义为内联的，主要有三种：</p>
+<ul>
+<li>直接在类内部定义的成员函数默认是内联的。</li>
+<li>在类内部使用inline关键字声明，在类外部定义。</li>
+<li>在类内部声明，在类外部使用inline关键字定义。</li>
+</ul>
+<p>为规范代码，建议第二种和第三种方式合并，在类内部声明和类外部定义时都使用inline关键字，此时，内联函数的定义应该放在类定义的同一头文件中，而不是在源文件中，这样保证内联函数的定义在调用该函数的每个源文件中是可见的。</p>
+<h3 id="访问和使用成员"><a href="#访问和使用成员" class="headerlink" title="访问和使用成员"></a>访问和使用成员</h3><p>类的成员变量和成员函数都通过对象的成员访问运算符来使用，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">box.length = <span class="hljs-number">30</span>;<br>box.<span class="hljs-built_in">volume</span>();<br></code></pre></td></tr></table></figure>
+
+<h2 id="struct类"><a href="#struct类" class="headerlink" title="struct类"></a>struct类</h2><p>struct类是为了兼容C语言的结构体而保留下来的特性，在C++中，struct类与class类大部分是相同的，只有几个细节不同：</p>
+<ul>
+<li>使用 class 时，类中的成员默认都是 private 属性的；而使用 struct 时，结构体中的成员默认都是 public 属性的。</li>
+<li>class 继承默认是 private 继承，而 struct 继承默认是 public 继承。</li>
+<li>class 可以使用模板，而 struct 不能。</li>
+</ul>
+<h1 id="类支持的特性"><a href="#类支持的特性" class="headerlink" title="类支持的特性"></a>类支持的特性</h1><h2 id="this标记"><a href="#this标记" class="headerlink" title="this标记"></a>this标记</h2><p>对成员函数的调用实际上是对象调用的，而一个类可以定义多个对象，那么在成员函数运行中，它需要知道是哪个对象调用了它。因此每个成员函数都有一个<strong>隐式的参数this</strong>，不要手动传参就可以直接在函数里使用，它实际上是调用成员函数的那个对象的指针，这样通过this指针就可以确定调用该成员函数的那个对象。</p>
+<p>在成员函数内使用成员变量时并不需要通过成员访问运算符访问this的成员，而是可以直接使用名字。</p>
+<h2 id="const成员函数"><a href="#const成员函数" class="headerlink" title="const成员函数"></a>const成员函数</h2><p>在成员函数形参列表的后面、左花括号的前面加上const关键字即可声明、定义为const成员函数。</p>
+<p>const成员函数的作用实际是改变了this的类型，如Box类型的this指针是个指针常量，即Box * const，因为this的值不能改变。而const函数将this指针变为了const Box * const，即指向常量的指针常量，既有底层const又有顶层const。</p>
+<p>这样做的原因是如果this指针是Box * const类型，那么它无法绑定到一个常量对象上，因为会非法取得写权限，而const Box * const则是可以的。如果在成员函数中不会改变this指向对象的成员就应该这样声明，这样使得成员函数的灵活性更强了。</p>
+<p>总之，<strong>常量对象及其引用和指针都只能调用其常量成员函数</strong>，否则this无法正确绑定。</p>
+<h2 id="类的作用域"><a href="#类的作用域" class="headerlink" title="类的作用域"></a>类的作用域</h2><h3 id="类作用域"><a href="#类作用域" class="headerlink" title="类作用域"></a>类作用域</h3><p>类本身就是一个作用域，类的成员函数的作用域嵌套在类作用域之中。</p>
+<p>凡是嵌套的作用域，同名名称都遵循屏蔽机制。</p>
+<p>假设Box类的成员函数volume在成员变量之前声明，而volume中访问了三个成员变量，这样看似是不可以的，因为此时三个成员变量好像还没定义，其实不是的，因为编译器会先编译类的定义（及其里面的成员声明），之后才编译成员函数的定义，此时成员变量已经被编译过了，就不会有问题。</p>
+<p>在外部定义的成员函数必须与它的声明完全匹配。</p>
+<h3 id="返回this的成员函数"><a href="#返回this的成员函数" class="headerlink" title="返回this的成员函数"></a>返回this的成员函数</h3><p>这里说返回this其实没什么难度，以Box为例，我们已经知道了this的类型是Box的指针，那么把函数的返回值类型定义为Box *就可以了。</p>
+<p>而这样返回的是一个指针，我们可以通过返回*this直接返回这个对象本身，即解引用后再返回 ，那么返回值类型就应该定义为Box &amp;了，返回的是对象的引用，可以直接作为<strong>左值</strong>使用。</p>
+<h2 id="类内别名"><a href="#类内别名" class="headerlink" title="类内别名"></a>类内别名</h2><p>在类内也可以为类型取一个别名，也分为放在public和private下的情况，一般放在public下定义，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">screen</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">typedef</span> std::string::size_type pos;<br><span class="hljs-keyword">private</span>:<br>    pos cursor = <span class="hljs-number">0</span>;<br>    pos height = <span class="hljs-number">0</span>, width = <span class="hljs-number">0</span> ;<br>    std: :string contents;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>这样对于这个类来说，在类内类外都可以使用pos这个名字，相当于对外屏蔽了pos这个名字的实际细节。</p>
+<p>除了typedef之外，使用using定义类型别名是等价的。</p>
+<p>类型别名在类内，因此应当先声明后使用，因此常常把它<strong>放在类的开头</strong>。其实是，当类内已经使用了原来的名字之后，就不能再为该类型定义别名了。</p>
+<h2 id="可变数据成员"><a href="#可变数据成员" class="headerlink" title="可变数据成员"></a>可变数据成员</h2><p>有时我们希望即使在const成员函数内我们依然能够改变某个成员变量的值，就可以把它声明为mutable变量。</p>
+<p>mutable变量永远不可能是const的，即使它是const对象的成员，也就是const对象还是可以改变它的可变成员的值。</p>
+<p>有如下的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">screen</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">some_member</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">mutable</span> <span class="hljs-keyword">size_t</span> access_ctr;<br>&#125;;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">screen::some_member</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span><br><span class="hljs-function"></span>&#123;<br>    ++access_ctr;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在类中定义了一个mutable成员access_ctr，并且在const函数中依然能改变它的值，从而实现记录该成员函数被调用了多少次。</p>
+<h2 id="类的声明"><a href="#类的声明" class="headerlink" title="类的声明"></a>类的声明</h2><p>我们可以像函数一样把类的声明和定义分开，我们可以这样声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span>;</span> <br></code></pre></td></tr></table></figure>
+<p>这样的声明又叫做<strong>前向声明</strong>。它向程序中引入了名字Screen并且指明Screen是一种类类型。对于类型Screen来说，在它声明之后定义之前是一个<strong>不完全类型</strong>，即此时我们已知Screen是一个类类型，但是不清楚它到底包含哪些成员。</p>
+<p>不完全类型只能在非常有限的情景下使用：可以定义指向这种类型的指针或引用，也可以声明（但是不能定义）以不完全类型作为参数或者返回类型的函数。</p>
+<h2 id="聚合类"><a href="#聚合类" class="headerlink" title="聚合类"></a>聚合类</h2><p>聚合类是一种特殊的类，它满足以下条件：</p>
+<ul>
+<li>所有类成员都是public的。</li>
+<li>没有定义任何构造函数。</li>
+<li>没有类内初始值。</li>
+<li>没有基类，也没有virtual函数</li>
+</ul>
+<p>比如以下类就都是聚合类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Data1</span> &#123;</span><br>    <span class="hljs-keyword">int</span> ival;<br>    string s;<br>&#125;;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Data2</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">int</span> ival;<br>    string s;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>对于聚合类，我们是<strong>可以直接访问其所有数据成员</strong>的，并且我们可以使用列表来初始化它，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">Data1 val1 = &#123; <span class="hljs-number">0</span>，<span class="hljs-string">&quot;Anna&quot;</span> &#125;;<br></code></pre></td></tr></table></figure>
+
+<p>这里<strong>提供的初始值的顺序必须与声明的成员变量的顺序一致</strong>。</p>
+<p>与初始化数组元素的规则一样，如果初始值列表中的元素个数少于类的成员数量，则靠后的成员被值初始化，且初始值列表的元素个数绝对不能超过类的成员数量。</p>
+<p>聚合类最大的缺陷是它的初始化需要我们来操心，并且当类成员变量改变时，我们要修改每一条初始化的代码。</p>
+<h2 id="字面值常量类"><a href="#字面值常量类" class="headerlink" title="字面值常量类"></a>字面值常量类</h2><p>之前我们说constexpr函数的参数和返回值必须是字面值类型，这里有一种特殊的类也属于字面值类型，即字面值常量类。</p>
+<p>字面值常量类满足以下要求：</p>
+<ul>
+<li>是聚合类，同时它的数据成员都是字面值类型。</li>
+<li>不是聚合类，但满足以下条件：<ul>
+<li>数据成员都必须是字面值类型。</li>
+<li>类必须至少含有一个constexpr构造函数。</li>
+<li>如果一个数据成员含有类内初始值，则内置类型成员的初始值必须是一条常量表达式；或者如果成员属于某种类类型，则初始值必须使用成员自己的constexpr构造函数。</li>
+<li>类必须使用析构函数的默认定义，该成员负责销毁类的对象。</li>
+</ul>
+</li>
+</ul>
+<p>尽管构造函数不能是const的，但是字面值常量类的构造函数可以是constexpr函数，<strong>一个字面值常量类必须至少提供一个constexpr构造函数</strong>。</p>
+<p>constexpr构造函数可以声明成=default的形式（或者是删除函数的形式）。</p>
+<p>constexpr构造函数必须既符合构造函数的要求（意味着不能包含返回语句），又符合constexpr函数的要求（意味着它能拥有的唯一可执行语句就是返回语句），因此综合这两点可知，<strong>constexpr构造函数体应该是空的</strong>。我们通过前置关键字constexpr就可以声明一个constexpr构造函数了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Debug</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-title">Debug</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> b = <span class="hljs-literal">true</span>)</span> : hw(b), io (b), other(b) &#123;</span> &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-title">Debug</span> <span class="hljs-params">(<span class="hljs-keyword">bool</span> h, <span class="hljs-keyword">bool</span> i, <span class="hljs-keyword">bool</span> o)</span> : </span><br><span class="hljs-function">            hw(h), io(i), other(o) &#123;</span> &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">any</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> hw || io || other;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">set_io</span> <span class="hljs-params">(<span class="hljs-keyword">bool</span> b)</span> </span>&#123; io = b; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">set_hw</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> b)</span> </span>&#123; hw = b; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">set_other</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> b)</span> </span>&#123; hw = b; &#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">bool</span> hw; <span class="hljs-comment">// 硬件错误，而非IO错误</span><br>    <span class="hljs-keyword">bool</span> io; <span class="hljs-comment">// IO错误</span><br>    <span class="hljs-keyword">bool</span> other; <span class="hljs-comment">// 其他错误</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>构造函数体只能是空，因此能做的事情只有初始值列表了，并且<strong>constexpr构造函数必须初始化所有数据成员</strong>，初始值也只能使用constexpr表达式或者常量表达式。</p>
+<h2 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h2><h3 id="声明静态成员"><a href="#声明静态成员" class="headerlink" title="声明静态成员"></a>声明静态成员</h3><p>在成员的声明之前加上static关键字使其成为静态成员，这样它就成了<strong>只与类相关的成员，由该类的所有对象共用</strong>。</p>
+<p>类的静态成员存在于任何对象之外，对象中不包含任何与静态成员有关的数据。同样的静态成员函数也不与任何对象绑定在一起，它们也<strong>不含this指针</strong>。（不含this指针也使得静态成员函数不能声明为const的）</p>
+<p>我们无法在static函数体内使用this指针，不光是不能显式使用，也不能隐式使用，即无法调用非静态的成员函数。</p>
+<h3 id="使用静态成员"><a href="#使用静态成员" class="headerlink" title="使用静态成员"></a>使用静态成员</h3><p>使用作用域运算符可以直接访问类的静态成员，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">double</span> r;<br>r = Account::<span class="hljs-built_in">rate</span>();<br></code></pre></td></tr></table></figure>
+
+<p>此外，虽然静态成员不属于类的某个对象，但我们仍可以使用类的对象、引用或者指针来访问静态成员：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">Account ac1;<br>Account *ac2 = &amp;ac1;<br>r = ac1.<span class="hljs-built_in">rate</span>();<br>r = ac2-&gt;<span class="hljs-built_in">rate</span>();<br></code></pre></td></tr></table></figure>
+
+<p>类的成员函数不通过作用域运算符就可以直接使用静态成员，因为成员函数和静态成员本就是在同一作用域中的（类作用域）。</p>
+<h3 id="定义静态成员"><a href="#定义静态成员" class="headerlink" title="定义静态成员"></a>定义静态成员</h3><p>定义静态成员函数和别的成员函数一样，既可在类内定义，也可在类外。在类外定义时要注意static关键字只能在类内声明时使用，在类外定义时不能重复使用。</p>
+<p>而静态数据成员不属于任何一个对象，因此它们不能通过构造函数初始化，同时我们又不能在类内部初始化静态成员，因此静态数据成员也只能在类内声明、类外定义，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">double</span> Account::interestRate = <span class="hljs-built_in">initRate</span>();<br></code></pre></td></tr></table></figure>
+<p>在这里，interestRate是Account类的成员变量，而initRate是其成员函数，可是这里没有对initRate加作用域运算符，是因为从interestRate前的作用域运算符开始，这条定义语句就已经是在Account作用域里了，因此其成员都可以直接使用，包括私有成员。</p>
+<p>有一种特殊的静态成员可以在类内初始化，这要求静态成员必须是constexpr类型，初始值必须是常量表达式，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">static</span> <span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> period = <span class="hljs-number">30</span>;<br></code></pre></td></tr></table></figure>
+<p>这样的静态成员可以作为constexpr用在任何常量表达式中。但是要注意，这样的类内定义使得该静态成员只能在类内使用，如果要在类外使用时，必须要<strong>在类外再次声明</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> Account::period;<br></code></pre></td></tr></table></figure>
+<p>由于在类内提供了初始值，就不能在类外再次初始化了，而只能声明。</p>
+<h3 id="静态成员的独特用处"><a href="#静态成员的独特用处" class="headerlink" title="静态成员的独特用处"></a>静态成员的独特用处</h3><p>静态成员独立于任何对象，因此，在某些非静态数据成员可能非法的场合，静态成员却可以正常地使用。</p>
+<p>（1）静态数据成员可以是不完全类型，比如静态成员的类型可以是它所属类的类型，而非静态类型只能声明为它所属类的指针或引用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bar</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">static</span> Bar mem1; <span class="hljs-comment">// 正确：静态成员可以是不完全类型</span><br>    Bar *mem2 ; <span class="hljs-comment">// 正确：普通成员可以是不完全类型的指针</span><br>    Bar mem3 ; <span class="hljs-comment">// 错误：普通成员必须是完全类型</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>（2）我们可以使用静态成员作为成员函数的默认实参，而非静态成员不可以。因为静态成员的值的生命期是存在于整个程序运行过程的，而非静态成员的值属于对象，在某些时候用作默认实参时可能该成员还没有有意义的值。</p>
+<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><h2 id="构造函数的定义"><a href="#构造函数的定义" class="headerlink" title="构造函数的定义"></a>构造函数的定义</h2><p>构造函数的任务是初始化类对象的数据成员，无论何时只要类的对象被创建，就会执行构造函数。</p>
+<p>构造函数的名字和类名相同，构造函数没有返回类型。</p>
+<p>类可以包含多个构造函数，即重载构造函数，不同的构造函数之间必须在参数数量或参数类型上有所区别。类的成员函数也是可以重载的。</p>
+<p>不同于其他成员函数，<strong>构造函数不能被声明成const的</strong>。</p>
+<p>当创建类的一个const对象时，直到构造函数完成初始化过程，对象才能真正取得其“常量”属性，因此，<strong>构造函数在const对象的构造过程中可以向其写值</strong>。</p>
+<h2 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h2><p>当定义一个对象时，没有给它提供任何值，那么就会调用默认构造函数来初始化对象，即<strong>默认构造函数就是没有形参的构造函数</strong>，这个构造函数分为用户显式定义的和编译器自动合成的。</p>
+<p>没有为类指定构造函数时，编译器通过合成的默认构造函数来初始化对象，合成的默认构造函数做的事情有：</p>
+<ul>
+<li>如果存在类内初始值，用它来初始化成员。</li>
+<li>其他成员进行默认初始化。</li>
+</ul>
+<p>但是要注意，这个合成的默认构造函数只在没有一个构造函数时才会自动合成，而如果定义了带参数的构造函数，则必须显式定义一个默认构造函数，否则没有形参地初始化一个对象时，将找不到对应的构造函数。</p>
+<p>显式定义一个默认构造函数的另一个原因是合成的默认构造函数可能执行不合理的操作：默认构造函数将默认初始化没有初始值的成员变量，而默认初始化的成员变量是无意义的随机值，无法正常使用。</p>
+<p>此外，某些情况下编译器可能无法为类合成默认构造函数，如类中含有某一类型的成员变量，而这种类型没有默认构造函数，那么就无法默认初始化这个成员变量，那么包含了这种类型的成员变量的类也无法合成默认初始化函数。</p>
+<p>在C++11标准中我们可以在定义了其他构造函数的情况下让编译器依然生成合成的默认构造函数，只需要在形参列表后加上=default标记即可：<br>Box() = default;<br>如果=default标记在类内，那么该构造函数为内联的。</p>
+<p>还有一种情况，我们说没有形参的构造函数为默认构造函数，但如果有一个构造函数的所有形参都指定了默认实参，那么这个函数也可以认为是默认构造函数，这个类就相当于定义了默认构造函数。</p>
+<h2 id="带参数的构造函数"><a href="#带参数的构造函数" class="headerlink" title="带参数的构造函数"></a>带参数的构造函数</h2><p>带参数的构造函数可以大致分为两种：分别是只需要对成员变量进行初始化的构造函数和需要进行其他操作的构造函数。</p>
+<p>（1）只需要对成员变量进行初始化的构造函数通常使用<strong>构造函数初始值</strong>列表来实现，并声明为内联函数。</p>
+<p>构造函数初始值列表的使用方式如下：</p>
+<p>构造函数名(形参列表) : 成员变量1(表达式1), 成员变量2(表达式2)… { }</p>
+<p>即在形参列表后跟冒号，然后标注用来初始化各个成员变量的各个表达式，此外不需要进行其他操作，因此函数体为空，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">sales_data</span> (<span class="hljs-keyword">const</span> std::string &amp;s) : <span class="hljs-built_in">bookNo</span>(s) &#123; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>未标注的成员变量还将使用默认初始化的方式来进行初始化。</p>
+<p>在某些情况下必须要用构造函数初始值的方式来定义构造函数，比如这个类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">constRef</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">ConstRef</span>(<span class="hljs-keyword">int</span> ii);<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">int</span> i;<br>    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ci;<br>    <span class="hljs-keyword">int</span> &amp;ri;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>成员变量ci是const的，代表它不能使用赋值操作，只能进行初始化，而构造函数初始值就相当于对成员变量的初始化，如果不显式定义构造函数的话是不行的，因为const常量必须进行初始化，而不使用初始值的构造函数也是不行的，就像下面这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp">constRef: :<span class="hljs-built_in">ConstRef</span>(<span class="hljs-keyword">int</span> ii)<br>&#123;<br>    i = ii; <span class="hljs-comment">// 正确：i可以被赋值</span><br>    ci= ii; <span class="hljs-comment">// 错误：不能给const赋值</span><br>    ri = i; <span class="hljs-comment">// 错误：引用也要初始化</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>由于const常量和引用都是必须初始化的，之后不能再赋值了，在这种情况下就是必须要使用带有初始值列表的构造函数。</p>
+<p>总之，如果是const常量、引用或者是未提供默认构造函数类型的成员变量，都必须要有初始值来初始化，因此要使用带初始值列表的构造函数。此外，带初始值列表的构造函数的效率更高，一个是直接用初始值初始化，一个是先初始化之后再赋值。因此应该尽可能用构造函数初始值。</p>
+<p>还有需要注意的一点是，<strong>初始值列表中的初始化顺序是未定义的</strong>，不应该使用一个成员变量来初始化另一个成员变量，因为它们的初始化顺序未知。</p>
+<p>（2）需要进行其他操作的构造函数通常声明在类内，定义在类外，不作为内联函数，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">sales_data::<span class="hljs-built_in">Sales_data</span>(std::istream &amp;is) &#123;<br>    <span class="hljs-built_in">read</span>(is,  *<span class="hljs-keyword">this</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同样，没有在函数中初始化的成员变量将执行默认初始化。</p>
+<p>类外定义时要注意名字的命名空间。</p>
+<h2 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h2><p>这是C++11的新标准，它扩展了构造函数的初始值的功能。</p>
+<p>委托构造函数实际上就是委托其他已有的构造函数来完成一部分功能，有如下的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">sales_data</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 非委托构造函数</span><br>    <span class="hljs-built_in">sales_data</span>(std::string s, <span class="hljs-keyword">unsigned</span> cnt, <span class="hljs-keyword">double</span> price) :<br>            <span class="hljs-built_in">bookNo</span>(s), <span class="hljs-built_in">units_sold</span>(cnt), <span class="hljs-built_in">revenue</span> (cnt*price) &#123; &#125;<br>    <span class="hljs-comment">// 其余构造函数全都委托给第一个构造函数</span><br>    <span class="hljs-built_in">sales_data</span>() : <span class="hljs-built_in">sales_data</span>(<span class="hljs-string">&quot;&quot;</span>，<span class="hljs-number">0</span>，<span class="hljs-number">0</span>）&#123;&#125;<br>    <span class="hljs-built_in">sales_data</span>(std::string s) : <span class="hljs-built_in">sales_data</span>(s, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>) &#123;&#125;<br>    <span class="hljs-built_in">sales_data</span>(std::istream &amp;is) : <span class="hljs-built_in">sales_data</span> ()<br>            &#123; <span class="hljs-built_in">read</span>(is, *<span class="hljs-keyword">this</span>); &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>我们可以看到只有第一个构造函数不是委托构造函数，是用来使用初始值构造对象的，而其余三个构造函数都需要第一个函数提供的功能，就像委托第一个构造函数做了一部分任务一样，在我们看来这个过程（冒号后的过程）就像是函数调用一样。</p>
+<p>当一个构造函数委托给另一个函数时，执行顺序为：受委托的函数的初始值列表、受委托的函数的函数体、委托者的函数体。</p>
+<h2 id="隐式的类类型转换"><a href="#隐式的类类型转换" class="headerlink" title="隐式的类类型转换"></a>隐式的类类型转换</h2><h3 id="转换构造函数"><a href="#转换构造函数" class="headerlink" title="转换构造函数"></a>转换构造函数</h3><p>如果类的构造函数只接收一个实参，那么这个构造函数被称为转换构造函数，这样就定义了从一种类型（参数的类型）转换为该类型的方式。</p>
+<p>如在sales_data类中分别定义了接受string一个参数的构造函数和接收istream一个参数的构造函数，那么就相当于分别定义了这两种类型向sales_data类转换的规则，也就是在需要使用sales_data类的地方我们可以用string和istream代替，这时会自动进行隐式类型转换。但是这样的类型转换只允许进行一步，两步及以上的这种隐式类型转换是不行的，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">item .<span class="hljs-built_in">combine</span> ( <span class="hljs-string">&quot;9-999-99999-9&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>就是不行的，因为这需要把”9-999-99999-9”（char *）转换为string再转换为sales_data类型，需要两步转换，这就不可以了。原因是char *也许也能转换为其他某类型，不光能转换为string，而这个“其他某类型”也许也能转换为sales_data类型，那么就有了两条可选的路径：</p>
+<ul>
+<li>char * -&gt; 其他某类型 -&gt; sales_data类型</li>
+<li>char * -&gt; string -&gt; sales_data类型</li>
+<li>……</li>
+</ul>
+<p>这样就导致了编译器并不知道应该选择哪条转换路径，而不同的转换路径得到的结果可能是不同的。</p>
+<h3 id="抑制隐式类型转换"><a href="#抑制隐式类型转换" class="headerlink" title="抑制隐式类型转换"></a>抑制隐式类型转换</h3><p>如果想阻止只有一个参数的构造函数成为转换构造函数，只需要在声明时加上explicit，但是要注意，只有在类内声明时才能使用explicit关键字，在类外定义时就不能重复使用了。</p>
+<p>由于explicit关键字阻止一个构造函数成为转换构造函数，因此<strong>只用于只有一个形参的构造函数</strong>，多个形参和没有形参的构造函数则不需要这样做，因为它们本来就不可能成为转换构造函数。</p>
+<p>此外使用explicit关键字还会导致该构造函数只能用于<strong>直接初始化</strong>，而不能作为拷贝初始化，因为某种意义上来看，拷贝初始化似乎也是先进行了隐式类型转换。</p>
+<p>如果想使用声明为explicit的构造函数来类型转换也是可以的，注意它只是抑制了隐式类型转换，依然是可以进行强制类型转换的，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">item.<span class="hljs-built_in">combine</span>(<span class="hljs-built_in">sales_data</span>(null_book));<br>item.<span class="hljs-built_in">combine</span>(<span class="hljs-keyword">static_cast</span>&lt;Sales_data&gt;(cin));<br></code></pre></td></tr></table></figure>
+
+<p>在标准库中有两个常用的构造函数要知道：</p>
+<ul>
+<li>接受一个const char *参数的string构造函数不是explicit的。</li>
+<li>接受一个容量参数的vector构造函数是explicit的。</li>
+</ul>
+<h1 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h1><h2 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a>友元函数</h2><p>类本来不允许其他的类和函数访问它的私有成员的，但是通过友元可以实现。</p>
+<p>如果想将函数声明为类的友元，则需要在类中（通常在类的开始）使用friend关键字对友元函数进行声明，就像声明函数一样，无非是多了个friend关键字，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">friend</span> std::istream &amp;<span class="hljs-title">read</span><span class="hljs-params">(std::istream&amp;, Sales_data&amp;)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>友元函数的声明是和函数声明独立的，函数还是要经过正常的声明才能使用。因此友元函数的外部声明也是要在类的声明之前声明一下的，我们通常把它们一起放在类的头文件中。</p>
+<p>尽管重载函数的名字相同，但它们仍然是不同的函数。因此，<strong>如果一个类想把一组重载函数声明成它的友元，它需要对这组函数中的每一个分别声明</strong>。</p>
+<h2 id="友元类"><a href="#友元类" class="headerlink" title="友元类"></a>友元类</h2><p>类可以把其他类声明为友元，也可以把其他类的成员函数声明为友元。</p>
+<p>将类声明为友元类的方式和函数差不多，也是使用friend关键字在类内声明一下，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br>	<span class="hljs-keyword">friend</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Window_mgr</span>;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样就把类Window_mgr声明为了类Screen的友元类，Window_mgr类内可以直接访问Screen的成员。</p>
+<p>如果类Window_mgr中只有某些成员函数用到了Screen的成员，那就不需要把整个类声明为友元，而只需要把需要的成员函数声明为友元，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">screen</span> &#123;</span><br>    <span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">void</span> <span class="hljs-title">window_mgr::clear</span><span class="hljs-params">(screenIndex)</span> </span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>将一个名字声明为友元时，我们就认为该名字在当前作用域中是可见的，然而，该名字本身并不一定就能在当前类作用域内访问，因为要先声明才能访问，而友元声明不是声明，因此我们<strong>要在类外再把该友元类或友元函数单独声明一次</strong>，我们才能使用它。</p>
+<p>甚至就算在类的内部定义该友元函数，该函数是默认内联的，我们也必须在类的外部提供相应的声明从而使得函数可见。有以下例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">x</span> &#123;</span><br>    <span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-comment">/*内联的友元函数*/</span> &#125;<br>    <span class="hljs-built_in">x</span>() &#123; <span class="hljs-built_in">f</span>(); &#125; <span class="hljs-comment">// 错误：f定义了但还没有被声明</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">h</span><span class="hljs-params">()</span></span>;<br>&#125;;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">x::g</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">f</span>(); &#125; <span class="hljs-comment">// 错误：f还没有被声明</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 这时f函数声明了</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">x::h</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">f</span>(); &#125; <span class="hljs-comment">// 正确：现在f已经声明了</span><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/17/cpp007/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;17&#x2F;cpp007&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;17&#x2F;cpp007&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/08/09/cpp006/">C++学习笔记（6）：函数 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-text">类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">类的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">类的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96%E7%B1%BB"><span class="toc-text">实例化类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E5%91%98%E4%B8%8E%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-text">成员与成员函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89%E6%88%90%E5%91%98"><span class="toc-text">声明和定义成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">访问修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="toc-text">内联函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%92%8C%E4%BD%BF%E7%94%A8%E6%88%90%E5%91%98"><span class="toc-text">访问和使用成员</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#struct%E7%B1%BB"><span class="toc-text">struct类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E6%94%AF%E6%8C%81%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-text">类支持的特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#this%E6%A0%87%E8%AE%B0"><span class="toc-text">this标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#const%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-text">const成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">类的作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">类作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9Ethis%E7%9A%84%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-text">返回this的成员函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%86%85%E5%88%AB%E5%90%8D"><span class="toc-text">类内别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98"><span class="toc-text">可变数据成员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-text">类的声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E7%B1%BB"><span class="toc-text">聚合类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E5%80%BC%E5%B8%B8%E9%87%8F%E7%B1%BB"><span class="toc-text">字面值常量类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-text">静态成员</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-text">声明静态成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-text">使用静态成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-text">定义静态成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E7%9A%84%E7%8B%AC%E7%89%B9%E7%94%A8%E5%A4%84"><span class="toc-text">静态成员的独特用处</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">构造函数的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">默认构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">带参数的构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%94%E6%89%98%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">委托构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E5%BC%8F%E7%9A%84%E7%B1%BB%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">隐式的类类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">转换构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%91%E5%88%B6%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">抑制隐式类型转换</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8B%E5%85%83"><span class="toc-text">友元</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0"><span class="toc-text">友元函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8B%E5%85%83%E7%B1%BB"><span class="toc-text">友元类</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
