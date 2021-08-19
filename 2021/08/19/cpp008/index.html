@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>C++学习笔记（8）：IO库 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="IO类IO库类型IO库类型主要包含在三个头文件中，io...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">C++学习笔记（8）：IO库</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/cpp.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">C++学习笔记（8）：IO库</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>August 19, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4895</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="IO类"><a href="#IO类" class="headerlink" title="IO类"></a>IO类</h1><h2 id="IO库类型"><a href="#IO库类型" class="headerlink" title="IO库类型"></a>IO库类型</h2><p>IO库类型主要包含在三个头文件中，iostream定义了用于读写流的基本类型，fstream定义了读写命名文件的类型，sstream定义了读写内存string对象的类型，具体如下图：</p>
+<p><img   class="lazyload" data-original="/images/illustration/2021-08-19-cpp008/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>为了支持使用宽字符的语言，标准库定义了一组类型和对象来操纵wchar_t类型的数据。宽字符版本的类型和函数的名字以一个w开始。例如，wcin、wcout和 wcerr是分别对应cin、cout和cerr的宽字符版对象。</p>
+<p>类型ifstream和istringstream都继承自istream。因此，我们可以像使用istream对象一样来使用ifstream和istringstream对象。也就是说，我们是如何使用cin的，就可以同样地使用这些类型的对象。例如，可以对一个ifstream或istringstream对象调用getline，也可以使用&gt;&gt;从一个ifstream或istringstream对象中读取数据。</p>
+<p><strong>IO对象不能进行拷贝或赋值</strong>。</p>
+<p>由于不能拷贝IO对象，因此我们也不能将形参或返回类型设置为流类型。进行IO操作的函数通常以引用方式传递和返回流。读写一个IO对象会改变其状态，因此传递和返回的引用不能是const的。</p>
+<h2 id="条件状态"><a href="#条件状态" class="headerlink" title="条件状态"></a>条件状态</h2><h3 id="查询条件状态"><a href="#查询条件状态" class="headerlink" title="查询条件状态"></a>查询条件状态</h3><p>IO操作一个与生俱来的问题是可能发生错误。一些错误是可恢复的，而其他错误则发生在系统深处，已经超出了应用程序可以修正的范围。</p>
+<p>strm是一种IO类型，提供了一些标志来指示IO流的状态。</p>
+<p>以下是IO类所定义的一些标志，用来表示IO流所处的的条件状态：</p>
+<ul>
+<li>strm::iostate：iostate是一种机器相关的类型，提供了表达条件状态的完整功能。</li>
+<li>strm::badbit：用来指出流已崩溃。</li>
+<li>strm::failbit：用来指出一个IO操作失败了。</li>
+<li>strm::eofbit：用来指出流到达了文件结束。</li>
+<li>strm::goodbit：用来指出流未处于错误状态。此值保证为零。</li>
+</ul>
+<p>还有一些IO类的成员函数，可以帮助我们判断IO流的这些指示位的条件状态：</p>
+<ul>
+<li>s.eof()：若流s的eofbit置位，则返回true。</li>
+<li>s.fail()：若流s的failbit或badbit置位，则返回true。</li>
+<li>s.bad()：若流s的badbit置位，则返回true。</li>
+<li>s.good()：若流s处于有效状态，则返回true。</li>
+<li>s.clear()：将流s中所有条件状态位复位，将流的状态设置为有效，返回void。</li>
+<li>s.clear(flags)：根据给定的flags标志位，将流s中对应条件状态位复位，flags的类型为strm::iostate，返回void。</li>
+<li>s.setstate(flags)：根据给定的flags标志位，将流s中对应条件状态位置位，flags的类型为strm::iostate，返回void。</li>
+<li>s.rdstate()：返回流s的当前条件状态，返回值类型为strm::iostate。</li>
+</ul>
+<p>一个流一旦发生错误，其上后续的IO操作都会失败。只有当一个流处于无错状态时，我们才可以从它读取数据，向它写入数据。</p>
+<p>由于流可能处于错误状态，因此代码通常应该在使用一个流之前检查它是否处于良好状态，我们可以把读写操作作为while的条件来使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span> (cin &gt;&gt; word)<br>    <span class="hljs-comment">// 读操作成功…</span><br></code></pre></td></tr></table></figure>
+
+<p>IO库定义了一个与<strong>机器无关</strong>的iostate类型，它提供了表达流状态的完整功能。它的每个位表达了一种IO出现的异常，我们可以通过上述函数来访问每个位的值。</p>
+<p>badbit表示系统级错误，如不可恢复的读写错误。通常情况下，一旦badbit被置位，流就无法再使用了。在发生可恢复错误后，failbit被置位，如期望读取数值却读出一个字符等错误。这种问题通常是可以修正的，流还可以继续使用。如果到达文件结束位置，eofbit和failbit都会被置位。goodbit的值为0，表示流未发生错误。如果badbit、failbit和eofbit任一个被置位，则检测流状态的条件会失败。</p>
+<h3 id="管理条件状态"><a href="#管理条件状态" class="headerlink" title="管理条件状态"></a>管理条件状态</h3><p>流对象的rdstate成员函数返回一个iostate值，对应流的当前状态，我们可以通过它保存下来流的当前值。还有clear成员函数可以用来复位流的状态。有如下例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">auto</span> old_state = cin.<span class="hljs-built_in">rdstate</span>();<br>cin.<span class="hljs-built_in">clear</span>();<br><span class="hljs-built_in">process_input</span>(cin);<br>cin.<span class="hljs-built_in">setstate</span>(old_state);<br></code></pre></td></tr></table></figure>
+
+<p>这样就先保存下了cin的状态，重置了cin的状态，正常使用cin后又恢复了之前保存的cin的状态。</p>
+<h2 id="输出缓冲"><a href="#输出缓冲" class="headerlink" title="输出缓冲"></a>输出缓冲</h2><h3 id="管理输出缓冲"><a href="#管理输出缓冲" class="headerlink" title="管理输出缓冲"></a>管理输出缓冲</h3><p>每个输出流都管理一个缓冲区，用来保存程序读写的数据。实际上读写流的操作都操作的是缓冲区，其中输出流会将输出内容写到输出缓冲区，当刷新缓冲区时，内容才被真正输出（写入）。</p>
+<p>导致缓冲区刷新的原因主要有：</p>
+<ul>
+<li>程序正常结束，作为main函数的return操作的一部分，缓冲刷新被执行。</li>
+<li>缓冲区满时，需要刷新缓冲，而后新的数据才能继续写入缓冲区。</li>
+<li>可以使用操纵符如endl来显式刷新缓冲区。</li>
+<li>在每个输出操作之后，我们可以用操纵符unitbuf设置流的内部状态，来清空缓冲区。默认情况下，对cerr是设置unitbuf的，因此写到cerr的内容都是立即刷新的。</li>
+<li>一个输出流可能被关联到另一个流。在这种情况下，当读写被关联的流时，关联到的流的缓冲区会被刷新。例如，默认情况下，cin和cerr都关联到cout。因此，读cin或写cerr都会导致cout的缓冲区被刷新。</li>
+</ul>
+<p>能够引起缓冲区刷新的操作符有enl、flush和ends：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cout &lt;&lt; <span class="hljs-string">&quot;hi!&quot;</span> &lt;&lt;endl; <span class="hljs-comment">// 输出hi和一个换行，然后刷新缓冲区</span><br>cout &lt;&lt; <span class="hljs-string">&quot;hi!&quot;</span> &lt;&lt;flush; <span class="hljs-comment">// 输出hi，然后刷新缓冲区，不附加任何额外字符</span><br>cout &lt;&lt; <span class="hljs-string">&quot;hi! &quot;</span> &lt;&lt;ends; <span class="hljs-comment">// 输出hi和一个空字符，然后刷新缓冲区</span><br></code></pre></td></tr></table></figure>
+
+<p>如果想在每次输出操作后都刷新缓冲区，我们可以使用<strong>unitbuf操纵符</strong>。它告诉流在接下来的每次写操作之后都进行一次flush 操作。而nounitbuf操纵符则重置流，使其恢复使用正常的系统管理的缓冲区刷新机制：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cout &lt;&lt; unitbuf;<br>cout &lt;&lt; nounitbuf;<br></code></pre></td></tr></table></figure>
+
+<h3 id="关联输入输出流"><a href="#关联输入输出流" class="headerlink" title="关联输入输出流"></a>关联输入输出流</h3><p>当一个输入流被关联到一个输出流时，<strong>任何试图从输入流读取数据的操作都会先刷新关联的输出流</strong>。</p>
+<p>标准库将cout和cin关联在一起，因此下面语句将导致cout的缓冲区被刷新：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cin &gt;&gt; ival;<br></code></pre></td></tr></table></figure>
+
+<p>使用输入流的成员函数tie可以管理其关联的输出流。</p>
+<p>如果使用不带参数的tie函数，将返回本对象关联的输出流的指针，如果未关联输出流，将返回空指针。</p>
+<p>如果使用带参数的tie函数，参数为指向一个输出流的指针，那么将把这个输出流关联到该输入流。</p>
+<h1 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h1><h2 id="使用文件流"><a href="#使用文件流" class="headerlink" title="使用文件流"></a>使用文件流</h2><h3 id="文件流"><a href="#文件流" class="headerlink" title="文件流"></a>文件流</h3><p>头文件 fstream定义了三个类型来支持文件IO：ifstream从一个给定文件读取数据，ofstream向一个给定文件写入数据，以及fstream可以读写给定文件。</p>
+<p>这些类型提供的操作与我们之前已经使用过的对象cin和cout的操作一样。</p>
+<h3 id="定义文件流"><a href="#定义文件流" class="headerlink" title="定义文件流"></a>定义文件流</h3><p>如下方式可以定义一个文件流：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">ifstream <span class="hljs-title">in</span><span class="hljs-params">(ifile)</span></span>;<br></code></pre></td></tr></table></figure>
+<p>ifile是文件名，<strong>既可以是string对象又可以是C风格字符串</strong>。这样就定义了一个文件输入流并打开了指定文件。</p>
+<p>如果像这样定义一个空白的流，就是未绑定（打开）文件的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ofstream out;<br></code></pre></td></tr></table></figure>
+
+<h3 id="打开和关闭文件"><a href="#打开和关闭文件" class="headerlink" title="打开和关闭文件"></a>打开和关闭文件</h3><p>如果我们定义了一个空文件流对象，可以随后调用open来将它与文件关联起来：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ofstream out;<br>out.<span class="hljs-built_in">open</span>(ifile);<br></code></pre></td></tr></table></figure>
+
+<p>如果调用open失败，failbit会被置位。因为调用open可能失败，通常在进行了open操作之后使用if(out)进行open是否成功的检测。</p>
+<p>一个文件只能由一个对象打开，试图打开已打开的文件会失败。为了将文件流关联到另外一个文件，或者让另一个文件流打开该文件，必须首先使用close关闭已经关联的文件：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">in.<span class="hljs-built_in">close</span>();<br>in.<span class="hljs-built_in">open</span>(ifile2);<br></code></pre></td></tr></table></figure>
+
+<p>此外，<strong>当使用带文件名参数来构造文件流时，文件会自动被打开</strong>，而不用额外的open操作，且<strong>当文件流被销毁时，其析构函数会自动调用close函数</strong>。</p>
+<h2 id="文件模式"><a href="#文件模式" class="headerlink" title="文件模式"></a>文件模式</h2><h3 id="指定文件模式"><a href="#指定文件模式" class="headerlink" title="指定文件模式"></a>指定文件模式</h3><p>每次调用open时都会确定文件模式，如下例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ofstream out; <span class="hljs-comment">// 未指定文件打开模式</span><br>out.<span class="hljs-built_in">open</span> (<span class="hljs-string">&quot;scratchpad&quot;</span>); <span class="hljs-comment">// 模式隐含设置为输出和截断</span><br>out.<span class="hljs-built_in">close</span>();<br>out.<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;precious&quot;</span>, ofstream::app); <span class="hljs-comment">// 模式为输出和追加</span><br>out.<span class="hljs-built_in">close</span>();<br></code></pre></td></tr></table></figure>
+<p>第一个open调用未显式指定输出模式，文件隐式地以out模式打开。</p>
+<p>通常情况下，<strong>out模式意味着同时使用trunc模式</strong>，当前目录下名为scratchpad的文件的内容将被清空。当打开名为precious的文件时，我们指定了append模式，文件中已有的数据都得以保留，所有写操作都在文件末尾进行。</p>
+<p><strong>以out模式打开文件会丢弃已有数据</strong>，因此想要追加数据应当以app模式打开。</p>
+<h3 id="文件模式类别"><a href="#文件模式类别" class="headerlink" title="文件模式类别"></a>文件模式类别</h3><p>有以下文件模式：</p>
+<ul>
+<li>in：以读方式打开。</li>
+<li>out：以写方式打开。</li>
+<li>app：，追加，每次写操作前均定位到文件末尾。</li>
+<li>ate：打开文件后立即定位到文件末尾。</li>
+<li>trunc：截断文件。</li>
+<li>binary：以二进制方式进行IO。</li>
+</ul>
+<p>使用文件模式时有以下规则：</p>
+<ul>
+<li>只可以对ofstream或fstream对象设定out模式。</li>
+<li>只可以对ifstream或fstream对象设定in模式。</li>
+<li>只有当out也被设定时才可设定trunc模式。</li>
+<li>只要trunc没被设定，就可以设定app模式。在app模式下，即使没有显式指定out模式，文件也总是以输出方式被打开。</li>
+<li>默认情况下，即使我们没有指定trunc，以out模式打开的文件也会被截断。为了保留以out模式打开的文件的内容，我们必须同时指定app模式，这样只会将数据追加写到文件末尾；或者同时指定in模式，即打开文件同时进行读写操作。</li>
+<li>ate和binary模式可用于任何类型的文件流对象，且可以与其他任何文件模式组合使用。</li>
+<li>与ifstream关联的文件默认以in模式打开；与ofstream关联的文件默认以out模式打开；与fstream关联的文件默认以in和out模式打开。</li>
+</ul>
+<h1 id="string流"><a href="#string流" class="headerlink" title="string流"></a>string流</h1><p>sstream头文件定义了三个类型来支持内存IO，这些类型可以向string写入数据，从string读取数据，<strong>就像string是一个IO流一样</strong>。</p>
+<p>istringstream从string读取数据，ostringstream向string写入数据，同时有以下操作是string流所特有的：</p>
+<ul>
+<li>strm.str()：返回strm所保存的string的拷贝。</li>
+<li>strm.str(s)：将string s拷贝到strm中，返回void。</li>
+</ul>
+<p>声明一个istringstream的方式如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">istringstream <span class="hljs-title">record</span><span class="hljs-params">(s)</span></span>;<br></code></pre></td></tr></table></figure>
+<p>这样就把流record绑定到了string对象s上，就可以像使用cin一样使用record从s中读取数据了。</p>
+<p>同样的，定义一个ostringstream的方式如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ostringstream formatted;<br></code></pre></td></tr></table></figure>
+<p>这样可以像使用cout一样去使用formatted，向formatted输出内容，最后使用formatted.str()来将输出的内容获取出来，就是所输出的字符串了。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/19/cpp008/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;19&#x2F;cpp008&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;19&#x2F;cpp008&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/08/17/cpp007/">C++学习笔记（7）：类 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IO%E7%B1%BB"><span class="toc-text">IO类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E5%BA%93%E7%B1%BB%E5%9E%8B"><span class="toc-text">IO库类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%8A%B6%E6%80%81"><span class="toc-text">条件状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%9D%A1%E4%BB%B6%E7%8A%B6%E6%80%81"><span class="toc-text">查询条件状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E6%9D%A1%E4%BB%B6%E7%8A%B6%E6%80%81"><span class="toc-text">管理条件状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E7%BC%93%E5%86%B2"><span class="toc-text">输出缓冲</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E8%BE%93%E5%87%BA%E7%BC%93%E5%86%B2"><span class="toc-text">管理输出缓冲</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-text">关联输入输出流</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-text">文件输入输出</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%87%E4%BB%B6%E6%B5%81"><span class="toc-text">使用文件流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%B5%81"><span class="toc-text">文件流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6%E6%B5%81"><span class="toc-text">定义文件流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%92%8C%E5%85%B3%E9%97%AD%E6%96%87%E4%BB%B6"><span class="toc-text">打开和关闭文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%A8%A1%E5%BC%8F"><span class="toc-text">文件模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E6%A8%A1%E5%BC%8F"><span class="toc-text">指定文件模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%A8%A1%E5%BC%8F%E7%B1%BB%E5%88%AB"><span class="toc-text">文件模式类别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#string%E6%B5%81"><span class="toc-text">string流</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

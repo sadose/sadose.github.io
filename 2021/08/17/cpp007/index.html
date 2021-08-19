@@ -189,7 +189,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>August 17, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11361</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11364</span>
     </div>
   </div>
 </section>
@@ -328,7 +328,9 @@
 <p>但是要注意，这个合成的默认构造函数只在没有一个构造函数时才会自动合成，而如果定义了带参数的构造函数，则必须显式定义一个默认构造函数，否则没有形参地初始化一个对象时，将找不到对应的构造函数。</p>
 <p>显式定义一个默认构造函数的另一个原因是合成的默认构造函数可能执行不合理的操作：默认构造函数将默认初始化没有初始值的成员变量，而默认初始化的成员变量是无意义的随机值，无法正常使用。</p>
 <p>此外，某些情况下编译器可能无法为类合成默认构造函数，如类中含有某一类型的成员变量，而这种类型没有默认构造函数，那么就无法默认初始化这个成员变量，那么包含了这种类型的成员变量的类也无法合成默认初始化函数。</p>
-<p>在C++11标准中我们可以在定义了其他构造函数的情况下让编译器依然生成合成的默认构造函数，只需要在形参列表后加上=default标记即可：<br>Box() = default;<br>如果=default标记在类内，那么该构造函数为内联的。</p>
+<p>在C++11标准中我们可以在定义了其他构造函数的情况下让编译器依然生成合成的默认构造函数，只需要在形参列表后加上=default标记即可：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">Box</span>() = <span class="hljs-keyword">default</span>;<br></code></pre></td></tr></table></figure>
+<p>如果=default标记在类内，那么该构造函数为内联的。</p>
 <p>还有一种情况，我们说没有形参的构造函数为默认构造函数，但如果有一个构造函数的所有形参都指定了默认实参，那么这个函数也可以认为是默认构造函数，这个类就相当于定义了默认构造函数。</p>
 <h2 id="带参数的构造函数"><a href="#带参数的构造函数" class="headerlink" title="带参数的构造函数"></a>带参数的构造函数</h2><p>带参数的构造函数可以大致分为两种：分别是只需要对成员变量进行初始化的构造函数和需要进行其他操作的构造函数。</p>
 <p>（1）只需要对成员变量进行初始化的构造函数通常使用<strong>构造函数初始值</strong>列表来实现，并声明为内联函数。</p>
@@ -426,7 +428,7 @@
         
         
   <nav class="nav">
-    <a></a>
+    <a href="/2021/08/19/cpp008/"><i class="iconfont iconleft"></i><i class="iconfont iconleft"></i> C++学习笔记（8）：IO库</a>
     <a href="/2021/08/09/cpp006/">C++学习笔记（6）：函数 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
   </nav>
 
