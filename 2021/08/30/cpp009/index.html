@@ -1,0 +1,755 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>C++学习笔记（9）：容器 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="容器库容器库概览容器库就是C++提供的一系列关于容器的...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">C++学习笔记（9）：容器</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/cpp.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">C++学习笔记（9）：容器</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>August 30, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>16577</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="容器库"><a href="#容器库" class="headerlink" title="容器库"></a>容器库</h1><h2 id="容器库概览"><a href="#容器库概览" class="headerlink" title="容器库概览"></a>容器库概览</h2><p>容器库就是C++提供的一系列关于容器的标准库，主要分为<strong>顺序容器</strong>和<strong>关联容器</strong>。顺序容器和关联容器的不同之处在于两者<strong>组织元素的方式</strong>。这些不同之处直接关系到了元素如何存储、访问、添加以及删除。</p>
+<p>每个容器都存放在一个头文件中，头文件的名字和容器类的名字相同。</p>
+<p>这些容器都是<strong>模板类</strong>，因此定义的时候要给出容器内元素的类型，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">vector&lt;<span class="hljs-keyword">int</span>&gt; v;<br></code></pre></td></tr></table></figure>
+
+<p>容器可以保存任何类型的元素，也可以定义容器的容器。</p>
+<p>我们主要关注的是这些容器如何使用，也就是容器的操作。</p>
+<p>首先，所有容器有一系列<strong>通用操作</strong>，这些操作对于任何容器都是适用的。</p>
+<p>其次，还有一些操作是对于所有的顺序容器都适用的操作，即顺序容器操作；关联容器也有其特有的操作。</p>
+<p>最后，某个特定的容器也许也有其独有的操作。</p>
+<p>这里将介绍所有容器都具有的操作，即容器的通用操作。</p>
+<h2 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h2><h3 id="类型成员"><a href="#类型成员" class="headerlink" title="类型成员"></a>类型成员</h3><p>所有容器都支持下列类型成员：</p>
+<ul>
+<li>iterator：此容器类型的迭代器类型。</li>
+<li>const_iterator：常量迭代器，可以读取元素，但不能修改元素的迭代器类型。</li>
+<li>size_type：无符号整数类型，足够保存此种容器类型最大可能容器的大小。</li>
+<li>difference_type：带符号整数类型，足够保存两个迭代器之间的距离。</li>
+<li>value_type：容器内存放的元素类型。</li>
+<li>reference：元素的左值类型，与value_type&amp;含义相同。</li>
+<li>const_reference：元素的const左值类型，即const value_type&amp;。</li>
+</ul>
+<p>除了已经使用过的迭代器类型，大多数容器还提供<strong>反向迭代器</strong>。简单地说，反向迭代器就是一种反向遍历容器的迭代器，与正向迭代器相比，各种操作的含义也都发生了颠倒。</p>
+<p>除了迭代器相关的类型成员之外，剩下的就是一些类型别名了。</p>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>标准容器类型上的所有迭代器都允许我们访问容器中的元素，而所有迭代器都是通过解引用运算符来实现这个操作的，标准库容器的所有迭代器都定义了递增运算符，从当前元素移动到下一个元素，除forwardlist以外的迭代器都支持递减运算符。</p>
+<p>算术运算符只有顺序容器的迭代器支持。</p>
+<h3 id="begin和end"><a href="#begin和end" class="headerlink" title="begin和end"></a>begin和end</h3><p>begin和end操作生成指向容器中第一个元素和尾元素之后位置的迭代器。这两个迭代器最常见的用途是形成一个包含容器中所有元素的迭代器范围。</p>
+<p>begin和end有多个版本：带r的版本返回反向迭代器、以c开头的版本则返回const迭代器：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">list&lt;string&gt; a = &#123; <span class="hljs-string">&quot;Milton&quot;</span>, <span class="hljs-string">&quot;Shakespeare&quot;</span>, <span class="hljs-string">&quot;Austen&quot;</span> &#125;;<br><span class="hljs-keyword">auto</span> it1 = a.<span class="hljs-built_in">begin</span> ();<br><span class="hljs-keyword">auto</span> it2 = a.<span class="hljs-built_in">rbegin</span>();<br><span class="hljs-keyword">auto</span> it3 = a.<span class="hljs-built_in">cbegin</span> ();<br><span class="hljs-keyword">auto</span> it4 = a.<span class="hljs-built_in">crbegin</span>();<br></code></pre></td></tr></table></figure>
+
+<h3 id="定义和初始化"><a href="#定义和初始化" class="headerlink" title="定义和初始化"></a>定义和初始化</h3><p>普通的定义和初始化的方法有默认初始化、括号初始化、拷贝初始化、参数初始化等。</p>
+<p>将一个新容器创建为另一个容器的拷贝的方法有两种：</p>
+<ul>
+<li>直接拷贝整个容器。</li>
+<li>拷贝由一个迭代器对指定的元素范围（array除外）。</li>
+</ul>
+<p>同一种容器相互拷贝的话（拷贝初始化、赋值拷贝），必须保证两个容器是同一种容器，其存储的值的类型也必须相同（即容器类型完全相同）。而使用迭代器拷贝的话，只需要给定拷贝范围（同样是左闭右开的）即可，从一种容器拷贝到另一种容器也是允许的，甚至，它们存储的元素类型不同但能相互转换也是可以的，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp">list&lt;string&gt; authors = &#123; <span class="hljs-string">&quot;Milton&quot;</span>, <span class="hljs-string">&quot;Shakespeare&quot;</span>, <span class="hljs-string">&quot;Austen&quot;</span> &#125;;<br>vector&lt;<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>*&gt; articles = &#123; <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;an&quot;</span>, <span class="hljs-string">&quot;the&quot;</span> &#125;;<br><span class="hljs-function">list&lt;string&gt; <span class="hljs-title">list2</span><span class="hljs-params">(authors)</span></span>; <span class="hljs-comment">// 正确：类型匹配</span><br><span class="hljs-function">deque&lt;string&gt; <span class="hljs-title">authList</span><span class="hljs-params">(authors)</span></span>; <span class="hljs-comment">// 错误：容器类型不匹配</span><br><span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">words</span><span class="hljs-params">(articles)</span></span>; <span class="hljs-comment">// 错误：容器类型必须匹配</span><br><span class="hljs-comment">// 正确：可以将const char*元素转换为string</span><br><span class="hljs-function">forward_list&lt;string&gt; <span class="hljs-title">words</span><span class="hljs-params">(articles.begin(), articles.end())</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>除了array外的顺序容器还支持单一元素初始化方式，即提供容器大小和一个初始值（或者不显式提供初始值，进行默认初始化），就可以创建一个该大小的容器，且其所有元素都是该初始值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ivec</span> <span class="hljs-params">(<span class="hljs-number">10</span>, <span class="hljs-number">-1</span>)</span></span>;<br><span class="hljs-function">list&lt;string&gt; <span class="hljs-title">svec</span> <span class="hljs-params">(<span class="hljs-number">10</span>, <span class="hljs-string">&quot;hi!&quot;</span>)</span></span>;<br><span class="hljs-function">forward_list&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ivec</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;<br><span class="hljs-function">deque&lt;string&gt; <span class="hljs-title">svec</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>但是如果不提供初始值的话，这个类型必须是能够默认初始化的。</p>
+<h3 id="容器大小"><a href="#容器大小" class="headerlink" title="容器大小"></a>容器大小</h3><p>除了forward_list之外，每个容器类型都有三个与大小相关的操作：</p>
+<ul>
+<li>成员函数size返回容器中元素的数目。</li>
+<li>成员函数empty当size为0时返回布尔值true，否则返回false。</li>
+<li>成员变量max_size返回一个大于或等于该类型容器所能容纳的最大元素数的值。</li>
+</ul>
+<p>forward_list支持max_size和empty，但不支持size。</p>
+<h3 id="赋值和swap"><a href="#赋值和swap" class="headerlink" title="赋值和swap"></a>赋值和swap</h3><p>与赋值相关的运算符可用于所有容器，赋值运算符将其左边容器中的全部元素替换为右边容器中元素的拷贝，右边容器可以为值列表。因此赋值运算之后两容器大小将相同。</p>
+<p>与内置数组不同，标准库array类型允许赋值，赋值号左右两边的运算对象必须具有相同的类型：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">array&lt;<span class="hljs-keyword">int</span>,10&gt; a1 = &#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>&#125;;<br>array&lt;<span class="hljs-keyword">int</span>,10&gt; a2 = &#123;<span class="hljs-number">0</span>&#125;; <span class="hljs-comment">// 所有元素值均为0</span><br>a1 = a2; <span class="hljs-comment">// 替换a1中的元素</span><br>a2 = &#123;<span class="hljs-number">0</span>&#125;; <span class="hljs-comment">// 错误：不能将一个花括号列表赋予数组</span><br></code></pre></td></tr></table></figure>
+
+<p>array<strong>不支持花括号赋值，但是允许列表初始化</strong>。</p>
+<p>除了array的顺序容器支持assign成员函数，它接受两个迭代器参数，可以实现区间拷贝，并且可以实现两个不同类型容器间的拷贝。</p>
+<p>swap函数交换两个相同类型容器的内容，调用swap之后，两个容器中的元素将会交换：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">svec1</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;<br><span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">svec2</span><span class="hljs-params">(<span class="hljs-number">24</span>)</span></span>;<br><span class="hljs-built_in">swap</span>(svec1, svec2);<br></code></pre></td></tr></table></figure>
+
+<p>除了array和string以外，swap操作实际上都是指针操作，它们只是交换了这些元素的指针，因此可以在常数时间内完成交换，只有对array使用时才真正交换了元素，而对string使用swap函数之后原来的迭代器、引用和指针将会失效。</p>
+<h3 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h3><p>每个容器类型都支持相等运算符（==和!=)；除了无序关联容器外的所有容器都支持关系运算符(&gt;、&gt;=、&lt;、&lt;=)。<strong>关系运算符左右两边的运算对象必须是相同类型的容器，且必须保存相同类型的元素</strong>。</p>
+<p>比较两个容器实际上是进行元素的逐对比较。这些运算符的工作方式与string的关系运算（字典序比较）类似。</p>
+<p>容器的关系运算符使用元素的关系运算符完成比较，只有当其元素类型也定义了相应的比较运算符时，我们才可以使用关系运算符来比较两个容器。</p>
+<h1 id="顺序容器"><a href="#顺序容器" class="headerlink" title="顺序容器"></a>顺序容器</h1><h2 id="顺序容器概述"><a href="#顺序容器概述" class="headerlink" title="顺序容器概述"></a>顺序容器概述</h2><p>标准库中主要提供了以下顺序容器：</p>
+<ul>
+<li>vector：可变大小数组（向量）。支持随机访问，尾部插入、删除元素速度快。</li>
+<li>deque：双端队列。支持随机访问，在头尾插入元素速度很快。</li>
+<li>list：双向链表。支持双向顺序访问。任意位置插入、删除元素速度都很快。</li>
+<li>forward_list：单向链表。支持单向顺序访问，插入、删除元素速度很快。</li>
+<li>array：固定大小数组。和内置数组行为类似。</li>
+<li>string：与vector行为类似，但只用来保存字符。</li>
+</ul>
+<p>forward_list和array是C++新标准增加的类型，array比内置数组更安全更容易使用，forward_list则是力求达到与最好的手写单链表性能相当的数据结构，由于保存或计算size会比手写链表多出额外的开销，因此forward_list不支持size操作（size操作的要求是常量时间得出结果）。</p>
+<p>选用这些容器的原则一般为：</p>
+<ul>
+<li>除非你有很好的理由选择其他容器，否则应使用vector。</li>
+<li>如果你的程序有很多小的元素，且空间的额外开销很重要，则不要使用list或forward_list。</li>
+<li>如果程序要求随机访问元素，应使用vector或deque。</li>
+<li>如果程序要求在容器的中间插入或删除元素，应使用list或forward_list。</li>
+<li>如果程序需要在头尾位置插入或删除元素，但不会在中间位置进行插入或删除操作，则使用deque。</li>
+<li>如果程序只有在读取输入时才需要在容器中间位置插入元素，随后需要随机访问元素，则：<ul>
+<li>首先，确定是否真的需要在容器中间位置添加元素。当处理输入数据时，通常可以很容易地向vector追加数据，然后再调用标准库的sort函数来重排容器中的元素，从而避免在中间位置添加元素。</li>
+<li>如果必须在中间位置插入元素，考虑在输入阶段使用list，一旦输入完成，将list中的内容拷贝到一个vector中。</li>
+</ul>
+</li>
+</ul>
+<p>定义这些容器时都需要指明数据类型（string除外，array还需要指明尺寸）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">vector&lt;<span class="hljs-keyword">int</span> &gt; v;<br>deque&lt;<span class="hljs-keyword">int</span>&gt; d;<br>list&lt;<span class="hljs-keyword">int</span>&gt; l;<br>forward_list&lt;<span class="hljs-keyword">int</span>&gt; f;<br>array&lt;<span class="hljs-keyword">int</span>, 5&gt; a;<br></code></pre></td></tr></table></figure>
+
+<h2 id="顺序容器操作"><a href="#顺序容器操作" class="headerlink" title="顺序容器操作"></a>顺序容器操作</h2><h3 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h3><p>常用的向顺序容器添加元素的操作主要有：</p>
+<ul>
+<li>c.push_back(t)：尾部插入元素，返回void。</li>
+<li>c.emplace_back(args)：同上。</li>
+<li>c.push_front(t)：头部插入元素，返回void。</li>
+<li>c.emplace_front(args)：同上。</li>
+<li>c.insert(p,t)：在迭代器p指向的元素之前创建一个值为t的元素，返回新元素的迭代器。</li>
+<li>c.emplace(p,args)：同上。</li>
+<li>c.insert(p,n,t)：在迭代器p指向的元素之前插入n个值为t的新元素，返回添加的第一个元素的迭代器。n可以为0，此时不添加元素，返回p。</li>
+<li>c.insert(p,b,e)：将迭代器b、e之间的元素添加到迭代器p之前，b、e不能是c中元素的迭代器，最后返回新添加的第一个元素的迭代器。b、e指定的范围为空时不插入元素，返回p。</li>
+<li>c.insert(p,il)：il是花括号包含的值列表，其他同上。<br>其中有一些例外的顺序容器：</li>
+<li>这些操作会改变容器的大小，因此array不支持这些操作。</li>
+<li>forward_list有自己专有版本的insert和emplace，且不支持push_back和emplace_back。</li>
+<li>vector和string不支持push_front和emplace_front。</li>
+</ul>
+<p>用对象来初始化容器和插入容器时，<strong>插入进去的实际都是对象的拷贝</strong>。</p>
+<p>vector和string不支持push_front操作但仍可以通过insert操作来在最前面插入元素。</p>
+<p>emplace系列函数和push、insert的区别是，<strong>前者是构造，后者是拷贝</strong>。即通过emplace函数插入的元素并非是拷贝，而是构造一个新的该类型对象，将它的参数传递给对象的构造函数。</p>
+<p>forward_list的特有操作在下面介绍。</p>
+<h3 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h3><p>访问首尾元素通过front和back成员函数来实现，所有顺序容器都有front函数，除了forward_list之外的顺序容器都有back函数。</p>
+<p>需要注意begin和end函数返回的是迭代器，而front和back返回的是引用，且end返回的是尾后迭代器，而back返回的是最后一个元素的引用。</p>
+<p>顺序容器的随机访问通过下标运算或者at函数实现。区别是使用下标运算时如果下标越界将出现未定义行为，而at函数则抛出一个out_of_range异常。</p>
+<p>实际上顺序容器的下标运算和at成员函数返回的都是元素的引用。</p>
+<p>因此如果希望通过auto来保存这些函数的返回值且希望通过该变量来改变该元素的值，需要手动定义为引用。</p>
+<h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><p>常用的从顺序容器删除元素的操作如下：</p>
+<ul>
+<li>c.pop_back()：删除c中尾元素。若c为空，则函数行为未定义。返回void。</li>
+<li>c.pop_front()：删除c中首元素。若c为空，则函数行为未定义。返回void。</li>
+<li>c.erase(p)：删除迭代器p所指定的元素，返回一个指向被删元素之后元素的迭代器，若p指向尾元素，则返回尾后迭代器。若p是尾后迭代器，则函数行为未定义。</li>
+<li>c.erase(b,e)：删除迭代器b和e所指定范围内的元素。返回一个指向最后一个被删元素之后元素的迭代器，若e本身就是尾后迭代器，则函数也返回尾后迭代器。</li>
+<li>c.clear()：删除c中的所有元素。返回void。</li>
+</ul>
+<p>与vector和string不支持push_front一样，这些类型也不支持pop_front。类似的，forward_list不支持pop_back。此外forward_list有特殊版本的erase。</p>
+<p><strong>删除元素的成员函数不检查其参数</strong>，因此需要我们来确保元素存在。</p>
+<p>forward_list的特有操作在下面介绍。</p>
+<h3 id="forward-list的增删元素"><a href="#forward-list的增删元素" class="headerlink" title="forward_list的增删元素"></a>forward_list的增删元素</h3><p>由于forward_list是一个单链表，对一个元素添加或删除其后继元素非常容易，因此它的添加删除操作比较特殊，forward_list并未定义和其他顺序容器一样的insert、emplace和erase，而是定义了名为insert_after、emplace_after和erase_after的操作，同时为了对应尾后迭代器，还引入了元素的首前迭代器：</p>
+<ul>
+<li>lst.before_begin()：返回指向链表首元素之前不存在的元素的迭代器。和尾后迭代器一样，此迭代器不能解引用。</li>
+<li>lst.cbefore_begin()：返回一个常量迭代器const_iterator。</li>
+<li>lst.insert_after(p,t)：在迭代器p之后的位置插入元素。返回插入元素的迭代器。</li>
+<li>lst.insert_after(p,n,t)：在迭代器p之后的位置插入n个t元素。返回指向最后一个插入元素的迭代器。如果n为0，则返回p。若p为尾后迭代器，则函数行为未定义。</li>
+<li>lst.insert_after(p,b,e)：在迭代器p之后的位置插入b和e迭代器范围内的元素。返回指向最后一个插入元素的迭代器。如果范围为空，则返回p。若p为尾后迭代器，则函数行为未定义。</li>
+<li>lst.insert_after(p,il)：il是一个花括号列表。返回指向最后一个插入元素的迭代器。若p为尾后迭代器，则函数行为未定义。</li>
+<li>lst.emplace_after(p, args)：使用args在p指定的位置之后创建一个元素。返回一个指向这个新元素的迭代器。若p为尾后迭代器，则函数行为未定义。</li>
+<li>lst.erase_after(p)：删除p指向的位置之后的元素。如果p指向lst的尾元素或者是一个尾后迭代器，则函数行为未定义。</li>
+<li>lst.erase_after(b,e)：删除从b之后直到（但不包含）e之间的元素。返回一个指向被删元素之后元素的迭代器，若不存在这样的元素，则返回尾后迭代器。</li>
+</ul>
+<h3 id="容器大小-1"><a href="#容器大小-1" class="headerlink" title="容器大小"></a>容器大小</h3><p>我们可以用resize来增大或缩小容器，其中array不支持resize。如果当前大小大于所要求的大小，容器后部的元素会被删除；如果当前大小小于新大小，会将新元素添加到容器后部：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">list&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ilist</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">42</span>)</span></span>; <span class="hljs-comment">// 10个int，每个的值都是42</span><br>ilist.<span class="hljs-built_in">resize</span>(<span class="hljs-number">15</span>); <span class="hljs-comment">// 将5个值为0的元素添加到ilist的末尾（实际是值初始化、默认初始化）</span><br>ilist.<span class="hljs-built_in">resize</span> (<span class="hljs-number">25</span>, <span class="hljs-number">-1</span>); <span class="hljs-comment">// 将10个值为-1的元素添加到ilist的末尾</span><br>ilist.<span class="hljs-built_in">resize</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">// 从ilist末尾删除20个元素</span><br></code></pre></td></tr></table></figure>
+
+<p>与其他顺序容器不同，array作为数组，其大小是和类型一同指定的，如array&lt;int,42&gt;或array&lt;string,10&gt;。即其大小是类型的一部分。</p>
+<p>因此，array的默认初始化的方式也不一样，它会创建一个该大小的array，然后对每个元素默认初始化，就像一个内置数组一样。列表初始化时提供的值不够时，剩余元素进行值初始化。</p>
+<h3 id="迭代器-1"><a href="#迭代器-1" class="headerlink" title="迭代器"></a>迭代器</h3><p>向容器中添加元素和从容器中删除元素的操作可能会使指向容器元素的指针、引用或迭代器失效。一个失效的指针、引用或迭代器将不再表示任何元素。使用失效的指针、引用或迭代器是一种严重的程序设计错误，很可能引起与使用未初始化指针一样的问题。</p>
+<p>向容器中添加元素可能导致的情况：</p>
+<ul>
+<li>如果容器是vector或string，且存储空间被重新分配，则指向容器的迭代器、指针和引用都会失效。如果存储空间未重新分配，指向插入位置之前的元素的迭代器、指针和引用仍有效，但指向插入位置之后元素的迭代器、指针和引用将会失效。</li>
+<li>对于deque，插入到除首尾位置之外的任何位置都会导致迭代器、指针和引用失效。如果在首尾位置添加元素，迭代器会失效，但指向存在的元素的引用和指针不会失效。</li>
+<li>对于list和forward_list，添加元素后指向容器的迭代器（包括尾后迭代器和首前迭代器）、指针和引用仍有效。</li>
+</ul>
+<p>向容器中删除元素可能导致的情况：</p>
+<ul>
+<li>对于list和forward_list，指向容器其他位置的迭代器（包括尾后迭代器和首前迭代器）、引用和指针仍有效。</li>
+<li>对于deque，如果在首尾之外的任何位置删除元素，那么指向被删除元素外其他元素的迭代器、引用或指针也会失效。如果是删除deque的尾元素，则尾后迭代器也会失效，但其他迭代器、引用和指针不受影响；如果是删除首元素，这些也不会受影响。</li>
+<li>对于vector和string，指向被删元素之前元素的迭代器、引用和指针仍有效。尾后迭代器会失效。</li>
+</ul>
+<h3 id="vector容量增长"><a href="#vector容量增长" class="headerlink" title="vector容量增长"></a>vector容量增长</h3><p>vector和string为了实现随机访问，将元素连续存储，如果添加元素没有多余空间了，就需要开辟一块更大的连续空间，把元素都拷贝进去，这就是容量增长。<br>以下是和容器容量相关的函数：</p>
+<ul>
+<li>c.capacity()：容器当前的容量（可存储多少元素）。</li>
+<li>c.reserve(n)：分配至少能容纳n个元素的内存空间（当n大于当前容量时才生效）。</li>
+<li>c.shrink_to_fit()：缩减容器容量到c.size()，这只是一个请求，标准库并不保证退还内存。</li>
+</ul>
+<h2 id="string特殊操作"><a href="#string特殊操作" class="headerlink" title="string特殊操作"></a>string特殊操作</h2><h3 id="构造string"><a href="#构造string" class="headerlink" title="构造string"></a>构造string</h3><p>string与其他顺序容器区别的构造函数：</p>
+<ul>
+<li>string s(cp,n)：cp是一个字符数组，s是cp指向的数组中前n个字符的拷贝，此数组至少应该包含n个字符。</li>
+<li>string s(s2,pos2)：s是string s2从下标pos2开始的字符的拷贝，若pos2&gt;s2.size()，构造函数的行为未定义。</li>
+<li>string s(s2,pos2,len2)：s是string s2从下标pos2开始len2个字符的拷贝，若pos2&gt;s2.size()，构造函数的行为未定义。此外不管len2的值是多少，构造函数至多拷贝s2.size()-pos2个字符。</li>
+</ul>
+<p>此外还有substr操作，可以返回字符串的一个子串，两个参数是开始位置和字符数，其中两个参数都可以省略，第一个参数省略默认为0，第二个字符省略为复制到字符串末尾：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">string <span class="hljs-title">s</span><span class="hljs-params">(<span class="hljs-string">&quot;hello world&quot;</span> )</span></span>;<br>string s2 = s.<span class="hljs-built_in">substr</span> (<span class="hljs-number">0</span>，<span class="hljs-number">5</span>); <span class="hljs-comment">// s2 = hello</span><br>string s3 = s.<span class="hljs-built_in">substr</span>(<span class="hljs-number">6</span>); <span class="hljs-comment">// s3 = world</span><br>string s4 = s.<span class="hljs-built_in">substr</span>(<span class="hljs-number">6</span>，<span class="hljs-number">11</span>); <span class="hljs-comment">// s3 = world</span><br>string s5 = s.<span class="hljs-built_in">substr</span> (<span class="hljs-number">12</span>); <span class="hljs-comment">// 抛出一个out_of_range异常</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="改变string"><a href="#改变string" class="headerlink" title="改变string"></a>改变string</h3><p>string支持顺序容器的赋值运算符以及assign、insert和erase操作，此外还有其特殊的insert和erase版本，即除了接受迭代器的insert和erase版本外，string还提供了接受下标的版本，下标指出了开始删除的位置，或是insert到给定值之前的位置。</p>
+<p>此外string还有两个函数可以改变string的内容：</p>
+<ul>
+<li>s.append(args)：将args追加到s，args是一个C风格字符串或字符串字面值等。返回一个指向s的引用。</li>
+<li>s.replace(range1,range2,args)：删除s中范围range内的字符，替换为args指定的字符。range或者是一个下标和一个长度，或者是一对指向s的迭代器。返回一个指向s的引用。</li>
+</ul>
+<p>assign和append函数无须指定要替换string中哪个部分，assign总是替换string中的所有内容，append总是将新字符追加到string末尾。</p>
+<p>replace函数提供了两种指定删除元素范围的方式，可以通过一个位置和一个长度来指定范围，也可以通过一个迭代器范围来指定。</p>
+<p>insert函数允许我们用两种方式指定插入点：用一个下标或一个迭代器，在两种情况下，新元素都会插入到给定下标（或迭代器）之前的位置。</p>
+<h3 id="string搜索"><a href="#string搜索" class="headerlink" title="string搜索"></a>string搜索</h3><p>string类提供了6个不同的搜索函数：</p>
+<ul>
+<li>s.find(args)：查找s中args第一次出现的位置。</li>
+<li>s.rfind(args)：查找s中args最后一次出现的位置。</li>
+<li>s.find_first_of(args)：在s中查找args中任何一个字符第一次出现的位置。</li>
+<li>s.find_last_of(args)：在s中查找args中任何一个字符最后一次出现的位置。</li>
+<li>s.find_first_not_of(args)：在s中查找第一个不在args中的字符。</li>
+<li>s.find_last_not_of (args)：在s中查找最后一个不在 args中的字符。</li>
+</ul>
+<p>每个函数都有4个重载版本，即四种args：</p>
+<ul>
+<li>c,pos：从s中位置pos开始查找字符c，pos默认为0。</li>
+<li>s2,pos：从s中位置pos开始查找字符串s2，pos默认为0。</li>
+<li>cp,pos：从s中位置pos开始查找指针cp指向的以空字符结尾的C风格字符串，pos默认为0。</li>
+<li>cp,pos,n：从s中位置pos开始查找指针cp 指向的数组的前n个字符，pos和n无默认值。</li>
+</ul>
+<p>每个搜索操作都返回一个string:size_type值，表示匹配发生位置的下标。如果搜索失败，则返回一个名为string:npos的static成员。标准库将npos定义为一个const string:size_type类型，并初始化为值-1。由于npos是一个unsigned类型，此初始值意味着npos等于任何string最大的可能大小。</p>
+<h3 id="string比较"><a href="#string比较" class="headerlink" title="string比较"></a>string比较</h3><p>除了标准库外，string还提供了一系列compare成员函数的重载来进行string的比较，参数分别如下：</p>
+<ul>
+<li>s2：比较s和s2。</li>
+<li>pos1,n1,s2：将s中从pos1开始的n1个字符与s2进行比较。</li>
+<li>pos1,n1,s2, pos2,n2：将s中从pos1开始的n1个字符与s2中从pos2开始的n2个字符进行比较。</li>
+<li>cp：比较s与cp指向的以空字符结尾的字符数组。</li>
+<li>pos1,n1,cp：将s中从pos1开始的n1个字符与cp指向的以空字符结尾的字符数组进行比较。</li>
+<li>pos1,n1,cp,n2：将s中从pos1开始的n1个字符与指针cp指向的地址开始的n2个字符进行比较。</li>
+</ul>
+<h3 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h3><p>可以将数值转换为string的函数：</p>
+<ul>
+<li>to_string(val)：一组重载函数，返回数值val的string表示。val可以是任何算术类型。</li>
+<li>stoi(s,p,b)：返回s的起始子串（表示整数内容）的数值，b表示转换所用的基数，默认值为10。p是size_t指针，用来保存s中第一个非数值字符的下标，p默认为0，即函数不保存下标。返回值类型是int。</li>
+<li>stol(s,p,b)：同上，返回值类型是long。</li>
+<li>stoul(s,p,b)：同上，返回值类型是unsigned long。</li>
+<li>stoll(s,p,b)：同上，返回值类型是long long。</li>
+<li>stoull(s,p,b)：同上，返回值类型是unsigned long long。</li>
+<li>stof(s,p)：返回s的起始子串（表示浮点数内容）的数值，参数p的作用与整数转换函数中一样，返回值类型是float。</li>
+<li>stod(s,p)：同上，返回值类型是double。</li>
+<li>stold(s,p)：同上，返回值类型是long double。</li>
+</ul>
+<h2 id="容器适配器"><a href="#容器适配器" class="headerlink" title="容器适配器"></a>容器适配器</h2><h3 id="适配器"><a href="#适配器" class="headerlink" title="适配器"></a>适配器</h3><p>除了顺序容器外，标准库还定义了三个顺序容器适配器：<strong>stack、queue和priority_queue</strong>。</p>
+<p>适配器是标准库中的一个通用概念，容器、迭代器和函数都有适配器。本质上，一个适配器是一种机制，能<strong>使某种事物的行为看起来像另外一种事物一样</strong>。</p>
+<p>一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。</p>
+<p>例如，stack适配器接受一个顺序容器（除array或forward_list外）作为参数初始化，并使其操作起来像一个stack一样。</p>
+<p>以下是所有容器适配器都具有的操作或类型：</p>
+<ul>
+<li>size_type：一种类型，足以保存当前类型的最大对象的大小。</li>
+<li>value_type：元素类型。</li>
+<li>container_type：实现适配器的底层容器类型。</li>
+<li>A a; ：创建一个名为a的空适配器。</li>
+<li>A a(c); ：创建一个名为a的适配器，带有容器c的一个拷贝。</li>
+<li>=、!=、&lt;、&lt;=、&gt;和&gt;=：每个适配器都支持所有关系运算符，这些运算符返回底层容器的比较结果。</li>
+<li>a.empty()：若a包含任何元素，返回false，否则返回true。</li>
+<li>a.size()：返回a中的元素数目。</li>
+<li>swap(a,b)：交换a和b的内容，a和b必须有相同类型，包括底层容器类型也必须相同。</li>
+<li>a.swap(b)：同上。</li>
+</ul>
+<p>每个容器适配器都基于底层容器类型的操作定义了自己的特殊操作。我们<strong>只可以使用适配器操作，而不能使用底层容器类型的操作</strong>。</p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">stack&lt;<span class="hljs-keyword">int</span>&gt; intstack; <span class="hljs-comment">// 空栈</span><br></code></pre></td></tr></table></figure>
+
+<p>栈额外支持的操作：</p>
+<ul>
+<li>s.pop()：删除栈顶元素，但不返回该元素值。</li>
+<li>s.push(item)：创建一个新元素压入栈顶，该元素通过拷贝或移动item而来。</li>
+<li>s.emplace(args)：创建一个新元素压入栈顶，该元素由args构造。</li>
+<li>s.top()：返回栈顶元素，但不将元素弹出栈。</li>
+</ul>
+<p>栈默认基于deque实现，也可以在list或vector之上实现。</p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>包括queue和priority_queue适配器，都定义在queue头文件中。定义它们的方式与栈类似。</p>
+<p>priority_queue即优先队列，允许我们为队列中的元素建立优先级，新加入的元素会排在所有优先级比它低的已有元素之前。默认情况下，标准库在元素类型上使用&lt;运算符来确定相对优先级。后面还会介绍如何重载这个默认设置。</p>
+<p>队列额外支持的操作有：</p>
+<ul>
+<li>q.pop()：返回queue的首元素或priority_queue的最高优先级的元素，但不删除此元素。</li>
+<li>q.front()：返回首元素，但不删除此元素，只适用于queue。</li>
+<li>q.back()：返回尾元素，但不删除此元素，只适用于queue。</li>
+<li>q.top()：返回最高优先级元素，但不删除该元素，只适用于priority_queue。</li>
+<li>q.push(item)：在queue末尾或priority_queue中恰当的位置创建一个元素，其值为item。</li>
+<li>q.emplace(args)：同上，但其值由args构造。</li>
+</ul>
+<h1 id="关联容器"><a href="#关联容器" class="headerlink" title="关联容器"></a>关联容器</h1><h2 id="关联容器概述"><a href="#关联容器概述" class="headerlink" title="关联容器概述"></a>关联容器概述</h2><p>两个最主要的关联容器为字典（关联数组）和集合，即<strong>map和set</strong>。</p>
+<p>标准库提供8个关联容器，它们之间的区别体现在三个维度上：</p>
+<ul>
+<li>是一个set或者是一个map。</li>
+<li>关键字是否可以重复。</li>
+<li>元素有序保存还是无序保存。</li>
+</ul>
+<p>允许重复关键字的容器的使用multi标识，无序容器使用unordered标识，即：</p>
+<table>
+<thead>
+<tr>
+<th align="center">容器名称</th>
+<th align="center">容器类别</th>
+<th align="center">重复关键字</th>
+<th align="center">元素组织</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">map</td>
+<td align="center">关联数组</td>
+<td align="center">不允许</td>
+<td align="center">有序</td>
+</tr>
+<tr>
+<td align="center">set</td>
+<td align="center">集合</td>
+<td align="center">不允许</td>
+<td align="center">有序</td>
+</tr>
+<tr>
+<td align="center">multimap</td>
+<td align="center">关联数组</td>
+<td align="center">允许</td>
+<td align="center">有序</td>
+</tr>
+<tr>
+<td align="center">multiset</td>
+<td align="center">集合</td>
+<td align="center">允许</td>
+<td align="center">有序</td>
+</tr>
+<tr>
+<td align="center">unordered_map</td>
+<td align="center">关联数组</td>
+<td align="center">不允许</td>
+<td align="center">无序</td>
+</tr>
+<tr>
+<td align="center">unordered_set</td>
+<td align="center">集合</td>
+<td align="center">不允许</td>
+<td align="center">无序</td>
+</tr>
+<tr>
+<td align="center">unordered_multimap</td>
+<td align="center">关联数组</td>
+<td align="center">允许</td>
+<td align="center">无序</td>
+</tr>
+<tr>
+<td align="center">unordered_multiset</td>
+<td align="center">集合</td>
+<td align="center">允许</td>
+<td align="center">无序</td>
+</tr>
+</tbody></table>
+<p>有序或无序是个重要概念，有序容器内元素存储顺序是按关键字大小顺序存储的，因此其关键字类型必须支持大小比较；而无序容器是按照关键字哈希值存储的。</p>
+<p>对于字典来说，其<strong>每一项由关键字和值组成</strong>，即键-值对，对于集合来说，其<strong>关键字同时也是值</strong>。</p>
+<h2 id="有序关联容器的定义"><a href="#有序关联容器的定义" class="headerlink" title="有序关联容器的定义"></a>有序关联容器的定义</h2><p>map和set的定义和初始化方式如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">set&lt;string&gt; exclude = &#123; <span class="hljs-string">&quot;the&quot;</span>, <span class="hljs-string">&quot;but&quot;</span>, <span class="hljs-string">&quot;and&quot;</span>, <span class="hljs-string">&quot;or&quot;</span>, <span class="hljs-string">&quot;an&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;The&quot;</span>, <span class="hljs-string">&quot;But&quot;</span>, <span class="hljs-string">&quot;And&quot;</span>, <span class="hljs-string">&quot;or&quot;</span>, <span class="hljs-string">&quot;An&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>&#125;;<br>map&lt;string, string&gt; authors = &#123; &#123; <span class="hljs-string">&quot;Joyce&quot;</span>, <span class="hljs-string">&quot;James&quot;</span> &#125;, &#123; <span class="hljs-string">&quot;Austen&quot;</span>，<span class="hljs-string">&quot;Jane&quot;</span> &#125;, &#123; <span class="hljs-string">&quot;Dickens&quot;</span>, <span class="hljs-string">&quot;Charles&quot;</span>&#125; &#125;;<br></code></pre></td></tr></table></figure>
+
+<p>map需要提供两个类型分别作为键类型和值类型，set需要一个类型作为其值类型。</p>
+<p>初始化时支持列表初始化，并且map可以键值对的方式进行列表初始化，map的键类型是const的。</p>
+<p>而multimap和multiset支持重复的关键字，也就是说，以multiset为例，如果一个vector中存储了十个数，每个数各存储两份，共20个元素，如果使用该vector来初始化set，则set中只有十个元素，自动去重，而用该vector去初始化multiset，则multiset中有二十个元素，保留了重复的值。</p>
+<h2 id="pair类型"><a href="#pair类型" class="headerlink" title="pair类型"></a>pair类型</h2><p>pair类型在标准库utility中，其实就是一组键值对，就好像是map中的一个元素一样。<br>定义一个pair类型的对象的方式如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">pair&lt;string, vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; line;<br></code></pre></td></tr></table></figure>
+<p>可以看到pair也可以是嵌套的类型。</p>
+<p>pair支持列表初始化的初始化方式，其只有两个成员，也就是两个公共的成员变量，first和second，通过它们可以访问pair内的两个值。</p>
+<p>pair也支持大小判断，判断的依据同样是字典序。</p>
+<h2 id="有序关联容器的操作"><a href="#有序关联容器的操作" class="headerlink" title="有序关联容器的操作"></a>有序关联容器的操作</h2><h3 id="关联容器提供的成员类型"><a href="#关联容器提供的成员类型" class="headerlink" title="关联容器提供的成员类型"></a>关联容器提供的成员类型</h3><p>除了容器通用的成员类型之外，关联容器还定义了以下表示容器关键字和值的类型：</p>
+<ul>
+<li>key_type：此容器类型的关键字类型，适用于map和set。</li>
+<li>mapped_type：值的类型，只适用于字典类型（unordered map、unordered_multimap、multimap和map）。</li>
+<li>value_type：元素类型。对于set，与key_type相同；对于map，为pair&lt;const key_type,mapped_type&gt;。</li>
+</ul>
+<h3 id="迭代器-2"><a href="#迭代器-2" class="headerlink" title="迭代器"></a>迭代器</h3><p>当解引用一个关联容器迭代器时，我们会得到一个类型为容器的value_type的值的引用。对map而言，value_type是一个pair类型，其first成员保存const的关键字，second成员保存值；对于set，其迭代器是const的，因为其值同时也是键（虽然set类型也同时定义了iterator和const iterator类型）。</p>
+<p>我们<strong>通常不把关联容器用于泛型算法</strong>，因为那些算法很多都违背了关联容器的特性，比如排序算法会重排容器元素，而关联容器的元素顺序是固定的又是const的，不应该被改变，而不改变元素的算法又常常需要搜索序列，而没有下标的情况下这些算法无法实现搜索。</p>
+<p>实际使用时要对关联容器使用算法时，通常将其拷贝到顺序容器中，或使用插入器。</p>
+<h3 id="添加元素-1"><a href="#添加元素-1" class="headerlink" title="添加元素"></a>添加元素</h3><p>添加元素的成员函数主要有：</p>
+<ul>
+<li>c.insert(v)：v是value_type类型的对象，函数将该元素插入到c中。对于map和set，只有当元素的关键字不在c中时才插入元素，函数返回一个pair，包含一个指向插入元素的迭代器，以及一个指示插入是否成功的bool值；对于multimap和multiset，总会插入（或构造）给定元素，并返回一个指向新元素的迭代器。</li>
+<li>c.emplace (args)：同上，区别是args用来构造一个元素来进行插入。</li>
+<li>c.insert(b,e)：b和e是迭代器，表示一个c::value_type类型值的范围。函数返回void。</li>
+<li>c.insert(il)：il是值的花括号列表。函数返回void。</li>
+<li>c.insert(p,v)：类似insert(v)，但只从迭代器v指定的位置之后插入。返回一个指向插入元素的迭代器。</li>
+<li>c.emplace(p,args)：同上，但通过args构造插入元素。</li>
+</ul>
+<h3 id="删除元素-1"><a href="#删除元素-1" class="headerlink" title="删除元素"></a>删除元素</h3><p>关联容器定义了三个版本的erase。其中两个与顺序容器一样，我们可以通过传递给erase一个迭代器或一个迭代器对来删除一个元素或者一个元素范围，用来删除指定的元素。关联容器提供一个额外的erase操作，它接受一个key_type参数，用来删除所有匹配给定关键字的元素（如果存在的话），返回实际删除的元素的数量。</p>
+<p>删除元素的成员函数如下：</p>
+<ul>
+<li>c.erase(k)：从c中删除每个关键字为k的元素。返回一个size_type值，即删除的元素的数量。</li>
+<li>c.erase(p)：从c中删除迭代器p指定的元素，p必须指向c中一个真实元素，不能等于c.end()。返回一个指向p之后元素的迭代器，若p指向c中的尾元素，则返回c.end()。</li>
+<li>c.erase (b,e)：删除迭代器对b和e所表示的范围中的元素，返回e。</li>
+</ul>
+<h3 id="访问元素-1"><a href="#访问元素-1" class="headerlink" title="访问元素"></a>访问元素</h3><p>可以通过下标操作来访问一个map中的元素，但是要注意的是<strong>下标操作总是能取到值</strong>，尽管这个关键字可能不存在。当通过下标访问一个不存在的关键字时，会自动创建一个该元素，然后再将新创建的值返回，新创建的值执行值初始化。因此<strong>下标操作不能用于const的关联容器</strong>。</p>
+<p>顺序容器的下标运算得到的对象和其迭代器解引用后得到的对象是一样的类型，但是对于map却不是，其下标运算得到的对象是值类型，即mapped_type，而其迭代器解引用后得到的是value_type，即一个键值对。</p>
+<p>下标操作只能对没有重复关键字的map使用，否则可能会有多个结果。下标操作同样有其等价的at操作。</p>
+<p>此外容器还提供了一系列成员函数来访问其元素，主要有以下几个：</p>
+<ul>
+<li>c.find(k)：返回一个迭代器，指向第一个关键字为k的元素，若k不在容器中，则返回尾后迭代器。</li>
+<li>c.count(k)：返回关键字等于k的元素的数量。对于不允许重复关键字的容器，返回值永远是0或1。</li>
+<li>c.lower _bound(k)：返回一个迭代器，指向第一个关键字不小于k的元素。</li>
+<li>c.upper_bound(k)：返回一个迭代器，指向第一个关键字大于k的元素。</li>
+<li>c.egual_range(k)：返回一个迭代器pair，表示关键字等于k的元素的范围。若k不存在，pair的两个成员均等于c.end()。</li>
+</ul>
+<p>在有序关联容器中，<strong>关键字相等的元素总是相邻存储的</strong>，因此可以使用迭代器范围来找出相同关键字的元素。</p>
+<h2 id="无序关联容器"><a href="#无序关联容器" class="headerlink" title="无序关联容器"></a>无序关联容器</h2><p>无序容器通常用<strong>关键字的哈希</strong>以及相等比较来组织元素。使用哈希技术使得无序容器能够获得更好的平均性能，此外无序容器和有序容器的操作都是相同的，只有因为元素存储顺序的不同而导致元素遍历的顺序可能不同。</p>
+<p>无序容器在存储上组织为一系列桶，每个桶可以保存0个或多个元素，无序容器将每个元素按照关键字哈希放进对应的桶中。访问元素时同样先按照哈希确定要搜索哪个桶。如果容器允许重复关键字，那么相同关键字的元素也放在同一个桶内，且相邻存储，因此关键字需要支持判断相等的操作。</p>
+<p>无序容器额外提供了一系列管理桶的函数：</p>
+<ul>
+<li>c.bucket_count()：正在使用的桶的数目。</li>
+<li>c.max_bucket_count()：容器能容纳的最多的桶的数量。</li>
+<li>c.bucket_size(n)：第n个桶中有多少个元素。</li>
+<li>c.bucket(k)：关键字为k的元素在哪个桶中。</li>
+<li>local_iterator：可以用来访问桶中元素的迭代器类型。</li>
+<li>const_local_iterator：桶迭代器的const版本。</li>
+<li>c.begin (n),c.end (n)：桶n的首元素迭代器和尾后迭代器。</li>
+<li>c.cbegin(n), c.cend (n)：同上，但返回const_local_iterator。</li>
+<li>c.load_factor()：每个桶的平均元素数量，返回float值。</li>
+<li>c.max_load_factor()：c试图维护的平均桶大小，返回float值。c会在需要时添加新的桶，以使得load_factor&lt;=max_load_ factor。</li>
+<li>c.rehash(n)：重组存储，使得bucket_count&gt;=n且bucket_count&gt;size/max_load_factor。</li>
+<li>c.reserve(n)：重组存储，使得c可以保存n个元素且不必rehash。</li>
+</ul>
+<p>无序容器中的关键字通过hash&lt;key_type&gt;类型的对象来生成关键字的哈希值，而标准库中内置的哈希模板只支持对内置类型、string和智能指针的哈希，因此无序容器的关键字只能是这些类型，除非我们提供对应类型的哈希模板，并重载其比较运算符，使其支持==操作，比如下面的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">size_t</span> <span class="hljs-title">hasher</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Sales_data &amp;sd)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> hash&lt;string&gt;() (sd.<span class="hljs-built_in">isbn</span>());<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">eqop</span><span class="hljs-params">(<span class="hljs-keyword">const</span> sales_data &amp;lhs, <span class="hljs-keyword">const</span> Sales_data &amp;rhs)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> lhs.<span class="hljs-built_in">isbn</span>() == rhs.<span class="hljs-built_in">isbn</span>();<br>&#125;<br><span class="hljs-keyword">using</span> SD_multiset = unordered_multiset&lt;Sales_data, <span class="hljs-keyword">decltype</span>(hasher)*, <span class="hljs-keyword">decltype</span>(eqop*&gt;;<br>SD_multiset <span class="hljs-built_in">bookstore</span> (<span class="hljs-number">42</span>, hasher, eqOp); <span class="hljs-comment">// 参数是桶大小、哈希函数指针和相等性判断运算符指针</span><br></code></pre></td></tr></table></figure>
+
+<p>如果类定义了==运算符，也可以只重载hash函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 使用FooHash生成哈希值，Foo必须支持==运算符</span><br><span class="hljs-function">unordered_set&lt;Foo, <span class="hljs-title">decltype</span><span class="hljs-params">(FooHash)</span>*&gt; <span class="hljs-title">fooSet</span><span class="hljs-params">(<span class="hljs-number">10</span>, FooHash)</span></span>;<br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/30/cpp009/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;30&#x2F;cpp009&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;30&#x2F;cpp009&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/08/19/cpp008/">C++学习笔记（8）：IO库 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%BA%93"><span class="toc-text">容器库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%BA%93%E6%A6%82%E8%A7%88"><span class="toc-text">容器库概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">容器操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E6%88%90%E5%91%98"><span class="toc-text">类型成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-text">迭代器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#begin%E5%92%8Cend"><span class="toc-text">begin和end</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">定义和初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%A4%A7%E5%B0%8F"><span class="toc-text">容器大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%E5%92%8Cswap"><span class="toc-text">赋值和swap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97"><span class="toc-text">关系运算</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8"><span class="toc-text">顺序容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="toc-text">顺序容器概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">顺序容器操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-text">添加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0"><span class="toc-text">访问元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#forward-list%E7%9A%84%E5%A2%9E%E5%88%A0%E5%85%83%E7%B4%A0"><span class="toc-text">forward_list的增删元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%A4%A7%E5%B0%8F-1"><span class="toc-text">容器大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8-1"><span class="toc-text">迭代器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vector%E5%AE%B9%E9%87%8F%E5%A2%9E%E9%95%BF"><span class="toc-text">vector容量增长</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string%E7%89%B9%E6%AE%8A%E6%93%8D%E4%BD%9C"><span class="toc-text">string特殊操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0string"><span class="toc-text">构造string</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E5%8F%98string"><span class="toc-text">改变string</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string%E6%90%9C%E7%B4%A2"><span class="toc-text">string搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string%E6%AF%94%E8%BE%83"><span class="toc-text">string比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2"><span class="toc-text">数值转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8"><span class="toc-text">容器适配器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E9%85%8D%E5%99%A8"><span class="toc-text">适配器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88"><span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97"><span class="toc-text">队列</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8"><span class="toc-text">关联容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="toc-text">关联容器概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">有序关联容器的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pair%E7%B1%BB%E5%9E%8B"><span class="toc-text">pair类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">有序关联容器的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8%E6%8F%90%E4%BE%9B%E7%9A%84%E6%88%90%E5%91%98%E7%B1%BB%E5%9E%8B"><span class="toc-text">关联容器提供的成员类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8-2"><span class="toc-text">迭代器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0-1"><span class="toc-text">添加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0-1"><span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0-1"><span class="toc-text">访问元素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E5%BA%8F%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8"><span class="toc-text">无序关联容器</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
