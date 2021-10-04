@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML学习笔记（1）：HTML基础 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="Web标准Web标准：制作网页要遵循的规范。
+Web标...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">HTML学习笔记（1）：HTML基础</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/html.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">HTML学习笔记（1）：HTML基础</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 04, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3896</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="Web标准"><a href="#Web标准" class="headerlink" title="Web标准"></a>Web标准</h1><p>Web标准：制作网页要遵循的<strong>规范</strong>。</p>
+<p>Web标准不是某一个标准，而是由W3C组织和其他标准化组织制定的<strong>一系列标准的集合</strong>。</p>
+<p>Web标准包括三个方面：</p>
+<ul>
+<li>结构标准（HTML）：用于对网页元素进行整理和分类。</li>
+<li>表现标准（CSS）：用于设置网页元素的版式、颜色、大小等外观样式。</li>
+<li>行为标准（JS）：用于定义网页的交互和行为。</li>
+</ul>
+<p>根据上面的Web标准，可以将 Web前端分为三层：</p>
+<ul>
+<li>HTML（HyperText Markup Language）：超文本标记语言。从语义的角度描述页面的结构。相当于人的身体组织结构。</li>
+<li>CSS（Cascading Style Sheets）：层叠样式表。从审美的角度美化页面的样式。相当于人的衣服和打扮。</li>
+<li>JS：JavaScript。从交互的角度描述页面的行为。相当于人的动作，让人有生命力。</li>
+</ul>
+<h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><h2 id="浏览器的组成"><a href="#浏览器的组成" class="headerlink" title="浏览器的组成"></a>浏览器的组成</h2><h3 id="渲染引擎（浏览器内核）"><a href="#渲染引擎（浏览器内核）" class="headerlink" title="渲染引擎（浏览器内核）"></a>渲染引擎（浏览器内核）</h3><p>浏览器所采用的“渲染引擎”也称之为“浏览器内核”，用来解析 HTML与CSS。渲染引擎决定了浏览器如何显示网页的内容以及页面的格式信息。</p>
+<p>渲染引擎是<strong>浏览器兼容性问题</strong>出现的根本原因。</p>
+<p>渲染引擎的英文叫做Rendering Engine。通俗来说，它的作用就是读取网页内容，计算网页的显示方式并显示在页面上。</p>
+<p>目前全球仅有四个独立的浏览器内核，分别为微软IE的Trident、火狐的Gecko、KDE的开源内核Webkit以及Opera的内核Presto。其中，Presto是历史最悠久的内核。</p>
+<p>Chrome浏览器使用的内核是Blink（基于Webkit研发），IE浏览器使用的内核为Trident。</p>
+<h3 id="JS引擎"><a href="#JS引擎" class="headerlink" title="JS引擎"></a>JS引擎</h3><p>JS引擎也称为 JS 解释器。 用来解析网页中的JavaScript代码，对其处理后再运行。</p>
+<p>浏览器本身并不会执行JS代码，而是通过内置 JavaScript 引擎(解释器) 来执行 JS 代码 。JS 引擎执行代码时会逐行解释每一句源码（转换为机器语言），然后由计算机去执行。所以 JavaScript 语言归为脚本语言，会逐行解释执行。</p>
+<h2 id="浏览器工作原理"><a href="#浏览器工作原理" class="headerlink" title="浏览器工作原理"></a>浏览器工作原理</h2><p>浏览器由以下部分组成：</p>
+<ul>
+<li>User Interface：用户界面，我们所看到的浏览器。</li>
+<li>Browser engine：浏览器引擎，用来查询和操作渲染引擎。</li>
+<li>Rendering engine：用来显示请求的内容，负责解析HTML、CSS。</li>
+<li>Networking：网络，负责发送网络请求。</li>
+<li>JavaScript Interpreter（解析者) ：JavaScript解析器，负责执行JavaScript的代码。</li>
+<li>UI Backend：UI后端，用来绘制类似组合框和弹出窗口。</li>
+<li>Data Persistence（持久化）：数据持久化，数据存储 cookie、HTML5中的sessionStorage。</li>
+</ul>
+<h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>HTML 全称为HyperText Markup Language，即超文本标记语言。</p>
+<p>HTML 不是一种编程语言，是一种描述性的标记语言。HTML是负责描述<strong>文档语义</strong>的语言。</p>
+<p>所谓的超文本，有两层含义：</p>
+<ul>
+<li>图片、音频、视频、动画、多媒体等内容，称为超文本，因为它们超出了文本的限制。</li>
+<li>不仅如此，它还可以从一个文件跳转到另一个文件，与世界各地主机的文件进行连接。即：超级链接文本。</li>
+</ul>
+<p>HTML 不是一种编程语言，是一种描述性的标记语言。这主要有两层含义：</p>
+<ul>
+<li>标记语言是一套标记标签。比如：标签&lt;a&gt;表示超链接、标签&lt;img&gt;表示图片、标签&lt;h1&gt;表示一级标题等等，它们都是属于 HTML 标签。通俗一点说就是：网页是由网页元素组成的，这些元素是由 HTML 标签描述出来，然后通过浏览器解析，就可以显示给用户看了。</li>
+<li>编程语言是有编译过程的，而标记语言没有编译过程，HTML标签是直接由浏览器解析执行。</li>
+</ul>
+<p>HTML 格式的文件是一个纯本文文件，用一些标签来描述语义，这些标签在浏览器页面上是无法直观看到的，所以称之为“超文本标记语言”。</p>
+<p>需要额外注意的是，HTML负责描述文档语义，比如，&lt;h1&gt; 标签有什么作用？</p>
+<ul>
+<li>正确答案：给文本增加主标题的语义。</li>
+<li>错误答案：给文字加粗、加黑、变大。</li>
+</ul>
+<h2 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h2><p>HTML有关的名词概念有很多：</p>
+<ul>
+<li>网页：由各种标记组成的一个页面就叫网页。</li>
+<li>主页（首页）：一个网站的起始页面或者导航页面。</li>
+<li>标记：比如&lt;p&gt;称为开始标记，&lt;/p&gt;称为结束标记，也叫标签。每个标签都规定好了特殊的含义。</li>
+<li>元素：比如&lt;p&gt;内容&lt;/p&gt;称为元素.</li>
+<li>属性：给每一个标签所做的辅助信息。</li>
+<li>XHTML：符合XML语法标准的HTML。</li>
+<li>DHTML：dynamic，动态的。javascript + css + html合起来的页面就是一个 DHTML。</li>
+<li>HTTP：超文本传输协议。用来规定客户端浏览器和服务端交互时数据的一个格式。SMTP：邮件传输协议，FTP：文件传输协议。</li>
+</ul>
+<h2 id="XHTML"><a href="#XHTML" class="headerlink" title="XHTML"></a>XHTML</h2><p>XHTML：Extensible Hypertext Markup Language，可扩展超文本标注语言。 XHTML的主要目的是为了取代HTML，也可以理解为HTML的升级版。 HTML的标记书写很不规范，会造成其它的设备（ipad、手机、电视等）无法正常显示。 XHTML与HTML4.0的标记基本上一样。 XHTML是严格的、纯净的HTML。</p>
+<h2 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h2><h3 id="HTML骨架"><a href="#HTML骨架" class="headerlink" title="HTML骨架"></a>HTML骨架</h3><p>一个HTML页面的主要骨架为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>在vscode中可以使用“<strong>html:5</strong>”通过Emmet展开而成。</p>
+<h3 id="声明头"><a href="#声明头" class="headerlink" title="声明头"></a>声明头</h3><p>任何一个标准的HTML页面，第一行一定是一个以&lt;!DOCTYPE ……&gt;开头的语句。这一行，就是文档声明头，即 DocType Declaration，简称DTD。</p>
+<p>DTD可告知浏览器文档使用哪种 HTML 或 XHTML 规范。如HTML4或HTML5。HTML4.01这个版本是IE6开始兼容的。HTML5是IE9开始兼容的。如今，手机、移动端的网页，就可以使用HTML5了，因为其兼容性更高。</p>
+<p>对于以下声明头：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span> <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span> <span class="hljs-meta-string">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>是一个HTML4.01或XHML1.0的声明头，其中“XHTML 1.0”可选为“HTML 4.01”或“XHTML 1.0”，“Transitional”字段可选为“Strict”“Transitional”“Frameset”。</p>
+<p>而在HTML5中就没有XHTML了，因此HTML5中极大的简化了DTD。HTML5的DTD如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="HTML的规范"><a href="#HTML的规范" class="headerlink" title="HTML的规范"></a>HTML的规范</h2><p>HTML不区分大小写，但HTML的标签名、类名、标签属性、大部分属性值建议统一用小写。</p>
+<p>HTML页面的后缀名是html或者htm（有一些系统不支持后缀名长度超过3个字符，比如dos系统）。</p>
+<p>编写XHTML的规范：</p>
+<ul>
+<li>所有标记元素都要正确的嵌套，不能交叉嵌套。</li>
+<li>所有的标记都必须小写。</li>
+<li>所有的标签都必须闭合。</li>
+<li>所有的属性值必须加引号。<code>&lt;font color=&quot;red&quot;&gt;&lt;/font&gt;</code></li>
+<li>所有的属性必须有值。<code>&lt;hr noshade=&quot;noshade&quot;&gt;、&lt;input type=&quot;radio&quot; checked=&quot;checked&quot; /&gt;</code></li>
+<li>XHTML文档开头必须要有DTD文档类型定义。</li>
+</ul>
+<p>HTML的基本语法特性：</p>
+<p>（1）HTML对换行不敏感，对tab不敏感：</p>
+<p>HTML只在乎标签的嵌套结构，嵌套的关系。谁嵌套了谁，谁被谁嵌套了，和换行、tab无关。换不换行、tab不tab，都不影响页面的结构。</p>
+<p>也就是说，HTML不是依靠缩进来表示嵌套的，而是看标签的嵌套关系。但是，我们发现有良好的缩进，代码更易读。建议大家都正确缩进标签。</p>
+<p>比如百度为了追求极致的显示速度，所有HTML标签都没有换行、都没有缩进（tab），HTML和换不换行无关，标签的层次依然清晰，只不过程序员不可读了。</p>
+<p>（2）空白折叠：</p>
+<p>HTML中所有的文字之间，如果有空格、换行、tab都将被折叠为一个空格显示。</p>
+<p>（3）标签要严格封闭：</p>
+<p>标签不封闭的结果往往是灾难性的。</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>HTML使用如下的格式来使用注释：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 我是 html 注释  --&gt;</span><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/10/04/frontend-html-001/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;04&#x2F;frontend-html-001&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;04&#x2F;frontend-html-001&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/08/30/cpp009/">C++学习笔记（9）：容器 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E6%A0%87%E5%87%86"><span class="toc-text">Web标准</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-text">浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">浏览器的组成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%EF%BC%88%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%EF%BC%89"><span class="toc-text">渲染引擎（浏览器内核）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS%E5%BC%95%E6%93%8E"><span class="toc-text">JS引擎</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">浏览器工作原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML"><span class="toc-text">HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D"><span class="toc-text">名词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XHTML"><span class="toc-text">XHTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML%E7%BB%93%E6%9E%84"><span class="toc-text">HTML结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E9%AA%A8%E6%9E%B6"><span class="toc-text">HTML骨架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%A4%B4"><span class="toc-text">声明头</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML%E7%9A%84%E8%A7%84%E8%8C%83"><span class="toc-text">HTML的规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-text">注释</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
