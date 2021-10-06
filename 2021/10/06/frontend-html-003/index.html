@@ -1,0 +1,624 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML学习笔记（3）：HTML5 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="HTML5的发展什么是 HTML5HTML5并不仅仅只...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">HTML学习笔记（3）：HTML5</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/html.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">HTML学习笔记（3）：HTML5</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 06, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8272</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="HTML5的发展"><a href="#HTML5的发展" class="headerlink" title="HTML5的发展"></a>HTML5的发展</h1><h2 id="什么是-HTML5"><a href="#什么是-HTML5" class="headerlink" title="什么是 HTML5"></a>什么是 HTML5</h2><p>HTML5并不仅仅只是做为HTML标记语言的一个最新版本，更重要的是它制定了Web应用开发的一系列标准，成为第一个<strong>将Web做为应用开发平台</strong>的HTML语言。</p>
+<p>HTML5定义了一系列新元素，如新语义标签、智能表单、多媒体标签等，可以帮助开发者创建富互联网应用，还提供了一些Javascript API，如地理定位、重力感应、硬件访问等，可以在浏览器内实现类原生应用。我们甚至可以结合Canvas开发网页版游戏。</p>
+<p>HTML5的广义概念：HTML5代表浏览器端技术的一个发展阶段。在这个阶段，浏览器的呈现技术得到了飞跃发展和广泛支持，它包括：HTML5、CSS3、Javascript API在内的一套技术组合。因此HTML5不等于 HTML next version。</p>
+<p>HTML5是新一代开发<strong>Web富客户端应用程序</strong>整体解决方案。富客户端即具有很强的交互性和体验的客户端程序。比如说，浏览博客，是比较简单的客户端；一个在线听歌的网站、即时聊天网站就是富客户端。</p>
+<p>单纯地从技术的角度讲，兼容性问题只会让开发者徒增烦恼。如果网页端的程序能做到PC客户端的体验，就会对后者构成威胁。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>HTML5 的几个应用场景：</p>
+<ul>
+<li>极具表现力的网页。</li>
+<li>网页应用程序：<ul>
+<li>代替PC端的软件：iCloud、百度脑图、Office 365等。</li>
+<li>APP端的网页：淘宝、京东、美团等。</li>
+</ul>
+</li>
+<li>微信端：公众号、小程序等。</li>
+<li>混合式本地应用。</li>
+<li>简单的游戏。</li>
+</ul>
+<h2 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容"></a>新增内容</h2><p>HTML5新增的主要内容有：</p>
+<ul>
+<li>标签<ul>
+<li>更语义化的标签</li>
+<li>应用程序标签</li>
+</ul>
+</li>
+<li>属性<ul>
+<li>链接关系描述</li>
+<li>结构数据标记</li>
+<li>ARIA</li>
+<li>自定义属性</li>
+</ul>
+</li>
+<li>智能表单<ul>
+<li>新的表单类型</li>
+<li>虚拟键盘适配</li>
+</ul>
+</li>
+<li>网页多媒体<ul>
+<li>音频</li>
+<li>视频</li>
+<li>字幕</li>
+</ul>
+</li>
+<li>Canvas<ul>
+<li>2D</li>
+<li>3D (WebGL)</li>
+</ul>
+</li>
+<li>SVG</li>
+</ul>
+<h1 id="HTML5新内容"><a href="#HTML5新内容" class="headerlink" title="HTML5新内容"></a>HTML5新内容</h1><h2 id="新增语义标签"><a href="#新增语义标签" class="headerlink" title="新增语义标签"></a>新增语义标签</h2><p>HTML5中增加的新标签有：</p>
+<ul>
+<li>&lt;section&gt;：表示区块。</li>
+<li>&lt;article&gt;：表示文章。如文章、评论、帖子、博客。</li>
+<li>&lt;header&gt;：表示页眉。</li>
+<li>&lt;footer&gt;：表示页脚。</li>
+<li>&lt;nav&gt;：表示导航。</li>
+<li>&lt;aside&gt;：表示侧边栏。如文章的侧栏。</li>
+<li>&lt;figure&gt;：表示媒介内容分组。</li>
+<li>&lt;mark&gt;：表示标记（不常用）。</li>
+<li>&lt;progress&gt;：表示进度（不常用）。</li>
+<li>&lt;time&gt;：表示日期。</li>
+</ul>
+<p>本质上新语义标签与&lt;div&gt;、&lt;span&gt;没有区别，只是其具有<strong>表意性</strong>，使用时除了在HTML结构上需要注意外，其它和普通标签的使用无任何差别，可以理解成&lt;div class=”nav”&gt; 相当于&lt;nav&gt;。</p>
+<p>并且注意HTML5中单标签不需要写关闭符号了。</p>
+<h2 id="兼容性问题"><a href="#兼容性问题" class="headerlink" title="兼容性问题"></a>兼容性问题</h2><p>新标签在不支持HTML5的浏览器中可能出现兼容性问题，解决方式是通过条件语句判断IE版本，然后引入html5shiv.js文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!--  条件注释 只有ie能够识别--&gt;</span><br><span class="hljs-comment">&lt;!--[if lte ie 8]&gt;</span><br><span class="hljs-comment">    &lt;script src=&quot;html5shiv.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="hljs-comment">&lt;![endif]--&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>在测试IE浏览器的兼容的时候，使用软件ietest，可以模拟IE6-IE11。</p>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><h3 id="input的新类型"><a href="#input的新类型" class="headerlink" title="input的新类型"></a>input的新类型</h3><p>传统的Web表单已经越来越不能满足开发的需求，HTML5 在 Web 表单方向做了很大的改进，如拾色器、日期/时间组件等，使表单处理更加高效：</p>
+<ul>
+<li>email：只能输入email格式。自动带有验证功能。</li>
+<li>tel：手机号码。</li>
+<li>url：只能输入url格式。</li>
+<li>number：只能输入数字。</li>
+<li>search：搜索框。</li>
+<li>range：滑动条。</li>
+<li>color：拾色器。</li>
+<li>time：时间。</li>
+<li>date：日期。</li>
+<li>datetime：时间日期。</li>
+<li>month：月份。</li>
+<li>week：星期。</li>
+</ul>
+<p>上面的部分类型是针对移动设备生效的，且具有一定的兼容性，在实际应用当中可选择性的使用。</p>
+<h3 id="数据列表"><a href="#数据列表" class="headerlink" title="数据列表"></a>数据列表</h3><p>即新的表单元素&lt;datalist&gt;数据列表：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">list</span>=<span class="hljs-string">&quot;myData&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">datalist</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myData&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>本科<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>研究生<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>不明<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">datalist</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>代码效果：<br><input type="text" list="myData"><br><datalist id="myData"><br>    <option>本科</option><br>    <option>研究生</option><br>    <option>不明</option><br></datalist></p>
+<p>将输入框input的list属性与数据列表的id绑定，可以给输入框加入下拉菜单提供一些提示值。</p>
+<h3 id="keygen元素"><a href="#keygen元素" class="headerlink" title="keygen元素"></a>keygen元素</h3><p>keygen 元素的作用是提供一种验证用户的可靠方法。</p>
+<p>keygen 元素是密钥对生成器（key-pair generator）。当提交表单时，会生成两个键：一个公钥，一个私钥。</p>
+<p>私钥（private key）存储于客户端，公钥（public key）则被发送到服务器。公钥可用于之后验证用户的客户端证书（client certificate）。</p>
+<h3 id="度量器"><a href="#度量器" class="headerlink" title="度量器"></a>度量器</h3><p>即新的表单元素&lt;meter&gt;元素，其实就是一个进度条一样的东西，比如可以用它来表示表单的填写进度：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meter</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;81&quot;</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">low</span>=<span class="hljs-string">&quot;60&quot;</span> <span class="hljs-attr">high</span>=<span class="hljs-string">&quot;80&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+<p>代码效果：<br><meter value="81" min="0" max="100" low="60" high="80"/></p>
+<p>value是当前值，min是最小值也就是左端点，max是最大值也就是右端点，low表示低于这个值将会警告，high则是高于这个值将会警告。</p>
+<p>度量器标签可以作为单标签，可以作为成对的标签中间加入文本，但这个文本似乎不显示。</p>
+<h3 id="新的表单元素属性"><a href="#新的表单元素属性" class="headerlink" title="新的表单元素属性"></a>新的表单元素属性</h3><p>HTML5增加了一些表单属性：</p>
+<ul>
+<li>placeholder：占位符（提示文字，比如提示这个框该怎么填写）。</li>
+<li>autofocus：自动获取焦点。不需要值的属性。</li>
+<li>multiple：文件上传多选或多个邮箱地址。不需要值的属性。</li>
+<li>autocomplete：自动完成。on 开启（默认），off 取消。用于表单元素，也可用于表单自身。自动完成允许浏览器预测对字段的输入。当用户在字段开始键入时，浏览器基于之前键入过的值，应该显示出在字段中填写的选项。</li>
+<li>form：指定表单项属于哪个form，处理复杂表单时会需要。</li>
+<li>novalidate：关闭默认的验证功能（只能加给form）。</li>
+<li>required：表示必填项。</li>
+<li>pattern：自定义正则，验证表单。</li>
+<li>oninput：事件，用户输入内容时触发，可用于输入字数统计。</li>
+<li>oninvalid：事件，验证不通过时触发。比如，如果验证不通过时，想弹出一段提示文字，就可以用到它。</li>
+</ul>
+<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><p>在HTML5之前，在网页上播放音频/视频的通用方法是利用Flash来播放。但是大多情况下，并非所有用户的浏览器都安装了Flash插件，由此使得音频、视频播放的处理变得非常复杂；并且移动设备的浏览器并不支持Flash插件。</p>
+<p>H5里面提供了视频和音频的标签。</p>
+<h3 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h3><p>HTML5通过&lt;audio&gt;标签来解决音频播放的问题：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/media/巷子和树.mp3&quot;</span> <span class="hljs-attr">controls</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这是一首我喜欢的歌：<br><audio src="/media/巷子和树.mp3" controls> </audio></p>
+<p>其属性主要有：</p>
+<ul>
+<li>autoplay：自动播放。写成autoplay 或者 autoplay = “”，都可以。</li>
+<li>controls：控制条。（建议把这个选项写上，不然都看不到控件在哪里）</li>
+<li>loop：循环播放。</li>
+<li>preload：预加载。同时设置 autoplay 时，此属性将失效。</li>
+</ul>
+<p>当然要注意浏览器的兼容性问题，不同浏览器因为版权问题，兼容的音频文件格式不一样，此时可以采用如下写法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">controls</span> <span class="hljs-attr">loop</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;music/yinyue.mp3&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;music/yinyue.ogg&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;music/yinyue.wav&quot;</span>/&gt;</span><br>    抱歉，你的浏览器暂不支持此音频格式<br><span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>HTML5通过&lt;video&gt;标签来解决视频播放的问题：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;video/movie.mp4&quot;</span> <span class="hljs-attr">controls</span> <span class="hljs-attr">autoplay</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>其主要属性有：</p>
+<ul>
+<li>autoplay：自动播放。写成autoplay或者autoplay = “”，都可以。</li>
+<li>controls：控制条。</li>
+<li>loop：循环播放。</li>
+<li>preload：预加载 同时设置 autoplay 时，此属性将失效。</li>
+<li>width：设置播放窗口宽度。</li>
+<li>height：设置播放窗口的高度。</li>
+</ul>
+<p>同样由于播放格式的兼容性问题，推荐兼容性写法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">controls</span> <span class="hljs-attr">autoplay</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;video/movie.mp4&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;video/movie.ogg&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;video/movie.webm&quot;</span>/&gt;</span><br>    抱歉，不支持此视频<br><span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="新增功能"><a href="#新增功能" class="headerlink" title="新增功能"></a>新增功能</h2><h3 id="拖拽"><a href="#拖拽" class="headerlink" title="拖拽"></a>拖拽</h3><p>在HTML5的规范中，我们可以通过为元素增加 draggable=”true” 来设置此元素是否可以进行拖拽操作，其中<strong>图片、链接默认是开启拖拽的</strong>。</p>
+<p>在给元素增加了draggable=”true” 属性之后，发现其是可以拖拽的，但是拖拽之后要做什么事情呢？这就涉及到事件监听：</p>
+<ul>
+<li>ondragstart：当拖拽开始时调用。</li>
+<li>ondragleave：当鼠标离开拖拽元素时调用。</li>
+<li>ondragend：当拖拽结束时调用。</li>
+<li>ondrag：整个拖拽过程都会调用。</li>
+</ul>
+<p>为元素设置以上的事件监听即可实现拖拽元素时要做的事。</p>
+<p>如果你想把元素A拖拽到元素B里，那么元素B就是目标元素，我们可以对目标元素设置这样的事件监听：</p>
+<ul>
+<li>ondragenter：当拖拽元素进入时调用。</li>
+<li>ondragover：当拖拽元素停留在目标元素上时，就会连续一直触发，不管拖拽元素此时是移动还是不动的状态。</li>
+<li>ondrop：当在目标元素上松开鼠标时调用。</li>
+<li>ondragleave：当鼠标离开目标元素时调用。</li>
+</ul>
+<p>要格外注意在编写ondragover事件监听时，一定要<strong>阻止拖拽事件的默认行为</strong>，否则，后面的方法ondrop事件将无法触发：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 当拖拽元素在目标元素上时，连续触发</span><br>tar.ondragover = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;<br>    <span class="hljs-comment">// 阻止拖拽事件的默认行为</span><br>    e.preventDefault();<br>    <span class="hljs-comment">// ……</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="历史记录"><a href="#历史记录" class="headerlink" title="历史记录"></a>历史记录</h3><p>界面上的所有JS操作不会被浏览器记住，就无法回到之前的状态。在HTML5中可以通过 window.history 操作访问历史状态，让一个页面可以有多个历史状态。window.history对象可以让我们管理历史记录，可用于单页面应用，以实现无刷新改变网页内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">window</span>.history.forward(); <span class="hljs-comment">// 前进</span><br><span class="hljs-built_in">window</span>.history.back(); <span class="hljs-comment">// 后退</span><br><span class="hljs-built_in">window</span>.history.go(); <span class="hljs-comment">// 刷新</span><br><span class="hljs-built_in">window</span>.history.go(n); <span class="hljs-comment">//n=1 表示前进；n=-1 后退；n=0 刷新。如果移动的位置超出了访问历史的边界，会静默失败，但不会报错</span><br>history.pushState; <span class="hljs-comment">//放入历史中的状态数据</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="获取地理位置"><a href="#获取地理位置" class="headerlink" title="获取地理位置"></a>获取地理位置</h3><p>JS获取地理位置的方式：</p>
+<ul>
+<li>navigator.getCurrentPosition(successCallback, errorCallback, options)：获取当前地理信息。</li>
+<li>navigator.watchPosition(successCallback, errorCallback, options)：重复获取当前地理信息。</li>
+</ul>
+<p>当成功获取地理信息后，会调用succssCallback，并返回一个包含位置信息的对象position：</p>
+<ul>
+<li>position.coords.latitude：纬度。</li>
+<li>position.coords.longitude：经度。</li>
+</ul>
+<p>coords即坐标。可选参数 options 对象可以调整位置信息数据收集方式。</p>
+<p>当获取地理信息失败后，会调用errorCallback，并返回错误信息error。</p>
+<h3 id="全屏"><a href="#全屏" class="headerlink" title="全屏"></a>全屏</h3><p>HTML5规范允许用户自定义网页上任一元素全屏显示。</p>
+<p>开启/关闭全屏显示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">dom.requestFullscreen()   <span class="hljs-comment">//让元素开启全屏显示</span><br>dom.cancleFullscreen()    <span class="hljs-comment">//让元素关闭全屏显示</span><br></code></pre></td></tr></table></figure>
+
+<p>为考虑兼容性问题，不同的浏览器可能需要在此基础之上，添加私有前缀，如webkitRequestFullScreen、 webkitCancleFullScreen、mozRequestFullScreen、mozCancleFullScreen等。（注意有无前缀时screen中的s的大小写不一样）</p>
+<p>检测当前是否处于全屏状态：document.fullScreen。同样可能需要私有前缀。</p>
+<p>全屏的伪类：</p>
+<ul>
+<li>:full-screen {}</li>
+<li>:-webkit-full-screen {}</li>
+<li>:moz-full-screen {}</li>
+</ul>
+<p>用于CSS中，当元素处于全屏状态时，改变它的样式。</p>
+<h2 id="Web存储"><a href="#Web存储" class="headerlink" title="Web存储"></a>Web存储</h2><p>传统方式我们以document.cookie来进行存储的，但是由于其存储大小只有4k左右，并且解析也相当的复杂，给开发带来诸多不便，HTML5规范则提出了两种解决方案：</p>
+<p>window.sessionStorage会话存储：</p>
+<ul>
+<li>保存在内存中。</li>
+<li>生命周期为关闭浏览器窗口。也就是说，当窗口关闭时数据销毁。</li>
+<li>在同一个窗口下数据可以共享。</li>
+</ul>
+<p>window.localStorage本地存储：</p>
+<ul>
+<li>有可能保存在浏览器内存里，有可能在硬盘里。</li>
+<li>永久生效，除非手动删除（比如清理垃圾的时候）。</li>
+<li>可以多窗口共享。</li>
+</ul>
+<p>Web 存储的特性：</p>
+<ul>
+<li>设置、读取方便。</li>
+<li>容量较大，sessionStorage 约5M、localStorage 约20M。</li>
+<li>只能存储字符串，可以将对象 JSON.stringify() 编码后存储。</li>
+</ul>
+<p>使用方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">setItem(key, value);<span class="hljs-comment">// 设置存储内容</span><br>getItem(key);       <span class="hljs-comment">// 读取存储内容</span><br>removeItem(key);    <span class="hljs-comment">// 根据键，删除存储内容</span><br>clear();            <span class="hljs-comment">// 清空所有存储内容</span><br>key(n);             <span class="hljs-comment">// 根据索引值来获取存储内容</span><br></code></pre></td></tr></table></figure>
+
+<p>使用时需要指明调用的是哪一种存储的方法，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">window</span>.sessionStorage.setItem(<span class="hljs-string">&#x27;userName&#x27;</span>, txt.value);<br></code></pre></td></tr></table></figure>
+
+<h2 id="网络状态"><a href="#网络状态" class="headerlink" title="网络状态"></a>网络状态</h2><p>我们可以检测用户当前的网络状况，通过事件监听来实现，事件返回一个布尔值：</p>
+<ul>
+<li>window.online：用户网络连接时被调用。</li>
+<li>window.offline：用户网络断开时被调用（拔掉网线或者禁用以太网）。</li>
+</ul>
+<p>使用方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;online&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    alert(<span class="hljs-string">&#x27;网络连接建立！&#x27;</span>);<br>&#125;);<br><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;offline&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    alert(<span class="hljs-string">&#x27;网络连接断开！&#x27;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="应用缓存"><a href="#应用缓存" class="headerlink" title="应用缓存"></a>应用缓存</h2><p>HTML5中我们可以轻松的构建一个离线（无网络状态）应用，只需要创建一个<strong>cache manifest缓存清单文件</strong>。</p>
+<h3 id="缓存清单文件的格式"><a href="#缓存清单文件的格式" class="headerlink" title="缓存清单文件的格式"></a>缓存清单文件的格式</h3><p>缓存清单文件中列出了浏览器应缓存，以供离线访问的资源。推荐使用.appcache作为后缀名，另外还要添加MIME类型。</p>
+<p>缓存清单文件里的内容格式：</p>
+<ul>
+<li>顶行写CACHE MANIFEST。</li>
+<li>CACHE: 换行，指定我们需要缓存的静态资源，如.css、image、js等。</li>
+<li>NETWORK: 换行，指定需要在线访问的资源，可使用通配符（也就是不需要缓存的、必须在网络下面才能访问的资源）。</li>
+<li>FALLBACK: 换行，当被缓存的文件找不到时的备用资源（当访问不到某个资源时，自动由另外一个资源替换）。</li>
+</ul>
+<p>如以下例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs txt">CACHE MANIFEST<br>#要缓存的文件<br>CACHE:<br>    images/img1.jpg<br>    images/img2.jpg<br>#指定必须联网才能访问的文件<br>NETWORK:<br>     images/img3.jpg<br>     images/img4.jpg<br>#当前页面无法访问是回退的页面<br>FALLBACK:<br>    404.html<br></code></pre></td></tr></table></figure>
+
+<h3 id="缓存清单文件的使用"><a href="#缓存清单文件的使用" class="headerlink" title="缓存清单文件的使用"></a>缓存清单文件的使用</h3><p>假如我们创建一个缓存清单文件叫做demo.appcache，在需要应用缓存的页面根元素（即html标签）里，添加属性manifest=”demo.appcache”。路径要保证正确。如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">manifest</span>=<span class="hljs-string">&quot;01.appcache&quot;</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>使用缓存的优势：</p>
+<ul>
+<li>可配置需要缓存的资源；</li>
+<li>网络无连接应用仍可用；</li>
+<li>本地读取缓存资源，提升访问速度，增强用户体验；</li>
+<li>减少请求，缓解服务器负担。</li>
+</ul>
+<h1 id="其他小tips"><a href="#其他小tips" class="headerlink" title="其他小tips"></a>其他小tips</h1><h2 id="元素的嵌套关系"><a href="#元素的嵌套关系" class="headerlink" title="元素的嵌套关系"></a>元素的嵌套关系</h2><p>HTML5的嵌套关系：</p>
+<ul>
+<li>块级元素可以包含行内元素。</li>
+<li>块级元素不一定能包含块级元素。比如 div 中可以包含 div，但 p 标签中不能包含 div。</li>
+<li>行内元素一般不能包含块级元素。比如 span 中不能包含 div。但有个特例：在 HTML5 中， a 标签中可以包含 div。</li>
+</ul>
+<p>注意：在 HTML5 中 a &gt; div 是合法的， div &gt; a &gt; div是不合法的 ；但是在 html 4.0.1 中， a &gt; div 是不合法的。</p>
+<h2 id="CSS-Reset"><a href="#CSS-Reset" class="headerlink" title="CSS Reset"></a>CSS Reset</h2><p>比如下拉框这种比较复杂的元素，是自带默认样式的。如果没有这个默认样式，则该元素在页面上不会有任何表现，则必然增加一些工作量。</p>
+<p>同时，默认样式也会带来一些问题：比如，有些默认样式我们是不需要的；有些默认样式甚至无法去掉。</p>
+<p>如果我们不需要默认的样式，这里就需要使用CSS Reset。<br>常见的 CSS Reset 方案：</p>
+<ul>
+<li>方案一：<a target="_blank" rel="noopener" href="https://meyerweb.com/eric/tools/css/reset/">CSS Tools: Reset CSS</a></li>
+<li>方案二：<a target="_blank" rel="noopener" href="https://yuilibrary.com/yui/docs/cssreset/">雅虎的 CSS Reset</a></li>
+</ul>
+<p>可以直接通过CDN引入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>当然还有一种会影响性能、不建议使用但是简单粗暴的方式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">*&#123;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>几种CSS reset的解决思路都是将所有的默认样式清零。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/10/06/frontend-html-003/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;06&#x2F;frontend-html-003&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;06&#x2F;frontend-html-003&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/10/05/frontend-html-002/">HTML学习笔记（2）：HTML标签 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML5%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-text">HTML5的发展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-HTML5"><span class="toc-text">什么是 HTML5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9"><span class="toc-text">新增内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML5%E6%96%B0%E5%86%85%E5%AE%B9"><span class="toc-text">HTML5新内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E8%AF%AD%E4%B9%89%E6%A0%87%E7%AD%BE"><span class="toc-text">新增语义标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-text">兼容性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-text">表单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#input%E7%9A%84%E6%96%B0%E7%B1%BB%E5%9E%8B"><span class="toc-text">input的新类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%97%E8%A1%A8"><span class="toc-text">数据列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keygen%E5%85%83%E7%B4%A0"><span class="toc-text">keygen元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%A6%E9%87%8F%E5%99%A8"><span class="toc-text">度量器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E7%9A%84%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7"><span class="toc-text">新的表单元素属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="toc-text">多媒体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91"><span class="toc-text">音频</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91"><span class="toc-text">视频</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E5%8A%9F%E8%83%BD"><span class="toc-text">新增功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%96%E6%8B%BD"><span class="toc-text">拖拽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="toc-text">历史记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE"><span class="toc-text">获取地理位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%8F"><span class="toc-text">全屏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web%E5%AD%98%E5%82%A8"><span class="toc-text">Web存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81"><span class="toc-text">网络状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%BC%93%E5%AD%98"><span class="toc-text">应用缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E6%B8%85%E5%8D%95%E6%96%87%E4%BB%B6%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-text">缓存清单文件的格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E6%B8%85%E5%8D%95%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">缓存清单文件的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-text">优势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B0%8Ftips"><span class="toc-text">其他小tips</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E7%9A%84%E5%B5%8C%E5%A5%97%E5%85%B3%E7%B3%BB"><span class="toc-text">元素的嵌套关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-Reset"><span class="toc-text">CSS Reset</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
