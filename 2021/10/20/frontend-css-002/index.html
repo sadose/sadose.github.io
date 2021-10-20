@@ -1,0 +1,802 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS学习笔记（2）：基本属性 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="CSS的单位HTML中的单位只有一种，那就是像素px，...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">CSS学习笔记（2）：基本属性</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/css.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">CSS学习笔记（2）：基本属性</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 20, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>14481</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="CSS的单位"><a href="#CSS的单位" class="headerlink" title="CSS的单位"></a>CSS的单位</h1><p>HTML中的单位只有一种，那就是像素px，所以单位是<strong>可以省略</strong>的，但是在CSS中不一样。 CSS中的单位是必须要写的，因为它没有默认单位！</p>
+<h2 id="绝对单位"><a href="#绝对单位" class="headerlink" title="绝对单位"></a>绝对单位</h2><p>CSS中的绝对单位的关系如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">1 in = 2.54 cm = 25.4 mm = 72 pt = 6 pc<br></code></pre></td></tr></table></figure>
+
+<p>各种单位的含义：</p>
+<ul>
+<li>in：英寸Inches（1 英寸 = 2.54 厘米）。</li>
+<li>cm：厘米Centimeters。</li>
+<li>mm：毫米Millimeters。</li>
+<li>pt：点Points，或者叫英镑（1点 = 1/72英寸）。</li>
+<li>pc：皮卡Picas（1 皮卡 = 12 点）。</li>
+</ul>
+<h2 id="相对单位"><a href="#相对单位" class="headerlink" title="相对单位"></a>相对单位</h2><p>CSS中的相对单位：</p>
+<ul>
+<li>px：像素。</li>
+<li>em：印刷单位相当于12个点。</li>
+<li>%：百分比，相对上一级标签的大小。</li>
+</ul>
+<p>像素px之所以是相对单位是因为电脑屏幕的尺寸一定的时候，设置不同的分辨率，每个像素的大小就不一样。</p>
+<p>百分比单位是最常用的单位的之一，它表示<strong>参照它上级标签的该属性值来设置属性值</strong>。</p>
+<h1 id="字体属性"><a href="#字体属性" class="headerlink" title="字体属性"></a>字体属性</h1><p>CSS中，有很多与布局无关的非布局样式，主要包括字体、行高、颜色、大小、背景、边框、滚动、换行、装饰性属性（粗体、斜体、下划线）等。字体属性就是其中一种。</p>
+<h2 id="常用的字体属性"><a href="#常用的字体属性" class="headerlink" title="常用的字体属性"></a>常用的字体属性</h2><p>常见的字体属性有以下几种：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span>&#123;<br>	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">50px</span>;         <span class="hljs-comment">/*字体大小*/</span><br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">30px</span>;       <span class="hljs-comment">/*行高*/</span><br>	<span class="hljs-attribute">font-family</span>: 幼圆,黑体;   <span class="hljs-comment">/*字体类型：如果没有幼圆就显示黑体，没有黑体就显示默认*/</span><br>	<span class="hljs-attribute">font-style</span>: italic ;     <span class="hljs-comment">/*italic表示斜体，normal表示不倾斜*/</span><br>	<span class="hljs-attribute">font-weight</span>: bold;       <span class="hljs-comment">/*粗体*/</span><br>	<span class="hljs-attribute">font-variant</span>: small-caps;<span class="hljs-comment">/*小写变大写*/</span><br>	<span class="hljs-attribute">text-indent</span>: <span class="hljs-number">2em</span>;        <span class="hljs-comment">/* 首行缩进两个汉字的宽度 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="行高"><a href="#行高" class="headerlink" title="行高"></a>行高</h2><p>CSS中，<strong>所有的行都有行高</strong>。行高是与字号息息相关的一个属性，因为行高就像是为一行加上下的padding，这个padding的大小就是通过行高减去字号除以2计算得的（因为文本在一行中总是上下居中显示的）。</p>
+<p>因此也一般会约定：行高、字号尽量都设置为偶数，这样可以保证它们的差一定是偶数，从而能够被2整除，可以保证单行文本垂直居中。</p>
+<p>此时有一个与此看起来很相关的属性：vertical-align，该属性可以指定行内元素（inline）、行内块元素（inline-block）、表格的单元格（table-cell）的垂直对齐方式。主要用于图片、表格、文本的对齐。它可能的值有：</p>
+<ul>
+<li>baseline：默认。元素放置在父元素的基线上。</li>
+<li>sub：垂直对齐文本的下标。</li>
+<li>super    垂直对齐文本的上标</li>
+<li>top：把元素的顶端与行中最高元素的顶端对齐</li>
+<li>text-top：把元素的顶端与父元素字体的顶端对齐</li>
+<li>middle：把此元素放置在父元素的中部。</li>
+<li>bottom：把元素的顶端与行中最低的元素的顶端对齐。</li>
+<li>text-bottom：把元素的底端与父元素字体的底端对齐。</li>
+<li>%：使用 “line-height” 属性的百分比值来排列此元素。允许使用负值。</li>
+<li>inherit：规定应该从父元素继承 vertical-align 属性的值。</li>
+</ul>
+<p>使用的方法是直接把它作为要设置对齐的行内元素（inline）、行内块元素（inline-block）、表格的单元格（table-cell）元素的属性。</p>
+<p>（但是它并不能改变文本在行内的对齐方式！文本在行内居中是默认的。）</p>
+<h2 id="简写"><a href="#简写" class="headerlink" title="简写"></a>简写</h2><p>字号、行高、字体三大属性是最常用的。</p>
+<p>字号：<code>font-size:14px;</code></p>
+<p>行高：<code>line-height:24px;</code></p>
+<p>字体：<code>font-family:&quot;宋体&quot;;</code></p>
+<p>因为它们实在太常用了，因此可以把它们连写，格式为：<code>font: 加粗 字号/行高 字体;</code></p>
+<p>如：<code>font: 400 14px/24px &quot;宋体&quot;;</code></p>
+<p>其中加粗400是nomal，700是bold。</p>
+<p>但是font属性连写有一个要求：连写<strong>至少要有字号和字体</strong>，否则连写是不生效的（相当于没有这一行代码）。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>（1）网页中不是所有字体都能用，因为这个字体要看用户的电脑里面装没装，比如你设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;华文彩云&quot;</span>;<br></code></pre></td></tr></table></figure>
+<p>上方代码中，如果用户的 Windows 电脑里面没有这个字体，那么就会变成宋体。</p>
+<p>页面中，中文我们一般使用：微软雅黑、宋体、黑体。英文使用：Arial、Times New Roman。</p>
+<p>（2）页面中如果需要其他的字体，可以使用font-face：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@font-face</span><br>&#123;<br>  <span class="hljs-attribute">font-family</span>: myFont;<br>  <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;Sansation_Light.ttf&#x27;</span>),<br>       <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;Sansation_Light.eot&#x27;</span>); <span class="hljs-comment">/* IE9 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个font-face指定名为”myFont”的字体，并指定在哪里可以找到它的URL。</p>
+<p>（3）为了防止用户电脑里，没有微软雅黑这个字体，就要提供备选字体，如：（可以备选多个）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;微软雅黑&quot;</span>,<span class="hljs-string">&quot;宋体&quot;</span>;<br></code></pre></td></tr></table></figure>
+<p>这行代码表示：如果用户电脑里没有安装微软雅黑字体，那么就使用宋体，如果没有宋体，就使用下一个备选字体，直到所有备选字体都没有，那就使用默认字体。</p>
+<p>（4）备选字体列表中，<strong>应当将英语字体放在最前面</strong>，这样所有的中文，就不能匹配英语字体，就自动的变为后面的中文字体：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Times New Roman&quot;</span>,<span class="hljs-string">&quot;微软雅黑&quot;</span>,<span class="hljs-string">&quot;宋体&quot;</span>;<br></code></pre></td></tr></table></figure>
+<p>如果我们把中文字体写在前面：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;微软雅黑&quot;</span>,<span class="hljs-string">&quot;Times New Roman&quot;</span>,<span class="hljs-string">&quot;宋体&quot;</span>;<br></code></pre></td></tr></table></figure>
+<p>就会导致，中文和英文都会采用微软雅黑字体，达不到我们希望英文字体是Times New Roman的期望。</p>
+<p>（5）所有的中文字体，都有英语别名，如微软雅黑的英语别名：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Microsoft YaHei&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>宋体的英语别名：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;SimSun&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>在书写字体名称时可以使用等价的英语别名。</p>
+<p>（6）行高可以用百分比，表示字号的百分之多少。</p>
+<p>一般来说，百分比都是大于100%的，因为<strong>行高一定要大于字号</strong>。</p>
+<p>比如说：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font</span>:<span class="hljs-number">12px</span>/<span class="hljs-number">200%</span> <span class="hljs-string">&quot;宋体&quot;</span>;<br></code></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font</span>:<span class="hljs-number">12px</span>/<span class="hljs-number">24px</span> <span class="hljs-string">&quot;宋体&quot;</span>;<br></code></pre></td></tr></table></figure>
+<p>200%可以理解成word里面的2倍行高。</p>
+<p>反过来：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font</span>:<span class="hljs-number">16px</span>/<span class="hljs-number">48px</span> <span class="hljs-string">&quot;宋体&quot;</span>;<br></code></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font</span>:<span class="hljs-number">16px</span>/<span class="hljs-number">300%</span> <span class="hljs-string">&quot;宋体&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>（7）字体加粗属性：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.div</span> &#123;<br>	<span class="hljs-attribute">font-weight</span>: normal; <span class="hljs-comment">/*正常*/</span><br>	<span class="hljs-attribute">font-weight</span>: bold;  <span class="hljs-comment">/*加粗*/</span><br>	<span class="hljs-attribute">font-weight</span>: <span class="hljs-number">100</span>;<br>	<span class="hljs-attribute">font-weight</span>: <span class="hljs-number">200</span>;<br>	<span class="hljs-attribute">font-weight</span>: <span class="hljs-number">900</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在设置字体是否加粗时，属性值既可以填写normal、bold这样的加粗字体，也可以直接填写 100至900 这样的数字。normal的值相当于400，bold的值相当于700。</p>
+<h1 id="文本属性"><a href="#文本属性" class="headerlink" title="文本属性"></a>文本属性</h1><p>CSS样式中，常见的文本属性有以下几种：</p>
+<ul>
+<li><code>letter-spacing:0.5cm;</code>：单个字母之间的间距。</li>
+<li><code>word-spacing:1cm;</code>：单词之间的间距。</li>
+<li><code>text-decoration:none;</code>：字体修饰：none 去掉下划线、underline 下划线、line-through 中划线、overline 上划线。</li>
+<li><code>text-transform:lowercase;</code>：单词字体大小写。uppercase大写、lowercase小写。</li>
+<li><code>color:red;</code>：字体颜色。</li>
+<li><code>text-align: center;</code>：在当前容器中的对齐方式。属性值可以是：left、right、center（在当前容器的中间）、justify。</li>
+<li><code>text-transform: lowercase;</code>：单词的字体大小写。属性值可以是：uppercase（单词大写）、lowercase（单词小写）、capitalize（每个单词的首字母大写）。</li>
+</ul>
+<p>在CSS3中新增了text-shadow属性来设置文本的阴影，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">text-shadow</span>: <span class="hljs-number">20px</span> <span class="hljs-number">27px</span> <span class="hljs-number">22px</span> pink;<br></code></pre></td></tr></table></figure>
+<p>四个属性的含义分别为水平位移、垂直位移、模糊程度、阴影颜色。</p>
+<p>同时<strong>text-shadow可以设置多个阴影</strong>，每个阴影之间使用逗号隔开，这样一对黑白阴影组合可以实现凹凸效果：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.tu</span> &#123;<br>    <span class="hljs-attribute">text-shadow</span>: -<span class="hljs-number">1px</span> -<span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">#fff</span>, <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">#000</span>;<br>&#125;<br><span class="hljs-selector-class">.ao</span> &#123;<br>    <span class="hljs-attribute">text-shadow</span>: -<span class="hljs-number">1px</span> -<span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">#000</span>, <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">#fff</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码的凹凸效果如下：</p>
+<p><span style="text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;font-size:20px;font-weight:bold;margin-right:5px;">凸起效果</span><span style="text-shadow: -1px -1px 1px #000, 1px 1px 1px #fff;font-size:20px;font-weight:bold;">凹陷效果</span></p>
+<h1 id="列表属性"><a href="#列表属性" class="headerlink" title="列表属性"></a>列表属性</h1><p>列表属性主要有：</p>
+<ul>
+<li>list-style-type：列表标记的样式。其值可以是none 无标记，disc 默认 实心圆，circle 空心圆，square 实心方块，decimal 数字。</li>
+<li>list-style-image：把图像设置为列表中的项目标记，如<code>url(&quot;/i/arrow.gif&quot;)</code>。</li>
+<li>list-style-position：设置列表中项目标记的位置。取值可以是inside 文本以内，outside    默认值 放置在文本以外，inherit 从父元素继承。</li>
+</ul>
+<p>可以把以上属性简写为list-style：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">ul</span> &#123;<br>  <span class="hljs-attribute">list-style</span>: square inside <span class="hljs-built_in">url</span>(<span class="hljs-string">&quot;sqpurple.gif&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在使用简写属性时，属性值的顺序为：</p>
+<ul>
+<li>list-style-type：如果指定了 list-style-image，那么在由于某种原因而无法显示图像时，会显示这个属性的值。</li>
+<li>list-style-position：指定列表项标记应显示在内容流的内部还是外部。</li>
+<li>list-style-image：将图像指定为列表项标记。</li>
+</ul>
+<p>如果缺少上述属性值之一，则将插入缺失属性的默认值（如果有）。</p>
+<p>添加到 &lt;ol&gt; 或 &lt;ul&gt; 标记的任何样式都会影响整个列表，而添加到 &lt;li&gt; 标记的属性将影响各个列表项。</p>
+<h1 id="背景属性"><a href="#背景属性" class="headerlink" title="背景属性"></a>背景属性</h1><h2 id="CSS2中的背景属性"><a href="#CSS2中的背景属性" class="headerlink" title="CSS2中的背景属性"></a>CSS2中的背景属性</h2><p>CSS2.1中，常见的背景属性有以下几种：</p>
+<ul>
+<li>background-color：设置元素的背景颜色。</li>
+<li>background-image：将图像设置为背景。</li>
+<li>background-repeat：设置背景图片是否重复及如何重复，默认平铺满。（<strong>重要</strong>）<ul>
+<li>no-repeat：不要平铺；</li>
+<li>repeat-x：横向平铺；</li>
+<li>repeat-y：纵向平铺。</li>
+</ul>
+</li>
+<li>background-position：设置背景图片在当前容器中的位置。</li>
+<li>background-attachment：设置背景图片是否跟着滚动条一起移动。 属性值可以是：<ul>
+<li>scroll（与fixed属性相反，默认属性）。</li>
+<li>fixed（背景就会被固定住，不会被滚动条滚走）。</li>
+</ul>
+</li>
+</ul>
+<p>另外还有一个简写属性background，可以将上面的多个属性写在一个声明中。</p>
+<h3 id="background-color"><a href="#background-color" class="headerlink" title="background-color"></a>background-color</h3><p>这个属性的值是颜色值，CSS2.1中，颜色的表示方法有三种：<strong>单词、rgb表示法、十六进制表示法</strong>：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-color</span>: red;<br><span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);<br><span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ff0000</span>;<br></code></pre></td></tr></table></figure>
+
+<p>对于十六进制表示法，#aabbcc是可以化简为#abc的，如红色：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ff0000</span>;<br></code></pre></td></tr></table></figure>
+<p>等价于：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f00</span>;<br></code></pre></td></tr></table></figure>
+<p>再比如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-color</span>: <span class="hljs-number">#112233</span>;<br></code></pre></td></tr></table></figure>
+<p>等价于：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-color</span>: <span class="hljs-number">#123</span>;<br></code></pre></td></tr></table></figure>
+<p>以此类推。</p>
+<p>CSS3 中，新的表示颜色的方式有RGBA或者HSLA：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.3</span>);<br><span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">240</span>,<span class="hljs-number">50%</span>,<span class="hljs-number">50%</span>,<span class="hljs-number">0.4</span>);<br></code></pre></td></tr></table></figure>
+
+<p>在HSLA中：</p>
+<ul>
+<li>H 色调，取值范围 0~360。0或360表示红色、120表示绿色、240表示蓝色。</li>
+<li>S 饱和度，取值范围 0%~100%。值越大，越鲜艳。</li>
+<li>L 亮度，取值范围 0%~100%。亮度最大时为白色，最小时为黑色。</li>
+<li>A 透明度，取值范围 0~1。</li>
+</ul>
+<p>A即Alpha，透明度。RGBA、HSLA可应用于所有使用颜色的地方。</p>
+<p>关于透明度还有两个属性可以使用：</p>
+<ul>
+<li>opacity: 0.3; 会将整个盒子及子盒子设置透明度。</li>
+<li>background: transparent; 可以单独设置透明度，但设置的是完全透明。</li>
+</ul>
+<h3 id="background-image"><a href="#background-image" class="headerlink" title="background-image"></a>background-image</h3><p>使用图片来作为背景，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-image</span>:<span class="hljs-built_in">url</span>(<span class="hljs-string">images/2.gif</span>);<br></code></pre></td></tr></table></figure>
+
+<p>要注意设置的背景是盒子背景，也就是padding的部分也是有背景的。</p>
+<h3 id="background-repeat"><a href="#background-repeat" class="headerlink" title="background-repeat"></a>background-repeat</h3><p>不使用该属性时默认是横向和纵向都平铺，而使用该属性可以指定只在横向上平铺或者只在纵向上平铺或者不平铺。</p>
+<h3 id="background-position"><a href="#background-position" class="headerlink" title="background-position"></a>background-position</h3><p>background-position属性是背景定位属性。</p>
+<p>在描述属性值的时候，有两种方式：用像素描述、用单词描述。</p>
+<p>（1）用像素值描述属性值的格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">background-position:向右偏移量 向下偏移量;<br></code></pre></td></tr></table></figure>
+
+<p>属性值可以是正数，也可以是负数。比如：100px 200px、-50px -120px。</p>
+<p>（2）用单词描述属性值的格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">background-position: 描述左右的词 描述上下的词;<br></code></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li>描述左右的词：left、center、right。</li>
+<li>描述上下的词：top 、center、bottom。</li>
+</ul>
+<p>right center表示将图片放到右边的中间；center center表示将图片放到正中间。bottom表示图片的底边和父亲底边贴齐。</p>
+<p>该属性一般与background-repeat的no-repeat一同使用。</p>
+<h3 id="background-attachment"><a href="#background-attachment" class="headerlink" title="background-attachment"></a>background-attachment</h3><p>background-attachment属性设置背景图片是否固定。属性值可以是：</p>
+<ul>
+<li>fixed：背景就会被固定住，不会被滚动条滚走。</li>
+<li>scroll：背景会随着滚动条一起滚动，默认属性。</li>
+</ul>
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>将上面多个属性写在一起，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background</span>:red <span class="hljs-built_in">url</span>(<span class="hljs-string">1.jpg</span>) no-repeat <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> fixed;<br></code></pre></td></tr></table></figure>
+
+<p>其中是可以省略掉部分字段的，并且之后可以用单独的属性覆盖掉其中的若干字段。</p>
+<h2 id="CSS3中的背景属性"><a href="#CSS3中的背景属性" class="headerlink" title="CSS3中的背景属性"></a>CSS3中的背景属性</h2><p>CSS3 中，新增了一些background属性：</p>
+<ul>
+<li>background-origin：背景原点</li>
+<li>background-clip：背景裁切。</li>
+<li>background-size：调整尺寸。</li>
+<li>多重背景</li>
+</ul>
+<h3 id="background-origin"><a href="#background-origin" class="headerlink" title="background-origin"></a>background-origin</h3><p>background-origin 属性：控制背景从什么地方开始显示。</p>
+<p>使用方式如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 从 padding-box 内边距开始显示背景图（默认值） */</span><br><span class="hljs-attribute">background-origin</span>: padding-box;<br><span class="hljs-comment">/* 从 border-box 边框开始显示背景图  */</span><br><span class="hljs-attribute">background-origin</span>: border-box;<br><span class="hljs-comment">/* 从 content-box 内容区域开始显示背景图  */</span><br><span class="hljs-attribute">background-origin</span>: content-box;<br></code></pre></td></tr></table></figure>
+
+<h3 id="background-clip"><a href="#background-clip" class="headerlink" title="background-clip"></a>background-clip</h3><p>background-clip属性：设置元素的背景（背景图片或颜色）是否延伸到指定区域外面，如果不让延伸到外面，<strong>超出某个界限的部分将被裁切掉</strong>。</p>
+<p>属性值可以是：</p>
+<ul>
+<li>border-box：超出 border-box 的部分，将裁剪掉。</li>
+<li>padding-box：超出 padding-box 的部分，将裁剪掉。</li>
+<li>content-box：超出 content-box 的部分，将裁剪掉。</li>
+</ul>
+<p>background-origin常常和background-clip搭配使用。如果现在有这样的属性设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-origin</span>: border-box;<br><span class="hljs-attribute">background-clip</span>: content-box;<br></code></pre></td></tr></table></figure>
+<p>那么背景图片从边框部分开始加载，但是超出内容区域的部分将被裁减掉。</p>
+<h3 id="background-size"><a href="#background-size" class="headerlink" title="background-size"></a>background-size</h3><p>background-size属性：设置背景图片的尺寸。</p>
+<p>有如下几种使用方式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 宽、高的具体数值 */</span><br><span class="hljs-attribute">background-size</span>: <span class="hljs-number">500px</span> <span class="hljs-number">500px</span>;<br><span class="hljs-comment">/* 宽高的百分比（相对于容器的大小） */</span><br><span class="hljs-attribute">background-size</span>: <span class="hljs-number">50%</span> <span class="hljs-number">50%</span>;   // 如果两个属性值相同，可以简写成：<span class="hljs-attribute">background-size</span>: <span class="hljs-number">50%</span>;<br><span class="hljs-attribute">background-size</span>: <span class="hljs-number">100%</span> auto;  // 缩放长，宽按比例计算<br><span class="hljs-comment">/* cover：图片始终填充满容器，且保证长宽比不变。图片如果有超出部分，则超出部分会被隐藏。 */</span><br><span class="hljs-attribute">background-size</span>: cover;<br><span class="hljs-comment">/* contain：将图片完整地显示在容器中，且保证长宽比不变。可能会导致容器的部分区域为空白。  */</span><br><span class="hljs-attribute">background-size</span>: contain;<br></code></pre></td></tr></table></figure>
+
+<h3 id="多重背景"><a href="#多重背景" class="headerlink" title="多重背景"></a>多重背景</h3><p>可以给一个盒子同时设置多个背景，用以逗号隔开即可，常用于自适应局。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 给盒子加多个背景，按照背景语法格式书写，多个背景使用逗号隔开 */</span><br><span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">images/bg1.png</span>) no-repeat left top,<br>    <span class="hljs-built_in">url</span>(<span class="hljs-string">images/bg2.png</span>) no-repeat right top,<br>    <span class="hljs-built_in">url</span>(<span class="hljs-string">images/bg3.png</span>) no-repeat right bottom,<br>    <span class="hljs-built_in">url</span>(<span class="hljs-string">images/bg4.png</span>) no-repeat left bottom,<br>    <span class="hljs-built_in">url</span>(<span class="hljs-string">images/bg5.png</span>) no-repeat center;<br></code></pre></td></tr></table></figure>
+
+<p>多重背景常常用png格式的透明图片来设置，可以做出有创意的效果。</p>
+<h3 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h3><p>CSS3支持渐变作为背景，使用的属性还是background-image。</p>
+<p>支持的渐变有三种：</p>
+<ul>
+<li>线性渐变：沿着某条直线朝一个方向产生渐变效果。</li>
+<li>径向渐变：从一个中心点开始沿着四周产生渐变效果。</li>
+<li>重复渐变。</li>
+</ul>
+<p><img   class="lazyload" data-original="/images/illustration/2021-10-20-frontend-css-002/001.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>（1）线性渐变：</p>
+<p>格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">background-image: linear-gradient(方向, 起始颜色, 终止颜色);<br>background-image: linear-gradient(方向, 颜色1 位置1, 颜色2 位置2, ……);<br></code></pre></td></tr></table></figure>
+<p>其中方向可以是to left、to right、to top、to bottom或者使用角度角度，30deg指的是顺时针方向30°。默认方向是从上往下。</p>
+<p>有以下例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(yellow, green);<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(to right, yellow, green);<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, yellow, green);<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(to right,<br>    yellow <span class="hljs-number">0%</span>, red <span class="hljs-number">40%</span>, green <span class="hljs-number">70%</span>, blue <span class="hljs-number">100%</span>);<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">45deg</span>,<br>    yellow <span class="hljs-number">0%</span>, yellow <span class="hljs-number">25%</span>, blue <span class="hljs-number">25%</span>, blue <span class="hljs-number">50%</span>,<br>    red <span class="hljs-number">50%</span>, red <span class="hljs-number">75%</span>, green <span class="hljs-number">75%</span>, green <span class="hljs-number">100%</span>);<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(to right,<br>    <span class="hljs-number">#000</span> <span class="hljs-number">0%</span>, <span class="hljs-number">#000</span> <span class="hljs-number">25%</span>, <span class="hljs-number">#fff</span> <span class="hljs-number">25%</span>, <span class="hljs-number">#fff</span> <span class="hljs-number">50%</span>,<br>    <span class="hljs-number">#000</span> <span class="hljs-number">50%</span>, <span class="hljs-number">#000</span> <span class="hljs-number">75%</span>, <span class="hljs-number">#fff</span> <span class="hljs-number">75%</span>, <span class="hljs-number">#fff</span> <span class="hljs-number">100%</span>);<br></code></pre></td></tr></table></figure>
+
+<p>以上渐变代码的效果分别如下：</p>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image: linear-gradient(yellow, green);"></div>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:linear-gradient(to right, yellow, green);"></div>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:linear-gradient(135deg, yellow, green);"></div>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:linear-gradient(to right,yellow 0%, red 40%, green 70%, blue 100%);"></div>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:linear-gradient(45deg,yellow 0%, yellow 25%, blue 25%, blue 50%,red 50%, red 75%, green 75%, green 100%);"></div>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:linear-gradient(to right,#000 0%, #000 25%, #fff 25%, #fff 50%,#000 50%, #000 75%, #fff 75%, #fff 100%);"></div>
+
+<p>（2）径向渐变：</p>
+<p>格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">background-image: radial-gradient(辐射的半径大小 中心的位置, 起始颜色, 终止颜色);<br></code></pre></td></tr></table></figure>
+
+<p>如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(<span class="hljs-number">25px</span> at center,yellow ,green);<br></code></pre></td></tr></table></figure>
+<p>中心点的位置和background-position属性的值一样。辐射半径并不一定只能是一个值，如果是两个值，说明分别设置了辐射半径的宽高，宽高不同的辐射半径将是一个椭圆状辐射。</p>
+<p>注意：辐射半径和中心点的位置之间没有逗号分隔。</p>
+<p>有以下例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(<span class="hljs-number">25px</span> at center, yellow, green);<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(at left top, yellow, green);<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(at <span class="hljs-number">50px</span> <span class="hljs-number">50px</span>, yellow, green);<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(<span class="hljs-number">25px</span> at center,<br>    yellow <span class="hljs-number">0%</span>, green <span class="hljs-number">30%</span>, blue <span class="hljs-number">60%</span>, red <span class="hljs-number">100%</span>);<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">radial-gradient</span>(<span class="hljs-number">30px</span> <span class="hljs-number">15px</span> at center, yellow, green);<br></code></pre></td></tr></table></figure>
+
+<p>以上渐变代码的效果分别如下：</p>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:radial-gradient(25px at center, yellow, green);"></div>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:radial-gradient(at left top, yellow, green);"></div>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:radial-gradient(at 50px 50px, yellow, green);"></div>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:radial-gradient(25px at center,yellow 0%, green 30%, blue 60%, red 100%);"></div>
+<div style="border:2px solid black;width:50px;height:50px;margin:5px;display:inline-block;background-image:radial-gradient(30px 15px at center, yellow, green);"></div>
+
+<p>所有的背景属性是经常用到的，一定要牢牢记住。</p>
+<h1 id="定位属性"><a href="#定位属性" class="headerlink" title="定位属性"></a>定位属性</h1><p>CSS的定位属性有三种，分别是绝对定位、相对定位、固定定位：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">position</span>: absolute;  <span class="hljs-comment">/* 绝对定位 */</span><br><span class="hljs-attribute">position</span>: relative;  <span class="hljs-comment">/* 相对定位 */</span><br><span class="hljs-attribute">position</span>: fixed;     <span class="hljs-comment">/* 固定定位 */</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="相对定位"><a href="#相对定位" class="headerlink" title="相对定位"></a>相对定位</h2><p>让元素相对于自己原来的位置，进行位置调整（可用于盒子的位置微调）。实现方法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">position</span>: relative;<br><span class="hljs-attribute">left</span>: <span class="hljs-number">50px</span>;<br><span class="hljs-attribute">top</span>: <span class="hljs-number">50px</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这样使得元素在原有位置的基础上相对于left和top偏移。</p>
+<p>要注意相对定位的特点就是相对定位不脱标，老家留坑，别人不会把它的位置挤走。也就是说，相对定位的真实位置还在老家，只不过影子出去了，可以到处飘。</p>
+<p>相对定位的定位值：</p>
+<ul>
+<li>left：盒子右移。</li>
+<li>right：盒子左移。</li>
+<li>top：盒子下移。</li>
+<li>bottom：盒子上移。</li>
+</ul>
+<p>定位值可取负数，这样会向相反方向偏移。</p>
+<h2 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h2><p>定义横纵坐标。原点在父容器的左上角或左下角。横坐标用left表示，纵坐标用top或者bottom表示。如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">position</span>: absolute; <span class="hljs-comment">/*绝对定位*/</span><br><span class="hljs-attribute">left</span>: <span class="hljs-number">10px</span>;         <span class="hljs-comment">/*横坐标*/</span><br><span class="hljs-attribute">top</span>: <span class="hljs-number">20px</span>;          <span class="hljs-comment">/*纵坐标*/</span><br></code></pre></td></tr></table></figure>
+
+<p>如果使用top，原点就是在父容器左上角，如果把top换为bottom，原点就在左下角。</p>
+<p>绝对定位的特点是<strong>绝对定位脱标</strong>，老家不留位置。绝对定位的盒子脱离了标准文档流，所有的标准文档流的性质，绝对定位之后都不遵守了。因此绝对定位之后，标签就不区分所谓的行内元素、块级元素了，不需要display:block就可以设置宽、高了。</p>
+<p>要注意关于参考点的问题：</p>
+<ul>
+<li>一个绝对定位的元素，如果祖先元素中出现了已定位（无论是绝对定位、相对定位还是固定定位）的元素，那么将以嵌套关系最近的祖先元素为参考进行绝对定位。</li>
+<li>如果没有已定位的祖先元素，从左上角定位就以页面左上角为参考点，而从左下角定位就以浏览器首屏左下角为参考点。（或者可以说都是以浏览器首屏为参考来定位的）</li>
+<li>绝对定位的儿子，无视做参考的那个盒子的padding，但是会在border内定位。</li>
+</ul>
+<p>子绝父相常用来做精灵图和压盖效果。</p>
+<p>如果盒子是绝对定位的，其父亲是相对定位的，可以这样使得盒子在父亲中水平居中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span>;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">60px</span>;<br>	<span class="hljs-attribute">position</span>: absolute;  // 绝对定位的盒子<br>	<span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;           // 首先，让左边线居中<br>	<span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">300px</span>;  // 然后，向左移动宽度（<span class="hljs-number">600px</span>）的一半<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>竖直居中也是同样的道理。</p>
+<p>此外绝对定位时有一个非常常用的z-index属性：表示谁压着谁。数值大的压盖住数值小的。在默认情况下是dom中在后的元素压盖住在前面的元素，而使用这个属性可以任意设置谁压盖谁。</p>
+<h2 id="固定定位"><a href="#固定定位" class="headerlink" title="固定定位"></a>固定定位</h2><p>就是相对浏览器窗口进行定位。无论页面如何滚动，这个盒子显示的位置不变。</p>
+<p>注意：IE6不兼容。</p>
+<p>固定定位也是通过使用left、right、top、bottom来实现定位。</p>
+<p>常用于“返回顶部”按钮以及导航条。</p>
+<h1 id="边框属性"><a href="#边框属性" class="headerlink" title="边框属性"></a>边框属性</h1><p>边框的属性很多，其中边框圆角和边框阴影这两个属性，应用十分广泛，兼容性也相对较好，且符合渐进增强的原则。</p>
+<h2 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h2><p>border-style属性指定要显示的边框类型。可以设置一到四个值（用于上边框、右边框、下边框和左边框）。可选的值有：</p>
+<ul>
+<li>dotted：点线边框</li>
+<li>dashed：虚线边框</li>
+<li>solid：实线边框</li>
+<li>double：双边框</li>
+<li>groove：3D坡口边框。效果取决于 border-color 值</li>
+<li>ridge：3D脊线边框。效果取决于 border-color 值</li>
+<li>inset：3D inset边框。效果取决于 border-color 值</li>
+<li>outset：3D outset边框。效果取决于 border-color 值</li>
+<li>none：无边框</li>
+<li>hidden：隐藏边框</li>
+</ul>
+<p>它可以设置一到四个值，含义分别是：</p>
+<ul>
+<li>一个值：所有边框的样式。</li>
+<li>两个值：上下边框的样式、左右边框的样式。</li>
+<li>三个值：上边框的样式、左右边框的样式、下边框的样式。</li>
+<li>四个值：上、右、下、左四条边框分别的样式。</li>
+</ul>
+<p>要使用边框，border-style属性是必须设置的，如果没有该属性，其他的边框属性都不会生效。</p>
+<p>其他基本边框属性：</p>
+<ul>
+<li>border-width属性：指定四个边框的宽度。可以使用以下三个预定义值之一：thin、medium 或 thick。同样可以设置一到四个值。</li>
+<li>border-color属性：用于设置四个边框的颜色。如果未设置 border-color，则它将继承元素的颜色。同样可以设置一到四个值。</li>
+<li>单独设置某条边的值：<ul>
+<li>border-top-style：上边框样式。</li>
+<li>border-right-style：右边框样式。</li>
+<li>border-bottom-style：下边框样式。</li>
+<li>border-left-style：左边框样式。</li>
+</ul>
+</li>
+</ul>
+<p>border属性可以简写，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">border</span>: <span class="hljs-number">5px</span> solid red;<br></code></pre></td></tr></table></figure>
+<p>三个属性分别为边框粗细、边框样式、边框颜色。其中<strong>边框样式是必写字段</strong>。</p>
+<h2 id="边框圆角"><a href="#边框圆角" class="headerlink" title="边框圆角"></a>边框圆角</h2><p>边框圆角：border-radius 属性。</p>
+<p>边框的每个圆角，本质上是一个圆，圆有水平半径和垂直半径：如果二者相等，就是圆；如果二者不等， 就是椭圆。</p>
+<p>单个属性的写法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">border-top-left-radius</span>: <span class="hljs-number">60px</span> <span class="hljs-number">120px</span>;<br><span class="hljs-attribute">border-top-right-radius</span>: <span class="hljs-number">60px</span> <span class="hljs-number">120px</span>;<br><span class="hljs-attribute">border-bottom-left-radius</span>: <span class="hljs-number">60px</span> <span class="hljs-number">120px</span>;<br><span class="hljs-attribute">border-bottom-right-radius</span>: <span class="hljs-number">60px</span> <span class="hljs-number">120px</span>;<br></code></pre></td></tr></table></figure>
+<p>两个参数分别是水平半径和垂直半径。</p>
+<p>复合写法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">border-radius</span>: <span class="hljs-number">60px</span>/<span class="hljs-number">120px</span>;     <span class="hljs-comment">/*设置水平半径/垂直半径，四个角一样*/</span><br><span class="hljs-attribute">border-radius</span>: <span class="hljs-number">20px</span> <span class="hljs-number">60px</span> <span class="hljs-number">100px</span> <span class="hljs-number">140px</span>; <span class="hljs-comment">/*从左上开始，顺时针赋值*/</span><br><span class="hljs-attribute">border-radius</span>: <span class="hljs-number">20px</span> <span class="hljs-number">60px</span>;      <span class="hljs-comment">/*如果某些角没有值，取对角的值*/</span><br><span class="hljs-attribute">border-radius</span>: <span class="hljs-number">60px</span>;           <span class="hljs-comment">/*四个角水平、垂直半径都一样*/</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="边框阴影"><a href="#边框阴影" class="headerlink" title="边框阴影"></a>边框阴影</h2><p>边框阴影：box-shadow 属性。</p>
+<p>格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">box-shadow: 水平偏移 垂直偏移 模糊程度 阴影大小 阴影颜色<br></code></pre></td></tr></table></figure>
+
+<p>如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">15px</span> <span class="hljs-number">21px</span> <span class="hljs-number">48px</span> <span class="hljs-number">2px</span> <span class="hljs-number">#666</span>;<br></code></pre></td></tr></table></figure>
+
+<p>参数解释：</p>
+<ul>
+<li>水平偏移：正值向右 负值向左。</li>
+<li>垂直偏移：正值向下 负值向上。</li>
+<li>模糊程度：不能为负值。</li>
+</ul>
+<p>另外，后面还可以再加一个inset属性，表示内阴影。如果不写，则默认表示外阴影。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">box-shadow</span>:<span class="hljs-number">3px</span> <span class="hljs-number">3px</span> <span class="hljs-number">3px</span> <span class="hljs-number">3px</span> <span class="hljs-number">#666</span> inset;<br></code></pre></td></tr></table></figure>
+
+<p>设置边框阴影不会改变盒子的大小，即不会影响其兄弟元素的布局。</p>
+<p>同样可以设置多重边框阴影。</p>
+<h2 id="边框图片"><a href="#边框图片" class="headerlink" title="边框图片"></a>边框图片</h2><p>通过使用 CSS border-image 属性，可以设置图像用作围绕元素的边框。</p>
+<p>该属性有三部分：</p>
+<ul>
+<li>border-image-source：用作边框的图像。</li>
+<li>border-image-slice：在哪里裁切图像。</li>
+<li>border-image-repeat：定义中间部分应重复还是拉伸。可取的属性值：<ul>
+<li>repeat：正常平铺但是可能会显示不完整。</li>
+<li>round：平铺但是保证图片完整。</li>
+<li>stretch：拉伸显示。</li>
+</ul>
+</li>
+</ul>
+<p>或者合写为一个border-image属性。</p>
+<p>该属性会把属性图片裁切为九宫格，四角的图片保持不动，四边的图片水平或竖直重复。<br>边框圆角、边框阴影、边框图片都是CSS3的内容。</p>
+<h1 id="其他常用属性"><a href="#其他常用属性" class="headerlink" title="其他常用属性"></a>其他常用属性</h1><h2 id="overflow属性"><a href="#overflow属性" class="headerlink" title="overflow属性"></a>overflow属性</h2><p>overflow属性的属性值可以是：</p>
+<ul>
+<li>visible：默认值。多余的内容不剪切也不添加滚动条，会全部显示出来。</li>
+<li>hidden：不显示超过对象尺寸的内容。</li>
+<li>auto：如果内容不超出，则不显示滚动条；如果内容超出，则显示滚动条。</li>
+<li>scroll：Windows 平台下，无论内容是否超出，总是显示滚动条。Mac 平台下，和 auto 属性相同。</li>
+</ul>
+<p>也就是说overflow属性规定了元素中内容超出元素大小时的处理方法。</p>
+<h2 id="鼠标属性"><a href="#鼠标属性" class="headerlink" title="鼠标属性"></a>鼠标属性</h2><p>如果想让鼠标放在那个标签上时，鼠标改变形状，可以使用:hover选择器并设置cursor属性，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:hover</span>&#123;<br>	<span class="hljs-attribute">cursor</span>: pointer;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最常用的鼠标属性值有：</p>
+<ul>
+<li>auto：默认值。浏览器根据当前情况自动确定鼠标光标类型。</li>
+<li>pointer：IE6.0，竖起一只手指的手形光标。就像通常用户将光标移到超链接上时那样。</li>
+<li>hand：和pointer的作用一样：竖起一只手指的手形光标。就像通常用户将光标移到超链接上时那样。</li>
+</ul>
+<p>其余属性值需要时查表即可。</p>
+<h2 id="滤镜属性"><a href="#滤镜属性" class="headerlink" title="滤镜属性"></a>滤镜属性</h2><p>即filter属性，对图像使用添加滤镜，可用的滤镜函数主要有：</p>
+<ul>
+<li>none：默认值。规定无效果。</li>
+<li>blur(px)：对图像应用模糊效果。较大的值将产生更多的模糊。</li>
+<li>brightness(%)：调整图像的亮度。0％ 将使图像完全变黑。默认值是 100％，代表原始图像。值超过 100％ 将提供更明亮的结果。</li>
+<li>grayscale(%)：将图像转换为灰阶。0%是默认值，代表原始图像。100％ 将使图像完全变灰（用于黑白图像）。不允许负值。</li>
+<li>opacity(%)：设置图像的不透明度级别。opacity-level 描述了透明度级别，其中0% 为完全透明。100% (1) 是默认值，代表原始图像（不透明）。不允许负值。</li>
+<li>……</li>
+</ul>
+<h2 id="clip-path属性"><a href="#clip-path属性" class="headerlink" title="clip-path属性"></a>clip-path属性</h2><p>clip-path属性不是背景属性，但是它非常强大，常常和背景属性一起使用。</p>
+<p>clip-path属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。</p>
+<p>clip-path属性即使做了任何裁剪，容器的占位大小是不变的。</p>
+<p>有以下例子：（鼠标悬停时，放大裁剪的区域）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.div1</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">320px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">320px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid red;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">http://img.smyhvae.com/20191006_1410.png</span>) no-repeat;<br>    <span class="hljs-attribute">background-size</span>: cover;<br>    <span class="hljs-comment">/* 裁剪出圆形区域 */</span><br>    <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">circle</span>(<span class="hljs-number">50px</span> at <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>);<br>    <span class="hljs-attribute">transition</span>: clip-path .<span class="hljs-number">4s</span>;<br>&#125;<br><span class="hljs-selector-class">.div1</span><span class="hljs-selector-pseudo">:hover</span>&#123;<br>    <span class="hljs-comment">/* 鼠标悬停时，裁剪出更大的圆形 */</span><br>    <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">circle</span>(<span class="hljs-number">80px</span> at <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>例子中是裁剪出了一个圆形区域，实际上该属性支持的区域类型更多：</p>
+<p>（1）inset() : 定义一个矩形 。</p>
+<p>它接受五个参数：分别对应top,right,bottom,left的裁剪位置和round radius圆角，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">2em</span> <span class="hljs-number">3em</span> <span class="hljs-number">2em</span> <span class="hljs-number">1em</span> round <span class="hljs-number">2em</span>);<br></code></pre></td></tr></table></figure>
+
+<p>（2）circle()：定义一个圆。</p>
+<p>参数分别是圆的半径at圆心位置，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">circle</span>(<span class="hljs-number">30%</span> at <span class="hljs-number">150px</span> <span class="hljs-number">120px</span>);<br></code></pre></td></tr></table></figure>
+
+<p>（3）ellipse()：定义一个椭圆。</p>
+<p>参数有三个：</p>
+<ul>
+<li>椭圆的X轴半径，默认是宽度的一半，支持百分比。</li>
+<li>椭圆的Y轴半径，默认是高度的一半，支持百分比。</li>
+<li>椭圆中心位置，默认是元素的中心点。</li>
+</ul>
+<p>如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">ellipse</span>(<span class="hljs-number">45%</span> <span class="hljs-number">30%</span> at <span class="hljs-number">50%</span> <span class="hljs-number">50%</span>);<br></code></pre></td></tr></table></figure>
+
+<p>（4）polygon()：定义一个多边形。</p>
+<p>用若干逗号分隔的坐标对来确定一个多边形，最后自动封口，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">polygon</span>(<span class="hljs-number">50%</span> <span class="hljs-number">0</span>,<span class="hljs-number">100%</span> <span class="hljs-number">50%</span>,<span class="hljs-number">0</span> <span class="hljs-number">100%</span>);<br></code></pre></td></tr></table></figure>
+
+<p>此外该属性还支持使用svg和盒子来进行裁剪</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/10/20/frontend-css-002/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;20&#x2F;frontend-css-002&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;20&#x2F;frontend-css-002&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/10/20/frontend-css-001/">CSS学习笔记（1）：基本术语 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS%E7%9A%84%E5%8D%95%E4%BD%8D"><span class="toc-text">CSS的单位</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E5%8D%95%E4%BD%8D"><span class="toc-text">绝对单位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D"><span class="toc-text">相对单位</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7"><span class="toc-text">字体属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7"><span class="toc-text">常用的字体属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%AB%98"><span class="toc-text">行高</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%86%99"><span class="toc-text">简写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="toc-text">文本属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E5%B1%9E%E6%80%A7"><span class="toc-text">列表属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7"><span class="toc-text">背景属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS2%E4%B8%AD%E7%9A%84%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7"><span class="toc-text">CSS2中的背景属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#background-color"><span class="toc-text">background-color</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#background-image"><span class="toc-text">background-image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#background-repeat"><span class="toc-text">background-repeat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#background-position"><span class="toc-text">background-position</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#background-attachment"><span class="toc-text">background-attachment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#background"><span class="toc-text">background</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3%E4%B8%AD%E7%9A%84%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7"><span class="toc-text">CSS3中的背景属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#background-origin"><span class="toc-text">background-origin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#background-clip"><span class="toc-text">background-clip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#background-size"><span class="toc-text">background-size</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E8%83%8C%E6%99%AF"><span class="toc-text">多重背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%90%E5%8F%98"><span class="toc-text">渐变</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E5%B1%9E%E6%80%A7"><span class="toc-text">定位属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E5%AE%9A%E4%BD%8D"><span class="toc-text">相对定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D"><span class="toc-text">绝对定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E5%AE%9A%E4%BD%8D"><span class="toc-text">固定定位</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E5%B1%9E%E6%80%A7"><span class="toc-text">边框属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86"><span class="toc-text">边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E5%9C%86%E8%A7%92"><span class="toc-text">边框圆角</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E9%98%B4%E5%BD%B1"><span class="toc-text">边框阴影</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E5%9B%BE%E7%89%87"><span class="toc-text">边框图片</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="toc-text">其他常用属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#overflow%E5%B1%9E%E6%80%A7"><span class="toc-text">overflow属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E5%B1%9E%E6%80%A7"><span class="toc-text">鼠标属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%A4%E9%95%9C%E5%B1%9E%E6%80%A7"><span class="toc-text">滤镜属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clip-path%E5%B1%9E%E6%80%A7"><span class="toc-text">clip-path属性</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
