@@ -1,0 +1,1323 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML学习笔记（4）：标签与属性总览 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="实际上，繁多的HTML标签和属性并不需要全部记住，但是...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">HTML学习笔记（4）：标签与属性总览</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/html.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">HTML学习笔记（4）：标签与属性总览</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 23, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>16294</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>实际上，繁多的HTML标签和属性并不需要全部记住，但是需要全面了解，即：对照下面的列表，对每一个标签和属性简单浏览，看到就能知道它是干嘛的，在实际使用中能够想到有这么一个标签（属性）。具体使用细节可再查表。</p>
+<h1 id="标签与属性"><a href="#标签与属性" class="headerlink" title="标签与属性"></a>标签与属性</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li>&lt;!DOCTYPE&gt;：定义文档类型。</li>
+<li>&lt;html&gt;：定义 HTML 文档。<ul>
+<li>manifest</li>
+<li>xmlns</li>
+</ul>
+</li>
+<li>&lt;head&gt;：定义关于文档的信息。<ul>
+<li>profile</li>
+</ul>
+</li>
+<li>&lt;title&gt;：定义文档的标题。<ul>
+<li>dir<ul>
+<li>rtl</li>
+<li>ltr</li>
+</ul>
+</li>
+<li>lang</li>
+</ul>
+</li>
+<li>&lt;body&gt;：定义文档的主体。<ul>
+<li>有一些定义文档内样式的属性，但都不建议使用，建议使用CSS样式。</li>
+</ul>
+</li>
+<li>&lt;h1&gt; to &lt;h6&gt;：定义 HTML 标题。<ul>
+<li>align：不建议使用，建议使用CSS。</li>
+</ul>
+</li>
+<li>&lt;p&gt;：定义段落。<ul>
+<li>align：不建议使用，建议使用CSS。</li>
+</ul>
+</li>
+<li>&lt;br&gt;：定义简单的折行。</li>
+<li>&lt;hr&gt;：定义水平线。<ul>
+<li>有一些定义样式的属性，但都不建议使用，建议使用CSS样式。</li>
+</ul>
+</li>
+<li>&lt;!–…–&gt;：定义注释。</li>
+</ul>
+<h2 id="元信息"><a href="#元信息" class="headerlink" title="元信息"></a>元信息</h2><ul>
+<li>&lt;head&gt;：定义关于文档的信息。<ul>
+<li>profile：一个由空格分隔的 URL 列表，配置文件URL。</li>
+</ul>
+</li>
+<li>&lt;meta&gt;：定义关于 HTML 文档的元信息。<ul>
+<li>content：（必需）定义与 http-equiv 或 name 属性相关的元信息。</li>
+<li>http-equiv：把 content 属性关联到 HTTP 头部。<ul>
+<li>content-type</li>
+<li>expires</li>
+<li>refresh</li>
+<li>set-cookie</li>
+</ul>
+</li>
+<li>name：把 content 属性关联到一个名称。<ul>
+<li>author</li>
+<li>description</li>
+<li>keywords</li>
+<li>generator</li>
+<li>revised</li>
+<li>others</li>
+</ul>
+</li>
+<li>scheme：定义用于翻译 content 属性值的格式。</li>
+</ul>
+</li>
+<li>&lt;base&gt;：定义页面中所有链接的默认地址或默认目标。<ul>
+<li>href：（必需）规定页面中所有相对链接的基准 URL。</li>
+<li>target：在何处打开页面中所有的链接。<ul>
+<li>_blank</li>
+<li>_parent</li>
+<li>_self</li>
+<li>_top</li>
+<li>framename</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><ul>
+<li>&lt;abbr&gt;：定义缩写。<ul>
+<li>title：在鼠标指针移动到元素上时显示出简称/缩写的完整版本。</li>
+</ul>
+</li>
+<li>&lt;address&gt;：定义文档作者或拥有者的联系信息。</li>
+<li>&lt;b&gt;：定义粗体文本。</li>
+<li>&lt;bdi&gt;：定义文本的文本方向，使其脱离其周围文本的方向设置。<ul>
+<li>dir<ul>
+<li>auto</li>
+<li>ltr</li>
+<li>rtl</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;bdo&gt;：定义文字方向。<ul>
+<li>dir<ul>
+<li>rtl</li>
+<li>ltr</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;blockquote&gt;：定义长的引用。<ul>
+<li>cite：引用来源URL</li>
+</ul>
+</li>
+<li>&lt;cite&gt;：（语义）定义引用(citation)。</li>
+<li>&lt;code&gt;：（语义）定义计算机代码文本。</li>
+<li>&lt;del&gt;：定义被删除文本。与 &lt;ins&gt; 标签配合使用，来描述文档中的更新和修正。<ul>
+<li>cite：解释删除原因的URL。</li>
+<li>datetime：YYYYMMDD，文本被删除的日期和时间。</li>
+</ul>
+</li>
+<li>&lt;dfn&gt;：（语义）定义定义项目。</li>
+<li>&lt;em&gt;：（语义）定义强调文本。</li>
+<li>&lt;i&gt;：（样式，建议用CSS替代）定义斜体文本。</li>
+<li>&lt;ins&gt;：定义被插入文本。<ul>
+<li>cite：解释插入原因的URL。</li>
+<li>datetime：YYYYMMDD，文本被插入的日期和时间。</li>
+</ul>
+</li>
+<li>&lt;kbd&gt;：（语义）定义键盘文本。</li>
+<li>&lt;mark&gt;：定义有记号的文本。</li>
+<li>&lt;meter&gt;：定义预定义范围内的度量。<ul>
+<li>form：规定元素所属的表单的id。</li>
+<li>high：规定被视作高的值的范围。</li>
+<li>low：规定被视作低的值的范围。</li>
+<li>max：规定范围的最大值。</li>
+<li>min：规定范围的最小值。</li>
+<li>optimum：规定最佳值。</li>
+<li>value：必需。规定度量的当前值。</li>
+</ul>
+</li>
+<li>&lt;pre&gt;：定义预格式文本。保留空格和换行符，文本呈现为等宽字体。常用来表示计算机的源代码。<ul>
+<li>width：每行最大字符数。</li>
+</ul>
+</li>
+<li>&lt;progress&gt;：定义任何类型的任务的进度（进度条）。<ul>
+<li>max：任务一共需要多少工作。</li>
+<li>value：已经完成多少任务。</li>
+</ul>
+</li>
+<li>&lt;q&gt;：定义短的引用。<ul>
+<li>cite：出处、来源。</li>
+</ul>
+</li>
+<li>&lt;ruby&gt;：定义注音文字。</li>
+<li>&lt;rb&gt;：定义要被注音的文本。</li>
+<li>&lt;rt&gt;：定义文本的注音。</li>
+<li>&lt;rp&gt;：定义若浏览器不支持 ruby 元素时显示的内容。</li>
+<li>&lt;s&gt;：（样式，不推荐）定义加删除线的文本，建议用CSS替代它的样式或用del标签替代它的语义。</li>
+<li>&lt;samp&gt;：（语义）定义计算机代码样本。</li>
+<li>&lt;small&gt;：（样式，建议用CSS替代）定义小号文本。</li>
+<li>&lt;strong&gt;：（语义）定义语气更为强烈的强调文本。</li>
+<li>&lt;sup&gt;：定义上标文本。</li>
+<li>&lt;sub&gt;：定义下标文本。</li>
+<li>&lt;template&gt;：定义用作容纳页面加载时隐藏内容的容器，其中的内容可以稍后使用 JavaScript 呈现。</li>
+<li>&lt;time&gt;：定义日期/时间。<ul>
+<li>datetime：规定日期 / 时间，如”2008-02-14”，否则由元素的内容给定日期 / 时间。</li>
+<li>pubdate：指示 &lt;time&gt; 元素中的日期 / 时间是文档（或 &lt;article&gt; 元素）的发布日期。</li>
+</ul>
+</li>
+<li>&lt;u&gt;：定义下划线文本。</li>
+<li>&lt;var&gt;：（语义）定义文本的变量部分。</li>
+<li>&lt;wbr&gt;：定义可能的换行符，规定在文本中的何处适合添加换行符，适用于太长的英文断行。</li>
+</ul>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><ul>
+<li>&lt;form&gt;：定义供用户输入的 HTML 表单。<ul>
+<li>accept-charset：规定服务器可处理的表单数据字符集，如UTF-8。</li>
+<li>action：规定当提交表单时向何处发送表单数据（URL）。</li>
+<li>autocomplete：规定是否启用表单的自动完成功能。    <ul>
+<li>on</li>
+<li>off</li>
+</ul>
+</li>
+<li>enctype：规定在发送表单数据之前如何对其进行编码。<ul>
+<li>application/x-www-form-urlencoded：在发送前编码所有字符（默认）</li>
+<li>multipart/form-data：不对字符编码。在使用包含文件上传控件的表单时，必须使用该值。</li>
+<li>text/plain：空格转换为 “+” 加号，但不对特殊字符编码。</li>
+</ul>
+</li>
+<li>method：规定用于发送 form-data 的 HTTP 方法。    <ul>
+<li>get</li>
+<li>post</li>
+</ul>
+</li>
+<li>name：规定表单的名称。</li>
+<li>novalidate：如果使用该属性，则提交表单时不进行验证。</li>
+<li>rel：规定链接资源和当前文档之间的关系。<ul>
+<li>external</li>
+<li>help</li>
+<li>license</li>
+<li>next</li>
+<li>nofollow</li>
+<li>noopener</li>
+<li>noreferrer</li>
+<li>opener</li>
+<li>prev</li>
+<li>search</li>
+</ul>
+</li>
+<li>target：规定在何处打开 action URL。<ul>
+<li>_blank</li>
+<li>_self</li>
+<li>_parent</li>
+<li>_top</li>
+<li>framename</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;input&gt;：定义输入控件。<ul>
+<li>accept    mime_type：规定通过文件上传来提交的文件的类型。</li>
+<li>align：不赞成使用。规定图像输入的对齐方式。<ul>
+<li>left</li>
+<li>right</li>
+<li>top</li>
+<li>middle</li>
+<li>bottom</li>
+</ul>
+</li>
+<li>alt：定义图像输入的替代文本。</li>
+<li>autocomplete：规定是否使用输入字段的自动完成功能。<ul>
+<li>on</li>
+<li>off</li>
+</ul>
+</li>
+<li>autofocus：规定输入字段在页面加载时是否获得焦点。（不适用于 type=”hidden”）</li>
+<li>checked：规定此 input 元素首次加载时应当被选中。</li>
+<li>disabled：当 input 元素加载时禁用此元素。</li>
+<li>form：规定输入字段所属的一个或多个表单的id。</li>
+<li>formaction：URL，覆盖表单的 action 属性。（适用于 type=”submit” 和 type=”image”）</li>
+<li>formenctype：覆盖表单的 enctype 属性。（适用于 type=”submit” 和 type=”image”）</li>
+<li>formmethod：覆盖表单的 method 属性。（适用于 type=”submit” 和 type=”image”）<ul>
+<li>get</li>
+<li>post</li>
+</ul>
+</li>
+<li>formnovalidate：覆盖表单的 novalidate 属性。如果使用该属性，则提交表单时不进行验证。</li>
+<li>formtarget：覆盖表单的 target 属性。（适用于 type=”submit” 和 type=”image”）<ul>
+<li>_blank</li>
+<li>_self</li>
+<li>_parent</li>
+<li>_top</li>
+<li>framename</li>
+</ul>
+</li>
+<li>height：定义 input 字段的高度。（适用于 type=”image”）（像素或百分比）</li>
+<li>list：引用包含输入字段的预定义选项的 datalist （的id）。</li>
+<li>max：规定输入字段的最大值。与 “min” 属性配合使用，来创建合法值的范围。</li>
+<li>maxlength：规定输入字段中的字符的最大长度。</li>
+<li>min：规定输入字段的最小值。与 “max” 属性配合使用，来创建合法值的范围。</li>
+<li>multiple：如果使用该属性，则允许一个以上的值。</li>
+<li>name：定义 input 元素的名称。</li>
+<li>pattern：规定输入字段的值的模式或格式。（正则表达式）</li>
+<li>placeholder：规定帮助用户填写输入字段的提示。</li>
+<li>readonly：规定输入字段为只读。</li>
+<li>required：指示输入字段的值是必需的。</li>
+<li>size：定义输入字段的宽度。</li>
+<li>src：定义以提交按钮形式显示的图像的 URL。</li>
+<li>step：规定输入字的的合法数字间隔。</li>
+<li>type：规定 input 元素的类型。<ul>
+<li>button</li>
+<li>checkbox</li>
+<li>file</li>
+<li>hidden</li>
+<li>image</li>
+<li>password</li>
+<li>radio</li>
+<li>reset</li>
+<li>submit</li>
+<li>text</li>
+</ul>
+</li>
+<li>value：规定 input 元素的值。</li>
+<li>width：定义 input 字段的宽度。（适用于 type=”image”）（像素或百分比）</li>
+</ul>
+</li>
+<li>&lt;textarea&gt;：定义多行的文本输入控件。<ul>
+<li>autofocus：规定在页面加载后文本区域自动获得焦点。</li>
+<li>cols：规定文本区内的可见宽度。</li>
+<li>disabled：规定禁用该文本区。</li>
+<li>form：规定文本区域所属的一个或多个表单id。</li>
+<li>maxlength：规定文本区域的最大字符数。</li>
+<li>name：规定文本区的名称。</li>
+<li>placeholder：规定描述文本区域预期值的简短提示。</li>
+<li>readonly：规定文本区为只读。</li>
+<li>required：规定文本区域是必填的。</li>
+<li>rows：规定文本区内的可见行数。</li>
+<li>wrap：规定当在表单中提交时，文本区域中的文本如何换行。<ul>
+<li>hard</li>
+<li>soft</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;button&gt;：定义按钮。<ul>
+<li>autofocus：规定当页面加载时按钮应当自动地获得焦点。</li>
+<li>disabled：规定应该禁用该按钮。</li>
+<li>form：规定按钮属于一个或多个表单id。</li>
+<li>formaction：覆盖 form 元素的 action 属性。与 type=”submit” 配合使用。</li>
+<li>formenctype：覆盖 form 元素的 enctype 属性。与 type=”submit” 配合使用。</li>
+<li>formmethod：覆盖 form 元素的 method 属性。与 type=”submit” 配合使用。<ul>
+<li>get</li>
+<li>post</li>
+</ul>
+</li>
+<li>formnovalidate：覆盖 form 元素的 novalidate 属性。与 type=”submit” 配合使用。</li>
+<li>formtarget：覆盖 form 元素的 target 属性。与 type=”submit” 配合使用。<ul>
+<li>_blank</li>
+<li>_self</li>
+<li>_parent</li>
+<li>_top</li>
+<li>framename</li>
+</ul>
+</li>
+<li>name：规定按钮的名称。</li>
+<li>type：规定按钮的类型。<ul>
+<li>button</li>
+<li>reset</li>
+<li>submit</li>
+</ul>
+</li>
+<li>value：规定按钮的初始值。可由脚本进行修改。</li>
+</ul>
+</li>
+<li>&lt;select&gt;：定义选择列表（下拉列表）。<ul>
+<li>autofocus：规定在页面加载后文本区域自动获得焦点。</li>
+<li>disabled：规定禁用该下拉列表。</li>
+<li>form：规定文本区域所属的一个或多个表单id。</li>
+<li>multiple：规定可选择多个选项。</li>
+<li>name：规定下拉列表的名称。</li>
+<li>required：规定文本区域是必填的。</li>
+<li>size：规定下拉列表中可见选项的数目。</li>
+</ul>
+</li>
+<li>&lt;optgroup&gt;：定义select选择列表中相关选项的组合（选项分组）。<ul>
+<li>label：（必需）为选项组规定描述。</li>
+<li>disabled：规定禁用该选项组。</li>
+</ul>
+</li>
+<li>&lt;option&gt;：定义选择列表中的选项。<ul>
+<li>disabled：规定此选项应在首次加载时被禁用。</li>
+<li>label：定义当使用 &lt;optgroup&gt; 时所使用的标注。</li>
+<li>selected：规定选项（在首次显示在列表中时）表现为选中状态。</li>
+<li>value：定义送往服务器的选项值。</li>
+</ul>
+</li>
+<li>&lt;label&gt;：定义 input 元素的标注。<ul>
+<li>for：规定 label 绑定到哪个表单元素。</li>
+<li>form：规定 label 字段所属的一个或多个表单id。</li>
+</ul>
+</li>
+<li>&lt;fieldset&gt;：定义围绕表单中元素的边框。也就是给表单内容分组。<br>  disabled：规定应该禁用 fieldset。<br>  form：规定 fieldset 所属的一个或多个表单id。<br>  name：规定 fieldset 的名称。</li>
+<li>&lt;legend&gt;：定义 fieldset 元素的标题。</li>
+<li>&lt;datalist&gt;：定义下拉列表（input可能的值的集合）。</li>
+<li>&lt;keygen&gt;：定义生成密钥。<ul>
+<li>autofocus：使 keygen 字段在页面加载时获得焦点。</li>
+<li>challenge：如果使用，则将 keygen 的值设置为在提交时询问。</li>
+<li>disabled：禁用 keytag 字段。</li>
+<li>form：定义该 keygen 字段所属的一个或多个表单id。</li>
+<li>keytype：定义 keytype。rsa 生成 RSA 密钥。</li>
+<li>name：定义 keygen 元素的名称。用于在表单数据已被提交后对数据进行引用。</li>
+</ul>
+</li>
+<li>&lt;output&gt;：定义输出的一些类型。<ul>
+<li>for：定义输出域相关的一个或多个元素id。</li>
+<li>form：定义输入字段所属的一个或多个表单id。</li>
+<li>name：定义对象的唯一名称。（表单提交时使用）</li>
+</ul>
+</li>
+</ul>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><ul>
+<li>&lt;frame&gt;：定义框架集的窗口或框架。HTML5 中不支持。</li>
+<li>&lt;frameset&gt;：定义框架集。HTML5 中不支持。</li>
+<li>&lt;noframes&gt;：定义针对不支持框架的用户的替代内容。HTML5 中不支持。</li>
+<li>&lt;iframe&gt;：定义内联框架。<ul>
+<li>align：对齐方式。应当使用样式代替。</li>
+<li>frameborder：规定是否显示框架周围的边框。<ul>
+<li>1：有边框（默认）。</li>
+<li>0：无边框。</li>
+</ul>
+</li>
+<li>height：规定 iframe 的高度。支持像素和百分比。</li>
+<li>marginheight：定义 iframe 的顶部和底部的边距。</li>
+<li>marginwidth：定义 iframe 的左侧和右侧的边距。</li>
+<li>name： iframe 的名称。</li>
+<li>sandbox：启用一系列对 &lt;iframe&gt; 中内容的额外限制。    <ul>
+<li>“”：应用以下所有限制。</li>
+<li>allow-forms：允许表单提交。</li>
+<li>allow-same-origin：允许 iframe 内容被视为与包含文档有相同的来源。</li>
+<li>allow-scripts：允许脚本执行。</li>
+<li>allow-top-navigation：允许 iframe 内容从包含文档导航（加载）内容。</li>
+</ul>
+</li>
+<li>scrolling：规定是否在 iframe 中显示滚动条。<ul>
+<li>yes</li>
+<li>no</li>
+<li>auto</li>
+</ul>
+</li>
+<li>seamless：规定 &lt;iframe&gt; 看上去像是包含文档的一部分。</li>
+<li>src：规定在 iframe 中显示的文档的 URL。</li>
+<li>srcdoc：规定在 &lt;iframe&gt; 中显示的页面的 HTML 内容。</li>
+<li>width：定义 iframe 的宽度。支持像素和百分比。</li>
+</ul>
+</li>
+</ul>
+<h2 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h2><ul>
+<li>&lt;img&gt;：定义图像。<ul>
+<li>alt：（必需）规定图像的替代文本。</li>
+<li>src：（必需）规定显示图像的 URL。</li>
+<li>align：不推荐使用。规定如何根据周围的文本来排列图像。</li>
+<li>border    pixels：不推荐使用。定义图像周围的边框。</li>
+<li>height：定义图像的高度。支持像素和百分比。</li>
+<li>hspace：不推荐使用。定义图像左侧和右侧的空白。</li>
+<li>ismap：URL，将图像定义为服务器端图像映射。只有当 &lt;img&gt; 元素属于带有有效 href 属性的 &lt;a&gt; 元素的后代时，才允许 ismap 属性。</li>
+<li>usemap：将图像定义为客户器端图像映射，值为map元素的锚点。</li>
+<li>vspace    pixels：不推荐使用。定义图像顶部和底部的空白。</li>
+<li>width：设置图像的宽度。支持像素和百分比。</li>
+</ul>
+</li>
+<li>&lt;map&gt;：定义带有可点击区域的图像映射。<ul>
+<li>id：（必需）为 map 标签定义唯一的名称。</li>
+<li>name：为 image-map 规定的名称。</li>
+</ul>
+</li>
+<li>&lt;area&gt;：定义图像地图内部的区域。<ul>
+<li>alt：（必需）定义此区域的替换文本。</li>
+<li>coords：定义可点击区域（对鼠标敏感的区域）的坐标。</li>
+<li>href：定义此区域的目标 URL。</li>
+<li>nohref：从图像映射排除某个区域。</li>
+<li>shape：定义区域的形状。<ul>
+<li>default</li>
+<li>rect</li>
+<li>circ</li>
+<li>poly</li>
+</ul>
+</li>
+<li>target：规定在何处打开 href 属性指定的目标 URL。<ul>
+<li>_blank</li>
+<li>_parent</li>
+<li>_self</li>
+<li>_top</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;canvas&gt;：定义图形。&lt;canvas&gt; 标签只是图形容器，您必须使用脚本来绘制图形。<ul>
+<li>height：设置 canvas 的高度。</li>
+<li>width：设置 canvas 的宽度。</li>
+</ul>
+</li>
+<li>&lt;figure&gt;：规定独立的流内容（图像、图表、照片、代码等等）。</li>
+<li>&lt;figcaption&gt;：定义 figure 元素的标题。</li>
+<li>&lt;svg&gt;：定义 SVG 图形的容器。</li>
+</ul>
+<h2 id="音视频"><a href="#音视频" class="headerlink" title="音视频"></a>音视频</h2><ul>
+<li>&lt;audio&gt;：定义声音内容。<ul>
+<li>autoplay：如果出现该属性，则音频在就绪后马上播放。</li>
+<li>controls：如果出现该属性，则向用户显示控件，比如播放按钮。</li>
+<li>loop：如果出现该属性，则每当音频结束时重新开始播放。</li>
+<li>muted：规定视频输出应该被静音。</li>
+<li>preload：如果出现该属性，则音频在页面加载时进行加载，并预备播放。如果使用 “autoplay”，则忽略该属性。</li>
+<li>src：要播放的音频的 URL。</li>
+</ul>
+</li>
+<li>&lt;source&gt;：定义媒介源。为媒介元素（比如 &lt;video&gt; 和 &lt;audio&gt;）定义媒介资源。<ul>
+<li>media：规定媒体资源的类型。</li>
+<li>src：规定媒体文件的 URL。</li>
+<li>type：规定媒体资源的 MIME 类型。</li>
+</ul>
+</li>
+<li>&lt;track&gt;：定义用在媒体播放器中的文本轨道。为诸如 video 元素之类的媒介规定外部文本轨道。<ul>
+<li>default：规定该轨道是默认的，假如没有选择任何轨道。</li>
+<li>kind：表示轨道属于什么文本类型。<ul>
+<li>captions</li>
+<li>chapters</li>
+<li>descriptions</li>
+<li>metadata</li>
+<li>subtitles</li>
+</ul>
+</li>
+<li>label：轨道的标签或标题。</li>
+<li>src：轨道的 URL。</li>
+<li>srclang：轨道的语言，若 kind 属性值是 “subtitles”，则该属性必需的。</li>
+</ul>
+</li>
+<li>&lt;video&gt;：定义视频。<ul>
+<li>autoplay：如果出现该属性，则视频在就绪后马上播放。</li>
+<li>controls：如果出现该属性，则向用户显示控件，比如播放按钮。</li>
+<li>height：设置视频播放器的高度。</li>
+<li>loop：如果出现该属性，则当媒介文件完成播放后再次开始播放。</li>
+<li>muted：规定视频的音频输出应该被静音。</li>
+<li>poster：URL，规定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像。</li>
+<li>preload：如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 “autoplay”，则忽略该属性。</li>
+<li>src：要播放的视频的 URL。</li>
+<li>width：设置视频播放器的宽度。</li>
+</ul>
+</li>
+</ul>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><ul>
+<li>&lt;a&gt;：定义超链接。<ul>
+<li>href：规定链接指向的页面的 URL。如果不使用 href 属性，则不可以使用download, hreflang, media, rel, target 以及 type 属性。</li>
+<li>download：规定被下载的超链接目标。</li>
+<li>hreflang：规定被链接文档的语言。</li>
+<li>media：规定被链接文档是为何种媒介/设备优化的。</li>
+<li>rel：规定当前文档与被链接文档之间的关系。</li>
+<li>target：规定在何处打开链接文档。<ul>
+<li>_blank</li>
+<li>_parent</li>
+<li>_self</li>
+<li>_top</li>
+<li>framename</li>
+</ul>
+</li>
+<li>type：规定被链接文档的的 MIME 类型。</li>
+</ul>
+</li>
+<li>&lt;link&gt;：定义文档与外部资源的关系。常用于链接样式表。<ul>
+<li>href：被链接文档的URL。</li>
+<li>hreflang：规定被链接文档中文本的语言。</li>
+<li>media：规定被链接文档将被显示在什么设备上。</li>
+<li>rel：规定当前文档与被链接文档之间的关系。<ul>
+<li>alternate</li>
+<li>author</li>
+<li>help</li>
+<li>icon</li>
+<li>licence</li>
+<li>next</li>
+<li>pingback</li>
+<li>prefetch</li>
+<li>prev</li>
+<li>search</li>
+<li>sidebar</li>
+<li>stylesheet</li>
+<li>tag</li>
+</ul>
+</li>
+<li>sizes：规定被链接资源的尺寸。仅适用于 rel=”icon”。<ul>
+<li>heightxwidth</li>
+<li>any</li>
+</ul>
+</li>
+<li>type    MIME_type    规定被链接文档的 MIME 类型。</li>
+</ul>
+</li>
+<li>&lt;nav&gt;：定义导航链接。</li>
+</ul>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><ul>
+<li>&lt;ul&gt;：定义无序列表。</li>
+<li>&lt;ol&gt;：定义有序列表。<ul>
+<li>compact：使列表呈现的效果比正常情况更小巧。HTML5 中不支持。HTML 4.01 中不赞成使用。</li>
+<li>reversed：规定列表顺序为降序。(9,8,7…)</li>
+<li>start：规定有序列表的起始值。</li>
+<li>type：规定在列表中使用的标记类型。（不赞成使用，应当用CSS）<ul>
+<li>1：数字。</li>
+<li>A：大写英文字母。</li>
+<li>a：小写英文字母。</li>
+<li>I：大写罗马数字。</li>
+<li>i：小写罗马数字。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;li&gt;：定义列表的项目。</li>
+<li>&lt;dl&gt;：定义定义列表。</li>
+<li>&lt;dt&gt;：定义定义列表中的项目。</li>
+<li>&lt;dd&gt;：定义定义列表中项目的描述。</li>
+</ul>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><ul>
+<li>&lt;table&gt;：定义表格<ul>
+<li>align：规定表格相对周围元素的对齐方式。不赞成使用。</li>
+<li>bgcolor：规定表格的背景颜色。不赞成使用。</li>
+<li>border    pixels：规定表格边框的宽度。</li>
+<li>cellpadding：规定单元边沿与其内容之间的空白。支持像素值及百分比。</li>
+<li>cellspacing：规定单元格之间的空白。支持像素值及百分比。</li>
+<li>frame：规定外侧边框的哪个部分是可见的。<ul>
+<li>void</li>
+<li>above</li>
+<li>below</li>
+<li>hsides</li>
+<li>lhs</li>
+<li>rhs</li>
+<li>vsides</li>
+<li>box</li>
+<li>border</li>
+</ul>
+</li>
+<li>rules：规定内侧边框的哪个部分是可见的。<ul>
+<li>none</li>
+<li>groups</li>
+<li>rows</li>
+<li>cols</li>
+<li>all</li>
+</ul>
+</li>
+<li>summary：规定表格的摘要。</li>
+<li>width：规定表格的宽度。支持像素值及百分比。</li>
+</ul>
+</li>
+<li>&lt;caption&gt;：定义表格标题。</li>
+<li>&lt;th&gt;：定义表格中的表头单元格。<ul>
+<li>abbr：规定单元格中内容的缩写版本。</li>
+<li>align：规定单元格内容的水平对齐方式。不推荐使用。</li>
+<li>axis：对单元格进行分类。</li>
+<li>bgcolor：规定表格单元格的背景颜色。不推荐使用。</li>
+<li>char：规定根据哪个字符来进行内容的对齐。</li>
+<li>charoff：规定对齐字符的偏移量。</li>
+<li>colspan：设置单元格可横跨的列数。</li>
+<li>headers：由空格分隔的表头单元格 ID 列表，为数据单元格提供表头信息。</li>
+<li>height：规定表格单元格的高度。支持像素值及百分比。不推荐使用。</li>
+<li>nowrap：规定单元格中的内容是否折行。不推荐使用。</li>
+<li>rowspan：规定单元格可横跨的行数。</li>
+<li>scope：定义将表头数据与单元数据相关联的方法。<ul>
+<li>col</li>
+<li>colgroup</li>
+<li>row</li>
+<li>rowgroup</li>
+</ul>
+</li>
+<li>valign：规定单元格内容的垂直排列方式。<ul>
+<li>top</li>
+<li>middle</li>
+<li>bottom</li>
+<li>baseline</li>
+</ul>
+</li>
+<li>width：规定表格单元格的宽度。支持像素值及百分比。不推荐使用。</li>
+</ul>
+</li>
+<li>&lt;tr&gt;：定义表格中的行。<ul>
+<li>align：定义表格行的内容对齐方式。不赞成使用。</li>
+<li>bgcolor：规定表格行的背景颜色。不赞成使用。</li>
+<li>char：规定根据哪个字符来进行文本对齐。</li>
+<li>charoff：规定第一个对齐字符的偏移量。</li>
+<li>valign：规定表格行中内容的垂直对齐方式。<ul>
+<li>top</li>
+<li>middle</li>
+<li>bottom</li>
+<li>baseline</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;td&gt;：定义表格中的单元。<ul>
+<li>abbr：规定单元格中内容的缩写版本。</li>
+<li>align：规定单元格内容的水平对齐方式。<ul>
+<li>left</li>
+<li>right</li>
+<li>center</li>
+<li>justify</li>
+<li>char</li>
+</ul>
+</li>
+<li>axis：对单元进行分类。</li>
+<li>bgcolor：规定单元格的背景颜色。支持像素值及百分比。不赞成使用。</li>
+<li>char：规定根据哪个字符来进行内容的对齐。</li>
+<li>charoff：规定对齐字符的偏移量。</li>
+<li>colspan：规定单元格可横跨的列数。</li>
+<li>headers：规定与单元格相关的表头id。</li>
+<li>height：规定表格单元格的高度。不赞成使用。</li>
+<li>nowrap：规定单元格中的内容是否折行。不赞成使用。</li>
+<li>rowspan：规定单元格可横跨的行数。</li>
+<li>scope：定义将表头数据与单元数据相关联的方法。<ul>
+<li>col</li>
+<li>colgroup</li>
+<li>row</li>
+<li>rowgroup</li>
+</ul>
+</li>
+<li>valign：规定单元格内容的垂直排列方式。<ul>
+<li>top</li>
+<li>middle</li>
+<li>bottom</li>
+<li>baseline</li>
+</ul>
+</li>
+<li>width：规定表格单元格的宽度。支持像素值及百分比。不赞成使用。</li>
+</ul>
+</li>
+<li>&lt;thead&gt;：定义表格中的表头内容。<ul>
+<li>align：内容的对齐方式。<ul>
+<li>right</li>
+<li>left</li>
+<li>center</li>
+<li>justify</li>
+<li>char</li>
+</ul>
+</li>
+<li>char：规定根据哪个字符来进行文本对齐。</li>
+<li>charoff：规定第一个对齐字符的偏移量。</li>
+<li>valign：内容的垂直对齐方式。<ul>
+<li>top</li>
+<li>middle</li>
+<li>bottom</li>
+<li>baseline</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;tbody&gt;：定义表格中的主体内容。<ul>
+<li>同上</li>
+</ul>
+</li>
+<li>&lt;tfoot&gt;：定义表格中的表注内容。<ul>
+<li>同上</li>
+</ul>
+</li>
+<li>&lt;col&gt;：定义表格中一个或多个列的属性值。为每个列规定不同的属性值。为 &lt;col&gt; 标签添加 class 属性就可以使用 CSS 来负责对齐方式、宽度和颜色等等。<ul>
+<li>align：规定与 col 元素相关的内容的水平对齐方式。<ul>
+<li>right</li>
+<li>left</li>
+<li>center</li>
+<li>justify</li>
+<li>char</li>
+</ul>
+</li>
+<li>char：规定根据哪个字符来对齐与 col 元素相关的内容。</li>
+<li>charoff：规定第一个对齐字符的偏移量。</li>
+<li>span：规定 col 元素应该横跨的列数。</li>
+<li>valign：定义与 col 元素相关的内容的垂直对齐方式。<ul>
+<li>top</li>
+<li>middle</li>
+<li>bottom</li>
+<li>baseline</li>
+</ul>
+</li>
+<li>width：规定 col 元素的宽度。<ul>
+<li>pixels</li>
+<li>%</li>
+<li>relative_length</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;colgroup&gt;：定义表格中供格式化的列组。&lt;colgroup&gt;标签是对表格中的列进行组合，从而实现对表格的格式化。&lt;col&gt;标签一般会放在&lt;colgroup&gt;标签中使用，对&lt;colgroup&gt;标签组合的列分别设置样式。&lt;colgroup&gt;标签也可以有样式属性，是对组合的列设置相同的样式，&lt;colgroup&gt;标签设置的样式会被&lt;col&gt;标签设置的样式覆盖。<ul>
+<li>align：定义在列组合中内容的水平对齐方式。<ul>
+<li>right</li>
+<li>left</li>
+<li>center</li>
+<li>justify</li>
+<li>char</li>
+</ul>
+</li>
+<li>char：规定根据哪个字符来对齐列组中的内容。</li>
+<li>charoff：规定第一个对齐字符的偏移量。</li>
+<li>span：规定列组应该横跨的列数。</li>
+<li>valign：定义在列组合中内容的垂直对齐方式。<ul>
+<li>top</li>
+<li>middle</li>
+<li>bottom</li>
+<li>baseline</li>
+</ul>
+</li>
+<li>width：规定列组合的宽度。<ul>
+<li>pixels</li>
+<li>%</li>
+<li>relative_length</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="样式和语义"><a href="#样式和语义" class="headerlink" title="样式和语义"></a>样式和语义</h2><ul>
+<li>&lt;style&gt;：定义文档的样式信息。位于文档head部分中。<ul>
+<li>type：（必需）规定样式表的 MIME 类型。值只能是”text/css”。</li>
+<li>media：为样式表规定不同的媒介类型。<ul>
+<li>screen</li>
+<li>tty</li>
+<li>tv</li>
+<li>projection</li>
+<li>handheld</li>
+<li>print</li>
+<li>braille</li>
+<li>aural</li>
+<li>all</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;div&gt;：定义文档中的节。</li>
+<li>&lt;span&gt;：定义文档中的节。</li>
+<li>&lt;header&gt;：定义 section 或 page 的页眉。</li>
+<li>&lt;footer&gt;：定义 section 或 page 的页脚。</li>
+<li>&lt;main&gt;：定义文档的主要内容。在一个文档中，不能出现一个以上的 &lt;main&gt; 元素。&lt;main&gt; 元素不能是以下元素的后代：&lt;article&gt;、&lt;aside&gt;、&lt;footer&gt;、&lt;header&gt; 或 &lt;nav&gt;。</li>
+<li>&lt;section&gt;：定义 section。<ul>
+<li>cite：section 的 URL，假如 section 摘自 web 的话。</li>
+</ul>
+</li>
+<li>&lt;article&gt;：定义文章。</li>
+<li>&lt;aside&gt;：定义页面内容之外的内容。</li>
+<li>&lt;details&gt;：定义元素的细节。<ul>
+<li>open：定义 details 是否可见。</li>
+</ul>
+</li>
+<li>&lt;summary&gt;：为 &lt;details&gt; 元素定义可见的标题。”summary” 元素应该是 “details” 元素的第一个子元素。</li>
+<li>&lt;dialog&gt;：定义对话框或窗口。<ul>
+<li>open：规定 dialog 元素是活动的，用户可与之交互。</li>
+</ul>
+</li>
+<li>&lt;data&gt;：添加给定内容的机器可读翻译。<ul>
+<li>value：规定元素内容的机器可读翻译。</li>
+</ul>
+</li>
+</ul>
+<h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><ul>
+<li>&lt;script&gt;：定义客户端脚本。<ul>
+<li>type：（必需）指示脚本的 MIME 类型。</li>
+<li>async：规定异步执行脚本（仅适用于外部脚本）。</li>
+<li>charset：规定在外部脚本文件中使用的字符编码。</li>
+<li>defer：规定是否对脚本执行进行延迟，直到页面加载为止。</li>
+<li>language：不赞成使用。规定脚本语言。请使用 type 属性代替它。</li>
+<li>src：规定外部脚本文件的 URL。</li>
+</ul>
+</li>
+<li>&lt;noscript&gt;：定义针对不支持客户端脚本的用户的替代内容。</li>
+<li>&lt;applet&gt;：定义嵌入的 applet。HTML5 中不支持。请使用 &lt;embed&gt; 和 &lt;object&gt; 代替。</li>
+<li>&lt;embed&gt;：为外部应用程序（非 HTML）定义容器。<ul>
+<li>height：设置嵌入内容的高度（像素）。</li>
+<li>src：嵌入内容的 URL。</li>
+<li>type：定义嵌入内容的类型。</li>
+<li>width：设置嵌入内容的宽度（像素）。</li>
+</ul>
+</li>
+<li>&lt;object&gt;：定义嵌入的对象。</li>
+<li>&lt;param&gt;：定义对象的参数。<ul>
+<li>name：（必需）定义参数的名称（用在脚本中）。</li>
+<li>type：规定参数的 MIME 类型（internet media type）。</li>
+<li>value：规定参数的值。</li>
+<li>valuetype：规定值的 MIME 类型。<ul>
+<li>data</li>
+<li>ref</li>
+<li>object</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="全局属性"><a href="#全局属性" class="headerlink" title="全局属性"></a>全局属性</h1><ul>
+<li>accesskey：规定激活元素的快捷键。</li>
+<li>class：规定元素的一个或多个类名（引用样式表中的类）。</li>
+<li>contenteditable：规定元素内容是否可编辑。<ul>
+<li>true：规定元素可编辑。</li>
+<li>false：规定元素不可编辑。</li>
+</ul>
+</li>
+<li>contextmenu：规定元素的上下文菜单。上下文菜单在用户点击元素时显示。大多浏览器都不支持。</li>
+<li>data-*：用于存储页面或应用程序的私有定制数据。<ul>
+<li>somevalue：规定属性的值（以字符串）。</li>
+</ul>
+</li>
+<li>dir：规定元素中内容的文本方向。<ul>
+<li>ltr：默认。从左向右的文本方向。</li>
+<li>rtl：从右向左的文本方向。</li>
+</ul>
+</li>
+<li>draggable：规定元素是否可拖动。<ul>
+<li>true：规定元素的可拖动的。</li>
+<li>false：规定元素不可拖动。</li>
+<li>auto：使用浏览器的默认行为。</li>
+</ul>
+</li>
+<li>hidden：浏览器不显示已规定 hidden 属性的元素。</li>
+<li>id：规定元素的唯一 id。</li>
+<li>lang：规定元素内容的语言。</li>
+<li>spellcheck：规定是否对元素进行拼写和语法检查。<ul>
+<li>true：对元素进行拼写和语法检查</li>
+<li>false：不检查元素。</li>
+</ul>
+</li>
+<li>style：规定元素的行内 CSS 样式。</li>
+<li>tabindex：规定元素的 tab 键次序（1 是第一个）。</li>
+<li>title：规定有关元素的额外信息。</li>
+</ul>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="Window事件"><a href="#Window事件" class="headerlink" title="Window事件"></a>Window事件</h2><p>针对 window 对象触发的事件（应用到 &lt;body&gt; 标签）：</p>
+<ul>
+<li>onafterprint：文档打印之后运行的脚本。</li>
+<li>onbeforeprint：文档打印之前运行的脚本。</li>
+<li>onbeforeunload：文档卸载之前运行的脚本。</li>
+<li>onerror：在错误发生时运行的脚本。</li>
+<li>onhaschange：当文档已改变时运行的脚本。</li>
+<li>onload：页面结束加载之后触发。</li>
+<li>onmessage：在消息被触发时运行的脚本。</li>
+<li>onoffline：当文档离线时运行的脚本。</li>
+<li>ononline：当文档上线时运行的脚本。</li>
+<li>onpagehide：当窗口隐藏时运行的脚本。</li>
+<li>onpageshow：当窗口成为可见时运行的脚本。</li>
+<li>onpopstate：当窗口历史记录改变时运行的脚本。</li>
+<li>onredo：当文档执行撤销（redo）时运行的脚本。</li>
+<li>onresize：当浏览器窗口被调整大小时触发。</li>
+<li>onstorage：在 Web Storage 区域更新后运行的脚本。</li>
+<li>onundo：在文档执行 undo 时运行的脚本。</li>
+<li>onunload：一旦页面已下载时触发（或者浏览器窗口已被关闭）。</li>
+</ul>
+<h2 id="Form事件"><a href="#Form事件" class="headerlink" title="Form事件"></a>Form事件</h2><p>由 HTML 表单内的动作触发的事件（应用到几乎所有 HTML 元素，但最常用在 form 元素中）：</p>
+<ul>
+<li>onblur：元素失去焦点时运行的脚本。</li>
+<li>onchange：在元素值被改变时运行的脚本。</li>
+<li>oncontextmenu：当上下文菜单被触发时运行的脚本。</li>
+<li>onfocus：当元素获得焦点时运行的脚本。</li>
+<li>onformchange：在表单改变时运行的脚本。</li>
+<li>onforminput：当表单获得用户输入时运行的脚本。</li>
+<li>oninput：当元素获得用户输入时运行的脚本。</li>
+<li>oninvalid：当元素无效时运行的脚本。</li>
+<li>onreset：当表单中的重置按钮被点击时触发。HTML5 中不支持。</li>
+<li>onselect：在元素中文本被选中后触发。</li>
+<li>onsubmit：在提交表单时触发。</li>
+</ul>
+<h2 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h2><p>用户按下键盘时触发：</p>
+<ul>
+<li>onkeydown：在用户按下按键时触发。</li>
+<li>onkeypress：在用户敲击按钮时触发。</li>
+<li>onkeyup：当用户释放按键时触发。</li>
+</ul>
+<h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><p>由鼠标或类似用户动作触发的事件：</p>
+<ul>
+<li>onclick：元素上发生鼠标点击时触发。</li>
+<li>ondblclick：元素上发生鼠标双击时触发。</li>
+<li>ondrag：元素被拖动时运行的脚本。</li>
+<li>ondragend：在拖动操作末端运行的脚本。</li>
+<li>ondragenter：当元素元素已被拖动到有效拖放区域时运行的脚本。</li>
+<li>ondragleave：当元素离开有效拖放目标时运行的脚本。</li>
+<li>ondragover：当元素在有效拖放目标上正在被拖动时运行的脚本。</li>
+<li>ondragstart：在拖动操作开端运行的脚本。</li>
+<li>ondrop：当被拖元素正在被拖放时运行的脚本。</li>
+<li>onmousedown：当元素上按下鼠标按钮时触发。</li>
+<li>onmousemove：当鼠标指针移动到元素上时触发。</li>
+<li>onmouseout：当鼠标指针移出元素时触发。</li>
+<li>onmouseover：当鼠标指针移动到元素上时触发。</li>
+<li>onmouseup：当在元素上释放鼠标按钮时触发。</li>
+<li>onmousewheel：当鼠标滚轮正在被滚动时运行的脚本。</li>
+<li>onscroll：当元素滚动条被滚动时运行的脚本。</li>
+</ul>
+<h2 id="媒体事件"><a href="#媒体事件" class="headerlink" title="媒体事件"></a>媒体事件</h2><p>由媒体（比如视频、图像和音频）触发的事件（适用于所有 HTML 元素，但常见于媒介元素中，比如 &lt;audio&gt;、&lt;embed&gt;、&lt;img&gt;、&lt;object&gt; 以及 &lt;video&gt;）:</p>
+<ul>
+<li>onabort：在退出时运行的脚本。</li>
+<li>oncanplay：当文件就绪可以开始播放时运行的脚本（缓冲已足够开始时）。</li>
+<li>oncanplaythrough：当媒介能够无需因缓冲而停止即可播放至结尾时运行的脚本。</li>
+<li>ondurationchange：当媒介长度改变时运行的脚本。</li>
+<li>onemptied：当发生故障并且文件突然不可用时运行的脚本（比如连接意外断开时）。</li>
+<li>onended：当媒介已到达结尾时运行的脚本（可发送类似“感谢观看”之类的消息）。</li>
+<li>onerror：当在文件加载期间发生错误时运行的脚本。</li>
+<li>onloadeddata：当媒介数据已加载时运行的脚本。</li>
+<li>onloadedmetadata：当元数据（比如分辨率和时长）被加载时运行的脚本。</li>
+<li>onloadstart：在文件开始加载且未实际加载任何数据前运行的脚本。</li>
+<li>onpause：当媒介被用户或程序暂停时运行的脚本。</li>
+<li>onplay：当媒介已就绪可以开始播放时运行的脚本。</li>
+<li>onplaying：当媒介已开始播放时运行的脚本。</li>
+<li>onprogress：当浏览器正在获取媒介数据时运行的脚本。</li>
+<li>onratechange：每当回放速率改变时运行的脚本（比如当用户切换到慢动作或快进模式）。</li>
+<li>onreadystatechange：每当就绪状态改变时运行的脚本（就绪状态监测媒介数据的状态）。</li>
+<li>onseeked：当 seeking 属性设置为 false（指示定位已结束）时运行的脚本。</li>
+<li>onseeking：当 seeking 属性设置为 true（指示定位是活动的）时运行的脚本。</li>
+<li>onstalled：在浏览器不论何种原因未能取回媒介数据时运行的脚本。</li>
+<li>onsuspend：在媒介数据完全加载之前不论何种原因终止取回媒介数据时运行的脚本。</li>
+<li>ontimeupdate：当播放位置改变时（比如当用户快进到媒介中一个不同的位置时）运行的脚本。</li>
+<li>onvolumechange：每当音量改变时（包括将音量设置为静音）时运行的脚本。</li>
+<li>onwaiting：当媒介已停止播放但打算继续播放时（比如当媒介暂停已缓冲更多数据）运行脚本。</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/10/23/frontend-html-004/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;23&#x2F;frontend-html-004&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;23&#x2F;frontend-html-004&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/10/23/frontend-css-003/"><i class="iconfont iconleft"></i><i class="iconfont iconleft"></i> CSS学习笔记（3）：CSS概述</a>
+    <a href="/2021/10/20/frontend-css-002/">CSS学习笔记（2）：基本属性 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E4%B8%8E%E5%B1%9E%E6%80%A7"><span class="toc-text">标签与属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-text">基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E4%BF%A1%E6%81%AF"><span class="toc-text">元信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-text">格式化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-text">表单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6"><span class="toc-text">框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F"><span class="toc-text">图像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E8%A7%86%E9%A2%91"><span class="toc-text">音视频</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-text">链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-text">列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-text">表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E5%92%8C%E8%AF%AD%E4%B9%89"><span class="toc-text">样式和语义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B"><span class="toc-text">编程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%B1%9E%E6%80%A7"><span class="toc-text">全局属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Window%E4%BA%8B%E4%BB%B6"><span class="toc-text">Window事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Form%E4%BA%8B%E4%BB%B6"><span class="toc-text">Form事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-text">键盘事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6"><span class="toc-text">鼠标事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E4%BA%8B%E4%BB%B6"><span class="toc-text">媒体事件</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
