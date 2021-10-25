@@ -1,0 +1,760 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS学习笔记（4）：CSS3新特性概述 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="CSS3选择器主要选择器种类CSS3中主要的选择器有：...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">CSS学习笔记（4）：CSS3新特性概述</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/css.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">CSS学习笔记（4）：CSS3新特性概述</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 25, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>16115</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="CSS3选择器"><a href="#CSS3选择器" class="headerlink" title="CSS3选择器"></a>CSS3选择器</h1><h2 id="主要选择器种类"><a href="#主要选择器种类" class="headerlink" title="主要选择器种类"></a>主要选择器种类</h2><p>CSS3中主要的选择器有：</p>
+<ul>
+<li>div 标签选择器</li>
+<li>.box 类名选择器</li>
+<li>#box id选择器</li>
+<li>div p 后代选择器</li>
+<li>div.box 交集选择器</li>
+<li>div,p,span 并集选择器</li>
+<li>div&gt;p 子代选择器</li>
+<li>* : 通配符</li>
+<li>div+p 选中div后面相邻的第一个p</li>
+<li>div~p 选中的div后面所有的p</li>
+</ul>
+<h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h2><p>属性选择器的标志性符号是 []。</p>
+<p>匹配含义：^：开头；$：结尾；*：包含。</p>
+<p>格式：</p>
+<ul>
+<li>E[title] 选中页面的E元素，并且E存在 title 属性即可。</li>
+<li>E[title=”abc”]选中页面的E元素，并且E需要带有title属性，且属性值完全等于abc。</li>
+<li>E[attr~=val] 选择具有 att 属性且属性值为：用空格分隔的字词列表，其中一个等于 val 的E元素。</li>
+<li>E[attr|=val] 表示要么是一个单独的属性值，要么这个属性值是以“-”分隔的。</li>
+<li>E[title^=”abc”] 选中页面的E元素，并且E需要带有 title 属性,属性值以 abc 开头。</li>
+<li>E[title$=”abc”] 选中页面的E元素，并且E需要带有 title 属性,属性值以 abc 结尾。</li>
+<li>E[title*=”abc”] 选中页面的E元素，并且E需要带有 title 属性,属性值任意位置包含abc。</li>
+</ul>
+<h2 id="结构伪类选择器"><a href="#结构伪类选择器" class="headerlink" title="结构伪类选择器"></a>结构伪类选择器</h2><p>伪类选择器的标志性符号是单冒号:。</p>
+<p>CSS中有一些伪类选择器，比如:link、:active、:visited、:hover，这些是动态伪类选择器。</p>
+<p>CSS3又新增了结构伪类选择器，即<strong>通过结构来进行筛选</strong>。</p>
+<h3 id="关于数量的结构伪类选择器"><a href="#关于数量的结构伪类选择器" class="headerlink" title="关于数量的结构伪类选择器"></a>关于数量的结构伪类选择器</h3><p>各种基于数量的结构伪类选择器格式为：</p>
+<ul>
+<li>E:first-child 匹配父元素的第一个子元素E。</li>
+<li>E:last-child 匹配父元素的最后一个子元素E。</li>
+<li>E:nth-child(n) 匹配父元素的第n个子元素E。注意，盒子的编号是从1开始算起，不是从0开始算起，但是n是从0算起的，无效的n值会被忽略。</li>
+<li>E:nth-last-child(n) 匹配父元素的倒数第n个子元素E。</li>
+</ul>
+<p>理解：</p>
+<p>（1）这里我们要好好理解父元素的含义，它指的是：以 E 元素的父元素为参考。</p>
+<p>（2）注意：以上选择器中所选到的元素的类型，必须是指定的类型E，如果选不中，则无效。具体可以看CSS参考手册中的E:nth-child(n)的示例。我们可以理解成：先根据选择器找到选中的全部位置，如果发现某个位置不是类型E，则该位置失效。</p>
+<p>对于E:nth-child(n)选择器，使用是很灵活的，如：</p>
+<ul>
+<li>如果选择器写成li:nth-child(2)，则表示第2个 li。</li>
+<li>如果选择器写成li:nth-child(n)，则表示所有的li。因为此时的 n 表示 0,1,2,3,4,5,6,7,8…..</li>
+<li>如果选择器写成li:nth-child(2n)，则表示所有的第偶数个 li。</li>
+<li>如果选择器写成li:nth-child(2n+1)，则表示所有的第奇数个 li。</li>
+<li>如果选择器写成li:nth-child(-n+5)，则表示前5个 li。</li>
+<li>如果选择器写成li:nth-last-child(-n+5)，则表示最后5个 li。</li>
+<li>如果选择器写成li:nth-child(7n)，则表示选中7的倍数。</li>
+</ul>
+<p>总之要注意n 表示 0,1,2,3,4,5,6,7,8…..，而盒子编号从1开始，非法的n值会直接被忽略。</p>
+<h3 id="关于类型的结构伪类选择器"><a href="#关于类型的结构伪类选择器" class="headerlink" title="关于类型的结构伪类选择器"></a>关于类型的结构伪类选择器</h3><p>与类型相关进行选择的结构伪类选择器：</p>
+<ul>
+<li>E:first-of-type 匹配同类型中的第一个同级兄弟元素E。</li>
+<li>E:last-of-type 匹配同类型中的最后一个同级兄弟元素E。</li>
+<li>E:nth-of-type(n) 匹配同类型中的第n个同级兄弟元素E。</li>
+<li>E:nth-last-of-type(n) 匹配同类型中的倒数第n个同级兄弟元素E。</li>
+</ul>
+<p>即先在同级里找到所有的E类型，然后根据 n 进行匹配。</p>
+<h3 id="其他结构伪类选择器"><a href="#其他结构伪类选择器" class="headerlink" title="其他结构伪类选择器"></a>其他结构伪类选择器</h3><p>此外还有两个结构伪类选择器：</p>
+<ul>
+<li>E:empty 匹配没有任何子节点（包括空格等text节点）的元素E。</li>
+<li>E:target 匹配相关URL指向的E元素。要配合锚点使用。</li>
+</ul>
+<h2 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h2><h3 id="内容外伪元素"><a href="#内容外伪元素" class="headerlink" title="内容外伪元素"></a>内容外伪元素</h3><p>用于在元素的内容外（前后）充当伪元素的选择器：</p>
+<ul>
+<li>E::before 设置在 元素E 前面（依据对象树的逻辑结构）的内容，配合content属性一起使用。</li>
+<li>E::after 设置在 元素E 后面（依据对象树的逻辑结构）的内容，配合content属性一起使用。</li>
+</ul>
+<p>E:after、E:before 在旧版本里是伪类，在 CSS3 这个新版本里是伪元素。新版本里，E:after、E:before会被自动识别为E::after、E::before，按伪元素来对待，这样做的目的是用来做兼容处理。</p>
+<p>如以下例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">span</span><span class="hljs-selector-pseudo">::before</span>&#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;可爱的&quot;</span>;<br>    <span class="hljs-attribute">color</span>: red;<br>&#125;<br><span class="hljs-selector-tag">span</span><span class="hljs-selector-pseudo">::after</span>&#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;的博客&quot;</span>;<br>    <span class="hljs-attribute">color</span>: green;<br>&#125;<br><span class="hljs-selector-tag">span</span>&#123;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#000</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<style type="text/css">
+    #case1::before{
+        content: "可爱的";
+        color: red;
+    }
+    #case1::after{
+        content: "的博客";
+        color: green;
+    }
+    #case1{
+        border: 1px solid #000;
+    }
+</style>
+<p><span id="case1">大森</span></p>
+<p>其中红字是通过::before来添加的，绿字是通过::after来添加的，不属于文档内容。</p>
+<p>可以看到：</p>
+<ul>
+<li>通过伪元素选择器，就可以添加出类似于span标签的效果（记得要结合 content 属性使用）。</li>
+<li>添加的伪元素是<strong>在标签的内容部分的前后添加的</strong>，可以看到span的边框包含了两个伪元素。</li>
+<li>通过这两个属性添加的伪元素是<strong>行内元素</strong>，需要转换成块元素才能设置宽高。</li>
+</ul>
+<h3 id="内容内伪元素"><a href="#内容内伪元素" class="headerlink" title="内容内伪元素"></a>内容内伪元素</h3><p>这些伪元素设置了元素内部分内容的样式：</p>
+<ul>
+<li>E::first-letter 设置元素 E 里面的第一个字符的样式。</li>
+<li>E::first-line 设置元素 E 里面的第一行的样式。</li>
+<li>E::selection 设置元素 E 里面被鼠标选中的区域的样式（一般设置颜色和背景色）。</li>
+</ul>
+<h1 id="CSS3动画"><a href="#CSS3动画" class="headerlink" title="CSS3动画"></a>CSS3动画</h1><h2 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h2><p>transition的中文含义是过渡。过渡是CSS3中具有颠覆性的一个特征，可以实现元素不同状态间的平滑过渡（补间动画），经常用来制作动画效果：</p>
+<ul>
+<li>补间动画：自动完成从起始状态到终止状态的的过渡。不用管中间的状态。</li>
+<li>帧动画：通过一帧一帧的画面按照固定顺序和速度播放。如电影胶片。</li>
+</ul>
+<p>transition 包括以下属性：</p>
+<ul>
+<li>transition-property: all; 如果希望所有的属性都发生过渡，就使用all。</li>
+<li>transition-duration: 1s; 过渡的持续时间。</li>
+<li>transition-timing-function: linear; 运动曲线。属性值可以是：<ul>
+<li>linear 线性</li>
+<li>ease 减速</li>
+<li>ease-in 加速</li>
+<li>ease-out 减速</li>
+<li>ease-in-out 先加速后减速</li>
+</ul>
+</li>
+<li>transition-delay: 1s; 过渡延迟，多长时间后延迟执行这个过渡动画。</li>
+</ul>
+<p>上面的四个属性也可以写成综合属性transition，属性书写的顺序即为：过渡属性、持续时间、运动曲线、延迟时间。如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">transition</span>: all <span class="hljs-number">3s</span> linear <span class="hljs-number">0s</span>;<br></code></pre></td></tr></table></figure>
+<p>这样设置即会使元素的所有属性在变化时均进行过渡。</p>
+<h2 id="2D转换"><a href="#2D转换" class="headerlink" title="2D转换"></a>2D转换</h2><p>转换是 CSS3 中具有颠覆性的一个特征，可以实现元素的位移、旋转、变形、缩放，甚至支持矩阵方式。</p>
+<p>转换再配合过渡和动画，可以取代大量早期只能靠 Flash 才可以实现的效果。</p>
+<p>在 CSS3 当中，通过 transform 转换来实现 2D 转换或者 3D 转换。</p>
+<p>2D转换包括：缩放、移动、旋转。</p>
+<p>要注意2D变换<strong>不会把别的DOM挤走</strong>。</p>
+<h3 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h3><p>缩放使用scale函数来实现，格式为scale(x, y)。 x表示水平方向的缩放倍数，y表示垂直方向的缩放倍数，如果只写一个值就是等比例缩放。大于1表示放大，小于1表示缩小。不能为百分比。如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">2</span>, <span class="hljs-number">0.5</span>);<br><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">3</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="位移"><a href="#位移" class="headerlink" title="位移"></a>位移</h3><p>格式为translate(水平位移, 垂直位移)，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>);<br></code></pre></td></tr></table></figure>
+
+<p>参数为百分比，相对于自身移动。正值表示向右和向下，负值表示向左和向上。如果只写一个值，则表示水平移动，即第二个参数可省略。</p>
+<p>对于绝对定位的盒子，我们想让它在父元素中居中，可以这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span>;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">60px</span>;<br>	<span class="hljs-attribute">position</span>: absolute;  <span class="hljs-comment">/*绝对定位的盒子*/</span><br>	<span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;           <span class="hljs-comment">/*首先，让左边线居中*/</span><br>	<span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">/*然后，向左移动宽度（600px）的一半*/</span><br>	<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">300px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里也可以用transform来做，即：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">60px</span>;<br>    <span class="hljs-attribute">background-color</span>: red;<br>    <span class="hljs-attribute">position</span>: absolute;       <span class="hljs-comment">/*绝对定位的盒子*/</span><br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;               <span class="hljs-comment">/*首先，让左边线居中*/</span><br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">/*然后，利用translate，往左走自己宽度的一半*/</span><br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-<span class="hljs-number">50%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p>使用rotate来实现，即rotate(角度)，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">45deg</span>);<br></code></pre></td></tr></table></figure>
+
+<p>参数正值为顺时针旋转；负值为逆时针旋转。</p>
+<p>设置旋转动画时，除了给盒子设置 transform 中的 rotate 旋转，同时还要给盒子设置 transition 过渡。如果没有这行过渡的代码，旋转会直接一步到位，不会有中间动作。</p>
+<p>rotate 旋转时，默认是以盒子的正中心为坐标原点的。如果想改变旋转的坐标原点，可以用transform-origin属性：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">50px</span> <span class="hljs-number">50px</span>;<br><span class="hljs-comment">/*旋转时，以盒子底部的中心为坐标原点*/</span><br><span class="hljs-attribute">transform-origin</span>: center bottom;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3D转换"><a href="#3D转换" class="headerlink" title="3D转换"></a>3D转换</h2><h3 id="三维旋转"><a href="#三维旋转" class="headerlink" title="三维旋转"></a>三维旋转</h3><p>按照绕三个坐标轴旋转的角度分别设置（左手竖直坐标系）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateX</span>(<span class="hljs-number">360deg</span>);    <span class="hljs-comment">/*绕 X 轴旋转360度*/</span><br><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">360deg</span>);    <span class="hljs-comment">/*绕 Y 轴旋转360度*/</span><br><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateZ</span>(<span class="hljs-number">360deg</span>);    <span class="hljs-comment">/*绕 Z 轴旋转360度*/</span><br></code></pre></td></tr></table></figure>
+
+<p>在设置三维旋转时最好给图片的父盒子加一个透视属性，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">perspective</span>: <span class="hljs-number">110px</span>;<br></code></pre></td></tr></table></figure>
+<p>没有这个属性的话，图片旋转的时候，像是压瘪了一样。</p>
+<h3 id="三维移动"><a href="#三维移动" class="headerlink" title="三维移动"></a>三维移动</h3><p>同样依次设置三个坐标方向：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100px</span>);    <span class="hljs-comment">/*沿着 X 轴移动*/</span><br><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">360px</span>);    <span class="hljs-comment">/*沿着 Y 轴移动*/</span><br><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">360px</span>);    <span class="hljs-comment">/*沿着 Z 轴移动*/</span><br></code></pre></td></tr></table></figure>
+<p>同样，如果不给父盒子加透视属性，是看不到translateZ的效果的。</p>
+<h3 id="透视"><a href="#透视" class="headerlink" title="透视"></a>透视</h3><p>在上面两个例子里都使用了透视属性：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">perspective</span>: <span class="hljs-number">500px</span>;<br></code></pre></td></tr></table></figure>
+
+<p>电脑显示屏是一个 2D 平面，图像之所以具有立体感（3D效果），其实只是一种视觉呈现，通过透视可以实现此目的。</p>
+<p>透视可以将一个2D平面，在转换的过程当中，呈现3D效果。但仅仅只是视觉呈现出 3D 效果，并不是真正的3D。</p>
+<h3 id="3D呈现"><a href="#3D呈现" class="headerlink" title="3D呈现"></a>3D呈现</h3><p>3D元素构建是指某个图形是由多个元素构成的，可以给这些元素的父元素设置transform-style: preserve-3d来使其变成一个真正的3D图形。属性值可以如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 让子盒子位于三维空间里 */</span><br><span class="hljs-attribute">transform-style</span>: preserve-<span class="hljs-number">3</span>d;<br><span class="hljs-comment">/* 让子盒子位于此元素所在的平面内（子盒子被扁平化） */</span><br><span class="hljs-attribute">transform-style</span>: flat;<br></code></pre></td></tr></table></figure>
+<p>如以下立方体的例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.box</span> &#123;</span><br><span class="css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">250px</span>;</span><br><span class="css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">250px</span>;</span><br><span class="css">            <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> dashed red;</span><br><span class="css">            <span class="hljs-attribute">margin</span>: <span class="hljs-number">100px</span> auto;</span><br><span class="css">            <span class="hljs-attribute">position</span>: relative;</span><br><span class="css">            <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="css"></span><br><span class="css">            <span class="hljs-comment">/* 让子盒子保持3d效果*/</span></span><br><span class="css">            <span class="hljs-attribute">transform-style</span>: preserve-<span class="hljs-number">3</span>d;</span><br><span class="css"></span><br><span class="css">            <span class="hljs-comment">/*transform:rotateX(30deg) rotateY(-30deg);*/</span></span><br><span class="css">            <span class="hljs-attribute">animation</span>: gun <span class="hljs-number">8s</span> linear infinite;</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.box</span> &gt; <span class="hljs-selector-tag">div</span> &#123;</span><br><span class="css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span><br><span class="css">            <span class="hljs-attribute">position</span>: absolute;</span><br><span class="css">            <span class="hljs-attribute">text-align</span>: center;</span><br><span class="css">            <span class="hljs-attribute">line-height</span>: <span class="hljs-number">250px</span>;</span><br><span class="css">            <span class="hljs-attribute">font-size</span>: <span class="hljs-number">60px</span>;</span><br><span class="css">            <span class="hljs-attribute">color</span>: <span class="hljs-number">#daa520</span>;</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.left</span> &#123;</span><br><span class="css">            <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.3</span>);</span><br><span class="css">            <span class="hljs-comment">/* 变换中心*/</span></span><br><span class="css">            <span class="hljs-attribute">transform-origin</span>: left;</span><br><span class="css">            <span class="hljs-comment">/* 变换*/</span></span><br><span class="css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">90deg</span>) <span class="hljs-built_in">translateX</span>(-<span class="hljs-number">125px</span>);</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.right</span> &#123;</span><br><span class="css">            <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.3</span>);</span><br><span class="css">            <span class="hljs-attribute">transform-origin</span>: right;</span><br><span class="css">            <span class="hljs-comment">/* 变换*/</span></span><br><span class="css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">90deg</span>) <span class="hljs-built_in">translateX</span>(<span class="hljs-number">125px</span>);</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.forward</span> &#123;</span><br><span class="css">            <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.3</span>);</span><br><span class="css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">125px</span>);</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.back</span> &#123;</span><br><span class="css">            <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.3</span>);</span><br><span class="css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateZ</span>(-<span class="hljs-number">125px</span>);</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.up</span> &#123;</span><br><span class="css">            <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.3</span>);</span><br><span class="css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateX</span>(<span class="hljs-number">90deg</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">125px</span>);</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.down</span> &#123;</span><br><span class="css">            <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">99</span>, <span class="hljs-number">66</span>, <span class="hljs-number">33</span>, <span class="hljs-number">0.3</span>);</span><br><span class="css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateX</span>(-<span class="hljs-number">90deg</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">125px</span>);</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-keyword">@keyframes</span> gun &#123;</span><br><span class="css">            <span class="hljs-number">0%</span> &#123;</span><br><span class="css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateX</span>(<span class="hljs-number">0deg</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">0deg</span>);</span><br><span class="css">            &#125;</span><br><span class="css"></span><br><span class="css">            <span class="hljs-number">100%</span> &#123;</span><br><span class="css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotateX</span>(<span class="hljs-number">360deg</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">360deg</span>);</span><br><span class="css">            &#125;</span><br><span class="css">        &#125;</span><br><span class="css">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;up&quot;</span>&gt;</span>上<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;down&quot;</span>&gt;</span>下<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>左<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>右<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;forward&quot;</span>&gt;</span>前<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;back&quot;</span>&gt;</span>后<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<style>
+    .box {
+        width: 160px;
+        height: 160px;
+        border: 1px dashed red;
+        margin: 50px auto;
+        position: relative;
+        border-radius: 50%;
+
+        /* 让子盒子保持3d效果*/
+        transform-style: preserve-3d;
+
+        /*transform:rotateX(30deg) rotateY(-30deg);*/
+        animation: gun 8s linear infinite;
+    }
+
+    .box > div {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        text-align: center;
+        line-height: 160px;
+        font-size: 40px;
+        color: #daa520;
+    }
+
+    .left {
+        background-color: rgba(255, 0, 0, 0.3);
+        /* 变换中心*/
+        transform-origin: left;
+        /* 变换*/
+        transform: rotateY(90deg) translateX(-80px);
+    }
+
+    .right {
+        background: rgba(0, 0, 255, 0.3);
+        transform-origin: right;
+        /* 变换*/
+        transform: rotateY(90deg) translateX(80px);
+    }
+
+    .forward {
+        background: rgba(255, 255, 0, 0.3);
+        transform: translateZ(80px);
+    }
+
+    .back {
+        background: rgba(0, 255, 255, 0.3);
+        transform: translateZ(-80px);
+    }
+
+    .up {
+        background: rgba(255, 0, 255, 0.3);
+        transform: rotateX(90deg) translateZ(80px);
+    }
+
+    .down {
+        background: rgba(99, 66, 33, 0.3);
+        transform: rotateX(-90deg) translateZ(80px);
+    }
+
+    @keyframes gun {
+        0% {
+            transform: rotateX(0deg) rotateY(0deg);
+        }
+
+        100% {
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+    }
+</style>
+<div class="box">
+    <div class="up">上</div>
+    <div class="down">下</div>
+    <div class="left">左</div>
+    <div class="right">右</div>
+    <div class="forward">前</div>
+    <div class="back">后</div>
+</div>
+
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>动画是CSS3中具有颠覆性的特征，可通过设置多个节点 来精确控制一个或一组动画，常用来实现复杂的动画效果。</p>
+<h3 id="定义动画的步骤"><a href="#定义动画的步骤" class="headerlink" title="定义动画的步骤"></a>定义动画的步骤</h3><p>定义动画的步骤如下：</p>
+<ul>
+<li>通过@keyframes定义动画；</li>
+<li>将这段动画通过百分比，分割成多个节点；然后各节点中分别定义各属性；</li>
+<li>在指定元素里，通过 animation 属性调用动画。</li>
+</ul>
+<p>在 CSS3 中定义动画的时候，也是先定义，再调用，如下格式：</p>
+<p>定义动画：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs txt">@keyframes 动画名&#123;<br>    from&#123; 初始状态 &#125;<br>    to&#123; 结束状态 &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>调用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">animation: 动画名称 持续时间;<br></code></pre></td></tr></table></figure>
+
+<p>其中，animation属性的完整格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">animation: 定义的动画名称 持续时间 执行次数 是否反向 运动曲线 延迟执行;<br></code></pre></td></tr></table></figure>
+
+<p>执行次数中infinite 表示无限次。如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">animation</span>: move1 <span class="hljs-number">1s</span>  alternate linear <span class="hljs-number">3</span>;<br><span class="hljs-attribute">animation</span>: move2 <span class="hljs-number">4s</span>;<br></code></pre></td></tr></table></figure>
+<p>可以看到只有动画名称和持续时间是必须的。</p>
+<p>如以下例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.box</span> &#123;</span><br><span class="css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span><br><span class="css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="css">            <span class="hljs-attribute">margin</span>: <span class="hljs-number">100px</span>;</span><br><span class="css">            <span class="hljs-attribute">background-color</span>: red;</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:hover</span> &#123;</span><br><span class="css">            <span class="hljs-comment">/* 调用动画*/</span></span><br><span class="css">            <span class="hljs-comment">/* animation: 动画名称 持续时间  执行次数  是否反向  运动曲线 延迟执行。infinite 表示无限次*/</span></span><br><span class="css">            <span class="hljs-comment">/*animation: move 1s  alternate linear 3;*/</span></span><br><span class="css">            <span class="hljs-attribute">animation</span>: move2 <span class="hljs-number">4s</span>;</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-comment">/* 方式一：定义一组动画*/</span></span><br><span class="css">        <span class="hljs-keyword">@keyframes</span> move1 &#123;</span><br><span class="css">            <span class="hljs-selector-tag">from</span> &#123;</span><br><span class="css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0px</span>) <span class="hljs-built_in">rotate</span>(<span class="hljs-number">0deg</span>);</span><br><span class="css">            &#125;</span><br><span class="css">            <span class="hljs-selector-tag">to</span> &#123;</span><br><span class="css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">500px</span>) <span class="hljs-built_in">rotate</span>(<span class="hljs-number">555deg</span>);</span><br><span class="css">            &#125;</span><br><span class="css">        &#125;</span><br><span class="css"></span><br><span class="css">        <span class="hljs-comment">/* 方式二：定义多组动画*/</span></span><br><span class="css">        <span class="hljs-keyword">@keyframes</span> move2 &#123;</span><br><span class="css">            <span class="hljs-number">0%</span> &#123;</span><br><span class="css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0px</span>);</span><br><span class="css">                <span class="hljs-attribute">background-color</span>: red;</span><br><span class="css">                <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span>;</span><br><span class="css">            &#125;</span><br><span class="css"></span><br><span class="css">            <span class="hljs-number">25%</span> &#123;</span><br><span class="css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">500px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0px</span>);</span><br><span class="css"></span><br><span class="css">            &#125;</span><br><span class="css"></span><br><span class="css">            <span class="hljs-comment">/*动画执行到 50% 的时候，背景色变成绿色，形状变成圆形*/</span></span><br><span class="css">            <span class="hljs-number">50%</span> &#123;</span><br><span class="css">                <span class="hljs-comment">/* 虽然两个方向都有translate，但其实只是Y轴上移动了200px。</span></span><br><span class="hljs-comment"><span class="css">                因为X轴的500px是相对最开始的原点来说的。可以理解成此时的 translateX 是保存了之前的位移 */</span></span><br><span class="css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">500px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">200px</span>);</span><br><span class="css">                <span class="hljs-attribute">background-color</span>: green;</span><br><span class="css">                <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="css">            &#125;</span><br><span class="css"></span><br><span class="css">            <span class="hljs-number">75%</span> &#123;</span><br><span class="css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">200px</span>);</span><br><span class="css">            &#125;</span><br><span class="css"></span><br><span class="css">            <span class="hljs-comment">/*动画执行到 100% 的时候，背景色还原为红色，形状还原为正方形*/</span></span><br><span class="css">            <span class="hljs-number">100%</span> &#123;</span><br><span class="css">                <span class="hljs-comment">/*坐标归零，表示回到原点。*/</span></span><br><span class="css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0px</span>) <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0px</span>);</span><br><span class="css">                <span class="hljs-attribute">background-color</span>: red;</span><br><span class="css">                <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span>;</span><br><span class="css">            &#125;</span><br><span class="css">        &#125;</span><br><span class="css">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>效果如下：<br>（PC端将鼠标放在盒子上触发动画；移动端点击盒子触发动画）</p>
+<style>
+    .box2 {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        background-color: red;
+    }
+    .box2:hover {
+        animation: move2 4s;
+    }
+    @keyframes move1 {
+        from {
+            transform: translateX(0px) rotate(0deg);
+        }
+        to {
+            transform: translateX(200px) rotate(555deg);
+        }
+    }
+    @keyframes move2 {
+        0% {
+            transform: translateX(0px) translateY(0px);
+            background-color: red;
+            border-radius: 0;
+        }
+        25% {
+            transform: translateX(150px) translateY(0px);
+        }
+        50% {
+            transform: translateX(150px) translateY(100px);
+            background-color: green;
+            border-radius: 50%;
+        }
+        75% {
+            transform: translateX(0px) translateY(100px);
+        }
+        100% {
+            transform: translateX(0px) translateY(0px);
+            background-color: red;
+            border-radius: 0;
+        }
+    }
+</style>
+<div class="box2"></div>
+
+<h3 id="动画属性"><a href="#动画属性" class="headerlink" title="动画属性"></a>动画属性</h3><p>在调用动画时将合写属性拆分为以下：</p>
+<p>（1）动画名称：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">animation-name</span>: move;<br></code></pre></td></tr></table></figure>
+
+<p>（2）执行一次动画的持续时间：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">4s</span>;<br></code></pre></td></tr></table></figure>
+<p>注意：这前两个属性，是必选项，且顺序固定。</p>
+<p>（3）动画的执行次数：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">animation-iteration-count</span>: <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+<p>属性值infinite表示无数次。</p>
+<p>（4）动画的方向：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">animation-direction</span>: alternate;<br></code></pre></td></tr></table></figure>
+<p>属性值：normal 正常，alternate 反向。</p>
+<p>（5）动画延迟执行：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">animation-delay</span>: <span class="hljs-number">1s</span>;<br></code></pre></td></tr></table></figure>
+
+<p>（6）设置动画结束时，盒子的状态：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">animation-fill-mode</span>: forwards;<br></code></pre></td></tr></table></figure>
+<p>属性值： forwards：保持动画结束后的状态（默认）， backwards：动画结束后回到最初的状态。</p>
+<p>（7）运动曲线：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">animation-timing-function</span>: ease-in;<br></code></pre></td></tr></table></figure>
+<p>属性值可以是：linear ease-in-out steps()等。</p>
+<p>注意，如果把属性值写成steps()，则表示动画不是连续执行，而是间断地分成几步执行。比如可以实现时钟的指针特效等。</p>
+<h1 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h1><p>默认文档流中，在一个父容器里放置多个块级的子元素，那么，这些子元素会默认从上往下排列。如果给父容器加一个 display: flex属性，这些子元素的布局就会变为水平方向：<br><img   class="lazyload" data-original="/images/illustration/2021-10-25-frontend-css-004/001.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>flex 布局的子元素不会脱离文档流，很好地遵从了“流的特性”。</p>
+<p>如果用 float 来做布局，float 属性的元素会脱离文档流，而且会涉及到各种 BFC、清除浮动的问题。浮动相关的问题，比较麻烦，所以也成了面试必问的经典题目。但有了 flex 布局之后，这些问题都不存在的。</p>
+<p>flex 是一种现代的布局方式，是 W3C 第一次提供真正用于布局的 CSS 规范。 flex 非常提供了丰富的属性，非常灵活，让布局的实现更佳多样化，且方便易用。</p>
+<p>flex 唯一的缺点就在于，它不支持低版本的 IE 浏览器。如果你的页面不需要处理 IE浏览器的兼容性问题，则可以放心大胆地使用 flex 布局。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>在Flex布局中主要有以下概念：</p>
+<ul>
+<li>弹性盒子：指的是使用 display:flex 或 display:inline-flex 声明的父容器。</li>
+<li>子元素/弹性元素：指的是父容器里面的子元素们（父容器被声明为 flex 盒子的情况下）。</li>
+<li>主轴：flex容器的主轴，默认是水平方向，从左向右。</li>
+<li>侧轴：与主轴垂直的轴称作侧轴，默认是垂直方向，从上往下。</li>
+</ul>
+<h3 id="弹性盒子"><a href="#弹性盒子" class="headerlink" title="弹性盒子"></a>弹性盒子</h3><p>使用 display:flex 或 display:inline-flex 声明一个父容器为弹性盒子。此时，这个父容器里的子元素们，会遵循弹性布局。一般 display:flex属性用得较多，display:inline-flex用得较少。</p>
+<p>flex-direction 属性用于设置盒子中子元素的排列方向。属性值可以是：</p>
+<ul>
+<li>row：从左到右水平排列子元素（默认值）。</li>
+<li>column：从上到下垂直排列子元素。</li>
+<li>row-reverse：从右向左排列子元素。</li>
+<li>column-reverse：从下到上垂直排列子元素。</li>
+</ul>
+<p>flex-wrap 属性控制子元素溢出时的换行处理。</p>
+<p>justify-content 属性控制子元素在主轴上的排列方式。属性值可以是：</p>
+<ul>
+<li>flex-start 从主轴的起点对齐（默认值）。</li>
+<li>flex-end 从主轴的终点对齐。</li>
+<li>center 居中对齐。</li>
+<li>space-around 在父盒子里平分。</li>
+<li>space-between 两端对齐 平分。</li>
+</ul>
+<p>align-items 属性设置子元素在侧轴上的对齐方式。属性值可以是：</p>
+<ul>
+<li>flex-start 从侧轴开始的方向对齐。</li>
+<li>flex-end 从侧轴结束的方向对齐。</li>
+<li>baseline 基线 默认同flex-start。</li>
+<li>center 中间对齐。</li>
+<li>stretch 拉伸。</li>
+</ul>
+<h3 id="弹性元素"><a href="#弹性元素" class="headerlink" title="弹性元素"></a>弹性元素</h3><p>主要有flex属性：设置子盒子的权重。根据权重分配子盒子的宽度比例。</p>
+<h1 id="Web字体"><a href="#Web字体" class="headerlink" title="Web字体"></a>Web字体</h1><h2 id="常见字体格式"><a href="#常见字体格式" class="headerlink" title="常见字体格式"></a>常见字体格式</h2><p>TureTpe格式：(.ttf)</p>
+<p>.ttf 字体是Windows和Mac的最常见的字体，是一种RAW格式。</p>
+<p>支持这种字体的浏览器有IE9+、Firefox3.5+、Chrome4+、Safari3+、Opera10+、iOS Mobile、Safari4.2+。</p>
+<p>OpenType格式：(.otf)</p>
+<p>.otf 字体被认为是一种原始的字体格式，其内置在TureType的基础上。</p>
+<p>支持这种字体的浏览器有Firefox3.5+、Chrome4.0+、Safari3.1+、Opera10.0+、iOS Mobile、Safari4.2+。</p>
+<p>Web Open Font Format格式：(.woff)</p>
+<p>woff字体是Web字体中最佳格式，他是一个开放的TrueType/OpenType的压缩版本，同时也支持元数据包的分离。</p>
+<p>支持这种字体的浏览器有IE9+、Firefox3.5+、Chrome6+、Safari3.6+、Opera11.1+。</p>
+<p>Embedded Open Type格式：(.eot)</p>
+<p>.eot字体是IE专用字体，可以从TrueType创建此格式字体，支持这种字体的浏览器有IE4+。</p>
+<p>SVG格式：(.svg)</p>
+<p>.svg字体是基于SVG字体渲染的一种格式。</p>
+<p>支持这种字体的浏览器有Chrome4+、Safari3.1+、Opera10.0+、iOS Mobile Safari3.2+。</p>
+<h2 id="使用Web字体"><a href="#使用Web字体" class="headerlink" title="使用Web字体"></a>使用Web字体</h2><p>（1）第一步：使用font-face声明字体</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@font-face</span> &#123;<span class="hljs-attribute">font-family</span>: <span class="hljs-string">&#x27;webfont&#x27;</span>;<br>    <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;webfont.eot&#x27;</span>); <span class="hljs-comment">/* IE9*/</span><br>    <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;webfont.eot?#iefix&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;embedded-opentype&#x27;</span>), /* IE6-IE8 */<br>    <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;webfont.woff&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;woff&#x27;</span>), /* chrome、firefox */<br>    <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;webfont.ttf&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;truetype&#x27;</span>), /* chrome、firefox、opera、Safari, Android, iOS <span class="hljs-number">4.2</span>+*/<br>    <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;webfont.svg#webfont&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;svg&#x27;</span>); <span class="hljs-comment">/* iOS 4.1- */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>（2）第二步：定义使用webfont的样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.web-font</span>&#123;<br>    <span class="hljs-attribute">font-family</span>:<span class="hljs-string">&quot;webfont&quot;</span> <span class="hljs-meta">!important</span>;<br>    <span class="hljs-attribute">font-size</span>:<span class="hljs-number">16px</span>;<span class="hljs-attribute">font-style</span>:normal;<br>    -webkit-<span class="hljs-attribute">font-smoothing</span>: antialiased;<br>    -webkit-text-stroke-<span class="hljs-attribute">width</span>: <span class="hljs-number">0.2px</span>;<br>    -moz-osx-<span class="hljs-attribute">font-smoothing</span>: grayscale;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>（3）第三步：为文字加上对应的样式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;web-font&quot;</span>&gt;</span>Web字体<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/10/25/frontend-css-004/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;25&#x2F;frontend-css-004&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;25&#x2F;frontend-css-004&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/10/23/frontend-css-003/">CSS学习笔记（3）：CSS概述 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS3%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">CSS3选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E9%80%89%E6%8B%A9%E5%99%A8%E7%A7%8D%E7%B1%BB"><span class="toc-text">主要选择器种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">属性选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">结构伪类选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E9%87%8F%E7%9A%84%E7%BB%93%E6%9E%84%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">关于数量的结构伪类选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%BB%93%E6%9E%84%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">关于类型的结构伪类选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%BB%93%E6%9E%84%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">其他结构伪类选择器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E5%85%83%E7%B4%A0%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">伪元素选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%A4%96%E4%BC%AA%E5%85%83%E7%B4%A0"><span class="toc-text">内容外伪元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%86%85%E4%BC%AA%E5%85%83%E7%B4%A0"><span class="toc-text">内容内伪元素</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS3%E5%8A%A8%E7%94%BB"><span class="toc-text">CSS3动画</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%B8%A1"><span class="toc-text">过渡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2D%E8%BD%AC%E6%8D%A2"><span class="toc-text">2D转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E6%94%BE"><span class="toc-text">缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E7%A7%BB"><span class="toc-text">位移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC"><span class="toc-text">旋转</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D%E8%BD%AC%E6%8D%A2"><span class="toc-text">3D转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC"><span class="toc-text">三维旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E7%A7%BB%E5%8A%A8"><span class="toc-text">三维移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%8F%E8%A7%86"><span class="toc-text">透视</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D%E5%91%88%E7%8E%B0"><span class="toc-text">3D呈现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-text">动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%8A%A8%E7%94%BB%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">定义动画的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E5%B1%9E%E6%80%A7"><span class="toc-text">动画属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Flex%E5%B8%83%E5%B1%80"><span class="toc-text">Flex布局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90"><span class="toc-text">弹性盒子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B9%E6%80%A7%E5%85%83%E7%B4%A0"><span class="toc-text">弹性元素</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E5%AD%97%E4%BD%93"><span class="toc-text">Web字体</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%AD%97%E4%BD%93%E6%A0%BC%E5%BC%8F"><span class="toc-text">常见字体格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Web%E5%AD%97%E4%BD%93"><span class="toc-text">使用Web字体</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
