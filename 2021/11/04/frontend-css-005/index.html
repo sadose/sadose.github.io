@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS：宽度和高度 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="
+CSS像艺术家一样优雅，又像工程师一样严谨。
+
+自适...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">CSS：宽度和高度</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/css.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">CSS：宽度和高度</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 04, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6972</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p><em>CSS像艺术家一样优雅，又像工程师一样严谨。</em></p>
+</blockquote>
+<h1 id="自适应的宽度"><a href="#自适应的宽度" class="headerlink" title="自适应的宽度"></a>自适应的宽度</h1><p>大音希声，大象无形。世界的复杂与变化、奇妙与精巧往往藏在最简单的一片虚无中，就像成熟的CSS程序员会用 width:auto 来设置宽度一样。</p>
+<p>width:auto说白了就是自适应宽度，但究竟什么是“自适应”，就这包含了几种类型：</p>
+<ul>
+<li>充分利用可用空间（流特性）。</li>
+<li>收缩到合适（包裹性）。</li>
+<li>收缩到最小（一柱擎天）。</li>
+<li>超出容器限制（溢出来了）。</li>
+</ul>
+<h2 id="外部尺寸和内部尺寸"><a href="#外部尺寸和内部尺寸" class="headerlink" title="外部尺寸和内部尺寸"></a>外部尺寸和内部尺寸</h2><p>外部尺寸就是<strong>盒子的尺寸取决于外部</strong>，就像对盒子尺寸加了一个约束或者外力使得盒子具有了某个尺寸；而内部尺寸则取决于内部，就是看盒子里装的是什么，装的东西大盒子就被撑大，装的东西小盒子就收缩到包裹着盒子。</p>
+<p>对于以上说的几种“宽度自适应”的的表现类型，也就只有“充分利用可用空间（流特性）”是外部尺寸，其他都是内部尺寸。</p>
+<h2 id="外部尺寸"><a href="#外部尺寸" class="headerlink" title="外部尺寸"></a>外部尺寸</h2><h3 id="流宽度"><a href="#流宽度" class="headerlink" title="流宽度"></a>流宽度</h3><p>在自适应宽度中，外部尺寸与流特性是挂钩的，流特性就是在文档中，块状元素（如div）是<strong>像水流在容器中一样</strong>铺开的：</p>
+<p><img   class="lazyload" data-original="/images/illustration/2021-11-04-frontend-css-005/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>对于一个div标签，如果不给它设置宽度（即width:auto），div的宽度会自动铺满页面，即100%页面宽度。将它放入其他容器也是如此，这就是“自适应”。</p>
+<p>因此很多情况下，对于宽度要铺满容器的元素，完全可以考虑把它转换为块状元素（display:block），然后不对它设置宽度，使用其天然的流特性来达到目的。如果为其设置了宽度，反而多此一举了，破坏了其流特性，反而可能产生不必要的麻烦（比如把padding之类的考虑进去，进行各种宽度计算，费力又难以维护）。</p>
+<h3 id="格式化宽度"><a href="#格式化宽度" class="headerlink" title="格式化宽度"></a>格式化宽度</h3><p>格式化宽度只是非替换元素（如div、p等，见另一篇文章）在绝对定位或固定定位模型中，即设置了 position:absolute 或 position:fixed 的情况下。</p>
+<p>这样的情况下本来应该表现为内部尺寸的，但有一种情况下其会表现为外部尺寸，即同时再设置left和right属性。那么这个盒子会寻找离它最近的具有定位特性（指非 position:static 的元素）的祖先，依据这个祖先计算宽度：留出left和right的距离，剩下的部分铺满。就像这样：</p>
+<p><img   class="lazyload" data-original="/images/illustration/2021-11-04-frontend-css-005/002.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="内部尺寸"><a href="#内部尺寸" class="headerlink" title="内部尺寸"></a>内部尺寸</h2><p>所谓内部尺寸，就是以容器里的内容的尺寸来决定尺寸。</p>
+<h3 id="包裹性"><a href="#包裹性" class="headerlink" title="包裹性"></a>包裹性</h3><p>这就是另一种自适应了，上面的流体特性是自适应使元素在容器里铺开，这里就是自适应<strong>收缩到合适</strong>，一个是往大了适应，一个是往小了适应。</p>
+<p>这里自适应的具体内容就是指，元素尺寸由内部元素的尺寸决定，元素紧紧包裹着内部元素，但<strong>不会超过外部容器的尺寸</strong>。最典型的是inline-block元素。</p>
+<p>一个最常见的例子——按钮，主要有以下两种使用形式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;按钮&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>按钮就是最常见的inline-block元素，它的具体表现是：按钮文字越多，按钮就越长，宽度达到它外部容器的宽度时，它会自动换行！</p>
+<p>如果没有注意到按钮会自动换行，可能的原因是你没碰到过足够多字数的按钮，或者你用的是input按钮（input的默认white-space属性值是pre，这个属性会让它不换行）。</p>
+<p>例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 200px;border:red solid 2px;padding: 5px;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;this.innerHTML+=&#x27;点我&#x27;&quot;</span>&gt;</span>点我<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>代码效果：</p>
+<div style="width: 200px;border:red solid 2px;padding: 5px;">
+    <button onclick="this.innerHTML+='点我'">点我</button>
+</div>
+
+<p>那么这里有一个巧妙使用包裹性的小例子，比如我们的需求是在一个容器中有若干文字，文字少的时候让文字居中显示，而文字多了就让它自动左对齐显示：</p>
+<p>HTML代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;conMore&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span>文字内容<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;btnMore&quot;</span>&gt;</span>更多文字<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#cd0000</span>;<br>  <span class="hljs-attribute">text-align</span>: center;<br>&#125;<br><span class="hljs-selector-class">.content</span> &#123;<br>  <span class="hljs-attribute">display</span>: inline-block;<br>  <span class="hljs-attribute">text-align</span>: left;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果就像下面一样：</p>
+<p><button onclick="document.getElementById('conMore').innerHTML+='文字内容';">更多文字</button> 
+<button onclick="document.getElementById('conMore').innerHTML='文字内容';">复原</button></p>
+<div style="padding: 10px;width: 200px;background-color: #cd0000;text-align: center;">
+    <p id="conMore" style="display: inline-block;text-align: left;font-size: 14px;color: white;">文字内容</p>
+</div>
+
+<h3 id="首选最小宽度"><a href="#首选最小宽度" class="headerlink" title="首选最小宽度"></a>首选最小宽度</h3><p>试想，假如对一个容器设置 width:0px ，但是它里面有文字，怎么办？CSS最初是为图文排版服务的，当然不可能真的将容器宽度变为0，此时容器表示的宽度为首选最小宽度，也就是尽可能地压缩宽度，能压缩到的最小的宽度，就像这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 0px;&quot;</span>&gt;</span>I love you very much. <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="/images/illustration/2021-11-04-frontend-css-005/003.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>这是把能拆行的地方都拆行了，以能够让宽度最小，当然这是对于英文，只能按单词拆行，而汉字则可以每个字都拆行，因此才会出现那种在表格里表格文字多但格子窄的一柱擎天的现象了：</p>
+<p><img   class="lazyload" data-original="/images/illustration/2021-11-04-frontend-css-005/004.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>对于表格这种，就不是设置了 width:0px ，而是整个表格设置了宽度，单元格为 width:auto 但是内容太多，导致每列分配宽度时使该单元格出现了这种现象。</p>
+<h1 id="宽度分离"><a href="#宽度分离" class="headerlink" title="宽度分离"></a>宽度分离</h1><p>当一件事情的发展可以被多个因素所左右的时候，这个事情最终的结果就会充满变数而不可预期。</p>
+<p>就像元素的宽度一样，width只决定了内容区域的宽度，如果设定了padding和border，元素的实际宽度会更大，这么多的因素都影响着元素的实际宽度，使得优雅地维护元素的宽度成为了必须要考虑的事情。</p>
+<h2 id="为什么宽度分离"><a href="#为什么宽度分离" class="headerlink" title="为什么宽度分离"></a>为什么宽度分离</h2><p>计算机领域，一旦提起“分离”，一定有便于维护的作用在里面，比如前后端分离、接口与实现分离、样式与行为分离等等，宽度分离也是为了更好地维护代码。</p>
+<p>如果不对宽度进行维护，本来设好了元素的width，突然我们需要对其增加padding或border就会使它的实际宽度增大，可能会挤占别的元素的空间，使得布局错乱。</p>
+<p>此时代码将变得十分不好维护——你需要一个个重新计算元素的width并为它们重新设置。而很不错的一种维护宽度的方式就是宽度分离。</p>
+<h2 id="如何宽度分离"><a href="#如何宽度分离" class="headerlink" title="如何宽度分离"></a>如何宽度分离</h2><p>宽度分离实际上还是利用了宽度的自适应特性，即：为需要维护宽度的元素在外单独使用一层div来控制宽度，这层div不使用padding、border，宽度只通过width指定，这样减少了要控制的变量，使得宽度更容易维护，而原本的元素在这个已设置好宽度的div中使用 width:auto 来设置自适应的宽度，使得元素自然地在容器中铺开，这样再怎么设置元素的padding和border都不会导致元素整体宽度改变从而挤占其他元素的空间了。</p>
+<p>总结下来即：<strong>父元素定宽，子元素宽度自适应</strong>。</p>
+<h2 id="其他解决方案"><a href="#其他解决方案" class="headerlink" title="其他解决方案"></a>其他解决方案</h2><h3 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h3><p>有一种无需计算宽度又无需额外一层标签的方法是使用box-sizing属性。这个属性可以规定width和height作用的细节——即作用在盒模型的哪一部分。</p>
+<p>该属性的默认值是content-box，即内容盒子，还支持另外一个值即border-box，也就是边框盒子，此外没有其他支持的值了。但对于实际使用来说，仅仅一个border-box其实也够用了，前面所说的宽度分离实际上也是在间接地控制border-box。</p>
+<h3 id="滥用box-sizing"><a href="#滥用box-sizing" class="headerlink" title="滥用box-sizing"></a>滥用box-sizing</h3><p>有人认为既然如此就不单独给元素设置 box-sizing:border-box 了，直接设置全局重置不就行了：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">* &#123; <span class="hljs-attribute">box-sizing</span>:border-box &#125;<br></code></pre></td></tr></table></figure>
+<p>这样所有的尺寸都作用于边框盒子就不需要宽度分离这么麻烦了。</p>
+<p>但是这样会导致滥用，因为大多元素是用不着这样设置的，会产生不必要的消耗，对于普通的内联元素来说，无论box-sizing是什么值对渲染都没有影响，为它们额外设置这样的属性是一种额外消耗。</p>
+<p>还有就是这样并不能解决所有的问题，比如margin问题，对于这样设置的元素，margin还是要单独计算，而宽度分离策略可以解决所有宽度问题。</p>
+<h3 id="必要的使用场景"><a href="#必要的使用场景" class="headerlink" title="必要的使用场景"></a>必要的使用场景</h3><p>有时候是必须要用box-sizing的场景，即对于可替换元素希望其width为100%的时候。</p>
+<p>块级元素宽度自适应会铺满容器，但是有一些例外，就是可替换元素，它们无论display是inline还是block都不会自动铺满容器，而是有它们默认的宽度或宽度由其内容决定，这时希望其具有100%宽度就不能像平时一样将display设为block来解决了，而是要手动设定 width:100% 。</p>
+<p>但对于一些可替换元素，比如textarea文本域，它是有border的，同时还要有padding，否则光标会顶着边框，体验不好，这时想要就需要设定 box-sizing:border-box 之后在设置 width:100% 才能得到我们希望的效果。</p>
+<h1 id="高度"><a href="#高度" class="headerlink" title="高度"></a>高度</h1><p>宽度是稀缺的，高度是无限的。</p>
+<p>在HTML中文档默认都是向下翻页，一个文档想多长都没有关系，因此高度是无限的，但宽度就只有一个屏幕的宽度大小（除非你想让页面有横向滚动条）。</p>
+<h2 id="高度自适应"><a href="#高度自适应" class="headerlink" title="高度自适应"></a>高度自适应</h2><p>因为高度是无限的，因此高度的自适应就简单多了，就看元素内部的内容能撑起多大的高度，那么自适应的高度就是多少。</p>
+<p>不过和格式化宽度类似，高度也是有格式化高度的。</p>
+<h2 id="高度100"><a href="#高度100" class="headerlink" title="高度100%"></a>高度100%</h2><p>宽度设定为100%无论如何都会有一个具体的计算植，而高度设定为100%<strong>可能得不到结果</strong>。</p>
+<p>如何让高度100%能够生效呢？主要有两种办法：</p>
+<ul>
+<li>让它的父级元素有一个明确的可以生效的高度值，比如它的父级设定了 height: 600px 。</li>
+<li>使用绝对定位，元素绝对定位必定能计算出一个高度值，哪怕其父元素没有明确的高度。</li>
+</ul>
+<p>但同时需要注意绝对定位时的百分比高度和非绝对定位时的计算方法不一样，绝对定位时百分比高度是相对于父元素的padding-box计算的，而其他情况下是相对于content-box。</p>
+<p>总结来说就是：<strong>百分比高度在绝对定位时支持隐式高度计算</strong>。</p>
+<p>在实际应用中有这样的例子：</p>
+<p>HTML代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;prev&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;上一张&quot;</span>&gt;</span>上一张<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;next&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;下一张&quot;</span>&gt;</span>下一张<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/common/l/1.jpg&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">display</span>: inline-block;<br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.prev</span>, <br><span class="hljs-selector-class">.next</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>; <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">opacity</span>: .<span class="hljs-number">5</span>;<br>&#125;<br><span class="hljs-selector-class">.prev</span> &#123;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.next</span> &#123;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个例子可以做到常见的点击图片左半边切换上一张，点击右半边切换下一张的效果，就是通过两个100%高度，50%宽度的a标签分别绝对定位在左右两半边覆盖在图片上来实现的。</p>
+<h1 id="宽高的max和min"><a href="#宽高的max和min" class="headerlink" title="宽高的max和min"></a>宽高的max和min</h1><p>萌新不会经常使用这些属性，只有随着CSS技能的深入，能够考虑还原性的同时还兼顾扩展性和适配性的时候，它们才会被用得越来越多。</p>
+<h2 id="宽高范围"><a href="#宽高范围" class="headerlink" title="宽高范围"></a>宽高范围</h2><p>宽高的max和min即max-width、min-width、max-height、min-height四个属性，它们可以分别为宽高设置可伸缩的范围，比如一个页面可能在1200~1400像素的不同屏幕上显示，就可以设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>	<span class="hljs-attribute">min-width</span>: <span class="hljs-number">1200px</span>;<br>	<span class="hljs-attribute">max-width</span>: <span class="hljs-number">1400px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样会使得容器最小宽度不低于1200px而最大宽度不超过1400px，在这个宽度范围内自适应。</p>
+<p>再比如公众号文章中有用户上传的图片，为了防止其尺寸过大，就可以设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">img</span> &#123;<br>	<span class="hljs-attribute">max-width</span>: <span class="hljs-number">100%</span>;<br>	<span class="hljs-attribute">height</span>: auto! important;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样可以防止图片过大超过容器宽度，同时图片不大的时候又可以按原始宽度显示。这里的height是为了保证max-width生效时，图片不会变形（防止在别处为图片设定了height）。</p>
+<h2 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h2><p>width和height的默认值是auto，即在不显式设定尺寸时为自适应。</p>
+<p>min-width和min-height的默认值为auto，而max-width和max-height的默认值为none。</p>
+<p>min-width和min-height的默认值为auto意味着它们的渲染规则和width、height是一样的，也就是元素的width、height是多少，它们的min-width、min-height就是多少，相当于min-width、min-height总是和width、height相等，也就是min-width、min-height此时相当于没有（因为存在不存在没什么区别）。</p>
+<p>而max-width和max-height的默认值之所以为none，是因为按正常的逻辑，默认情况下应当不为宽高设置上限的，因此默认值为none。</p>
+<h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><h3 id="max覆盖"><a href="#max覆盖" class="headerlink" title="max覆盖"></a>max覆盖</h3><p>以宽度为例，高度是一样的道理。</p>
+<p>当两者冲突时max-width会覆盖width，在任何情况下都会覆盖，哪怕width是行内属性，哪怕width设置了!important。因为如果max-width不能覆盖width，那么这个上限的规定就没有了意义。</p>
+<h3 id="min覆盖"><a href="#min覆盖" class="headerlink" title="min覆盖"></a>min覆盖</h3><p>所谓一物降一物，max-width与width冲突时，max-width无条件覆盖width，而当min-width与max-width冲突时，后者又会被前者覆盖。</p>
+<p>即min-width会覆盖max-width，当设置的上限比下限还低时，生效的是下限。</p>
+<h2 id="展开与收起动画"><a href="#展开与收起动画" class="headerlink" title="展开与收起动画"></a>展开与收起动画</h2><p>如果要实现展开与收起动画，大家比较常见的是使用JS实现，而使用原生CSS也是可以实现的。</p>
+<h3 id="使用height实现"><a href="#使用height实现" class="headerlink" title="使用height实现"></a>使用height实现</h3><p>我们考虑使用height实现展开与收起动画，需要考虑的是动画的起点和终点。</p>
+<p>以展开为例，动画的起点是 height:0 ，而终点应当是元素本来的高度，那么问题来了，怎么对于元素来说怎么确定它的高度呢？对于一个高度确定的元素还好，但对于高度为auto的，我们设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.element</span> &#123;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">overflow</span>: hidden;<br>    <span class="hljs-attribute">transition</span>: height .<span class="hljs-number">25s</span>;<br>&#125;<br><span class="hljs-selector-class">.element</span><span class="hljs-selector-class">.active</span> &#123;<br>    <span class="hljs-attribute">height</span>: auto;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>会发现动画是不起效的，没有补间，原因是因为auto是个特殊值，浏览器要计算补间动画，需要在起点和终点之间插值，可是height从0到auto是无法计算的，因为auto不是一个确切的值，浏览器没有这样计算的依据。</p>
+<p>这时就可以使用max-height来实现了：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.element</span> &#123;<br>    <span class="hljs-attribute">max-height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">overflow</span>: hidden;<br>    <span class="hljs-attribute">transition</span>: max-height .<span class="hljs-number">25s</span>;<br>&#125;<br><span class="hljs-selector-class">.element</span><span class="hljs-selector-class">.active</span> &#123;<br>    <span class="hljs-attribute">max-height</span>: <span class="hljs-number">666px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这里把max-height设定一个足够大的值，这样初始状态下受max-height为0的限制，之后慢慢解开这个限制，直到元素恢复其原来的大小。</p>
+<p>但是要注意这个足够大的值也<strong>不能太大</strong>了，因为这里的动画计算的是max-height值，假如元素原本就只有100px，却设置了终点为1000px，如果动画用时1秒，那么就只有前0.1秒元素有变化，后0.9秒都是max-height值再变化，反过来收起元素的时候，前0.9秒没有动静，最后0.1秒迅速收起，好像动画有延迟一样。</p>
+<p>即终点max-height要设定一个<strong>足够安全的最小值</strong>。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/11/04/frontend-css-005/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;04&#x2F;frontend-css-005&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;04&#x2F;frontend-css-005&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/10/25/frontend-css-004/">CSS学习笔记（4）：CSS3新特性概述 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E7%9A%84%E5%AE%BD%E5%BA%A6"><span class="toc-text">自适应的宽度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%B0%BA%E5%AF%B8%E5%92%8C%E5%86%85%E9%83%A8%E5%B0%BA%E5%AF%B8"><span class="toc-text">外部尺寸和内部尺寸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%B0%BA%E5%AF%B8"><span class="toc-text">外部尺寸</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E5%AE%BD%E5%BA%A6"><span class="toc-text">流宽度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AE%BD%E5%BA%A6"><span class="toc-text">格式化宽度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E5%B0%BA%E5%AF%B8"><span class="toc-text">内部尺寸</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E8%A3%B9%E6%80%A7"><span class="toc-text">包裹性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E9%80%89%E6%9C%80%E5%B0%8F%E5%AE%BD%E5%BA%A6"><span class="toc-text">首选最小宽度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%BD%E5%BA%A6%E5%88%86%E7%A6%BB"><span class="toc-text">宽度分离</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%BD%E5%BA%A6%E5%88%86%E7%A6%BB"><span class="toc-text">为什么宽度分离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%BD%E5%BA%A6%E5%88%86%E7%A6%BB"><span class="toc-text">如何宽度分离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">其他解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#box-sizing"><span class="toc-text">box-sizing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%A5%E7%94%A8box-sizing"><span class="toc-text">滥用box-sizing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%85%E8%A6%81%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">必要的使用场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E5%BA%A6"><span class="toc-text">高度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94"><span class="toc-text">高度自适应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%BA%A6100"><span class="toc-text">高度100%</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%BD%E9%AB%98%E7%9A%84max%E5%92%8Cmin"><span class="toc-text">宽高的max和min</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BD%E9%AB%98%E8%8C%83%E5%9B%B4"><span class="toc-text">宽高范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-text">默认值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#max%E8%A6%86%E7%9B%96"><span class="toc-text">max覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#min%E8%A6%86%E7%9B%96"><span class="toc-text">min覆盖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%95%E5%BC%80%E4%B8%8E%E6%94%B6%E8%B5%B7%E5%8A%A8%E7%94%BB"><span class="toc-text">展开与收起动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8height%E5%AE%9E%E7%8E%B0"><span class="toc-text">使用height实现</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
