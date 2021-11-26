@@ -1,0 +1,63 @@
+.dasen-poster {
+    display: block;
+    width: 310px;
+    height: 80px;
+    border-top: black dashed 2px;
+    border-left: transparent solid 2px;
+    border-bottom: transparent solid 2px;
+    border-right: transparent solid 2px;
+    background-image: url(https://sadose.github.io/images/others/poster1.png);
+    background-size: cover;
+    transition: background-image 0.3s ease-in-out;
+}
+.dasen-poster:hover {
+    background-image: url(https://sadose.github.io/images/others/poster2.png);
+    transition: background-image 0.3s ease-in-out;
+    animation-name: borderchange;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+}
+@keyframes borderchange {
+    0% {
+        border-top: black dashed 2px;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        border-right-color: transparent;
+    }
+    10% {
+        border-top: black solid 2px;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        border-right-color: transparent;
+    }
+    30% {
+        border-top: rgb(255, 107, 107) solid 2px;
+        border-left-color: rgb(73, 73, 255);
+        border-bottom-color: transparent;
+        border-right-color: transparent;
+    }
+    50% {
+        border-top: rgb(255, 107, 107) solid 2px;
+        border-left-color: rgb(73, 73, 255);
+        border-bottom-color: rgb(255, 182, 24);
+        border-right-color: rgb(75, 216, 75);
+    }
+    60% {
+        border-top: rgb(255, 107, 107) dashed 2px;
+        border-left-color: rgb(73, 73, 255);
+        border-bottom-color: rgb(255, 182, 24);
+        border-right-color: rgb(75, 216, 75);
+    }
+    80% {
+        border-top: black dashed 2px;
+        border-left-color: transparent;
+        border-bottom-color: rgb(255, 182, 24);
+        border-right-color: rgb(75, 216, 75);
+    }
+    100% {
+        border-top: black dashed 2px;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        border-right-color: transparent;
+    }
+}
