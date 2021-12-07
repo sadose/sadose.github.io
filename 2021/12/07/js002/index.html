@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript学习笔记（2）：值、作用域与内存 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="原始值和引用值动态属性对于引用值而言，可以随时添加、修...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">JavaScript学习笔记（2）：值、作用域与内存</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/js.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JavaScript学习笔记（2）：值、作用域与内存</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 07, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4250</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="原始值和引用值"><a href="#原始值和引用值" class="headerlink" title="原始值和引用值"></a>原始值和引用值</h1><h2 id="动态属性"><a href="#动态属性" class="headerlink" title="动态属性"></a>动态属性</h2><p>对于引用值而言，可以随时添加、修改和删除其属性和方法。</p>
+<p>原始值不能有属性，尽管尝试给原始值添加属性不会报错。不会报错是因为原始值包装对象的存在，添加的属性添加在了包装对象上，但是添加给原始值的属性后续无法访问，因为包装对象没有被名称引用导致直接被垃圾回收了。</p>
+<p>如果使用的是new关键字，则JavaScript会创建一个Object类型的实例，但其行为类似原始值，这其实就类似于原始值的包装对象了。</p>
+<p>关于原始值包装对象在后续章节介绍。</p>
+<h2 id="复制值"><a href="#复制值" class="headerlink" title="复制值"></a>复制值</h2><p>在通过变量把一个原始值赋值到另一个变量时，原始值会被复制到新变量的位置，两个变量独立使用互不干扰。</p>
+<p>而引用值复制的值实际上是一个指针，它指向存储在堆内存中的对象，因此两个变量指向了同一个对象，通过两个变量对对象的修改会相互干扰。即浅拷贝。</p>
+<p>对于JS来说，没有能够深拷贝的方法，所有对对象的拷贝默认都是浅拷贝。</p>
+<h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><p>在传参时，如果参数是原始值，那么就跟原始值变量的复制一样，传递的是参数的值；如果是引用值，那么就跟引用值变量的复制一样，传递的也是“值”，但是指针的值。</p>
+<h2 id="类型的确定"><a href="#类型的确定" class="headerlink" title="类型的确定"></a>类型的确定</h2><p>如果要判断的是原始值的类型，那么就使用typeof操作符，它能区分出各种原始值的类型，但是如果判断的是对象。typeof操作符见“<a href="../../../../2021/12/04/js001/#typeof%E6%93%8D%E4%BD%9C%E7%AC%A6">语言基础</a>”章节。</p>
+<p>但typeof操作符对于null和对象都返回<code>&quot;object&quot;</code>，而我们更希望能够判断出某个对象属于哪个类时，使用instanceof操作符。instanceof操作符的具体原理和使用见“面向对象”章节。</p>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 原始值</span><br><span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;Dasen&quot;</span>;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> name === <span class="hljs-string">&quot;number&quot;</span>); <span class="hljs-comment">// false</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> name === <span class="hljs-string">&quot;string&quot;</span>); <span class="hljs-comment">// true</span><br><span class="hljs-comment">// 引用值</span><br><span class="hljs-keyword">let</span> arr = [];<br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> arr === <span class="hljs-string">&quot;object&quot;</span>); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(arr <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：对于正则表达式的检测，不同的浏览器可能结果不同，有的会返回<code>&quot;function&quot;</code>，有的会返回<code>&quot;object&quot;</code>。</p>
+<h1 id="上下文与作用域"><a href="#上下文与作用域" class="headerlink" title="上下文与作用域"></a>上下文与作用域</h1><h2 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h2><p>变量或函数的上下文决定了它们可以访问哪些数据和函数（方法）。</p>
+<p>每个上下文都有一个关联的<strong>变量对象</strong>，一般情况下我们无法通过代码访问变量对象，这个上下文中定义的所有变量和函数都存在于这个对象上。</p>
+<p><strong>全局上下文是最外层的上下文</strong>。根据ECMAScript实现的宿主环境，表示全局上下文的对象可能不一样。在浏览器中，全局上下文就是我们常说的<strong>window对象</strong>，因此<strong>所有通过var定义的全局变量和函数都会成为window对象的属性和方法</strong>。window对象在后续章节介绍。</p>
+<p>使用let和const的顶级声明不会定义在全局上下文中，但在作用域链解析上效果是一样的。</p>
+<p>上下文在其所有代码都执行完毕后会被销毁，包括定义在它上面的所有变量和函数都会一起销毁。</p>
+<p>每个函数调用都有自己的上下文，函数调用栈的实现是通过<strong>上下文栈</strong>来实现的。当代码执行流进入函数时，函数的上下文被推到一个上下文栈上。在函数执行完之后，上下文栈会弹出该函数上下文，将控制权返还给之前的执行上下文。</p>
+<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>上下文中的代码在执行的时候，会创建一个作用域链。</p>
+<p>代码正在执行的上下文的变量对象始终位于作用域链的最前端。作用域链中的下一个变量对象为包含当前上下文的上一级上下文的变量对象，再下一个对象来自再下一个包含上下文，以此类推直至全局上下文。全局上下文的变量对象始终是作用域链的最后一个变量对象，即作用域链起于当前上下文的变量对象，终于全局上下文的变量对象。</p>
+<p>如果上下文是函数，则其变量对象中包含了arguments变量和函数参数。</p>
+<p>在代码中访问某个名称时，就先从当前上下文中搜索是否有该名称，如果没有，就沿作用域链向上搜索，直至搜索到全局上下文依然找不到该名称，则抛出错误。</p>
+<h2 id="增强上下文"><a href="#增强上下文" class="headerlink" title="增强上下文"></a>增强上下文</h2><p>with语句和try-catch语句的catch块会对上下文进行增强，在原有的上下文最前端加入一个变量对象，使得执行的代码最先在该变量对象中进行搜索名称。</p>
+<p>对with语句来说，加入作用域链最前端的变量对象是指定的对象。关于with语句的内容见“<a href="../../../../2021/12/04/js001/#with%E8%AF%AD%E5%8F%A5">语言基础</a>”章节。</p>
+<p>try-catch语句的catch块则会创建一个新的变量对象，这个变量对象包含了抛出的错误对象。关于错误处理的内容见后续章节。</p>
+<h2 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h2><p>在使用var声明变量时，变量会被自动添加到最接近的可以约束到它的上下文（函数和全局）。因此在with语句中，最接近的上下文也是函数上下文。</p>
+<p>let和const声明的作用域为块作用域。严格来讲，let在JavaScript运行时中也会被提升，但由于“暂时性死区”的缘故，不能在声明之前使用let变量，所以从编码的角度来说，可以认为它不能提升。</p>
+<p>在使用无关键字声明的变量时，无论在哪里使用，变量都将会被加到全局上下文上。</p>
+<p>标识符查找需要查找作用域链的每一次变量对象，然而每个变量对象还有其原型链，因此<strong>其原型链上的内容也会被查找到</strong>。</p>
+<h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><p>JS使用的垃圾回收机制主要有<strong>标记清理</strong>和<strong>引用计数</strong>。</p>
+<h2 id="标记清理"><a href="#标记清理" class="headerlink" title="标记清理"></a>标记清理</h2><p>标记清理是最常用的垃圾回收策略。</p>
+<p>当变量进入上下文，比如在函数内部声明一个变量时，这个变量会被加上存在于上下文中的标记。而在上下文中的变量不应该释放它们的内存，因为只要上下文中的代码在运行，就有可能用到它们。当变量离开上下文时，也会被加上离开上下文的标记。</p>
+<p>而在实际中，垃圾回收程序运行的时候会标记内存中存储的所有变量，然后，它会将所有在上下文中的变量，以及被在上下文中的变量引用的变量的标记去掉，在此之后还有标记的变量就是待删除的了，原因是任何在上下文中的变量都访问不到它们了。随后垃圾回收程序做一次内存清理，销毁带标记的所有值并收回它们的内存。</p>
+<p>而给变量加标记的方式有很多种。比如，当变量进入上下文时，反转某一位；或者可以维护“在上下文中”和“不在上下文中”两个变量列表，可以把变量从一个列表转移到另一个列表。</p>
+<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p>引用计数策略的思路是对每个值都记录它被引用的次数。</p>
+<p>声明变量并给它赋一个引用值时，这个值的引用数为1。如果同一个值又被赋给另一个变量，那么引用数加1。类似地，如果保存对该值引用的变量被其他值给覆盖了，那么引用数减1。当一个值的引用数为0时，就说明没办法再访问到这个值了，因此可以安全地收回其内存了。垃圾回收程序下次运行的时候就会释放引用数为0的值的内存。</p>
+<p>但是引用计数策略一般使用较少，因为它存在很大的弊端：<strong>无法解决循环引用的问题</strong>，对于循环引用的一系列变量，在它们互相的引用断开之前永远也不会被回收。</p>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><p>垃圾回收程序会周期性运行。因此我们可以通过一些编码技巧来辅助提升程序的性能</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>解除引用：将内存占用量保持在一个较小的值可以让页面性能更好，优化内存占用的最佳手段就是保证在执行代码时只保存必要的数据，如果数据不再必要，那么把它设置为null，从而释放其引用。这最适合全局变量和全局对象的属性。解除引用的关键在于确保相关的值已经不在上下文里了，因此它在下次垃圾回收时会被回收。</p>
+<p>使用let和const声明：ES6增加这两个关键字不仅有助于改善代码风格，而且同样有助于改进垃圾回收的过程。因为const和let都以块（而非函数）为作用域，所以相比于使用var，使用这两个新关键字可能会更早地让垃圾回收程序介入，尽早回收应该回收的内存。</p>
+<h3 id="隐藏类"><a href="#隐藏类" class="headerlink" title="隐藏类"></a>隐藏类</h3><p>V8引擎会进行“隐藏类”的优化。</p>
+<p>运行期间，V8会将创建的对象与隐藏类关联起来，以跟踪它们的属性特征。能够共享相同隐藏类的对象性能会更好，V8会针对这种情况进行优化，但不一定总能够做到。</p>
+<p>V8会在后台配置，让这两个共享同一个构造函数和原型的类实例共享相同的隐藏类。</p>
+<p>会使隐藏类优化失效的情况是动态地添加或删除了对象属性。解决方案就是避免JavaScript的“先创建再补充”式的动态属性赋值，也不使用delete操作符删除对象属性，从而在构造函数中一次性声明所有属性，可以让实例共享一个隐藏类，带来潜在的性能提升。</p>
+<h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p>JavaScript中的内存泄漏大部分是由不合理的引用导致的。常见的内存泄漏的情况：</p>
+<p>（1）意外声明全局变量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setName</span>(<span class="hljs-params"></span>) </span>&#123;<br>    name = <span class="hljs-string">&quot;Dasen&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>要防止一个变量意外地成为全局变量，注意this的使用和let、const声明符的使用，并且最好永远不要使用无声明的变量。</p>
+<p>（2）定时器造成的内存泄漏：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;Dasen&quot;</span>;<br><span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(name);<br>&#125;, <span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
+<p>只要定时器一直运行，回调函数中引用的name就会一直占用内存。</p>
+<p>（3）闭包造成的内存泄漏：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> outer = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;Dasen&quot;</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>调用<code>outer()</code>会导致分配给name的内存被泄漏，代码执行后创建了一个内部闭包，只要返回的函数存在就不能清理name，闭包一直在引用着它。如果这里的数据不仅仅是一个字符串，而是一个占用了更大内存的对象，就可能产生大问题。</p>
+<h3 id="静态分配与对象池"><a href="#静态分配与对象池" class="headerlink" title="静态分配与对象池"></a>静态分配与对象池</h3><p>如果其他能使用的优化手段已经全部使用了，最后就只能想办法压榨浏览器的性能了，考虑减少浏览器垃圾回收的次数来优化性能。</p>
+<p>浏览器发现某部分代码的变量更替速度很快（即变量很快被创建又很快被销毁）时，就会加快这里的垃圾回收程序的运行速度。优化的办法是复用对象，使用<strong>对象池</strong>，不频繁地创建和销毁对象。</p>
+<p>但是注意在使用数组作为对象池时，<strong>要从一开始就确定好一个容量足够的对象池</strong>，否则之后再扩容反而导致了额外的垃圾回收（创建扩容后的数组，回收之前的数组）。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/12/07/js002/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;07&#x2F;js002&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;07&#x2F;js002&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/12/04/js001/">JavaScript学习笔记（1）：语言基础 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E5%80%BC%E5%92%8C%E5%BC%95%E7%94%A8%E5%80%BC"><span class="toc-text">原始值和引用值</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7"><span class="toc-text">动态属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E5%80%BC"><span class="toc-text">复制值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="toc-text">传递参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%A1%AE%E5%AE%9A"><span class="toc-text">类型的确定</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">上下文与作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">作用域链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">增强上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="toc-text">变量声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E7%90%86"><span class="toc-text">标记清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="toc-text">引用计数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-text">内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-text">变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E7%B1%BB"><span class="toc-text">隐藏类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="toc-text">内存泄漏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%88%86%E9%85%8D%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B1%A0"><span class="toc-text">静态分配与对象池</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
