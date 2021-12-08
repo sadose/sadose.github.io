@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript学习笔记（3）：基本引用类型 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="DateDate类型将日期保存为自协调世界时（UTC）...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">JavaScript学习笔记（3）：基本引用类型</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/js.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JavaScript学习笔记（3）：基本引用类型</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 08, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11921</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h1><p>Date类型将日期保存为自协调世界时（UTC）时间1970年1月1日午夜（零时）至今所经过的毫秒数。使用这种存储格式，Date类型可以精确表示1970年1月1日之前及之后285616年的日期。</p>
+<h2 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h2><h3 id="创建日期"><a href="#创建日期" class="headerlink" title="创建日期"></a>创建日期</h3><p>使用new操作符调用Date构造函数创建日期对象。在不给Date构造函数传参数的情况下，创建的对象将保存当前日期和时间，静态方法<code>Date.now()</code>方法也是获得当前的时间毫秒数。要基于其他日期和时间创建日期对象，必须传入其毫秒表示。</p>
+<p>更方便的方法是使用<code>Date.parse()</code>和<code>Date.UTC()</code>来返回一个时间的毫秒表示，用以初始化一个Date对象。</p>
+<p><code>Date.parse()</code>方法接收一个表示日期的字符串参数，尝试将这个字符串转换为表示该日期的毫秒数。可接收的参数格式有：</p>
+<ul>
+<li>“月/日/年”，如<code>&quot;1/1/2020&quot;</code>；</li>
+<li>“月名 日, 年”，如<code>&quot;May 23, 2019&quot;</code>；</li>
+<li>“周几 月名 日 年 时:分:秒 时区”，如<code>&quot;Tue May 232019 00:00:00 GMT-0700&quot;</code>；</li>
+<li>ISO 8601扩展格式“YYYY-MM-DDTHH:mm:ss.sssZ”，如<code>&quot;2019-05-23T00:00:00&quot;</code>。</li>
+</ul>
+<p>如果传给<code>Date.parse()</code>的字符串并不表示日期，则该方法会返回NaN。</p>
+<p><code>Date.UTC()</code>方法也返回日期的毫秒表示，但使用的是跟<code>Date.parse()</code>不同的信息来生成这个值。</p>
+<p>传给<code>Date.UTC()</code>的参数是年、零起点月数（0<del>11）、日（1</del>31）、时（0~23）、分、秒和毫秒。这些参数中，只有年和月是必需的。</p>
+<p>如果直接把表示日期的字符串传给Date构造函数，那么Date会自动调用<code>Date.parse()</code>。</p>
+<p>如果把传给<code>Date.UTC()</code>的参数传给Date构造函数，同样会默认调用<code>Date.UTC()</code>，但是区别是显式使用<code>Date.UTC()</code>生成的是格林威治标准时间，而直接使用Date构造函数生成的是本地时区的时间。</p>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> dt1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();<br><span class="hljs-keyword">let</span> dt2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.now());<br><span class="hljs-keyword">let</span> dt3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.parse(<span class="hljs-string">&quot;5/1/2020&quot;</span>));<br><span class="hljs-keyword">let</span> dt4 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.parse(<span class="hljs-string">&quot;May 1, 2020&quot;</span>));<br><span class="hljs-keyword">let</span> dt5 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.parse(<span class="hljs-string">&quot;我不是日期&quot;</span>));<br><span class="hljs-keyword">let</span> dt6 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.UTC(<span class="hljs-number">2020</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">13</span>,<span class="hljs-number">14</span>,<span class="hljs-number">5</span>,<span class="hljs-number">21</span>));<br><span class="hljs-keyword">let</span> dt7 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">&quot;5/1/2020&quot;</span>);<br><span class="hljs-keyword">let</span> dt8 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2020</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">13</span>,<span class="hljs-number">14</span>,<span class="hljs-number">5</span>,<span class="hljs-number">21</span>);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>(dt1)); <span class="hljs-comment">// 1638845562036</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>(dt2)); <span class="hljs-comment">// 1638845562036</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>(dt3)); <span class="hljs-comment">// 1588262400000</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>(dt4)); <span class="hljs-comment">// 1588262400000</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>(dt5)); <span class="hljs-comment">// NaN</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>(dt6)); <span class="hljs-comment">// 1588338845021</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>(dt7)); <span class="hljs-comment">// 1588262400000</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>(dt8)); <span class="hljs-comment">// 1588338845021</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="重写的继承方法"><a href="#重写的继承方法" class="headerlink" title="重写的继承方法"></a>重写的继承方法</h3><p>Date类型重写了<code>toLocaleString()</code>、<code>toString()</code>和<code>valueOf()</code>方法。</p>
+<ul>
+<li><code>toLocaleString()</code>方法：返回与浏览器运行的本地环境一致的日期和时间，格式中包含针对时间的AM（上午）或PM（下午），但不包含时区信息（具体格式可能因浏览器而不同）。</li>
+<li><code>toString()</code>方法：返回带时区信息的日期和时间，时间是以24小时制（0~23）表示的。</li>
+<li><code>valueOf()</code>方法：返回的是日期的毫秒表示，操作符（如小于号和大于号）可以直接使用它返回的值。</li>
+</ul>
+<p>对于上述日期对象，有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(dt1); <span class="hljs-comment">// Tue Dec 07 2021 10:56:26 GMT+0800 (中国标准时间)</span><br><span class="hljs-built_in">console</span>.log(dt1.toLocaleString()); <span class="hljs-comment">// 2021/12/7 上午10:56:26</span><br><span class="hljs-built_in">console</span>.log(dt1.valueOf()); <span class="hljs-comment">// 1638845786774</span><br></code></pre></td></tr></table></figure>
+
+<p>将日期对象直接输出在控制台会自动调用它的<code>toString()</code>方法。</p>
+<h2 id="日期格式化方法"><a href="#日期格式化方法" class="headerlink" title="日期格式化方法"></a>日期格式化方法</h2><p>Date类型有几个专门用于格式化日期的方法，它们都会返回字符串：</p>
+<ul>
+<li><code>toDateString()</code>：显示日期中的周几、月、日、年（格式特定于实现）；</li>
+<li><code>toTimeString()</code>：显示日期中的时、分、秒和时区（格式特定于实现）；</li>
+<li><code>toLocaleDateString()</code>：显示日期中的周几、月、日、年（格式特定于实现和地区）；</li>
+<li><code>toLocaleTimeString()</code>：显示日期中的时、分、秒（格式特定于实现和地区）；</li>
+<li><code>toUTCString()</code>：显示完整的UTC日期（格式特定于实现）。</li>
+</ul>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> dt = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();<br><span class="hljs-built_in">console</span>.log(dt.toDateString()); <span class="hljs-comment">// Tue Dec 07 2021</span><br><span class="hljs-built_in">console</span>.log(dt.toTimeString()); <span class="hljs-comment">// 11:02:35 GMT+0800 (中国标准时间)</span><br><span class="hljs-built_in">console</span>.log(dt.toLocaleDateString()); <span class="hljs-comment">// 2021/12/7</span><br><span class="hljs-built_in">console</span>.log(dt.toLocaleTimeString()); <span class="hljs-comment">// 上午11:02:35</span><br><span class="hljs-built_in">console</span>.log(dt.toUTCString()); <span class="hljs-comment">// Tue, 07 Dec 2021 03:02:35 GMT</span><br><span class="hljs-built_in">console</span>.log(dt.toJSON()); <span class="hljs-comment">// 2021-12-07T03:02:35.844Z</span><br></code></pre></td></tr></table></figure>
+
+<p>这些方法的效果同样可能因浏览器而异。</p>
+<p>其他还有一些时间和日期方法，比如获得日期中的时分秒的值、设置时分秒中的某个值等，需要用到时再查API即可。</p>
+<h1 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h1><h2 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h2><p>ECMAScript通过RegExp类型支持正则表达式。正则表达式使用类似Perl的简洁语法来创建：</p>
+<p><code>let expression = /pattern/flags;</code></p>
+<p>这个正则表达式的pattern（模式）可以是任何简单或复杂的正则表达式，包括字符类、限定符、分组、向前查找和反向引用。每个正则表达式可以带零个或多个flags（标记），用于控制正则表达式的行为。下面给出了表示匹配模式的标记：</p>
+<ul>
+<li>g：全局模式，表示查找字符串的全部内容，而不是找到第一个匹配的内容就结束。</li>
+<li>i：不区分大小写，表示在查找匹配时忽略pattern和字符串的大小写。</li>
+<li>m：多行模式，表示查找到一行文本末尾时会继续查找。</li>
+<li>y：粘附模式，表示只查找从lastIndex开始的字符串。</li>
+<li>u: Unicode模式，启用Unicode匹配。</li>
+<li>s:dotAll模式，表示元字符．匹配任何字符（包括\n或\r）。</li>
+</ul>
+<p>除了直接创建之外，正则表达式还可以使用构造函数来创建。</p>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> p1 = <span class="hljs-regexp">/at/g</span>; <span class="hljs-comment">// 匹配字符串中所有的&quot;at&quot;</span><br><span class="hljs-keyword">let</span> p2 = <span class="hljs-regexp">/[bc]at/i</span>; <span class="hljs-comment">// 匹配第一个&quot;bat&quot;或&quot;cat&quot;，忽略大小写</span><br><span class="hljs-keyword">let</span> p3 = <span class="hljs-regexp">/.at/gi</span>; <span class="hljs-comment">// 将全局模式和忽略大小写结合</span><br><span class="hljs-keyword">let</span> p4 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">&quot;.at&quot;</span>, <span class="hljs-string">&quot;gi&quot;</span>); <span class="hljs-comment">// 使用构造函数创建，等价于p3</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="正则表达式实例属性"><a href="#正则表达式实例属性" class="headerlink" title="正则表达式实例属性"></a>正则表达式实例属性</h2><p>每个正则表达式实例有如下属性：</p>
+<ul>
+<li>global：布尔值，表示是否设置了g标记。</li>
+<li>ignoreCase：布尔值，表示是否设置了i标记。</li>
+<li>unicode：布尔值，表示是否设置了u标记。</li>
+<li>sticky：布尔值，表示是否设置了y标记。</li>
+<li>lastIndex：整数，表示在源字符串中下一次搜索的开始位置，始终从0开始。</li>
+<li>multiline：布尔值，表示是否设置了m标记。</li>
+<li>dotAll：布尔值，表示是否设置了s标记。</li>
+<li>source：正则表达式的字面量字符串（不是传给构造函数的模式字符串），没有开头和结尾的斜杠。</li>
+<li>flags：正则表达式的标记字符串。始终以字面量而非传入构造函数的字符串模式形式返回（没有前后斜杠）。</li>
+</ul>
+<p>通过这些属性可以获得正则表达式的信息，但是实际中使用不多。</p>
+<h2 id="正则表达式实例方法"><a href="#正则表达式实例方法" class="headerlink" title="正则表达式实例方法"></a>正则表达式实例方法</h2><h3 id="exec方法"><a href="#exec方法" class="headerlink" title="exec方法"></a>exec方法</h3><p>RegExp实例的主要方法是<code>exec()</code>，主要用于配合捕获组使用。</p>
+<p>这个方法只接收一个参数，即要应用模式的字符串。</p>
+<p>如果找到了匹配项，则返回包含第一个匹配信息的数组；如果没找到匹配项，则返回null。</p>
+<p>返回的数组是包含两个额外属性index和input的Array实例：index是字符串中匹配模式的起始位置，input是要查找的字符串。这个数组的第一个元素是匹配整个模式的字符串，其他元素是与表达式中的捕获组匹配的字符串。如果模式中没有捕获组，则数组只包含第一个元素。</p>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;mom and dad and baby&quot;</span>;<br><span class="hljs-keyword">let</span> pattern = <span class="hljs-regexp">/mom( and dad( and baby)?)?/gi</span>;<br><span class="hljs-keyword">let</span> matches = pattern.exec(text);<br><span class="hljs-built_in">console</span>.log(matches.index); <span class="hljs-comment">// 0</span><br><span class="hljs-built_in">console</span>.log(matches.input); <span class="hljs-comment">// &quot;mom and dad and baby&quot;</span><br><span class="hljs-built_in">console</span>.log(matches[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;mom and dad and baby&quot;</span><br><span class="hljs-built_in">console</span>.log(matches[<span class="hljs-number">1</span>]); <span class="hljs-comment">// &quot; and dad and baby&quot;</span><br><span class="hljs-built_in">console</span>.log(matches[<span class="hljs-number">2</span>]); <span class="hljs-comment">// &quot; and baby&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>如果模式设置了全局标记，则每次调用<code>exec()</code>方法会返回下一个匹配的信息，并更新lastIndex的值。如果没有设置全局标记，则无论对同一个字符串调用多少次<code>exec()</code>，也只会返回第一个匹配的信息。</p>
+<h3 id="test方法"><a href="#test方法" class="headerlink" title="test方法"></a>test方法</h3><p><code>test()</code>方法接收一个字符串参数，如果输入的文本与模式匹配，则参数返回true，否则返回false。</p>
+<p>这个方法适用于只想测试模式是否匹配，而不需要实际匹配内容的情况，因此经常用在if语句中。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="正则表达式构造函数属性"><a href="#正则表达式构造函数属性" class="headerlink" title="正则表达式构造函数属性"></a>正则表达式构造函数属性</h3><p>正则表达式的构造函数上有一些属性，是类似于静态属性的存在，这些属性适用于作用域中的所有正则表达式，而且会根据最后执行的正则表达式操作而变化，主要有下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">全名</th>
+<th align="center">简写</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">input</td>
+<td align="center">$_</td>
+<td align="center">最后搜索的字符串（非标准特性）</td>
+</tr>
+<tr>
+<td align="center">lastMatch</td>
+<td align="center">$&amp;</td>
+<td align="center">最后匹配的文本</td>
+</tr>
+<tr>
+<td align="center">lastParen</td>
+<td align="center">$+</td>
+<td align="center">最后匹配的捕获组（非标准特性）</td>
+</tr>
+<tr>
+<td align="center">leftContext</td>
+<td align="center">$</td>
+<td align="center">input字符串中出现在lastMatch前面的文本</td>
+</tr>
+<tr>
+<td align="center">rightContext</td>
+<td align="center">$&#39;</td>
+<td align="center">input字符串中出现在lastMatch后面的文本</td>
+</tr>
+</tbody></table>
+<h3 id="未实现特性"><a href="#未实现特性" class="headerlink" title="未实现特性"></a>未实现特性</h3><p>JavaScript中有一些不支持的正则表达式的高级特性，主要包括：</p>
+<ul>
+<li>\A和\Z锚（分别匹配字符串的开始和末尾）；</li>
+<li>联合及交叉类；</li>
+<li>原子组；</li>
+<li>x（忽略空格）匹配模式；</li>
+<li>条件式匹配；</li>
+<li>正则表达式注释。</li>
+</ul>
+<h1 id="原始值包装类型"><a href="#原始值包装类型" class="headerlink" title="原始值包装类型"></a>原始值包装类型</h1><p>当用到某个原始值的方法或属性时，后台都会创建一个相应的原始包装类型的临时对象，从而暴露出操作原始值的各种方法，使得我们也可以对原始值使用各种方法。</p>
+<p>原始值包装类型和普通类型的区别只在于对象的生命周期。使用new创建的对象实例会在离开作用域之后被销毁，而代码执行过程中自动创建的包装对象只存在于访问它的那行代码的执行期间，用后就被销毁了。</p>
+<h2 id="Object包装"><a href="#Object包装" class="headerlink" title="Object包装"></a>Object包装</h2><p>使用new来新建一个Object对象并给它传递一个原始值，它会自动将该原始值包装为对应类型的对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>(<span class="hljs-string">&quot;Dasen&quot;</span>);<br><span class="hljs-keyword">let</span> n = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>(<span class="hljs-number">2</span>);<br><span class="hljs-keyword">let</span> b = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>(<span class="hljs-literal">true</span>);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> s); <span class="hljs-comment">// object</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> n); <span class="hljs-comment">// object</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> b); <span class="hljs-comment">// object</span><br><span class="hljs-built_in">console</span>.log(s <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">String</span>); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(n <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Number</span>); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(b <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Boolean</span>); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<p>这里要注意这与调用转型函数不一样，这里不是类型转换，而是包装。</p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>String对象的方法可以在所有字符串原始值上调用。3个继承的方法<code>valueOf()</code>、<code>toLocaleString()</code>和<code>toString()</code>都返回对象的原始字符串值。</p>
+<p>每个String对象都有一个length属性，表示字符串中字符的数量。</p>
+<p>String包装类型提供了许多方法来操作字符串。</p>
+<h3 id="字符与编码"><a href="#字符与编码" class="headerlink" title="字符与编码"></a>字符与编码</h3><p>对于UTF16字符，有以下方法：</p>
+<ul>
+<li><code>charAt()</code>方法：返回给定索引位置的字符。</li>
+<li><code>charCodeAt()</code>方法：可以查看指定码元的字符编码，这个方法返回指定索引位置的码元值。</li>
+<li><code>fromCharCode()</code>方法：用于根据给定的UTF-16码元创建字符串中的字符。这个方法可以接受任意多个数值，并返回将所有数值对应的字符拼接起来的字符串。</li>
+</ul>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&quot;我是大森&quot;</span>;<br><span class="hljs-built_in">console</span>.log(s.charAt(<span class="hljs-number">1</span>)); <span class="hljs-comment">// 是</span><br><span class="hljs-built_in">console</span>.log(s.charCodeAt(<span class="hljs-number">2</span>)); <span class="hljs-comment">// 22823</span><br><span class="hljs-built_in">console</span>.log(s.charCodeAt(<span class="hljs-number">3</span>).toString(<span class="hljs-number">16</span>)); <span class="hljs-comment">// 68ee</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">String</span>.fromCharCode(<span class="hljs-number">22823</span>,<span class="hljs-number">0x68EE</span>)); <span class="hljs-comment">// 大森</span><br></code></pre></td></tr></table></figure>
+
+<p>对于U+0000~U+FFFF范围内的字符，<code>length</code>、<code>charAt()</code>、<code>charCodeAt()</code>和<code>fromCharCode()</code>返回的结果都跟预期是一样的，因为这些操作都是基于UTF16编码的字符串操作的，而对于UTF32编码（即对每个超出范围的字符添加一个16位的增补平面表示），这些操作还把它们作为16位编码来操作，就会把32位编码拆开，就出现了错误，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&quot;我是大森😊&quot;</span>;<br><span class="hljs-built_in">console</span>.log(s.charAt(<span class="hljs-number">4</span>)); <span class="hljs-comment">//  </span><br><span class="hljs-built_in">console</span>.log(s.charAt(<span class="hljs-number">5</span>)); <span class="hljs-comment">//  </span><br><span class="hljs-built_in">console</span>.log(s.charCodeAt(<span class="hljs-number">4</span>)); <span class="hljs-comment">// 55357</span><br><span class="hljs-built_in">console</span>.log(s.charCodeAt(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 56842</span><br></code></pre></td></tr></table></figure>
+
+<p>这时要想正确操作，需要将一个32位编码视为两个16位编码构成的代理对，并使用<code>codePointAt()</code>来代替<code>charCodeAt()</code>，使用<code>fromCodePoint()</code>来代替<code>fromCharCode()</code>，这些操作会识别出完整的32位编码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&quot;我是大森😊&quot;</span>;<br><span class="hljs-built_in">console</span>.log(s.charAt(<span class="hljs-number">4</span>)); <span class="hljs-comment">//  </span><br><span class="hljs-built_in">console</span>.log(s.charAt(<span class="hljs-number">5</span>)); <span class="hljs-comment">//  </span><br><span class="hljs-built_in">console</span>.log(s.charCodeAt(<span class="hljs-number">4</span>)); <span class="hljs-comment">// 55357</span><br><span class="hljs-built_in">console</span>.log(s.charCodeAt(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 56842</span><br><span class="hljs-built_in">console</span>.log(s.codePointAt(<span class="hljs-number">4</span>)); <span class="hljs-comment">// 128522</span><br><span class="hljs-built_in">console</span>.log(s.codePointAt(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 56842</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">String</span>.fromCharCode(<span class="hljs-number">55357</span>,<span class="hljs-number">56842</span>)); <span class="hljs-comment">// 😊</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">String</span>.fromCodePoint(<span class="hljs-number">128522</span>)); <span class="hljs-comment">// 😊</span><br></code></pre></td></tr></table></figure>
+
+<p>对于字符串的迭代器，不用关心编码的问题，它总是能返回正确的结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&quot;我是大森😊&quot;</span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> c <span class="hljs-keyword">of</span> s) &#123;<br>    <span class="hljs-built_in">console</span>.log(c);<br>&#125;<br><span class="hljs-comment">// 我</span><br><span class="hljs-comment">// 是</span><br><span class="hljs-comment">// 大</span><br><span class="hljs-comment">// 森</span><br><span class="hljs-comment">// 😊</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="字符串操作方法"><a href="#字符串操作方法" class="headerlink" title="字符串操作方法"></a>字符串操作方法</h3><p>(1)字符串操作方法：</p>
+<ul>
+<li><code>concat()</code>方法：用于将一个或多个字符串拼接成一个新字符串。当然更推荐使用加号拼接字符串。</li>
+<li><code>slice()</code>方法：获得子串。两个参数分别是开始和结束的索引区间（左闭右开）；当两个参数中有负值时，负值解释为字符串长度加上这个负值。</li>
+<li><code>substring()</code>方法：获得子串。两个参数分别是开始和结束的索引区间（左闭右开）；当两个参数中有负值时，负值都会被当作0；</li>
+<li><code>substr()</code>方法：获得子串。两个参数分别是开始索引和子串长度；当两个参数中有负值时，第一个参数负值会解释为字符串长度加上这个负值；第二个参数的负值会被当作0。</li>
+</ul>
+<p>有如下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&quot;Hello&quot;</span>;<br><span class="hljs-built_in">console</span>.log(s.concat(<span class="hljs-string">&quot; world&quot;</span>, <span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// Hello world!</span><br><span class="hljs-built_in">console</span>.log(s.slice(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>)); <span class="hljs-comment">// ell</span><br><span class="hljs-built_in">console</span>.log(s.slice(<span class="hljs-number">1</span>)); <span class="hljs-comment">// ello</span><br><span class="hljs-built_in">console</span>.log(s.slice(-<span class="hljs-number">4</span>,-<span class="hljs-number">1</span>)); <span class="hljs-comment">// ell</span><br><span class="hljs-built_in">console</span>.log(s.substring(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>)); <span class="hljs-comment">// ell</span><br><span class="hljs-built_in">console</span>.log(s.substring(<span class="hljs-number">1</span>)); <span class="hljs-comment">// ello</span><br><span class="hljs-built_in">console</span>.log(s.substring(-<span class="hljs-number">4</span>,<span class="hljs-number">4</span>)); <span class="hljs-comment">// Hell</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;输出空串：&quot;</span>, s.substring(-<span class="hljs-number">4</span>,-<span class="hljs-number">1</span>)); <span class="hljs-comment">// 输出空串：</span><br><span class="hljs-built_in">console</span>.log(s.substr(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>)); <span class="hljs-comment">// ell</span><br><span class="hljs-built_in">console</span>.log(s.substr(-<span class="hljs-number">4</span>,<span class="hljs-number">3</span>)); <span class="hljs-comment">// ell</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;输出空串：&quot;</span>, s.substr(-<span class="hljs-number">4</span>,-<span class="hljs-number">1</span>)); <span class="hljs-comment">// 输出空串：</span><br></code></pre></td></tr></table></figure>
+
+<p>（2）字符串位置方法：</p>
+<ul>
+<li><code>indexOf()</code>方法：查找字符串，返回查找的索引，没找到返回-1。第二个可选的参数是开始查找的索引。</li>
+<li><code>lastIndexOf()</code>方法：查找字符串，但从后往前查找，返回查找的索引，没找到返回-1。第二个可选的参数是开始查找的索引。</li>
+</ul>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&quot;Hello world!&quot;</span>;<br><span class="hljs-built_in">console</span>.log(s.indexOf(<span class="hljs-string">&quot;o&quot;</span>)); <span class="hljs-comment">// 4</span><br><span class="hljs-built_in">console</span>.log(s.lastIndexOf(<span class="hljs-string">&quot;o&quot;</span>)); <span class="hljs-comment">// 7</span><br><span class="hljs-built_in">console</span>.log(s.indexOf(<span class="hljs-string">&quot;o&quot;</span>,<span class="hljs-number">5</span>)); <span class="hljs-comment">// 7</span><br><span class="hljs-built_in">console</span>.log(s.lastIndexOf(<span class="hljs-string">&quot;o&quot;</span>,<span class="hljs-number">6</span>)); <span class="hljs-comment">// 4</span><br></code></pre></td></tr></table></figure>
+
+<p>（3）字符串包含方法：<br>ECMAScript 6增加了三个用于判断字符串中是否包含另一个字符串的方法：</p>
+<ul>
+<li><code>startsWith()</code>方法：当子串存在于字符串开头时返回true，否则返回false。</li>
+<li><code>endsWith()</code>方法：当子串存在于字符串末尾时返回true，否则返回false。</li>
+<li><code>includes()</code>方法：当子串存在于字符串中时返回true，否则返回false。</li>
+</ul>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&quot;hello&quot;</span>;<br><span class="hljs-built_in">console</span>.log(s.startsWith(<span class="hljs-string">&quot;he&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(s.startsWith(<span class="hljs-string">&quot;lo&quot;</span>)); <span class="hljs-comment">// false</span><br><span class="hljs-built_in">console</span>.log(s.endsWith(<span class="hljs-string">&quot;he&quot;</span>)); <span class="hljs-comment">// false</span><br><span class="hljs-built_in">console</span>.log(s.endsWith(<span class="hljs-string">&quot;lo&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(s.includes(<span class="hljs-string">&quot;ell&quot;</span>)); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<p>（4）大小写转换方法：</p>
+<ul>
+<li><code>toLowerCase()</code>方法：转为小写。</li>
+<li><code>toLocaleLowerCase()</code>方法：依据具体地区的规则转为小写。一般与<code>toLowerCase()</code>相同。</li>
+<li><code>toUpperCase()</code>方法：转为大写。</li>
+<li><code>toLocaleUpperCase()</code>方法：依据具体地区的规则转为大写。一般与<code>toUpperCase()</code>相同。</li>
+</ul>
+<p>（5）字符串模式匹配方法：</p>
+<ul>
+<li><code>match()</code>方法：接收一个字符串或正则表达式，返回的结果与正则表达式的exec方法一样。</li>
+<li><code>search()</code>方法：参数同上，但返回第一个匹配的索引位置，没找到返回-1。</li>
+<li><code>replace()</code>方法：第一个参数同上，第二个参数为一个字符串或一个函数；如果第一个参数为字符串，那么只会替换第一个匹配的子串，如果想替换全部，则需要提供一个标记为全局模式的正则表达式；第二个参数为一个函数时，这个函数会收到三个参数：匹配的字符串（或捕获组）、匹配项的开始位置、整个字符串，返回一个字符串，表示替换为的字符串。</li>
+<li><code>split()</code>方法：第一个参数为字符串或正则表达式，依据此来分割原字符串，返回一个数组，第二个参数指定返回的数组大小不超过多少。</li>
+</ul>
+<p>（6）其他方法：</p>
+<ul>
+<li><code>trim()</code>方法：去除字符串前后空白符。</li>
+<li><code>trimRight()</code>方法：去除右侧空白符。</li>
+<li><code>trimLeft()</code>方法：去除左侧空白符。</li>
+<li><code>repeat()</code>方法：字符串重复若干次。参数为重复的次数。</li>
+<li><code>padStart()</code>方法：补字符串到指定长度，给定字符串重复补在开头。</li>
+<li><code>padEnd()</code>方法：补字符串到指定长度，给定字符串重复补在末尾。</li>
+<li><code>localeCompare()</code>方法：比较字符串，按照字母表顺序（取决于各国语言的字母表），原字符串排在参数字符串前面返回-1（或其他负值），原字符串排在参数字符串后面返回1（或其他正值），相等返回0。</li>
+</ul>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;   hello \n &quot;</span>.trim()); <span class="hljs-comment">// hello</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;呐呐&quot;</span>.repeat(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 呐呐呐呐呐呐呐呐呐呐</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Dasen&quot;</span>.padEnd(<span class="hljs-number">10</span>,<span class="hljs-string">&quot;-&quot;</span>).padStart(<span class="hljs-number">15</span>,<span class="hljs-string">&quot;-&quot;</span>)); <span class="hljs-comment">// -----Dasen-----</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h2><p>要创建一个Boolean对象，就使用Boolean构造函数并传入true或false。</p>
+<p>Boolean的实例会重写<code>valueOf()</code>方法，返回一个原始值true或false。<code>toString()</code>方法被调用时也会被覆盖，返回字符串<code>&quot;true&quot;</code>或<code>&quot;false&quot;</code>。</p>
+<p>使用Boolean对象会导致无论是真值还是假值包装之后都会被判断为真值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> b1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>(<span class="hljs-literal">true</span>);<br><span class="hljs-keyword">let</span> b2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>(<span class="hljs-literal">false</span>);<br><span class="hljs-keyword">if</span> (b1) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;b1解释为真&quot;</span>);<br>&#125;<br><span class="hljs-keyword">if</span> (b2) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;b2解释为真&quot;</span>);<br>&#125;<br><span class="hljs-comment">// b1解释为真</span><br><span class="hljs-comment">// b2解释为真</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><p>与Boolean类型一样，Number类型重写了<code>valueOf()</code>、<code>toLocaleString()</code>和<code>toString()</code>方法。<code>valueOf()</code>方法返回Number对象表示的原始数值，另外两个方法返回数值字符串。<code>toString()</code>方法可选地接收一个表示基数的参数，并返回相应基数形式的数值字符串。</p>
+<p>该包装类型还具有以下常用方法：</p>
+<ul>
+<li><code>toFixed()</code>方法：返回包含指定小数点位数的数值字符串。</li>
+<li><code>toExponential()</code>方法：返回以科学记数法（也称为指数记数法）表示的数值字符串。</li>
+<li><code>toPrecision()</code>方法：会根据情况返回最合理的输出结果，可能是固定长度，也可能是科学记数法形式。这个方法接收一个参数，表示结果中数字的总位数（不包含指数）。本质上，<code>toPrecision()</code>方法会根据数值和精度来决定调用<code>toFixed()</code>还是<code>toExponential()</code>。</li>
+</ul>
+<p>为了以正确的小数位精确表示数值，这3个方法都会进行四舍五入。</p>
+<p>有如下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> n = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">3</span>);<br><span class="hljs-keyword">let</span> f = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">3.1415926535</span>);<br><span class="hljs-built_in">console</span>.log(n.toString(<span class="hljs-number">2</span>)); <span class="hljs-comment">// 11</span><br><span class="hljs-built_in">console</span>.log(f.toFixed(<span class="hljs-number">2</span>)); <span class="hljs-comment">// 3.14</span><br><span class="hljs-built_in">console</span>.log(f.toExponential()); <span class="hljs-comment">// 3.1415926535e+0</span><br><span class="hljs-built_in">console</span>.log(f.toPrecision(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 3.1416</span><br></code></pre></td></tr></table></figure>
+
+<p>这些包装类型的方法都可以在Number原始值上调用。</p>
+<h1 id="单例内置对象"><a href="#单例内置对象" class="headerlink" title="单例内置对象"></a>单例内置对象</h1><p>内置对象的定义是“任何由ECMAScript实现提供、与宿主环境无关，并在ECMAScript程序开始执行时就存在的对象”。主要有两个单例内置对象：Global和Math。我们主要关住它们提供的属性和方法。</p>
+<h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>Math的属性主要用于保存一些数学中的特殊值：</p>
+<ul>
+<li><code>Math.E</code>：自然对数的底数e。</li>
+<li><code>Math.LN10</code>：ln10的值。</li>
+<li><code>Math.LN2</code>：ln2的值。</li>
+<li><code>Math.LOG2E</code>：2为底，log e的值。</li>
+<li><code>Math.LOG10E</code>：10为底，log e的值。</li>
+<li><code>Math.PI</code>：圆周率pi的值。</li>
+<li><code>Math.SQRT1_2</code>：1/2的平方根。</li>
+<li><code>Math.SQRT2</code>：根号2。</li>
+</ul>
+<h3 id="最大最小值方法"><a href="#最大最小值方法" class="headerlink" title="最大最小值方法"></a>最大最小值方法</h3><p><code>max()</code>和<code>min()</code>函数，可以接收任意数量的值，返回其中的最大最小值。</p>
+<h3 id="舍入方法"><a href="#舍入方法" class="headerlink" title="舍入方法"></a>舍入方法</h3><p>用来对小数取整的舍入方法：</p>
+<ul>
+<li><code>Math.ceil()</code>方法：向上取整。</li>
+<li><code>Math.floor()</code>方法：向下取整。</li>
+<li><code>Math.round()</code>方法：四舍五入。</li>
+<li><code>Math.fround()</code>方法：返回数值最接近的单精度（32位）浮点值表示。</li>
+</ul>
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><p>还有一些其他的常用方法：</p>
+<ul>
+<li><code>random()</code>方法：随机数方法，返回一个0~1之间的随机数，包括0但不包括1。</li>
+<li><code>abs(x)</code>方法：随机数方法，返回x的绝对值。</li>
+<li><code>pow(x,y)</code>方法：返回x的y次方。</li>
+<li><code>sqrt(x)</code>方法：返回x的平方根。</li>
+</ul>
+<h2 id="Global"><a href="#Global" class="headerlink" title="Global"></a>Global</h2><p>ECMA-262没有规定直接访问Global对象的方式，但浏览器将window对象实现为Global对象的代理，浏览器中的window对象实际上就是Global对象。对象上主要有像undefined和NaN这样的特殊值，以及内置类型的构造函数如Array和Object等，还有一些函数如<code>isNaN()</code>和<code>parseInt()</code>等。</p>
+<h3 id="URL编码方法"><a href="#URL编码方法" class="headerlink" title="URL编码方法"></a>URL编码方法</h3><p>URL中不能含有某些特殊字符（比如空格），<code>encodeURI()</code>和<code>encodeURIComponent()</code>方法用于编码统一资源标识符（URI），以便传给浏览器，同时又以特殊的UTF-8编码替换掉所有无效字符。</p>
+<p><code>encodeURI()</code>将会编码整个URL，将整个URL传入给它，它会忽略掉斜杠、井号等URL中固有的字符，而<code>encodeURIComponent()</code>方法用来编码URL的一部分，只需要把需要编码的URL片段作为参数，它会编码所有不应该在URL域中出现的字符。</p>
+<p>与它们相对解码方法是<code>decodeURI()</code>和<code>decodeURIComponent()</code>。</p>
+<h3 id="eval方法"><a href="#eval方法" class="headerlink" title="eval方法"></a>eval方法</h3><p>它接收一个字符串，会将字符串解释为JS代码来执行。它之中运行的代码有一个单独的作用域挂在当前作用域链的前端，因此在其中是可以顺着作用域访问到前面的代码中的变量的。</p>
+<p>eval中声明的函数在之后的代码中也能够调用，但在严格模式下不可以。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/12/08/js003/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;08&#x2F;js003&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;08&#x2F;js003&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/12/07/js002/">JavaScript学习笔记（2）：值、作用域与内存 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Date"><span class="toc-text">Date</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="toc-text">基本方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%97%A5%E6%9C%9F"><span class="toc-text">创建日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E7%9A%84%E7%BB%A7%E6%89%BF%E6%96%B9%E6%B3%95"><span class="toc-text">重写的继承方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">日期格式化方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RegExp"><span class="toc-text">RegExp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">使用正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7"><span class="toc-text">正则表达式实例属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95"><span class="toc-text">正则表达式实例方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#exec%E6%96%B9%E6%B3%95"><span class="toc-text">exec方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test%E6%96%B9%E6%B3%95"><span class="toc-text">test方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%B1%9E%E6%80%A7"><span class="toc-text">正则表达式构造函数属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E5%AE%9E%E7%8E%B0%E7%89%B9%E6%80%A7"><span class="toc-text">未实现特性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E5%80%BC%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B"><span class="toc-text">原始值包装类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Object%E5%8C%85%E8%A3%85"><span class="toc-text">Object包装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-text">String</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%8E%E7%BC%96%E7%A0%81"><span class="toc-text">字符与编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="toc-text">字符串操作方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Boolean"><span class="toc-text">Boolean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Number"><span class="toc-text">Number</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="toc-text">单例内置对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Math"><span class="toc-text">Math</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC%E6%96%B9%E6%B3%95"><span class="toc-text">最大最小值方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%88%8D%E5%85%A5%E6%96%B9%E6%B3%95"><span class="toc-text">舍入方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="toc-text">其他方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Global"><span class="toc-text">Global</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#URL%E7%BC%96%E7%A0%81%E6%96%B9%E6%B3%95"><span class="toc-text">URL编码方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eval%E6%96%B9%E6%B3%95"><span class="toc-text">eval方法</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
