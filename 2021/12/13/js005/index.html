@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript学习笔记（5）：迭代器与生成器 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="迭代器可迭代对象任何实现Iterable接口的数据结构...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">JavaScript学习笔记（5）：迭代器与生成器</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/js.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JavaScript学习笔记（5）：迭代器与生成器</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 13, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11190</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><h2 id="可迭代对象"><a href="#可迭代对象" class="headerlink" title="可迭代对象"></a>可迭代对象</h2><p>任何实现Iterable接口的数据结构都可以被实现Iterator接口的结构“消费”。迭代器（iterator）是<strong>按需创建的一次性对象</strong>，每个迭代器都会关联一个<strong>可迭代对象</strong>，而迭代器会暴露迭代其关联可迭代对象的API。迭代器无须了解与其关联的可迭代对象的结构，只需要知道如何取得连续的值。</p>
+<h3 id="Iterable接口"><a href="#Iterable接口" class="headerlink" title="Iterable接口"></a>Iterable接口</h3><p>实现了Iterable接口的对象就是可迭代的对象，就可以被迭代，而这个接口是通过暴露一个属性（方法）作为“<strong>默认迭代器</strong>”实现的。这个方法必须使用符号<code>Symbol.iterator</code>作为键，并且这个方法应当是一个工厂函数，调用这个工厂函数必须返回一个新迭代器。</p>
+<p>实现了Iterable接口的内置类型有：</p>
+<ul>
+<li>字符串</li>
+<li>数组</li>
+<li>映射</li>
+<li>集合</li>
+<li>arguments对象</li>
+<li>NodeList等DOM集合类型</li>
+</ul>
+<p>那么调用它们的<code>Symbol.iterator</code>接口必定返回的是一个迭代器，而判断一个对象是否可迭代，也可以去测试它的<code>Symbol.iterator</code>接口：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [];<br><span class="hljs-keyword">let</span> obj = &#123;&#125;;<br><span class="hljs-built_in">console</span>.log(arr[<span class="hljs-built_in">Symbol</span>.iterator]); <span class="hljs-comment">// ƒ values()</span><br><span class="hljs-built_in">console</span>.log(obj[<span class="hljs-built_in">Symbol</span>.iterator]); <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
+
+<p>这样的arr就是一个可迭代的对象，而obj是不可迭代的，因为obj的<code>Symbol.iterator</code>是未定义的。</p>
+<p>我们已经知道<code>arr[Symbol.iterator]</code>是一个工厂函数，调用它能够返回一个迭代器，那么我们拿到了这个迭代器是可以直接使用的，但我们暂时不直接使用它。</p>
+<p>如果对象原型链上的父类实现了Iterable接口，那这个对象也会继承这个接口从而可迭代。</p>
+<h3 id="Iterator接口"><a href="#Iterator接口" class="headerlink" title="Iterator接口"></a>Iterator接口</h3><p>实际写代码过程中，不需要显式使用对象的迭代器，实现Iterator接口的一些语言结构会自动地对可迭代对象的迭代器进行消费，依次取出它们的值并使用。接收可迭代对象的原生语言特性包括：</p>
+<ul>
+<li>for-of循环</li>
+<li>数组解构</li>
+<li>扩展操作符</li>
+<li><code>Array.from()</code></li>
+<li>创建集合</li>
+<li>创建映射</li>
+<li><code>Promise.all()</code>接收由期约组成的可迭代对象</li>
+<li><code>Promise.race()</code>接收由期约组成的可迭代对象</li>
+<li><code>yield *</code>操作符，在生成器中使用</li>
+</ul>
+<p>初次接触迭代器的话依然很难搞明白它是什么，如果更通俗地解释它，就可以说迭代器是这么一个对象：</p>
+<ul>
+<li>它能够从某个对象中读取值，这个对象是迭代器对象的数据源。如：<code>arr[Symbol.iterator]()</code>返回的迭代器对象，会把arr数组作为它的数据源，这个迭代器能从数组arr中读取值。</li>
+<li>它一次只能从数据源中读取一个值，一般通过一个固定方法来读取，且迭代器是有状态的，它能够记录下读取到了哪里，下一次会从下个值继续读取。在JS中这个方法是<code>next()</code>，对上述迭代器初次调用<code>next()</code>方法会得到<code>arr[0]</code>的值，再次调用将得到<code>arr[1]</code>的值，以此类推直到得到了数组arr中的所有值。每次得到值的同时还会得到迭代器的状态。</li>
+<li>它读取值是有一定规则、有一定顺序的。如：从数组中读取的顺序就是数组的下标。</li>
+</ul>
+<p>那么也就是说我们想要通过迭代器依次迭代数组arr需要不断调用迭代器的<code>next()</code>方法才行，但是JS提供了上述支持自动迭代可迭代对象的语言结构就使得迭代变得非常简单，最常用的就是for-of循环，对一个可迭代对象可以这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> nums = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">of</span> nums) &#123;<br>    <span class="hljs-built_in">console</span>.log(num);<br>&#125;<br><span class="hljs-comment">// 1</span><br><span class="hljs-comment">// 2</span><br><span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure>
+
+<p>for-of结构对可迭代对象nums做的事情就是：</p>
+<ul>
+<li>通过<code>[Symbol.iterator]</code>定义的方法取得nums的迭代器；</li>
+<li>每次循环从这个迭代器中取得一个值赋值给num；</li>
+<li>执行循环体。</li>
+</ul>
+<p>这样我们就不需要自行操作迭代器对象，也不需要自己一次次调用<code>next()</code>方法，这些事情实现了Iterator接口的语言结构都能直接帮我们做了，我们只需要丢给它一个可迭代对象就可以了。</p>
+<h2 id="使用迭代器"><a href="#使用迭代器" class="headerlink" title="使用迭代器"></a>使用迭代器</h2><p>上文说了使用迭代器无非就是：</p>
+<ul>
+<li>调用<code>[Symbol.iterator]</code>方法取得迭代器对象；</li>
+<li>不断对这个迭代器对象调用<code>next()</code>方法从数据源取得值。</li>
+</ul>
+<p>每次调用<code>next()</code>，都会返回一个IteratorResult对象，其中包含了<strong>迭代器返回的一个值和迭代器的状态</strong>。</p>
+<p>迭代器的状态是封装的，若不调用<code>next()</code>，则无法知道迭代器的当前位置和状态。</p>
+<p>IteratorResult对象包含两个属性：done和value。</p>
+<ul>
+<li>done是一个布尔值，表示是否还可以再次调用<code>next()</code>取得下一个值；</li>
+<li>value包含取回的可迭代对象的一个值，当done为true时迭代器迭代完了数据源，value值就是undefined。</li>
+</ul>
+<p>直接使用迭代器的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br><span class="hljs-keyword">let</span> iter = arr[<span class="hljs-built_in">Symbol</span>.iterator](); <span class="hljs-comment">// 取得arr的迭代器对象</span><br><span class="hljs-built_in">console</span>.log(iter); <span class="hljs-comment">// Array Iterator</span><br><span class="hljs-built_in">console</span>.log(iter.next()); <span class="hljs-comment">// &#123;value: 1, done: false&#125;</span><br><span class="hljs-built_in">console</span>.log(iter.next()); <span class="hljs-comment">// &#123;value: 2, done: false&#125;</span><br><span class="hljs-built_in">console</span>.log(iter.next()); <span class="hljs-comment">// &#123;value: 3, done: false&#125;</span><br><span class="hljs-built_in">console</span>.log(iter.next()); <span class="hljs-comment">// &#123;value: undefined, done: true&#125;</span><br><span class="hljs-built_in">console</span>.log(iter.next()); <span class="hljs-comment">// &#123;value: undefined, done: true&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>迭代器的迭代行为是有顺序的，且不可逆的，迭代器向下进行了就不可能再回头了。可以看到迭代器已经到了尽头再次调用<code>next()</code>方法将永远返回<code>&#123;value: undefined, done: true&#125;</code>。</p>
+<p>还有一点就是，如果手动操作迭代器，确保数据迭代完必定要多调用一次<code>next()</code>，如上述例子，调用了三次之后你还是不能确定数组中是不是只有这三个数，还需要调用第四次，迭代器去数组中取数，发现没了，才会返回<code>done: true</code>的结果，你才能知道数据迭代完了。这是因为迭代器只取一个值，并不会去查看后一个值，因此迭代器在取3的时候，并不会知道后面还有没有，因此第三次调用依然返回<code>done: false</code>，在第四次调用才确定了数据源中没有数据了。</p>
+<h2 id="自定义迭代器"><a href="#自定义迭代器" class="headerlink" title="自定义迭代器"></a>自定义迭代器</h2><p>任何实现了<code>next()</code>方法的对象都能被当作迭代器，有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">end</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.count = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">this</span>.end = end;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">next</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.count &lt; <span class="hljs-built_in">this</span>.end) &#123;<br>            <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">value</span>: <span class="hljs-built_in">this</span>.count++, done: <span class="hljs-literal">false</span>&#125;;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">value</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>&#125;;<br>        &#125;<br>    &#125;<br>    [<span class="hljs-built_in">Symbol</span>.iterator]() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">let</span> counter = <span class="hljs-keyword">new</span> Counter(<span class="hljs-number">3</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> c <span class="hljs-keyword">of</span> counter) &#123;<br>    <span class="hljs-built_in">console</span>.log(c);<br>&#125;<br><span class="hljs-comment">// 0</span><br><span class="hljs-comment">// 1</span><br><span class="hljs-comment">// 2</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> c <span class="hljs-keyword">of</span> counter) &#123;<br>    <span class="hljs-built_in">console</span>.log(c);<br>&#125;<br><span class="hljs-comment">// 无输出</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到这个对象是可以被迭代的，但是它的迭代是一次性的，因为这个<code>[Symbol.iterator]</code>并不是一个合格的工厂函数，它每次返回的并不是全新的迭代器对象，第二次调用它返回的是个已经被用过的迭代器了。</p>
+<p>可以通过闭包来改进，使得返回的总是一个全新的迭代器对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">end</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.count = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">this</span>.end = end;<br>    &#125;<br>    [<span class="hljs-built_in">Symbol</span>.iterator]() &#123;<br>        <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">let</span> end = <span class="hljs-built_in">this</span>.end;<br>        <span class="hljs-keyword">return</span> &#123;<br>            <span class="hljs-function"><span class="hljs-title">next</span>(<span class="hljs-params"></span>)</span> &#123;<br>                <span class="hljs-keyword">if</span>(count &lt; end) &#123;<br>                    <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">value</span>: count++, done: <span class="hljs-literal">false</span>&#125;;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">value</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>&#125;;<br>                &#125;<br>            &#125;<br>        &#125;;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">let</span> counter = <span class="hljs-keyword">new</span> Counter(<span class="hljs-number">3</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> c <span class="hljs-keyword">of</span> counter) &#123;<br>    <span class="hljs-built_in">console</span>.log(c);<br>&#125;<br><span class="hljs-comment">// 0</span><br><span class="hljs-comment">// 1</span><br><span class="hljs-comment">// 2</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> c <span class="hljs-keyword">of</span> counter) &#123;<br>    <span class="hljs-built_in">console</span>.log(c);<br>&#125;<br><span class="hljs-comment">// 0</span><br><span class="hljs-comment">// 1</span><br><span class="hljs-comment">// 2</span><br></code></pre></td></tr></table></figure>
+
+<p>这样每次得到的就是一个从头迭代的全新的迭代器对象了。</p>
+<h2 id="提前终止迭代器"><a href="#提前终止迭代器" class="headerlink" title="提前终止迭代器"></a>提前终止迭代器</h2><p>可以为迭代器对象指定return方法来决定迭代器提前关闭时执行的操作。迭代器提前关闭的情况有：</p>
+<ul>
+<li>for-of循环通过break、continue、return或throw提前退出；</li>
+<li>解构操作并未消费所有值。</li>
+</ul>
+<p><code>return()</code>方法必须返回一个有效的IteratorResult对象。简单情况下，可以只返回<code>&#123; done: true &#125;</code>。因为这个返回值只会用在生成器的上下文中，在迭代器中并没有什么用。</p>
+<p>内置的可以自动迭代对象的语言结构在发现还有更多值可以迭代，但不会消费这些值时，会自动调用<code>return()</code>方法。如我们对之前的例子加入return方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">end</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.count = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">this</span>.end = end;<br>    &#125;<br>    [<span class="hljs-built_in">Symbol</span>.iterator]() &#123;<br>        <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">let</span> end = <span class="hljs-built_in">this</span>.end;<br>        <span class="hljs-keyword">return</span> &#123;<br>            <span class="hljs-function"><span class="hljs-title">next</span>(<span class="hljs-params"></span>)</span> &#123;<br>                <span class="hljs-keyword">if</span>(count &lt; end) &#123;<br>                    <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">value</span>: count++, done: <span class="hljs-literal">false</span>&#125;;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">value</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>&#125;;<br>                &#125;<br>            &#125;,<br>            <span class="hljs-keyword">return</span>() &#123;<br>                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;迭代器提前关闭啦！&quot;</span>);<br>                <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span> &#125;;<br>            &#125;<br>        &#125;;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">let</span> counter = <span class="hljs-keyword">new</span> Counter(<span class="hljs-number">3</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> c <span class="hljs-keyword">of</span> counter) &#123;<br>    <span class="hljs-built_in">console</span>.log(c);<br>    <span class="hljs-keyword">if</span>(c&gt;<span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;<br>&#125;<br><span class="hljs-comment">// 0</span><br><span class="hljs-comment">// 1</span><br><span class="hljs-comment">// 迭代器提前关闭啦！</span><br></code></pre></td></tr></table></figure>
+
+<p>有趣的是，即便迭代了所有的值，只要for中使用了break，迭代器就会被视为提前关闭，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> c <span class="hljs-keyword">of</span> counter) &#123;<br>    <span class="hljs-built_in">console</span>.log(c);<br>    <span class="hljs-keyword">if</span>(c&gt;<span class="hljs-number">1</span>) <span class="hljs-keyword">break</span>;<br>&#125;<br><span class="hljs-comment">// 0</span><br><span class="hljs-comment">// 1</span><br><span class="hljs-comment">// 2</span><br><span class="hljs-comment">// 迭代器提前关闭啦！</span><br></code></pre></td></tr></table></figure>
+
+<p>迭代器明明就只有三个值，却还是说迭代器被提前关闭，为什么呢？其实是之前说过的，迭代器想知道值被迭代完了，一定会多执行一次next方法，这里提前终止了循环，我们知道一共有三个值，但是迭代器不知道，迭代器还需要第四次next才能知道，但它的第四次next被我们打断了。</p>
+<p>注意：return方法只是在迭代器被提前关闭时会被调用，但是有的迭代器天生是无法关闭的，提前跳出循环也不能关闭它，因此不意味着给它加了return方法就能使一个不可关闭的迭代器变成可关闭的。比如数组的迭代器就是不可关闭的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>];<br><span class="hljs-keyword">let</span> iter = arr[<span class="hljs-built_in">Symbol</span>.iterator]();<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> iter) &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>    <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">2</span>) <span class="hljs-keyword">break</span>;<br>&#125;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;继续迭代&quot;</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> iter) &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>&#125;<br><span class="hljs-comment">// 1</span><br><span class="hljs-comment">// 2</span><br><span class="hljs-comment">// 3</span><br><span class="hljs-comment">// 继续迭代</span><br><span class="hljs-comment">// 4</span><br><span class="hljs-comment">// 5</span><br><span class="hljs-comment">// 6</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到数组的迭代器不会因为break而关闭，之所以之前我们使用for-of循环不会出现继续迭代的情况，是因为我们没有使用显式的迭代器，而是直接给for-of循环了一个可迭代对象，每次循环实际上都是创建了一个全新的迭代器。</p>
+<h2 id="扩展操作符"><a href="#扩展操作符" class="headerlink" title="扩展操作符"></a>扩展操作符</h2><p>可迭代对象可以使用扩展操作符将迭代的结果展开，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br><span class="hljs-keyword">let</span> arr2 = [...arr1];<br><span class="hljs-keyword">let</span> arr3 = [<span class="hljs-number">0</span>, ...arr2, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>];<br><span class="hljs-built_in">console</span>.log(arr1); <span class="hljs-comment">// [1, 2, 3]</span><br><span class="hljs-built_in">console</span>.log(arr2); <span class="hljs-comment">// [1, 2, 3]</span><br><span class="hljs-built_in">console</span>.log(arr3); <span class="hljs-comment">// [0, 1, 2, 3, 4, 5, 6]</span><br></code></pre></td></tr></table></figure>
+<p>展开的结果视为浅复制。</p>
+<h1 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h1><h2 id="定义生成器"><a href="#定义生成器" class="headerlink" title="定义生成器"></a>定义生成器</h2><p>生成器的形式是一个函数，函数名称前面加一个星号（*）表示它是一个生成器。只要是可以定义函数的地方，就可以定义生成器，可以把它看成一个特殊的函数，但注意箭头函数不能用来定义生成器函数。标识生成器函数的星号不受两侧空格的影响。</p>
+<p>与迭代器相似，生成器对象也实现了Iterator接口，因此具有<code>next()</code>方法，调用这个方法会让生成器开始或恢复执行。<code>next()</code>方法的返回值类似于迭代器，有一个done属性和一个value属性。函数体为空的生成器函数中间不会停留，调用一次<code>next()</code>就会让生成器到达<code>done: true</code>状态。</p>
+<p>yield关键字可以让生成器停止和开始执行，生成器函数在遇到yield关键字之前会正常执行，遇到这个关键字后，执行会停止并跳出函数执行，但是函数的内部状态会被保存，下次调用next会自动接着上次的状态继续执行。</p>
+<h2 id="使用生成器"><a href="#使用生成器" class="headerlink" title="使用生成器"></a>使用生成器</h2><h3 id="生成器状态"><a href="#生成器状态" class="headerlink" title="生成器状态"></a>生成器状态</h3><p>在生成器函数初次被调用时，只是获得了一个生成器，但它<strong>不会立刻开始执行</strong>，需要调用它的next方法才可以让它开始执行，遇到的第一个yield关键字暂停执行返回，通过yield返回的值会通过next方法的返回值获得，此时的状态为<code>done: false</code>，而return将彻底结束生成器，返回的值也将通过next方法返回，此时状态为<code>done: true</code>。</p>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">generator</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;生成器开始执行了！&quot;</span>);<br>    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;第1次返回值&quot;</span>;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;又开始执行了！&quot;</span>);<br>    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;第2次返回值&quot;</span>;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;又又开始执行了！&quot;</span>);<br>    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;第3次返回值&quot;</span>;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;要结束了！&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Bye!&quot;</span><br>&#125;<br><span class="hljs-keyword">let</span> g = generator(); <span class="hljs-comment">// 未开始执行</span><br><span class="hljs-keyword">let</span> r = g.next(); <span class="hljs-comment">// 生成器开始执行了！</span><br><span class="hljs-built_in">console</span>.log(r); <span class="hljs-comment">// &#123;value: &#x27;第1次返回值&#x27;, done: false&#125;</span><br>r = g.next(); <span class="hljs-comment">// 又开始执行了！</span><br><span class="hljs-built_in">console</span>.log(r); <span class="hljs-comment">// &#123;value: &#x27;第2次返回值&#x27;, done: false&#125;</span><br>r = g.next(); <span class="hljs-comment">// 又又开始执行了！</span><br><span class="hljs-built_in">console</span>.log(r); <span class="hljs-comment">// &#123;value: &#x27;第3次返回值&#x27;, done: false&#125;</span><br>r = g.next(); <span class="hljs-comment">// 要结束了！</span><br><span class="hljs-built_in">console</span>.log(r); <span class="hljs-comment">// &#123;value: &#x27;Bye!&#x27;, done: true&#125;</span><br>r = g.next();<br><span class="hljs-built_in">console</span>.log(r); <span class="hljs-comment">// &#123;value: undefined, done: true&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>yield关键字的行为本身就和return很类似，因此使用yield关键字也可以使用生成器实现递归。</p>
+<h3 id="使用循环迭代生成器"><a href="#使用循环迭代生成器" class="headerlink" title="使用循环迭代生成器"></a>使用循环迭代生成器</h3><p>生成器实现了默认的可迭代接口，默认迭代器就是生成器本身。<br>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">generator</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;val1&quot;</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;val2&quot;</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;val3&quot;</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Bye&quot;</span><br>&#125;<br><span class="hljs-keyword">let</span> g = generator();<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> g) &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>&#125;<br><span class="hljs-comment">// val1</span><br><span class="hljs-comment">// val2</span><br><span class="hljs-comment">// val3</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> g) &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>&#125;<br><span class="hljs-comment">// 没有输出</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到我们创建了一个生成器对象，它只是一次性的，如果迭代完了所有的值，就没法再迭代第二次了。</p>
+<p>因此我们可以每次迭代都使用一个新的生成器实例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">generator</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;val1&quot;</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;val2&quot;</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;val3&quot;</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Bye&quot;</span><br>&#125;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> generator()) &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>&#125;<br><span class="hljs-comment">// val1</span><br><span class="hljs-comment">// val2</span><br><span class="hljs-comment">// val3</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;再来一次&quot;</span>); <span class="hljs-comment">// 再来一次</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> generator()) &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>&#125;<br><span class="hljs-comment">// val1</span><br><span class="hljs-comment">// val2</span><br><span class="hljs-comment">// val3</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="yield关键字用于输入输出"><a href="#yield关键字用于输入输出" class="headerlink" title="yield关键字用于输入输出"></a>yield关键字用于输入输出</h3><p>之前的例子其实是yield关键字向外部输出值，但它还可以从外部读取输入的值，同样是通过next方法来实现的，next的参数会成为yield表达式的值，并出现在生成器函数的相应位置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">generator</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>;<br>    a *= <span class="hljs-keyword">yield</span> a; <span class="hljs-comment">// (1)</span><br>    a *= <span class="hljs-keyword">yield</span> a; <span class="hljs-comment">// (2)</span><br>    a *= <span class="hljs-keyword">yield</span> a; <span class="hljs-comment">// (3)</span><br>    <span class="hljs-keyword">return</span> a;<br>&#125;<br><span class="hljs-keyword">let</span> g = generator(); <span class="hljs-comment">// 创建生成器</span><br><span class="hljs-built_in">console</span>.log(g.next()); <span class="hljs-comment">// 第一次next仅仅是为了启动生成器，获得了(1)中yield的值，但不会向yield传值</span><br><span class="hljs-built_in">console</span>.log(g.next(<span class="hljs-number">2</span>)); <span class="hljs-comment">// 向(1)中yield传入2，生成器使a乘以2，同时获得了(2)中yield的值</span><br><span class="hljs-built_in">console</span>.log(g.next(<span class="hljs-number">3</span>)); <span class="hljs-comment">// 向(2)中yield传入3，生成器使a乘以3，同时获得了(3)中yield的值</span><br><span class="hljs-built_in">console</span>.log(g.next(<span class="hljs-number">4</span>)); <span class="hljs-comment">// 向(3)中yield传入4，生成器使a乘以4，同时获得了返回值</span><br></code></pre></td></tr></table></figure>
+
+<p>生成器可以实现无穷计数的，也就是允许生成器中的循环永远不会跳出，前提是循环中使用yield，这样每轮循环都会中断一次。</p>
+<h3 id="yield解构可迭代对象"><a href="#yield解构可迭代对象" class="headerlink" title="yield解构可迭代对象"></a>yield解构可迭代对象</h3><p>使用<code>yield *</code>结构可以将一个可迭代对象解构，并将其每个元素依次返回，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">generator</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">yield</span> * [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br>&#125;<br><span class="hljs-keyword">let</span> g = generator();<br><span class="hljs-built_in">console</span>.log(g.next()); <span class="hljs-comment">// &#123;value: 1, done: false&#125;</span><br><span class="hljs-built_in">console</span>.log(g.next()); <span class="hljs-comment">// &#123;value: 2, done: false&#125;</span><br><span class="hljs-built_in">console</span>.log(g.next()); <span class="hljs-comment">// &#123;value: 3, done: false&#125;</span><br><span class="hljs-built_in">console</span>.log(g.next()); <span class="hljs-comment">// &#123;value: undefined, done: true&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="替代默认迭代器"><a href="#替代默认迭代器" class="headerlink" title="替代默认迭代器"></a>替代默认迭代器</h2><p>生成器对象实现了可迭代接口，调用生成器函数又会返回一个生成器对象，因此可将生成器函数作为对象的默认迭代器：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-class"><span class="hljs-keyword">class</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.values = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br>    &#125;<br>    * [<span class="hljs-built_in">Symbol</span>.iterator]() &#123;<br>        <span class="hljs-keyword">yield</span> * <span class="hljs-built_in">this</span>.values;<br>    &#125;<br>&#125;();<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> obj) &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>&#125;<br><span class="hljs-comment">// 1</span><br><span class="hljs-comment">// 2</span><br><span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="关闭生成器"><a href="#关闭生成器" class="headerlink" title="关闭生成器"></a>关闭生成器</h2><p>生成器提前终止的方法有<code>return()</code>方法和<code>throw()</code>方法，我们也可以重写这两个方法，但它们都会强制生成器关闭。</p>
+<h3 id="return方法"><a href="#return方法" class="headerlink" title="return方法"></a>return方法</h3><p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">generator</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">yield</span> * [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>];<br>&#125;<br><span class="hljs-keyword">let</span> g = generator();<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> g) &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>    <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">2</span>) <span class="hljs-keyword">break</span>;<br>&#125;<br><span class="hljs-comment">// 1</span><br><span class="hljs-comment">// 2</span><br><span class="hljs-comment">// 3</span><br><span class="hljs-built_in">console</span>.log(g.next()); <span class="hljs-comment">// &#123;value: undefined, done: true&#125;</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> g) &#123;<br>    <span class="hljs-built_in">console</span>.log(i);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到生成器在被迭代时break了，会导致return方法被隐式调用，生成器直接进入关闭状态不可恢复。当然我们也能显式调用它的return方法来关闭。</p>
+<h3 id="throw方法"><a href="#throw方法" class="headerlink" title="throw方法"></a>throw方法</h3><p>throw方法会在暂停时将一个错误注入到生成器对象中，如果它如果错误未被处理则生成器关闭，<strong>如果在生成器内部处理了这个错误，生成器不会关闭</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">generator</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]) &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">yield</span> i;<br>        &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>            <span class="hljs-built_in">console</span>.log(e);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">let</span> g = generator();<br><span class="hljs-built_in">console</span>.log(g.next()); <span class="hljs-comment">// &#123;value: 1, done: false&#125;</span><br>g.throw(<span class="hljs-string">&quot;啊呀呀！出错了呢！&quot;</span>);<br><span class="hljs-keyword">let</span> r = g.next(); <span class="hljs-comment">// 啊呀呀！出错了呢！</span><br><span class="hljs-built_in">console</span>.log(r); <span class="hljs-comment">// &#123;value: 3, done: false&#125;</span><br><span class="hljs-built_in">console</span>.log(g.next()); <span class="hljs-comment">// &#123;value: 4, done: false&#125;</span><br><span class="hljs-built_in">console</span>.log(g.next()); <span class="hljs-comment">// &#123;value: undefined, done: true&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到在注入了错误之后，下一次调用next会进入错误处理，并跳过一个值，直接取得下一个值。</p>
+<p>此外还要注意：生成器对象刚创建时处于未执行的状态，这时调用throw方法将不会被生成器捕获，相当于在函数外部抛出了错误！</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/12/13/js005/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;13&#x2F;js005&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;13&#x2F;js005&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/12/10/js004/">JavaScript学习笔记（4）：集合引用类型 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%AF%B9%E8%B1%A1"><span class="toc-text">可迭代对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Iterable%E6%8E%A5%E5%8F%A3"><span class="toc-text">Iterable接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Iterator%E6%8E%A5%E5%8F%A3"><span class="toc-text">Iterator接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-text">使用迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-text">自定义迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%89%8D%E7%BB%88%E6%AD%A2%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-text">提前终止迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-text">扩展操作符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-text">生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-text">定义生成器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-text">使用生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8%E7%8A%B6%E6%80%81"><span class="toc-text">生成器状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-text">使用循环迭代生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield%E5%85%B3%E9%94%AE%E5%AD%97%E7%94%A8%E4%BA%8E%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-text">yield关键字用于输入输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield%E8%A7%A3%E6%9E%84%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%AF%B9%E8%B1%A1"><span class="toc-text">yield解构可迭代对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E4%BB%A3%E9%BB%98%E8%AE%A4%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-text">替代默认迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-text">关闭生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#return%E6%96%B9%E6%B3%95"><span class="toc-text">return方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#throw%E6%96%B9%E6%B3%95"><span class="toc-text">throw方法</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
