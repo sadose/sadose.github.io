@@ -1,0 +1,659 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript学习笔记（7）：代理与反射 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="代理定义代理代理对象是可以用作目标对象的替身，但又完全...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">JavaScript学习笔记（7）：代理与反射</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/js.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JavaScript学习笔记（7）：代理与反射</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 17, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>15917</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h1><h2 id="定义代理"><a href="#定义代理" class="headerlink" title="定义代理"></a>定义代理</h2><p>代理对象是可以用作目标对象的替身，但又<strong>完全独立</strong>于目标对象的对象。</p>
+<p>目标对象既可以直接被操作，也可以通过代理来操作，区别是<strong>通过代理进行的操作可以被拦截处理</strong>，而直接对目标对象的操作无法在操作前加入自定义的处理过程。</p>
+<p>代理是使用Proxy构造函数创建的，构造函数接收两个参数：目标对象和处理程序对象，这两个参数都是<strong>必需</strong>的。</p>
+<p>要创建空代理，可以传一个空的对象字面量作为处理程序对象，从而不对任何操作进行拦截。</p>
+<p>要注意，所有对代理的操作几乎都视为直接操作目标对象但加入了附带的操作，对代理进行操作，是很难通过代理的行为看出它是作用于代理而不是直接操作的目标对象，就像在目标对象上可以调用的方法、访问的属性等等，在代理对象上都可以以同样的方式进行：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 创建一个对象 obj 和它的代理 proxy</span><br><span class="hljs-keyword">let</span> obj = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Dasen&quot;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">22</span>,<br>    <span class="hljs-attr">girlfriend</span>: <span class="hljs-literal">null</span><br>&#125;;<br><span class="hljs-keyword">let</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj, &#123;&#125;);<br><span class="hljs-comment">// 访问属性没有差别</span><br><span class="hljs-built_in">console</span>.log(obj.name); <span class="hljs-comment">// Dasen</span><br><span class="hljs-built_in">console</span>.log(obj.name); <span class="hljs-comment">// Dasen</span><br><span class="hljs-comment">// 操作属性没有差别</span><br>proxy.age = <span class="hljs-number">21</span>;<br><span class="hljs-built_in">console</span>.log(obj.age); <span class="hljs-comment">// 21</span><br>proxy.age--;<br><span class="hljs-built_in">console</span>.log(obj.age); <span class="hljs-comment">// 20</span><br>obj.age += <span class="hljs-number">2</span>;<br><span class="hljs-built_in">console</span>.log(proxy.age); <span class="hljs-comment">// 22</span><br><span class="hljs-comment">// 甚至方法的调用都没有差别</span><br><span class="hljs-built_in">console</span>.log(obj.hasOwnProperty(<span class="hljs-string">&quot;girlfriend&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(proxy.hasOwnProperty(<span class="hljs-string">&quot;girlfriend&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(proxy.girlfriend); <span class="hljs-comment">// null</span><br></code></pre></td></tr></table></figure>
+
+<p>没有办法用instanceof来判断一个代理对象是不是代理，因为代理的构造函数没有原型，但是可以使用<strong>相等判断</strong>来区分代理和原对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 相等判断可以区分代理和原对象</span><br><span class="hljs-built_in">console</span>.log(proxy == obj); <span class="hljs-comment">// false</span><br><span class="hljs-built_in">console</span>.log(proxy === obj); <span class="hljs-comment">// false</span><br><span class="hljs-comment">// 代理构造函数没有原型因此不能使用 instanceof 操作符判断对象是不是代理</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> obj); <span class="hljs-comment">// object</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> proxy); <span class="hljs-comment">// object</span><br><span class="hljs-built_in">console</span>.log(obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(proxy <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(proxy <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Proxy</span>); <span class="hljs-comment">// TypeError: Function has non-object prototype &#x27;undefined&#x27; in instanceof check</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="捕获器"><a href="#捕获器" class="headerlink" title="捕获器"></a>捕获器</h2><p>代理的意义在于可以在操作目标对象之前拦截操作并做一些额外的事情，这个拦截就是通过<strong>捕获器</strong>来进行的。</p>
+<h3 id="使用捕获器和反射API"><a href="#使用捕获器和反射API" class="headerlink" title="使用捕获器和反射API"></a>使用捕获器和反射API</h3><p>定义捕获器是通过在创建代理时传入的第二个对象来实现的，这个对象的一系列方法描述了一系列捕获器。</p>
+<p>比如使用get捕获器拦截从目标对象读取数据的操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Dasen&quot;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">22</span>,<br>    <span class="hljs-attr">girlfriend</span>: <span class="hljs-literal">null</span><br>&#125;;<br><span class="hljs-keyword">let</span> handler = &#123;<br>    <span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params">tar, property, rec</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(property===<span class="hljs-string">&quot;girlfriend&quot;</span> &amp;&amp; tar[property]===<span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;无可奉告！&quot;</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.get(...arguments);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">let</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj, handler);<br><span class="hljs-built_in">console</span>.log(proxy.name); <span class="hljs-comment">// Dasen</span><br><span class="hljs-built_in">console</span>.log(proxy.age); <span class="hljs-comment">// 22</span><br><span class="hljs-built_in">console</span>.log(obj.girlfriend); <span class="hljs-comment">// null</span><br><span class="hljs-built_in">console</span>.log(proxy.girlfriend); <span class="hljs-comment">// 无可奉告！</span><br>obj.girlfriend = <span class="hljs-string">&quot;someone&quot;</span>;<br><span class="hljs-built_in">console</span>.log(proxy.girlfriend); <span class="hljs-comment">// someone</span><br></code></pre></td></tr></table></figure>
+
+<p>这里定义了一个代理，拦截了目标对象的get操作。JS给对象规定了一系列操作的定义，比如这里的get操作能够拦截到属性访问、方括号访问等一切能访问到属性的操作。get操作能拦截到三个参数，分别是操作的对象、访问的属性和代理对象。</p>
+<p>而常规的做法是在一些情况下拦截操作，而另一些情况下放通操作——即返回原来应该得到的结果。这个过程通过反射API即Reflect上的静态方法来进行，如本例中，当大森没有女朋友时，尝试问大森的女朋友是谁，就会回答无可奉告，而大森有女朋友时或者问的是大森的年龄和姓名时，就直接回答应有的结果，就像直接访问了目标对象的属性一样，这时就使用<code>Reflect.get(...arguments)</code>将get捕获器捕获到的参数原样传给这个get静态方法，就能够直接进行原有的默认操作（并将结果返回）。</p>
+<h3 id="捕获器不变式"><a href="#捕获器不变式" class="headerlink" title="捕获器不变式"></a>捕获器不变式</h3><p>捕获器的定义并非是没有限制的，JS会限制捕获器产生明显过于反常的行为，如目标对象有一个不可配置且不可写的数据属性，那么在捕获器返回一个与该属性不同的值时，会抛出TypeError：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;&#125;;<br><span class="hljs-built_in">Object</span>.defineProperty(obj,<span class="hljs-string">&quot;a&quot;</span>,&#123;<br>    <span class="hljs-attr">value</span>: <span class="hljs-string">&quot;aaa&quot;</span>,<br>    <span class="hljs-attr">configurable</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">writable</span>: <span class="hljs-literal">false</span><br>&#125;);<br><span class="hljs-keyword">let</span> handler = &#123;<br>    <span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;bbb&quot;</span>;<br>    &#125;<br>&#125;;<br><span class="hljs-keyword">let</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj, handler);<br><span class="hljs-built_in">console</span>.log(proxy.a); <span class="hljs-comment">// TypeError: &#x27;get&#x27; on proxy: ...</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="可撤销代理"><a href="#可撤销代理" class="headerlink" title="可撤销代理"></a>可撤销代理</h2><p>代理对象是<strong>可以中断与目标对象的联系</strong>的，你可能以为需要调用代理对象的什么方法，其实不是的，这个取消关联是通过一个函数实现的，而这个函数是在创建代理时显式地使用<code>Proxy.revocable()</code>静态方法来创建代理时与代理一起返回的，可以通过这种方式来创建一个可撤销的代理：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123; <span class="hljs-attr">a</span>: <span class="hljs-string">&quot;aaa&quot;</span> &#125;;<br><span class="hljs-keyword">let</span> handler = &#123;<br>    <span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hhh&quot;</span>;<br>    &#125;<br>&#125;;<br><span class="hljs-keyword">let</span> &#123; proxy, revoke &#125; = <span class="hljs-built_in">Proxy</span>.revocable(obj,handler);<br><span class="hljs-built_in">console</span>.log(proxy.a); <span class="hljs-comment">// hhh</span><br>revoke(); <span class="hljs-comment">// 撤销代理</span><br><span class="hljs-built_in">console</span>.log(proxy.a); <span class="hljs-comment">// TypeError: Cannot perform &#x27;get&#x27; on a proxy that has been revoked</span><br></code></pre></td></tr></table></figure>
+
+<p>也就是说<code>Proxy.revocable()</code>静态方法返回了一个对象，这个对象具有proxy和revoke两个属性，分别代表了新创建的代理和撤销它的函数，我们通过对象解构来取得了这两者。</p>
+<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>上文已经使用过了一个反射API，创建了get拦截器，并且在一定情况下使用反射API将操作原样执行或修改了其中的参数后再调用反射API执行。</p>
+<p>注意：</p>
+<ul>
+<li>反射API其实就是一些对对象的操作的函数形式；</li>
+<li>反射API并不局限于在捕获器中使用，在任何可以使用函数的地方都可以使用它来代替对对象的操作。</li>
+</ul>
+<p>反射API主要分为三种类别：操作对象的、访问对象的、调用函数的。</p>
+<h3 id="操作相关"><a href="#操作相关" class="headerlink" title="操作相关"></a>操作相关</h3><p>与操作对象相关的反射API主要有：</p>
+<ul>
+<li><code>Reflect.defineProperty()</code></li>
+<li><code>Reflect.preventExtensions()</code></li>
+<li><code>Reflect.setPrototypeOf()</code></li>
+<li><code>Reflect.set()</code></li>
+<li><code>Reflect.deleteProperty()</code></li>
+</ul>
+<p>它们其实都是对对象的某些修改操作封装成的函数，它们都会返回一个布尔值，表示操作成功了没，这在很多时候都是很有用的。比如我们希望为一个对象定义新属性，但是定义可能出现问题，因此我们不得不使用try-catch语句来捕获错误并进行相应处理，而使用反射则可以：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;&#125;;<br><span class="hljs-keyword">if</span>(<span class="hljs-built_in">Reflect</span>.defineProperty(obj,<span class="hljs-string">&quot;a&quot;</span>,&#123;<span class="hljs-attr">value</span>:<span class="hljs-string">&quot;aaa&quot;</span>&#125;)) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;成功了！&quot;</span>);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;失败了……&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="访问相关"><a href="#访问相关" class="headerlink" title="访问相关"></a>访问相关</h3><p>访问相关的反射可以替代对应的访问操作，既然是访问操作，我们当然希望它们返回它们访问到的值，因此它们的返回值就是操作返回的值：</p>
+<ul>
+<li><code>Reflect.get()</code>：可以替代对象属性访问操作符。</li>
+<li><code>Reflect.has()</code>：可以替代in操作符或with()。</li>
+<li><code>Reflect.deleteProperty()</code>：可以替代delete操作符。</li>
+<li><code>Reflect.construct()</code>：可以替代new操作符。</li>
+</ul>
+<h3 id="函数相关"><a href="#函数相关" class="headerlink" title="函数相关"></a>函数相关</h3><p>函数调用相关的只有一个<code>Reflect.apply()</code>，用于代替函数的<code>apply()</code>。有时候可能希望通过<code>apply()</code>方法来调用函数，但这个方法位于函数的原型上，万一函数本身定义了自己的apply属性遮蔽了原型上的这个方法（虽然非常不建议使用apply作为属性名），那我们就得这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.apply.call(myFunc, thisVal, argumentList);<br></code></pre></td></tr></table></figure>
+<p>而使用代理，我们就可以这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Reflect</span>.apply(myFunc, thisVal, argumentsList);<br></code></pre></td></tr></table></figure>
+
+<h2 id="多层代理"><a href="#多层代理" class="headerlink" title="多层代理"></a>多层代理</h2><p>多层代理顾名思义就是一个代理代理另一个代理。这样就可以在目标对象之上建立多层拦截网，每层拦截用来做一件特定的事情，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;&quot;</span> &#125;;<br><span class="hljs-keyword">let</span> p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj, &#123;<br>    <span class="hljs-comment">// 拦截 set 操作，将写入的值转换为小写</span><br>    <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params">target, property, value, rec</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(property !== <span class="hljs-string">&quot;name&quot;</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(...arguments);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(target,property,value.toLowerCase(),rec);<br>    &#125;<br>&#125;);<br><span class="hljs-keyword">let</span> p2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(p1, &#123;<br>    <span class="hljs-comment">// 拦截 set 操作，去掉写入的值的前后空白符</span><br>    <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params">target, property, value, rec</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(property !== <span class="hljs-string">&quot;name&quot;</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(...arguments);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(target,property,value.trim(),rec);<br>    &#125;<br>&#125;);<br>p2.name = <span class="hljs-string">&quot;   Dasen   &quot;</span>;<br><span class="hljs-built_in">console</span>.log(p2.name); <span class="hljs-comment">// dasen</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="代理类"><a href="#代理类" class="headerlink" title="代理类"></a>代理类</h2><p>在调用方法时，方法中的this应当指向调用这个方法的对象，假如目标对象有两个方法分别为<code>inner()</code>和<code>outer()</code>，其中在<code>outer()</code>方法中又调用了自身的<code>this.inner()</code>方法，那么如果将该对象通过代理操作，这里的this应当为代理对象，也就相当于调用了<code>proxy.inner()</code>和<code>proxy.outer()</code>方法。</p>
+<p>当然这在大多数情况下是没有问题的，操作都可以正常映射到目标对象，但是在进行一些依赖对象标识的操作中就不一定了，比如使用WeakMap来保存私有变量的时候，以对象标识符作为WeakMap的键就会出现问题，代理对象作为键是读取不到目标对象的私有变量的。</p>
+<p>这时的解决方法是不再代理类的对象实例，而是直接代理类，在JS中类实际就是一个构造函数，函数也是一种对象，所以代理完全可以代理类，再通过代理类来创建的对象就可以正常使用那些依赖于实例标识符的操作了。</p>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 代理对象</span><br><span class="hljs-keyword">const</span> wm = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">userid</span>)</span> &#123;<br>        wm.set(<span class="hljs-built_in">this</span>, userid);<br>    &#125;<br>    <span class="hljs-keyword">set</span> <span class="hljs-title">id</span>(<span class="hljs-params">userid</span>) &#123;<br>        wm.set(<span class="hljs-built_in">this</span>, userid);<br>    &#125;<br>    <span class="hljs-keyword">get</span> <span class="hljs-title">id</span>() &#123;<br>        <span class="hljs-keyword">return</span> wm.get(<span class="hljs-built_in">this</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> user = <span class="hljs-keyword">new</span> User(<span class="hljs-number">555</span>);<br><span class="hljs-built_in">console</span>.log(user.id); <span class="hljs-comment">// 555</span><br><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(user,&#123;&#125;);<br><span class="hljs-built_in">console</span>.log(proxy.id); <span class="hljs-comment">// undefined</span><br><span class="hljs-comment">// 代理类</span><br><span class="hljs-keyword">const</span> ProxyUser = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(User,&#123;&#125;);<br><span class="hljs-keyword">const</span> proxyUser = <span class="hljs-keyword">new</span> ProxyUser(<span class="hljs-number">666</span>);<br><span class="hljs-built_in">console</span>.log(proxyUser.id); <span class="hljs-comment">// 666</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到这种解决方案的思路是这样的：不是要以对象标识符为键吗？那好，既然代理对象和目标对象不是同一个对象，没法访问到同一组私有变量，那就直接代理类本身，这样从代理类创建出的对象就好像是融合了目标对象和代理对象一样，既能进行目标对象的所有操作，代理的捕获器也能正常工作，融合在一起之后就是同一个对象了，也不必担心对象标识符的问题了。</p>
+<p>除此之外由于代理的this指向导致的问题还有一些，主要是在代理内置类型的时候产生的，因为很多内置类型的行为是依赖一些对象的内部槽位的，这些内部槽位不能被开发者所访问，代理对象中也不会有这些槽位，因此使用代理时可能会出现问题。</p>
+<h1 id="捕获器与反射方法"><a href="#捕获器与反射方法" class="headerlink" title="捕获器与反射方法"></a>捕获器与反射方法</h1><p>代理可以捕获13种不同的基本操作，这些操作有各自不同的反射API方法、参数、关联的操作和不变式。</p>
+<h2 id="API解释"><a href="#API解释" class="headerlink" title="API解释"></a>API解释</h2><p>代理的捕获器和反射的API是一一对应的，如一个<code>xxx()</code>捕获器，必定对应着一个<code>Reflect.xxx()</code>反射，并且它们接收的参数和返回值都完全相同。在一个代理对象上进行的任何一个操作，都只有一个捕获器会被触发，不会发生重复捕获的情况。</p>
+<p>捕获器和反射方法可能接受的参数主要有以下：</p>
+<ul>
+<li>target：目标对象。</li>
+<li>property：操作的属性名。</li>
+<li>receiver：代理对象。</li>
+<li>value：要赋给属性的值。</li>
+<li>descriptor：属性配置描述，包含可选的enumerable、configurable、writable、value、get和set定义的对象。</li>
+<li>prototype：要替换target原型的对象，如果是顶级原型则为null。</li>
+<li>thisArg：调用函数时的this参数。</li>
+<li>argumentsList：传给目标函数的参数列表。</li>
+</ul>
+<h2 id="捕获器参考"><a href="#捕获器参考" class="headerlink" title="捕获器参考"></a>捕获器参考</h2><h3 id="get捕获器"><a href="#get捕获器" class="headerlink" title="get捕获器"></a>get捕获器</h3><ul>
+<li>API：<code>get(target, property, receiver)</code></li>
+<li>返回值：返回取得的属性的值。</li>
+<li>拦截的操作：<ul>
+<li><code>proxy.property</code></li>
+<li><code>proxy[property]</code></li>
+<li><code>Object.create(proxy)[property]</code></li>
+<li><code>Reflect.get(proxy, property, receiver)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果<code>target.property</code>不可写且不可配置，则捕获器返回的值必须与<code>target.property</code>相同；</li>
+<li>如果<code>target.property</code>不可配置且<code>[[Get]]</code>特性为undefined，捕获器返回值必须是undefined。</li>
+</ul>
+</li>
+</ul>
+<h3 id="set捕获器"><a href="#set捕获器" class="headerlink" title="set捕获器"></a>set捕获器</h3><ul>
+<li>API：<code>set(target, property, value, receiver)</code></li>
+<li>返回值：返回true表示成功；返回false表示失败，严格模式下失败会抛出TypeError。</li>
+<li>拦截的操作：<ul>
+<li><code>proxy.property = value</code></li>
+<li><code>proxy[property] = value</code></li>
+<li><code>Object.create(proxy)[property] = value</code></li>
+<li><code>Reflect.set(proxy, property, value, receiver)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果<code>target.property</code>不可写且不可配置，则不能修改目标属性的值；</li>
+<li>如果<code>target.property</code>不可配置且<code>[[Set]]</code>特性为undefined，则不能修改目标属性的值。</li>
+</ul>
+</li>
+</ul>
+<h3 id="has捕获器"><a href="#has捕获器" class="headerlink" title="has捕获器"></a>has捕获器</h3><ul>
+<li>API：<code>has(target, property)</code></li>
+<li>返回值：<code>has()</code>必须返回布尔值，表示属性是否存在。返回非布尔值会被转型为布尔值。</li>
+<li>拦截的操作：<ul>
+<li><code>property in proxy</code></li>
+<li><code>property in Object.create(proxy)</code></li>
+<li><code>with(proxy) &#123; (property); &#125;</code></li>
+<li><code>Reflect.has(proxy, property)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果<code>target.property</code>存在且不可配置，则处理程序必须返回true；</li>
+<li>如果<code>target.property</code>存在且目标对象不可扩展，则处理程序必须返回true。</li>
+</ul>
+</li>
+</ul>
+<h3 id="defineProperty捕获器"><a href="#defineProperty捕获器" class="headerlink" title="defineProperty捕获器"></a>defineProperty捕获器</h3><ul>
+<li>API：<code>defineProperty(target, property, descriptor)</code></li>
+<li>返回值：<code>defineProperty()</code>必须返回布尔值，表示属性是否成功定义。返回非布尔值会被转型为布尔值。</li>
+<li>拦截的操作：<ul>
+<li><code>Object.defineProperty(proxy, property, descriptor)</code></li>
+<li><code>Reflect.defineProperty(proxy, property, descriptor)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果目标对象不可扩展，则无法定义属性；</li>
+<li>如果目标对象有一个可配置的属性，则不能添加同名的不可配置属性；</li>
+<li>如果目标对象有一个不可配置的属性，则不能添加同名的可配置属性。</li>
+</ul>
+</li>
+</ul>
+<h3 id="getOwnPropertyDescriptor捕获器"><a href="#getOwnPropertyDescriptor捕获器" class="headerlink" title="getOwnPropertyDescriptor捕获器"></a>getOwnPropertyDescriptor捕获器</h3><ul>
+<li>API：<code>getOwnPropertyDescriptor(target, property)</code></li>
+<li>返回值：<code>getOwnPropertyDescriptor()</code>必须返回对象，或者在属性不存在时返回undefined。</li>
+<li>拦截的操作：<ul>
+<li><code>Object.getOwnPropertyDescriptor(proxy, property)</code></li>
+<li><code>Reflect.getOwnPropertyDescriptor(proxy, property)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果自有的<code>target.property</code>存在且不可配置，则处理程序必须返回一个表示该属性存在的对象；</li>
+<li>如果自有的<code>target.property</code>存在且可配置，则处理程序必须返回表示该属性可配置的对象；</li>
+<li>如果自有的<code>target.property</code>存在且target不可扩展，则处理程序必须返回一个表示该属性存在的对象；</li>
+<li>如果<code>target.property</code>不存在且target不可扩展，则处理程序必须返回undefined表示该属性不存在；</li>
+<li>如果<code>target.property</code>不存在，则处理程序不能返回表示该属性可配置的对象。</li>
+</ul>
+</li>
+</ul>
+<h3 id="deleteProperty捕获器"><a href="#deleteProperty捕获器" class="headerlink" title="deleteProperty捕获器"></a>deleteProperty捕获器</h3><ul>
+<li>API：<code>deleteProperty(target, property)</code></li>
+<li>返回值：必须返回布尔值，表示删除属性是否成功。返回非布尔值会被转型为布尔值。</li>
+<li>拦截的操作：<ul>
+<li><code>delete proxy.property</code></li>
+<li><code>delete proxy[property]</code></li>
+<li><code>Reflect.deleteProperty(proxy, property)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果自有的<code>target.property</code>存在且不可配置，则处理程序不能删除这个属性。</li>
+</ul>
+</li>
+</ul>
+<h3 id="ownKeys捕获器"><a href="#ownKeys捕获器" class="headerlink" title="ownKeys捕获器"></a>ownKeys捕获器</h3><ul>
+<li>API：<code>ownKeys(target)</code></li>
+<li>返回值：必须返回包含字符串或符号的可枚举对象。</li>
+<li>拦截的操作：<ul>
+<li><code>Object.getOwnPropertyNames(proxy)</code></li>
+<li><code>Object.getOwnPropertySymbols(proxy)</code></li>
+<li><code>Object.keys(proxy)</code></li>
+<li><code>Reflect.ownKeys(proxy)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>返回的可枚举对象必须包含target的所有不可配置的自有属性；</li>
+<li>如果target不可扩展，则返回可枚举对象必须准确地包含自有属性键。</li>
+</ul>
+</li>
+</ul>
+<h3 id="getPrototypeOf捕获器"><a href="#getPrototypeOf捕获器" class="headerlink" title="getPrototypeOf捕获器"></a>getPrototypeOf捕获器</h3><ul>
+<li>API：<code>getPrototypeOf(target)</code></li>
+<li>返回值：必须返回对象或null。</li>
+<li>拦截的操作：<ul>
+<li><code>Object.getPrototypeOf(proxy)</code></li>
+<li><code>Reflect.getPrototypeOf(proxy)</code></li>
+<li><code>proxy.__proto__</code></li>
+<li><code>Object.prototype.isPrototypeOf(proxy)</code></li>
+<li><code>proxy instanceof Object</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果target不可扩展，则<code>Object.getPrototypeOf(proxy)</code>唯一有效的返回值就是<code>Object.getPrototypeOf(target)</code>的返回值。</li>
+</ul>
+</li>
+</ul>
+<h3 id="setPrototypeOf捕获器"><a href="#setPrototypeOf捕获器" class="headerlink" title="setPrototypeOf捕获器"></a>setPrototypeOf捕获器</h3><ul>
+<li>API：<code>setPrototypeOf(target, prototype)</code></li>
+<li>返回值：必须返回布尔值，表示原型赋值是否成功。返回非布尔值会被转型为布尔值。</li>
+<li>拦截的操作：<ul>
+<li><code>Object.setPrototypeOf(proxy)</code></li>
+<li><code>Reflect.setPrototypeOf(proxy)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果target不可扩展，则唯一有效的prototype参数就是<code>Object.getPrototypeOf(target)</code>的返回值。</li>
+</ul>
+</li>
+</ul>
+<h3 id="isExtensible捕获器"><a href="#isExtensible捕获器" class="headerlink" title="isExtensible捕获器"></a>isExtensible捕获器</h3><ul>
+<li>API：<code>isExtensible(target)</code></li>
+<li>返回值：必须返回布尔值，表示target是否可扩展。返回非布尔值会被转型为布尔值。</li>
+<li>拦截的操作：<ul>
+<li><code>Object.isExtensible(proxy)</code></li>
+<li><code>Reflect.isExtensible(proxy)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果target可扩展，则处理程序必须返回true；</li>
+<li>如果target不可扩展，则处理程序必须返回false。</li>
+</ul>
+</li>
+</ul>
+<h3 id="preventExtensions捕获器"><a href="#preventExtensions捕获器" class="headerlink" title="preventExtensions捕获器"></a>preventExtensions捕获器</h3><ul>
+<li>API：<code>preventExtensions(target)</code></li>
+<li>返回值：必须返回布尔值，表示target是否已经不可扩展。返回非布尔值会被转型为布尔值。</li>
+<li>拦截的操作：<ul>
+<li><code>Object.preventExtensions(proxy)</code></li>
+<li><code>Reflect.preventExtensions(proxy)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>如果<code>Object.isExtensible(proxy)</code>是false，则处理程序必须返回true。</li>
+</ul>
+</li>
+</ul>
+<h3 id="apply捕获器"><a href="#apply捕获器" class="headerlink" title="apply捕获器"></a>apply捕获器</h3><ul>
+<li>API：<code>apply(target, thisArg, argumentsList)</code></li>
+<li>返回值：返回值无限制。</li>
+<li>拦截的操作：<ul>
+<li><code>proxy(...argumentsList)</code></li>
+<li><code>Function.prototype.apply(thisArg, argumentsList)</code></li>
+<li><code>Function.prototype.call(thisArg, ...argumentsList)</code></li>
+<li><code>Reflect.apply(target, thisArgument, argumentsList)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>target必须是一个函数对象。</li>
+</ul>
+</li>
+</ul>
+<h3 id="construct捕获器"><a href="#construct捕获器" class="headerlink" title="construct捕获器"></a>construct捕获器</h3><ul>
+<li>API：<code>construct(target, argumentsList, receiver)</code></li>
+<li>返回值：必须返回一个对象。</li>
+<li>拦截的操作：<ul>
+<li><code>new proxy(...argumentsList)</code></li>
+<li><code>Reflect.construct(target, argumentsList, receiver)</code></li>
+</ul>
+</li>
+<li>捕获器不变式：<ul>
+<li>target必须可以用作构造函数。</li>
+</ul>
+</li>
+</ul>
+<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><h2 id="监听属性"><a href="#监听属性" class="headerlink" title="监听属性"></a>监听属性</h2><p>通过get、has捕获器可以监听某个对象的属性何时被访问，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Dasen&quot;</span> &#125;;<br><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj, &#123;<br>    <span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params">target, p</span>)</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;obj 的属性&quot;</span>,p,<span class="hljs-string">&quot;被访问了！&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.get(...arguments);<br>    &#125;<br>&#125;);<br><span class="hljs-built_in">console</span>.log(proxy.name);<br><span class="hljs-comment">// obj 的属性 name 被访问了！</span><br><span class="hljs-comment">// Dasen</span><br></code></pre></td></tr></table></figure>
+
+<p>同时还可以使用set捕获器实现两个对象的数据双向绑定，将一个对象的属性更改同步到其他对象，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj1 = &#123; <span class="hljs-attr">val</span>: <span class="hljs-string">&quot;&quot;</span> &#125;;<br><span class="hljs-keyword">const</span> obj2 = &#123; <span class="hljs-attr">val</span>: <span class="hljs-string">&quot;&quot;</span> &#125;;<br><span class="hljs-keyword">const</span> proxy1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj1, &#123;<br>    <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params">target, p, v</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(p !== <span class="hljs-string">&quot;val&quot;</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(...arguments);<br>        &#125;<br>        obj2[p] = v;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(...arguments);<br>    &#125;<br>&#125;);<br><span class="hljs-keyword">const</span> proxy2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj2, &#123;<br>    <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params">target, p, v</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(p !== <span class="hljs-string">&quot;val&quot;</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(...arguments);<br>        &#125;<br>        obj1[p] = v;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(...arguments);<br>    &#125;<br>&#125;);<br>proxy1.val = <span class="hljs-string">&quot;val1&quot;</span>;<br><span class="hljs-built_in">console</span>.log(proxy1.val); <span class="hljs-comment">// val1</span><br><span class="hljs-built_in">console</span>.log(proxy2.val); <span class="hljs-comment">// val1</span><br>proxy2.val = <span class="hljs-string">&quot;val2&quot;</span>;<br><span class="hljs-built_in">console</span>.log(proxy1.val); <span class="hljs-comment">// val2</span><br><span class="hljs-built_in">console</span>.log(proxy2.val); <span class="hljs-comment">// val2</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h2><p>可以在通过get和has捕获器在访问对象的属性时隐藏掉该属性，使得外部无法访问到隐藏属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> hiddenProperties = [<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-string">&quot;weight&quot;</span>];<br><span class="hljs-keyword">const</span> obj = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Dasen&quot;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">22</span>,<br>    <span class="hljs-attr">height</span>: <span class="hljs-number">180</span>,<br>    <span class="hljs-attr">weight</span>: <span class="hljs-number">135</span><br>&#125;;<br><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj, &#123;<br>    <span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params">t,p</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(hiddenProperties.includes(p)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.get(...arguments);<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">has</span>(<span class="hljs-params">t,p</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(hiddenProperties.includes(p)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.has(...arguments);<br>    &#125;<br>&#125;);<br><span class="hljs-built_in">console</span>.log(proxy.name); <span class="hljs-comment">// Dasen</span><br><span class="hljs-built_in">console</span>.log(proxy.age); <span class="hljs-comment">// undefined</span><br><span class="hljs-built_in">console</span>.log(proxy.height); <span class="hljs-comment">// 180</span><br><span class="hljs-built_in">console</span>.log(proxy.weight); <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="对象属性验证"><a href="#对象属性验证" class="headerlink" title="对象属性验证"></a>对象属性验证</h2><p>在给对象属性赋值时可以对值的合法性进行验证，从而拒绝某些不合理的赋值操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Dasen&quot;</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-number">22</span>,<br>    <span class="hljs-attr">height</span>: <span class="hljs-number">180</span>,<br>    <span class="hljs-attr">weight</span>: <span class="hljs-number">135</span><br>&#125;;<br><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj, &#123;<br>    <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params">o,p,v</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(p===<span class="hljs-string">&quot;weight&quot;</span>) &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> v !== <span class="hljs-string">&quot;number&quot;</span> || v &lt;= <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;体重只能是大于0的数字！&quot;</span>);<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(v &gt; <span class="hljs-number">180</span>) &#123;<br>                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;大森是不可能那么胖的！&quot;</span>);<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(...arguments);<br>    &#125;<br>&#125;);<br>proxy.weight = <span class="hljs-number">130</span>;<br><span class="hljs-built_in">console</span>.log(proxy.weight); <span class="hljs-comment">// 130</span><br>proxy.weight = <span class="hljs-number">185</span>; <span class="hljs-comment">// 大森是不可能那么胖的！</span><br><span class="hljs-built_in">console</span>.log(proxy.weight); <span class="hljs-comment">// 130</span><br>proxy.weight = <span class="hljs-string">&quot;135&quot;</span>; <span class="hljs-comment">// 体重只能是大于0的数字！</span><br><span class="hljs-built_in">console</span>.log(proxy.weight); <span class="hljs-comment">// 130</span><br>proxy.weight = -<span class="hljs-number">1</span>; <span class="hljs-comment">// 体重只能是大于0的数字！</span><br><span class="hljs-built_in">console</span>.log(proxy.weight); <span class="hljs-comment">// 130</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="函数参数验证"><a href="#函数参数验证" class="headerlink" title="函数参数验证"></a>函数参数验证</h2><p>可以通过对函数的代理来验证传入函数的参数是否合法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">arr</span>) </span>&#123;<br>    <span class="hljs-comment">// 求数组中所有数的和</span><br>    <span class="hljs-keyword">return</span> arr.reduce(<span class="hljs-function">(<span class="hljs-params">r,c</span>) =&gt;</span> r+c);<br>&#125;<br><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(sum, &#123;<br>    <span class="hljs-function"><span class="hljs-title">apply</span>(<span class="hljs-params">t,thisArg,arg</span>)</span> &#123;<br>        <span class="hljs-keyword">let</span> arrArg = arg[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">Array</span>.isArray(arrArg)) &#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;要传入一个数组作为参数！&quot;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> arrArg) &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> i !== <span class="hljs-string">&quot;number&quot;</span>) &#123;<br>                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;数组中的每一个值都应该是数值！&quot;</span>);<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.apply(...arguments);<br>    &#125;<br>&#125;);<br><span class="hljs-built_in">console</span>.log(proxy([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>])); <span class="hljs-comment">// 15</span><br><span class="hljs-built_in">console</span>.log(proxy(<span class="hljs-number">1</span>));<br><span class="hljs-comment">// 要传入一个数组作为参数！</span><br><span class="hljs-comment">// undefined</span><br><span class="hljs-built_in">console</span>.log(proxy([<span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-number">2</span>,<span class="hljs-string">&quot;3&quot;</span>]));<br><span class="hljs-comment">// 数组中的每一个值都应该是数值！</span><br><span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
+
+<p>还可以对构造函数的传入值进行约束，要求构造时必须传参等：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">userid</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.id = userid;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(User, &#123;<br>    <span class="hljs-function"><span class="hljs-title">construct</span>(<span class="hljs-params">o,argArr</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(argArr[<span class="hljs-number">0</span>] === <span class="hljs-literal">undefined</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;必须要传入UserID！&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.construct(...arguments);<br>    &#125;<br>&#125;);<br><span class="hljs-keyword">new</span> proxy(<span class="hljs-number">1</span>);<br><span class="hljs-keyword">new</span> proxy(); <span class="hljs-comment">// Error: 必须要传入UserID！</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>观察者模式是使用一个中间人（第三方）作为观察者，在对某个类实例化的时候，将类实例化的消息传递给观察者，这样实例对象就纳入了观察者的管理，再对管理者绑定代理，这样管理者就可以对实例对象进行管理了。</p>
+<p>如下面的例子就是对于每一个新创建的用户加入观察者的观察中，观察者在有新的用户加入时发布消息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> userList = [];<br><span class="hljs-keyword">const</span> watcher = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(userList, &#123;<br>    <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params">target, p, value</span>)</span> &#123;<br>        <span class="hljs-keyword">const</span> res = <span class="hljs-built_in">Reflect</span>.set(...arguments);<br>        <span class="hljs-keyword">if</span>(p !== <span class="hljs-string">&quot;length&quot;</span> &amp;&amp; res) &#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;欢迎&quot;</span>,value.name,<span class="hljs-string">&quot;的加入！&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">username</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = username;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> userProxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(User, &#123;<br>    <span class="hljs-function"><span class="hljs-title">construct</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">const</span> newUser = <span class="hljs-built_in">Reflect</span>.construct(...arguments);<br>        watcher.push(newUser);<br>        <span class="hljs-keyword">return</span> newUser;<br>    &#125;<br>&#125;);<br><span class="hljs-keyword">new</span> userProxy(<span class="hljs-string">&quot;Dasen&quot;</span>); <span class="hljs-comment">// 欢迎 Dasen 的加入！</span><br><span class="hljs-keyword">new</span> userProxy(<span class="hljs-string">&quot;Three&quot;</span>); <span class="hljs-comment">// 欢迎 Three 的加入！</span><br><span class="hljs-keyword">new</span> userProxy(<span class="hljs-string">&quot;Jack&quot;</span>); <span class="hljs-comment">// 欢迎 Jack 的加入！</span><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/12/17/js007/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;17&#x2F;js007&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;17&#x2F;js007&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/12/15/js006/">JavaScript学习笔记（6）：面向对象 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-text">代理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%BB%A3%E7%90%86"><span class="toc-text">定义代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">捕获器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%8D%95%E8%8E%B7%E5%99%A8%E5%92%8C%E5%8F%8D%E5%B0%84API"><span class="toc-text">使用捕获器和反射API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E5%99%A8%E4%B8%8D%E5%8F%98%E5%BC%8F"><span class="toc-text">捕获器不变式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%92%A4%E9%94%80%E4%BB%A3%E7%90%86"><span class="toc-text">可撤销代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3"><span class="toc-text">操作相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E7%9B%B8%E5%85%B3"><span class="toc-text">访问相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9B%B8%E5%85%B3"><span class="toc-text">函数相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%B1%82%E4%BB%A3%E7%90%86"><span class="toc-text">多层代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E7%B1%BB"><span class="toc-text">代理类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E5%99%A8%E4%B8%8E%E5%8F%8D%E5%B0%84%E6%96%B9%E6%B3%95"><span class="toc-text">捕获器与反射方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#API%E8%A7%A3%E9%87%8A"><span class="toc-text">API解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E5%99%A8%E5%8F%82%E8%80%83"><span class="toc-text">捕获器参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">get捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">set捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#has%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">has捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#defineProperty%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">defineProperty捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getOwnPropertyDescriptor%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">getOwnPropertyDescriptor捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deleteProperty%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">deleteProperty捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ownKeys%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">ownKeys捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getPrototypeOf%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">getPrototypeOf捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setPrototypeOf%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">setPrototypeOf捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isExtensible%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">isExtensible捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#preventExtensions%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">preventExtensions捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apply%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">apply捕获器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#construct%E6%8D%95%E8%8E%B7%E5%99%A8"><span class="toc-text">construct捕获器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-text">代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%91%E5%90%AC%E5%B1%9E%E6%80%A7"><span class="toc-text">监听属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E5%B1%9E%E6%80%A7"><span class="toc-text">隐藏属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E9%AA%8C%E8%AF%81"><span class="toc-text">对象属性验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81"><span class="toc-text">函数参数验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-text">观察者模式</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
