@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript学习笔记（8）：函数 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="函数基础函数实际上是对象，每个函数都是Function...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">JavaScript学习笔记（8）：函数</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/js.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JavaScript学习笔记（8）：函数</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 23, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>14660</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="函数基础"><a href="#函数基础" class="headerlink" title="函数基础"></a>函数基础</h1><p>函数实际上是对象，每个函数都是Function类型的实例，因此函数和其他引用类型一样，也有属性和方法。</p>
+<p>因此函数名就是指向函数对象的指针，不一定与函数本身紧密绑定，即一个函数名作为一个名称，可以替换它所指向的函数。</p>
+<h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><p>一共有四种函数的定义方式。</p>
+<h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p>最常见的、中规中矩的函数定义的方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;<br><span class="hljs-built_in">console</span>.log(sum(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure>
+
+<p>函数声明的末尾不加分号。</p>
+<h3 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h3><p>将一个匿名函数赋给一个变量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> sum = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> a+b;<br>&#125;;<br><span class="hljs-built_in">console</span>.log(sum(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>简单的函数定义方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> sum = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b;<br><span class="hljs-built_in">console</span>.log(sum(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure>
+
+<p>如果函数内容较为复杂可以把函数体写成代码块。</p>
+<h3 id="创建函数对象"><a href="#创建函数对象" class="headerlink" title="创建函数对象"></a>创建函数对象</h3><p>通过构造函数创建函数对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> sum = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Function</span>(<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;return a+b;&quot;</span>);<br><span class="hljs-built_in">console</span>.log(sum(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure>
+
+<p>最后一个字符串作为函数体的内容，前面的字符串是参数名。</p>
+<p>不推荐使用这种方法创建函数。</p>
+<h2 id="函数表达式-1"><a href="#函数表达式-1" class="headerlink" title="函数表达式"></a>函数表达式</h2><h3 id="函数表达式与函数声明"><a href="#函数表达式与函数声明" class="headerlink" title="函数表达式与函数声明"></a>函数表达式与函数声明</h3><p>函数表达式和函数声明的唯一不同之处就是它会不会被提升：<strong>函数声明会被提升</strong>，在声明之前也可以使用函数，而<strong>函数表达式则只能在表达式赋值之后才可以使用函数</strong>。</p>
+<p>除了这一点区别外，函数声明和函数表达式完全等价。</p>
+<p>就像var变量提升可以多次定义一样，函数声明被提升也是可以多次定义的，但是这里的多次定义并非重载，<strong>JS是不支持重载函数的</strong>，多次声明时后面的声明将会覆盖前面的。</p>
+<p>必需使用函数表达式替代函数声明的情况之一是需要利用函数表达式的“表达式”特性时，如条件定义函数时：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> char = <span class="hljs-string">&quot;a&quot;</span>;<br><span class="hljs-keyword">let</span> process;<br><span class="hljs-keyword">if</span>(char &gt;= <span class="hljs-string">&quot;a&quot;</span> &amp;&amp; char &lt;= <span class="hljs-string">&quot;z&quot;</span>) &#123;<br>    process = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">c</span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> c.toUpperCase();<br>    &#125;<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(char &gt;= <span class="hljs-string">&quot;A&quot;</span> &amp;&amp; char &lt;= <span class="hljs-string">&quot;Z&quot;</span>) &#123;<br>    process = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">c</span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> c.toLowerCase();<br>    &#125;<br>&#125;<br><span class="hljs-built_in">console</span>.log(process(char)); <span class="hljs-comment">// A</span><br></code></pre></td></tr></table></figure>
+
+<p>这样可以在不同的情况下让函数process获得不同的定义，但是使用函数声明就做不到。使用函数声明浏览器大概率不会报错，因为浏览器会尝试将其纠正为合理的声明，但最后的结果一定是不符合预期的！</p>
+<h3 id="立即调用的函数表达式"><a href="#立即调用的函数表达式" class="headerlink" title="立即调用的函数表达式"></a>立即调用的函数表达式</h3><p>即IIFE，最常见的用途是用来<strong>模拟块作用域</strong>。在还没有块作用域和let声明的时候，使用IIFE可以模拟出这样的行为。</p>
+<p>在“<a href="../../../../2021/12/04/js001/#let%E5%A3%B0%E6%98%8E">语言基础</a>”章节提到了var变量的一种反常行为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; ++i) &#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(i), <span class="hljs-number">0</span>)<br>&#125; <span class="hljs-comment">// 5 5 5 5 5</span><br></code></pre></td></tr></table></figure>
+
+<p>我们希望它按照预期地输出，之前说要使用let声明变量，但是在解决历史遗留问题的时候以及在某些不支持ES6语法的地方，只能使用IIFE来模拟let变量的行为了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; ++i) &#123;<br>    <span class="hljs-built_in">setTimeout</span>((<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">j</span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(j);<br>    &#125;)(i));<br>&#125; <span class="hljs-comment">// 0 1 2 3 4</span><br></code></pre></td></tr></table></figure>
+
+<p>这里通过闭包加上立即调用的函数表达式，实现了<strong>变量锁定</strong>。</p>
+<p>此外由于函数作用域能够关住var变量，所以可以模拟出块作用域的行为。</p>
+<p>注意：在支持ES6语法的环境下，应当<strong>尽量不去使用IIFE</strong>了！</p>
+<h2 id="箭头函数-1"><a href="#箭头函数-1" class="headerlink" title="箭头函数"></a>箭头函数</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>ECMAScript 6新增了使用胖箭头（<code>=&gt;</code>）语法定义函数表达式的能力，任何使用到函数的地方，都可以使用箭头函数来替代。</p>
+<p>箭头函数的完整定义为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">(a,b) =&gt; &#123; <span class="hljs-keyword">return</span> a+b; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>其中，如果参数只有一个，就可以省略小括号，参数有0个或多个时，不能省略小括号：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">a =&gt; &#123; <span class="hljs-keyword">return</span> a+<span class="hljs-number">3</span>; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果函数的返回值是一个表达式，并且没有其他处理过程，可以将函数体直接写成返回的表达式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">a =&gt; a+<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>箭头函数不能使用<code>arguments</code>、<code>super</code>和<code>new.target</code>，也不能用作构造函数。</p>
+<p>此外，箭头函数也没有prototype属性。</p>
+<h1 id="函数结构"><a href="#函数结构" class="headerlink" title="函数结构"></a>函数结构</h1><h2 id="函数名"><a href="#函数名" class="headerlink" title="函数名"></a>函数名</h2><p>函数名需要遵循JS标识符的规则。</p>
+<p>函数实际上就是一个对象，可以像其他对象一样给变量赋值，因此一个对象可以被传来传去，多个名称指向一个函数也是可以的，因此，一个函数不一定只有一个名称：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;<br><span class="hljs-keyword">let</span> add = sum;<br><span class="hljs-built_in">console</span>.log(sum(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span><br><span class="hljs-built_in">console</span>.log(add(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)); <span class="hljs-comment">// 5</span><br><span class="hljs-built_in">console</span>.log(sum === add); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<p>ECMAScript 6的所有函数对象都会暴露一个只读的name属性，它就是这个函数最原始的名称：</p>
+<ul>
+<li>对于函数声明来说，name属性就是声明它时给出的名称；</li>
+<li>对于函数表达式和箭头函数来说，它们定义时是没有名称的，即name属性为空，但是如果使用它们来初始化一个变量，那么这个变量名就会成为它们的函数名，即name属性的值；</li>
+<li>使用Function构造函数创建的函数的函数名name都为<code>&quot;anonymous&quot;</code>；</li>
+<li>函数名name属性是只读的，因此一旦确定下来，就不可能再改变了，因此赋值操作不会改变函数的name字段，最多认为赋值操作是为函数指定了“别名”。</li>
+</ul>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum1</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;<br><span class="hljs-keyword">let</span> sum2 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;;<br><span class="hljs-keyword">let</span> sum3 = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b;<br><span class="hljs-keyword">let</span> sum4 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Function</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;return a + b;&quot;</span>);<br><span class="hljs-keyword">let</span> sum5 = sum1;<br><span class="hljs-keyword">let</span> sum6 = sum2;<br><span class="hljs-keyword">let</span> sum7 = sum3;<br><span class="hljs-keyword">let</span> sum8 = sum4;<br><span class="hljs-built_in">console</span>.log(sum1.name, sum5.name); <span class="hljs-comment">// sum1 sum1</span><br><span class="hljs-built_in">console</span>.log(sum2.name, sum6.name); <span class="hljs-comment">// sum2 sum2</span><br><span class="hljs-built_in">console</span>.log(sum3.name, sum7.name); <span class="hljs-comment">// sum3 sum3</span><br><span class="hljs-built_in">console</span>.log(sum4.name, sum8.name); <span class="hljs-comment">// anonymous anonymous</span><br><span class="hljs-keyword">let</span> funArr = [<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> a + b;<br>    &#125;,<br>    <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b<br>];<br><span class="hljs-built_in">console</span>.log(funArr[<span class="hljs-number">0</span>].name === <span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(funArr[<span class="hljs-number">1</span>].name === <span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// true</span><br><span class="hljs-keyword">let</span> sum9 = funArr[<span class="hljs-number">0</span>];<br><span class="hljs-keyword">let</span> sum10 = funArr[<span class="hljs-number">1</span>];<br><span class="hljs-built_in">console</span>.log(funArr[<span class="hljs-number">0</span>].name === <span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(funArr[<span class="hljs-number">1</span>].name === <span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<p>特别地，如果函数是一个getter或者setter，或者使用bind方法来实例化，那么函数标识符前会有一个前缀，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Three&quot;</span>,<br>    <span class="hljs-attr">age_</span>: <span class="hljs-number">18</span>,<br>    <span class="hljs-keyword">get</span> <span class="hljs-title">age</span>() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.age_;<br>    &#125;<br>&#125;;<br><span class="hljs-keyword">let</span> ageFun = <span class="hljs-built_in">Object</span>.getOwnPropertyDescriptor(obj, <span class="hljs-string">&quot;age&quot;</span>);<br><span class="hljs-built_in">console</span>.log(ageFun.get.name); <span class="hljs-comment">// get age</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun</span>(<span class="hljs-params"></span>) </span>&#123;&#125;<br><span class="hljs-built_in">console</span>.log(fun.bind(<span class="hljs-literal">null</span>).name); <span class="hljs-comment">// bound fun</span><br></code></pre></td></tr></table></figure>
+
+<p>注意这里的age方法无法直接通过<code>obj.age</code>来获得，通过<code>obj.age</code>获得的是它返回的age值，因此需要使用<code>Object.getOwnPropertyDescriptor()</code>静态方法来获取函数本体。</p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="随意的参数"><a href="#随意的参数" class="headerlink" title="随意的参数"></a>随意的参数</h3><p>JS的函数是非常随意的，因此参数也是非常随意的。</p>
+<p>函数随意在于它根本没有签名，只是一个个对象，函数的定义格式对函数的调用格式<strong>没有任何要求</strong>。</p>
+<p>参数随意在于<strong>函数定义中写的有多少参数并不代表调用时就一定需要传多少参数</strong>，函数声明时写明了两个参数，调用时传递1个或3个，甚至不传，语法上都不会报错，只是函数可能不会按照预期来正常执行。</p>
+<p>JS函数（暂时只说除了箭头函数以外的函数）的机制为：</p>
+<ul>
+<li>函数调用时传递任意个参数都会原封不动地进入一个名为arguments的类数组对象中进入函数体供函数使用。</li>
+<li>arguments对象可以像数组一样通过数字下标访问，传入函数的参数都依次存储在里面，但它不是数组，使用<code>Array.isArray()</code>测试会返回false。</li>
+<li>函数定义时指定的形参只是个“别名”，这些别名会获得arguments中的前若干个值，以能够在函数中以更方便的方式来访问它们，因此这些形参的个数与调用时传入的实参的个数没有任何约束关系：<ul>
+<li>传入的实参个数多了，就都在arguments对象中存着呢，仍然可以通过arguments读取；</li>
+<li>传入的实参个数少了，只不过是后面若干个形参没有对应的值，为undefined罢了，也不会有什么语法上的错误。</li>
+</ul>
+</li>
+</ul>
+<h3 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h3><p>考虑：如果在函数内部修改arguments的内容呢？有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(a, b);<br>    <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>] = <span class="hljs-number">99</span>;<br>    <span class="hljs-built_in">console</span>.log(a, b);<br>    b = <span class="hljs-number">66</span>;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]);<br>&#125;<br>fun(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br><span class="hljs-comment">// 1 2</span><br><span class="hljs-comment">// 1 99</span><br><span class="hljs-comment">// 66</span><br>fun(<span class="hljs-number">1</span>);<br><span class="hljs-comment">// 1 undefined</span><br><span class="hljs-comment">// 1 undefined</span><br><span class="hljs-comment">// 99</span><br></code></pre></td></tr></table></figure>
+
+<p>可以认为给函数传递了两个参数时，函数的两个命名参数都获得了值，那么它们都处于活跃的状态，就会建立它们与arguments之间的联系，使得它们的值互相同步修改；而如果某些命名参数没有在一开始获得值，他们就不处于激活的状态，就不会与arguments建立起联系。</p>
+<p>注意这里并非arguments和命名参数使用的是同一块存储空间，只是它们互相同步修改而已。</p>
+<p>而在严格模式下情况就不一样了，上述的同步修改的情况根本不会发生：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br><span class="hljs-meta">    &quot;use strict&quot;</span><br>    <span class="hljs-built_in">console</span>.log(a, b);<br>    <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>] = <span class="hljs-number">99</span>;<br>    <span class="hljs-built_in">console</span>.log(a, b);<br>    b = <span class="hljs-number">66</span>;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]);<br>&#125;<br>fun(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br><span class="hljs-comment">// 1 2</span><br><span class="hljs-comment">// 1 2</span><br><span class="hljs-comment">// 99</span><br></code></pre></td></tr></table></figure>
+
+<p>还有一点是严格模式下重写arguments对象会报语法错误，非严格模式下不会报错。</p>
+<h3 id="箭头函数-2"><a href="#箭头函数-2" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>箭头函数中是<strong>没有arguments对象</strong>的，因此<strong>只能通过命名参数来访问参数</strong>。</p>
+<p>除非使用包装函数通过闭包来使得箭头函数获得arguments对象，但这显得非常麻烦，违背了使用箭头函数简洁的初衷。</p>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>默认参数是从ES6开始支持的，在以前，实现默认参数的一种常用方式就是检测某个参数是否等于undefined，如果是则意味着没有传这个参数，那就给它赋一个值。</p>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b=<span class="hljs-number">2</span></span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;<br><span class="hljs-built_in">console</span>.log(sum(<span class="hljs-number">5</span>,<span class="hljs-number">5</span>)); <span class="hljs-comment">// 10</span><br><span class="hljs-built_in">console</span>.log(sum(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 7</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li>使用默认参数时arguments对象中不会反映参数的默认值，只存储的是调用函数传进来的参数。</li>
+<li>一旦使用了默认参数，arguments和命名参数之间的联系就被打断了，修改其一另一个就不会被同步修改了。</li>
+<li>默认参数可以使用任何合法的表达式，但是表达式在调用且未传递相关参数时求值，并不在定义时求值。</li>
+</ul>
+<p>既然参数可以使用任何表达式，那么表达式一定是在某个作用域中求值的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;f this :&quot;</span>, <span class="hljs-built_in">this</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">s</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;second&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun</span>(<span class="hljs-params">first=f(), second=s(), third=second*<span class="hljs-number">2</span>, t=<span class="hljs-built_in">this</span></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;fun this :&quot;</span>, t);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;first&#125;</span> <span class="hljs-subst">$&#123;second&#125;</span> <span class="hljs-subst">$&#123;third&#125;</span>`</span>;<br>&#125;<br><span class="hljs-keyword">let</span> obj = &#123; fun &#125;;<br><span class="hljs-built_in">console</span>.log(obj.fun());<br><span class="hljs-comment">// f this : window</span><br><span class="hljs-comment">// second</span><br><span class="hljs-comment">// fun this : obj</span><br><span class="hljs-comment">// 1 2 4</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到表达式求值的作用域为函数作用域，而函数作为默认参数则在全局作用域上运行，并且后求值的参数可以访问到前面的参数，但前面的参数无法访问到后面的参数。</p>
+<p>箭头函数也可使用默认参数，但这时如果只有一个参数就不能省略小括号了。</p>
+<h3 id="参数的收集和扩展"><a href="#参数的收集和扩展" class="headerlink" title="参数的收集和扩展"></a>参数的收集和扩展</h3><p>使用ES6的扩展操作符，可以方便地将数组展开为函数的参数来传递给函数，也可以在形参处将若干参数收集起来成为一个数组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params">name=<span class="hljs-string">&quot;unknow&quot;</span>, age, ...others</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`name: <span class="hljs-subst">$&#123;name&#125;</span>, age: <span class="hljs-subst">$&#123;age&#125;</span>, others: <span class="hljs-subst">$&#123;others&#125;</span>`</span>);<br>&#125;<br>print(); <span class="hljs-comment">// name: unknow, age: undefined, others: </span><br><span class="hljs-keyword">let</span> p = [<span class="hljs-string">&quot;Dasen&quot;</span>, <span class="hljs-number">22</span>];<br>print(...p, <span class="hljs-string">&quot;other1&quot;</span>, <span class="hljs-string">&quot;other2&quot;</span>); <span class="hljs-comment">// name: Dasen, age: 22, others: other1,other2</span><br></code></pre></td></tr></table></figure>
+
+<p>在传递参数时由于数组长度已知，因此在扩展前后都可以传递其他参数，而在收集时，由于不知道要收集多少参数到数组中，因此收集参数只能作为最后一个形参，表示收集其余全部参数。</p>
+<p>箭头函数也支持参数收集。</p>
+<h2 id="函数内部对象"><a href="#函数内部对象" class="headerlink" title="函数内部对象"></a>函数内部对象</h2><p>函数内部对象就是在函数内部可以使用的对象，它们在进入函数运行时会自动创建，并可以在函数内部直接使用。内部对象主要有四个：ES5以前规定的<code>this</code>、<code>arguments</code>和ES6规定的<code>new.target</code>以及几乎所有浏览器都支持的<code>caller</code>。</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>在标准函数中，this引用的是把函数当成方法调用的上下文对象。在全局作用域下，this就是window对象。</p>
+<p>在箭头函数中，this引用的是箭头函数定义所在的上下文，即<strong>箭头函数没有它自己的this</strong>，它的this实际是通过闭包获得的上级上下文。</p>
+<h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><p>在上文已经讨论过很多关于arguments对象的内容了，我们知道它是一个类数组对象。</p>
+<p>之所以是类数组对象，是因为我们可以通过数字下标来访问它的元素，但它又有和数组不一样的东西，其中之一就是callee属性，是一个指向本函数的指针。</p>
+<p>如果你之前学过C语言可能会觉得它没啥用，但它其实有很大用，原因就在于像C语言这样的语言的函数名是固定的，你也许能通过函数指针来使函数获得一个别名，但是函数的原本的名字不可能改变，不如看这样的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span>(<span class="hljs-params">num</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> num * factorial(num - <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这是一个典型的求阶乘的函数，通过递归来实现的，如果它是个C语言函数那没有任何问题，因为它的函数名factorial不可能被改变，永远可以通过这个名称调用到这个函数，但是在JS中使用函数表达式定义的函数就不是了，一个函数可能永远抛弃了它原本的名字而改用新名，那么在函数内部递归地调用factorial这个名称在函数名改变之后就会出现问题了——找不到这个函数了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> factorial = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> num * factorial(num - <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;;<br><span class="hljs-built_in">console</span>.log(factorial(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 120</span><br><span class="hljs-keyword">let</span> anotherFun = factorial; <span class="hljs-comment">// 改变函数名</span><br>factorial = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 废弃掉原来的函数名</span><br><span class="hljs-built_in">console</span>.log(anotherFun(<span class="hljs-number">5</span>)); <span class="hljs-comment">// TypeError: factorial is not a function</span><br></code></pre></td></tr></table></figure>
+
+<p>这种情况是C语言不可能发生的，因为你无法在C语言中废弃掉一个函数最原本的函数名，这就是不同语言特性的差异导致的在不同语言下应当有不同的设计思想。</p>
+<p>在JS中很多关系只是名称与引用的关系，名称在大多情况下是可以改变的，那就要在设计时尽可能地不依赖名称，即名称与逻辑解耦。在本例中，就可以使用<code>arguments.callee</code>来改进，这样函数的逻辑就不依赖于函数名了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> factorial = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> num * <span class="hljs-built_in">arguments</span>.callee(num - <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;;<br><span class="hljs-built_in">console</span>.log(factorial(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 120</span><br><span class="hljs-keyword">let</span> anotherFun = factorial; <span class="hljs-comment">// 改变函数名</span><br>factorial = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 废弃掉原来的函数名</span><br><span class="hljs-built_in">console</span>.log(anotherFun(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 120</span><br></code></pre></td></tr></table></figure>
+
+<p>但是，这种解耦虽然似乎更好，但会带来安全性的问题，因此在严格模式下是不允许使用callee和下文介绍的caller的，因为它们可能会泄露函数的代码。因此这种模式不应该在生产环境下使用，生产环境下代码的安全性是很重要的，因此应当使用其他的约束来避免发生不合适的函数名改变。</p>
+<p>可是如果我希望在严格模式下也能做到这样的名称和逻辑解耦呢？答案是使用带有默认名称的函数表达式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-meta">&quot;use strict&quot;</span><br><span class="hljs-keyword">let</span> factorial = (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">num</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> num * f(num - <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;);<br><span class="hljs-built_in">console</span>.log(factorial(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 120</span><br></code></pre></td></tr></table></figure>
+
+<p>本来函数表达式声明的是个匿名函数，但我们可以给它一个原始名称，这个原始名称无法被解绑，其他的都只是它的别名，这就解决了问题。</p>
+<h3 id="new-target"><a href="#new-target" class="headerlink" title="new.target"></a>new.target</h3><p>ECMAScript中的函数始终可以作为构造函数实例化一个新对象，也可以作为普通函数被调用。</p>
+<p>ECMAScript 6新增了检测函数是否使用new关键字调用的<code>new.target</code>属性：</p>
+<ul>
+<li>如果函数是正常调用的，则<code>new.target</code>的值是undefined；</li>
+<li>如果是使用new关键字调用的，则<code>new.target</code>将引用被调用的构造函数。</li>
+</ul>
+<h3 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h3><p>caller属性是在函数对象上的，用来标识调用它的那个主调函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inner</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(inner.caller);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outer</span>(<span class="hljs-params"></span>) </span>&#123;<br>    inner();<br>&#125;<br>inner(); <span class="hljs-comment">// 结果不一定</span><br>outer(); <span class="hljs-comment">// ƒ outer()</span><br></code></pre></td></tr></table></figure>
+
+<p>直接在全局作用域下调用函数的caller属性在不同实现中的结果不一样，在Chrome中是null。</p>
+<h2 id="属性与方法"><a href="#属性与方法" class="headerlink" title="属性与方法"></a>属性与方法</h2><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>函数有两个属性：length和prototype。</p>
+<p>其中，length属性表示函数拥有几个命名参数，prototype属性则是函数对象的原型，一般是用不到函数对象的prototype属性的。</p>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;<br><span class="hljs-keyword">let</span> add2 = <span class="hljs-function">(<span class="hljs-params">a</span>) =&gt;</span> a + <span class="hljs-number">2</span>;<br><span class="hljs-built_in">console</span>.log(sum.length); <span class="hljs-comment">// 2</span><br><span class="hljs-built_in">console</span>.log(add2.length); <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>函数有三个方法：<code>apply()</code>、<code>call()</code>和<code>bind()</code>。</p>
+<p>前两个方法都会以指定的this值来调用函数，即会设置调用函数时函数体内this对象的值。</p>
+<p><code>apply()</code>方法接收两个参数：函数内this的值和一个参数数组，第二个参数可以是Array的实例，也可以是arguments对象。</p>
+<p><code>call()</code>方法与<code>apply()</code>的作用一样，只是传参的形式不同：第一个参数跟<code>apply()</code>一样，也是this值，而后面若干个参数是要传递给函数的参数，必须将参数一个一个地列出来。</p>
+<p><code>bind()</code>方法则只需要一个this参数，它是基于原函数构建出一个新的函数，这个新函数是以提供的参数作为this对象的。</p>
+<p>有以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addAll</span>(<span class="hljs-params">a, b, c, d</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);<br>    <span class="hljs-keyword">return</span> a + b + c + d;<br>&#125;<br><span class="hljs-keyword">let</span> obj = &#123;&#125;;<br><span class="hljs-built_in">console</span>.log(addAll.apply(obj, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]));<br><span class="hljs-comment">// obj: &#123;&#125;</span><br><span class="hljs-comment">// 10</span><br><span class="hljs-built_in">console</span>.log(addAll.call(obj, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>));<br><span class="hljs-comment">// obj: &#123;&#125;</span><br><span class="hljs-comment">// 10</span><br><span class="hljs-keyword">let</span> fun = addAll.bind(obj);<br><span class="hljs-built_in">console</span>.log(fun(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>));<br><span class="hljs-comment">// obj: &#123;&#125;</span><br><span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure>
+
+<p>此外：之前说函数在全局上下文并且没有指定上下文对象时，函数的this是指向window全局对象的，然而在严格模式下并不是这样的，<strong>严格模式下没有指定this值时函数不会自动获得全局对象作为上下文，而会是undefined值</strong>。</p>
+<p>此外还有继承的方法<code>toLocaleString()</code>和<code>toString()</code>始终返回函数的代码，返回代码的具体格式因浏览器而异：有的返回源代码，包含注释；而有的只返回代码的内部形式，会删除注释，甚至代码可能被解释器修改过。这种方法最好只用来调试。</p>
+<h2 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h2><p>形如如下调用方式就是尾调用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outerFunction</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> innerFunction();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>即<strong>另一个函数的调用是当前函数的最后一步操作</strong>。</p>
+<p>在常规的函数调用中，函数调用是通过函数调用栈来进行的，一个函数调用另一个函数时，将会把被调函数的压入调用栈，返回时将函数弹栈并返回值。</p>
+<p>如果是尾调用的情况则可以进行尾调用优化：</p>
+<ul>
+<li>执行到outerFunction函数体，第一个栈帧被推到栈上。</li>
+<li>执行outerFunction函数体，到达return语句。为求值返回语句，必须先求值innerFunction。</li>
+<li>引擎发现把第一个栈帧弹出栈外也没问题，因为innerFunction的返回值也是outerFunction的返回值。</li>
+<li>弹出outerFunction的栈帧。</li>
+<li>执行到innerFunction函数体，栈帧被推到栈上。</li>
+<li>执行innerFunction函数体，计算其返回值。</li>
+<li>将innerFunction的栈帧弹出栈外。</li>
+</ul>
+<p>但一般情况下尾调用优化是不会生效的，尾调用优化生效的条件为：</p>
+<ul>
+<li>代码在<strong>严格模式下</strong>执行；</li>
+<li>外部函数的返回值是对尾调用函数的调用；</li>
+<li>尾调用的函数<strong>返回后不需要执行额外的逻辑</strong>；</li>
+<li>尾调用的函数<strong>不是引用外部函数作用域中自由变量的闭包</strong>。</li>
+</ul>
+<p>合理使用尾调用将大大提升程序的效率，并且对于尾递归，由于进行下一次递归时前一次递归的函数调用已经被弹出栈了，因此调用栈中永远都只有一个函数的调用栈，这样的经过尾调用优化的递归永远不会出现栈溢出的问题。</p>
+<h1 id="闭包与私有成员"><a href="#闭包与私有成员" class="headerlink" title="闭包与私有成员"></a>闭包与私有成员</h1><h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>闭包指的是那些<strong>引用了另一个函数作用域中变量的函数</strong>，通常是在嵌套函数中实现的。</p>
+<p>在调用一个函数时，会为这个函数调用创建一个执行上下文，并创建一个作用域链，然后用arguments和其他命名参数来初始化这个函数的活动对象。外部函数的活动对象是内部函数作用域链上的第二个对象，这个作用域链一直向外串起了所有包含函数的活动对象，直到全局执行上下文才终止。</p>
+<p>而闭包就是在一个函数中返回了另一个函数，而返回的这个函数中包含了父函数作用域中某些值的引用，因此在这种情况下，尽管父函数已经返回了，结束了运行，但上下文不会被销毁，因为还有返回的函数内部保持着对父函数上下文内对象的引用。</p>
+<h3 id="this-1"><a href="#this-1" class="headerlink" title="this"></a>this</h3><p>引入了闭包之后，考虑以下例子的this值的指向：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outer</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);<br>&#125;<br><span class="hljs-keyword">let</span> obj = &#123;<br>    <span class="hljs-function"><span class="hljs-title">inner</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);<br>        outer(); <span class="hljs-comment">// 在全局定义，内部调用</span><br>        <span class="hljs-keyword">let</span> fun = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);<br>        &#125;<br>        fun(); <span class="hljs-comment">// 在内部定义，内部调用</span><br>        <span class="hljs-keyword">return</span> [<br>            <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>                <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);<br>            &#125;,<br>            <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>),<br>            fun<br>        ];<br>    &#125;<br>&#125;;<br>outer(); <span class="hljs-comment">// window - 在全局定义，全局调用</span><br><span class="hljs-keyword">let</span> [fun, afun, innerfun] = obj.inner();<br><span class="hljs-comment">// obj - obj.inner()的this</span><br><span class="hljs-comment">// window - 在全局定义，内部调用</span><br><span class="hljs-comment">// window - 在内部定义，内部调用</span><br>fun(); <span class="hljs-comment">// window - （返回的匿名函数）</span><br>afun(); <span class="hljs-comment">// obj - （返回的箭头函数）</span><br>innerfun(); <span class="hljs-comment">// window - 在内部定义，全局调用</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到，<strong>非箭头函数无论在哪里声明、哪里调用，其this值永远是全局对象</strong>，函数内返回的匿名函数，也相当于是在函数内部定义、函数外部调用的函数了，所以其this值也是全局对象；而<strong>箭头函数没有自己的this，它永远引用的是它定义时的外层的this</strong>，因此箭头函数只要使用了this，就一定引用了外层作用域中的内容，就一定形成了闭包。</p>
+<h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p>在“<a href="../../../../2021/12/07/js002/#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F">值、作用域与内存</a>”这一章节中提到过闭包导致的内存泄漏，尤其是在IE9之前的浏览器中，如果把HTML元素保存在了闭包中，则它们永远不会被回收。建议的解决方法是在闭包中只保存能够唯一标识HTML元素的ID，并在保存了这个ID之后将保存HTML元素的变量设置为null，手动解除引用，这样就能够解决这一问题了。</p>
+<h2 id="闭包模式的私有成员"><a href="#闭包模式的私有成员" class="headerlink" title="闭包模式的私有成员"></a>闭包模式的私有成员</h2><p>任何定义在函数或块中的变量，都可以认为是私有的，因为在这个函数或块的外部无法访问其中的变量。私有变量包括函数参数、局部变量，以及函数内部定义的其他函数（包括函数内部的其他函数声明）。</p>
+<p>ES语法是不支持对象的私有成员的，而使用闭包的特性，可以创建出具有私有成员的对象。</p>
+<h3 id="简单闭包模式"><a href="#简单闭包模式" class="headerlink" title="简单闭包模式"></a>简单闭包模式</h3><p>使用内部变量、命名参数等只能在函数内部访问的名称来存储私有属性，然后通过暴露出的特权方法来访问：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">name</span>) </span>&#123;<br>    <span class="hljs-built_in">this</span>.getName = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;;<br>    <span class="hljs-built_in">this</span>.setName = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">personName</span>) </span>&#123;<br>        name = personName;<br>    &#125;;<br>&#125;<br><span class="hljs-keyword">let</span> person = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;Dasen&quot;</span>);<br><span class="hljs-built_in">console</span>.log(person.getName()); <span class="hljs-comment">// Dasen</span><br>person.setName(<span class="hljs-string">&quot;name&quot;</span>);<br><span class="hljs-built_in">console</span>.log(person.getName()); <span class="hljs-comment">// name</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="类私有成员"><a href="#类私有成员" class="headerlink" title="类私有成员"></a>类私有成员</h3><p>上述方法通过构造函数的闭包模拟了带有私有成员的对象，而如果需要给类创建私有的静态成员，使得类的实例之间拥有共享的私有静态成员，则需要在类的外面包一层闭包，使用立即调用函数表达式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> User = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-comment">// 类（静态）私有成员</span><br>    <span class="hljs-keyword">let</span> userCounter = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 构造函数</span><br>    <span class="hljs-keyword">let</span> User = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">username</span>) </span>&#123;<br>        <span class="hljs-built_in">this</span>.name = username;<br>        userCounter++;<br>    &#125;;<br>    <span class="hljs-comment">// 类（静态）公共方法</span><br>    User.prototype.countUser = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> userCounter;<br>    &#125;<br>    <span class="hljs-keyword">return</span> User;<br>&#125;)();<br><span class="hljs-keyword">let</span> user1 = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&quot;Dasen&quot;</span>);<br><span class="hljs-built_in">console</span>.log(user1.countUser()); <span class="hljs-comment">// 1</span><br><span class="hljs-built_in">console</span>.log(user1.name); <span class="hljs-comment">// Dasen</span><br><span class="hljs-keyword">let</span> user2 = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&quot;Three&quot;</span>);<br><span class="hljs-built_in">console</span>.log(user2.countUser()); <span class="hljs-comment">// 2</span><br><span class="hljs-built_in">console</span>.log(user2.name); <span class="hljs-comment">// Three</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="模块模式"><a href="#模块模式" class="headerlink" title="模块模式"></a>模块模式</h3><p>在模块模式中，单例对象作为一个模块，经过初始化可以包含某些私有的数据，而这些数据又可以通过其暴露的公共方法来访问。</p>
+<p>单例对象是通过字面量来创建的，结合IIFE可以创建带有私有成员的单例对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> rooms = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-comment">// 私有成员</span><br>    <span class="hljs-keyword">let</span> roomList = [];<br>    <span class="hljs-comment">// 初始化私有成员</span><br>    roomList.push(<span class="hljs-string">&quot;Dasen&#x27;s room&quot;</span>);<br>    <span class="hljs-comment">// 公共接口</span><br>    <span class="hljs-keyword">return</span> &#123;<br>        <span class="hljs-function"><span class="hljs-title">getRooms</span>(<span class="hljs-params"></span>)</span> &#123;<br>            <span class="hljs-keyword">return</span> roomList.join(<span class="hljs-string">&quot;, &quot;</span>);<br>        &#125;,<br>        <span class="hljs-function"><span class="hljs-title">getRoomNumber</span>(<span class="hljs-params"></span>)</span> &#123;<br>            <span class="hljs-keyword">return</span> roomList.length;<br>        &#125;,<br>        <span class="hljs-function"><span class="hljs-title">createRoom</span>(<span class="hljs-params">roomName</span>)</span> &#123;<br>            roomList.push(roomName);<br>        &#125;<br>    &#125;<br>&#125;();<br><span class="hljs-built_in">console</span>.log(rooms.getRoomNumber()); <span class="hljs-comment">// 1</span><br><span class="hljs-built_in">console</span>.log(rooms.getRooms()); <span class="hljs-comment">// Dasen&#x27;s room</span><br>rooms.createRoom(<span class="hljs-string">&quot;New room&quot;</span>);<br><span class="hljs-built_in">console</span>.log(rooms.getRoomNumber()); <span class="hljs-comment">// 2</span><br><span class="hljs-built_in">console</span>.log(rooms.getRooms()); <span class="hljs-comment">// Dasen&#x27;s room, New room</span><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/12/23/js008/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;23&#x2F;js008&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;23&#x2F;js008&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/12/17/js007/">JavaScript学习笔记（7）：代理与反射 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="toc-text">函数基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0"><span class="toc-text">定义函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E"><span class="toc-text">函数声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">函数表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="toc-text">箭头函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1"><span class="toc-text">创建函数对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F-1"><span class="toc-text">函数表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E"><span class="toc-text">函数表达式与函数声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%8B%E5%8D%B3%E8%B0%83%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">立即调用的函数表达式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0-1"><span class="toc-text">箭头函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6"><span class="toc-text">限制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%BB%93%E6%9E%84"><span class="toc-text">函数结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%90%8D"><span class="toc-text">函数名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0"><span class="toc-text">参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%84%8F%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">随意的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F"><span class="toc-text">严格模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0-2"><span class="toc-text">箭头函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0"><span class="toc-text">默认参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E7%9A%84%E6%94%B6%E9%9B%86%E5%92%8C%E6%89%A9%E5%B1%95"><span class="toc-text">参数的收集和扩展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8%E5%AF%B9%E8%B1%A1"><span class="toc-text">函数内部对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#this"><span class="toc-text">this</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arguments"><span class="toc-text">arguments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new-target"><span class="toc-text">new.target</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#caller"><span class="toc-text">caller</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95"><span class="toc-text">属性与方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96"><span class="toc-text">尾调用优化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E4%B8%8E%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98"><span class="toc-text">闭包与私有成员</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this-1"><span class="toc-text">this</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="toc-text">内存泄漏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98"><span class="toc-text">闭包模式的私有成员</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%97%AD%E5%8C%85%E6%A8%A1%E5%BC%8F"><span class="toc-text">简单闭包模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98"><span class="toc-text">类私有成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E6%A8%A1%E5%BC%8F"><span class="toc-text">模块模式</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
