@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript学习笔记（9）：异步编程 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="同步和异步同步程序和异步程序同步程序：在程序执行的每一...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">JavaScript学习笔记（9）：异步编程</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/js.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JavaScript学习笔记（9）：异步编程</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 24, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13392</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h1><h2 id="同步程序和异步程序"><a href="#同步程序和异步程序" class="headerlink" title="同步程序和异步程序"></a>同步程序和异步程序</h2><p>同步程序：在程序执行的每一步，都可以推断出程序的状态。这是因为后面的指令总是在前面的指令完成后才会执行。</p>
+<p>异步程序：部分任务处于独立运行的状态，不知道这些任务会什么时候完成，因此这些异步代码是以无法预知的进度推进的，只有在异步任务完成时想办法通知主程序。</p>
+<h2 id="回调函数模式"><a href="#回调函数模式" class="headerlink" title="回调函数模式"></a>回调函数模式</h2><p>早期的JavaScript是使用回调函数来处理异步任务的，串联多个异步操作通常需要深度嵌套的回调函数（俗称“回调地狱”）来解决。</p>
+<p>假设有以下函数，我们称它是异步的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">double</span>(<span class="hljs-params">value</span>) </span>&#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-built_in">console</span>.log, <span class="hljs-number">0</span>, value*<span class="hljs-number">2</span>);<br>    &#125;, <span class="hljs-number">1000</span>);<br>&#125;<br>double(<span class="hljs-number">2</span>); <span class="hljs-comment">// 大约1000毫秒后输出 4</span><br></code></pre></td></tr></table></figure>
+
+<p>为什么说它是异步的，因为它具有异步程序的特征：</p>
+<ul>
+<li>double函数设定了一个计时器，它将在1000毫秒之后将一个任务推到任务队列上，这个任务推到了任务队列上，它的执行就是独立的，对我们不可见了；</li>
+<li>double在完成了任务调度（将任务推到队列上）之后会立即返回，异步任务的执行与它无关了。</li>
+</ul>
+<h3 id="异步返回值"><a href="#异步返回值" class="headerlink" title="异步返回值"></a>异步返回值</h3><p>如果对于异步函数返回的值，想要利用上的话，就需要回调函数来处理异步返回值，对于上述函数double我们为它添加一个回调函数，用来在1000毫秒后得到双倍值的时候调用以利用异步返回的值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">double</span>(<span class="hljs-params">value, callback</span>) </span>&#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        callback(value*<span class="hljs-number">2</span>); <span class="hljs-comment">// 调用回调函数处理异步返回值</span><br>    &#125;, <span class="hljs-number">1000</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">value</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(value);<br>&#125;<br>double(<span class="hljs-number">2</span>, callback);<br></code></pre></td></tr></table></figure>
+
+<h3 id="失败处理"><a href="#失败处理" class="headerlink" title="失败处理"></a>失败处理</h3><p>如果在处理时发生了错误还要准备一个失败处理回调函数，也加入到异步处理中去：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">double</span>(<span class="hljs-params">value, successCallback, failureCallback</span>) </span>&#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> value !== <span class="hljs-string">&quot;number&quot;</span>) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;I need a number.&quot;</span>);<br>            &#125;<br>            successCallback(value*<span class="hljs-number">2</span>); <span class="hljs-comment">// 调用回调函数处理异步返回值</span><br>        &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>            failureCallback(error);<br>        &#125;<br>    &#125;, <span class="hljs-number">1000</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">successCallback</span>(<span class="hljs-params">value</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(value);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">failureCallback</span>(<span class="hljs-params">error</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(error);<br>&#125;<br>double(<span class="hljs-number">2</span>, successCallback, failureCallback); <span class="hljs-comment">// 4</span><br>double(<span class="hljs-string">&quot;2&quot;</span>, successCallback, failureCallback); <span class="hljs-comment">// Error: I need a number.</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="嵌套异步回调"><a href="#嵌套异步回调" class="headerlink" title="嵌套异步回调"></a>嵌套异步回调</h3><p>如果一个异步返回值又依赖另一个异步返回值，就需要嵌套异步回调来处理，比如把上一步的成功回调函数改为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">successCallback</span>(<span class="hljs-params">value</span>) </span>&#123;<br>    double(value, <span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Success:&quot;</span>, x));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这就意味着在得到了异步结果之后还要对获得的结果再进行一次请求异步操作，需要再一次回调才可以。</p>
+<p>这就导致了回调地狱的发生，维护难度极大。</p>
+<h1 id="期约"><a href="#期约" class="headerlink" title="期约"></a>期约</h1><h2 id="期约状态"><a href="#期约状态" class="headerlink" title="期约状态"></a>期约状态</h2><p>首先要创建一个期约，并传入一个<strong>执行器</strong>函数进行初始化，这个执行器函数将运行一系列代码初始化期约对象，进行最开始的处理，它是<strong>同步执行</strong>的。</p>
+<h3 id="期约状态机"><a href="#期约状态机" class="headerlink" title="期约状态机"></a>期约状态机</h3><p>期约的三个状态：</p>
+<ul>
+<li>待定（pending）；</li>
+<li>兑现（fulfilled）或解决（resolved）；</li>
+<li>拒绝（rejected）。</li>
+</ul>
+<p>一个期约刚创建的时候是待定的，当某个条件达成时它会转换为<strong>落定态</strong>，落定态包括解决和拒绝，但<strong>只能是两者之一，并且一旦落定就不会再改变状态了</strong>。</p>
+<p>期约故意将异步行为封装起来，从而隔离外部的同步代码，因此期约的状态是私有的，不能直接通过JavaScript检测到。而期约的状态管理是通过执行器函数来进行的。</p>
+<h3 id="执行器函数"><a href="#执行器函数" class="headerlink" title="执行器函数"></a>执行器函数</h3><p>执行器函数主要的职责是：<strong>初始化异步行为</strong>和<strong>管理状态转换</strong>。</p>
+<p>执行器函数是一个会收到两个参数的函数，这两个参数分别为resolve和reject，它们是两个函数。执行器函数需要做的就是设定异步任务，然后将resolve函数和reject函数设定为异步任务的回调函数，在异步任务完成后调用它们进行状态转换。如假如1秒后异步任务完成，将期约变为了解决态：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">setTimeout</span>(resolve, <span class="hljs-number">1000</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>期约一旦落定了就不能再改变状态了，再次调用resolve或者reject函数都会静默失败，因此我们可以设定一个超时拒绝，防止期约一直卡在待定态：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">setTimeout</span>(resolve, <span class="hljs-number">1000</span>);<br>    <span class="hljs-built_in">setTimeout</span>(reject, <span class="hljs-number">5000</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>这里我们模拟期约在1秒时被解决了，5秒时调用拒绝函数尝试拒绝会静默失败，因此最后的状态就是解决态；而如果在5秒内并没能解决，那么先调用的就是拒绝函数，后面即使异步任务成功返回了，也无法解决了。</p>
+<p>resolve函数和reject函数是有参数的，它们的参数就是期约解决为的值或者被拒绝的理由，稍后可以通过期约对象取得它解决的结果或者拒绝理由。</p>
+<h3 id="创建落定的期约"><a href="#创建落定的期约" class="headerlink" title="创建落定的期约"></a>创建落定的期约</h3><p>默认创建的期约是待定的，但是也有办法创建一个落定的期约：即期约一创建直接就是落定态，不能再改变状态。</p>
+<p>（1）<code>Promise.resolve()</code>静态方法：</p>
+<p>以下两种写法等价：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-string">&#x27;foo&#x27;</span>);<br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> resolve(<span class="hljs-string">&#x27;foo&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>通过调用<code>Promise.resolve()</code>静态方法，可以实例化一个解决的期约，它的第一个参数是解决为的值，使用这个静态方法，实际上可以把任何值都转换为一个期约。</p>
+<p>如果传入的参数本身是一个期约（无论是待定的、解决的还是拒绝的），那它的行为就类似于一个空包装，直接返回原期约。因此，<code>Promise.resolve()</code>可以说是一个<strong>幂等方法</strong>。</p>
+<p>这个静态方法能够包装任何非期约值，包括错误对象，并将其转换为解决的期约。因此，也可能导致不符合预期的行为。</p>
+<p><strong>特别注意</strong>，如果它的参数是一个thenable对象，那么会返回一个待定的期约，然后把它的then方法挂到任务队列上等待执行，至于后面怎么落定，就看它的then方法了。</p>
+<p>（2）<code>Promise.reject()</code>静态方法：</p>
+<p>以下两种写法等价：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Promise</span>.reject(<span class="hljs-string">&#x27;foo&#x27;</span>);<br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>) =&gt;</span> reject(<span class="hljs-string">&#x27;foo&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p><code>Promise.reject()</code>会实例化一个拒绝的期约并抛出一个异步错误，这个错误不能通过try/catch捕获，而只能通过拒绝处理程序捕获。</p>
+<p><code>Promise.reject()</code>并不是幂等的，如果给它传一个期约对象，则这个期约会成为它返回的拒绝期约的理由。</p>
+<h3 id="同步错误与异步错误"><a href="#同步错误与异步错误" class="headerlink" title="同步错误与异步错误"></a>同步错误与异步错误</h3><p><strong>try/catch模式是同步错误的捕获模式</strong>，它只能捕获到同步代码中的错误，而不能捕获到异步错误，<strong>异步错误需要使用错误处理程序才可以进行处理</strong>。</p>
+<p>拒绝期约的错误并没有抛到执行同步代码的线程里，而是通过浏览器异步消息队列来处理的。因此，try/catch块并不能捕获该错误。代码一旦开始以异步模式执行，则唯一与之交互的方式就是使用期约。</p>
+<h2 id="期约方法"><a href="#期约方法" class="headerlink" title="期约方法"></a>期约方法</h2><h3 id="then方法"><a href="#then方法" class="headerlink" title="then方法"></a>then方法</h3><p><code>Promise.prototype.then()</code>是为期约实例添加处理程序的主要方法。这个<code>then()</code>方法接收最多两个参数：onResolved处理程序和onRejected处理程序。这两个参数都是可选的，如果提供的话，则会在期约分别进入解决和拒绝状态时执行。</p>
+<p>此外传给then的任何非函数对象都会被静默忽略。如果只想传入onRejected处理程序，就必须在onResolved的位置上传入一个undefined。</p>
+<p>then方法返回一个新的期约实例，这个新期约实例根据传入的上一级期约实例的状态：</p>
+<ul>
+<li>如果then方法中提供了这个状态对应的处理程序：新实例就是基于该处理程序的返回值构建的，构建的方式是通过<code>Promise.resolve()</code>包装来生成新期约；如果该处理程序没有显式的返回语句，则认为默认返回undefined。</li>
+<li>如果then方法中没有提供这个状态对应的处理程序：则新实例是上一个传入的期约通过<code>Promise.resolve()</code>包装之后的值。</li>
+<li>如果在then方法中的两个处理程序的执行中抛出了错误，返回的新实例将是一个包含抛出的错误信息的拒绝态的期约，即使这个错误是解决处理程序抛出的。</li>
+</ul>
+<h3 id="catch方法"><a href="#catch方法" class="headerlink" title="catch方法"></a>catch方法</h3><p><code>Promise.prototype.catch()</code>方法用于给期约添加拒绝处理程序。这个方法只接收一个参数：onRejected处理程序。事实上，这个方法就是一个语法糖，调用它就相当于调用<code>Promise.prototype.then(null, onRejected)</code>。</p>
+<p>catch方法和then方法一样返回一个新的期约实例，和then方法的行为一样。</p>
+<h3 id="finally方法"><a href="#finally方法" class="headerlink" title="finally方法"></a>finally方法</h3><p><code>Promise.prototype.finally()</code>方法用于给期约添加onFinally处理程序，这个处理程序在期约转换为解决或拒绝状态后都会执行。这个方法可以避免onResolved和onRejected处理程序中出现冗余代码。但onFinally处理程序没有办法知道期约的状态是解决还是拒绝，所以这个方法主要用于添加清理代码。</p>
+<p>它也返回一个新的期约实例，但是规则不太一样了：</p>
+<ul>
+<li>如果onFinally处理程序返回的是一个待定的期约或者拒绝的期约，那么finally方法返回的新的期约就是这个onFinally处理程序返回的期约；</li>
+<li>如果onFinally处理程序抛出了错误，那么finally方法返回的新的期约就是以抛出的错误为拒绝理由的拒绝的期约；</li>
+<li>其他情况下finally方法都会把上一级收到的期约原样返回。</li>
+</ul>
+<p>要注意返回待定的期约的情况，比如这个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> p1 = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-string">&#x27;foo&#x27;</span>);<br><span class="hljs-keyword">let</span> p2 = p1.finally(<br>    <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>            <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;解决了！&quot;</span>);<br>                resolve(<span class="hljs-string">&#x27;bar&#x27;</span>);<br>            &#125;, <span class="hljs-number">100</span>);<br>        &#125;)<br>    &#125;);<br><span class="hljs-built_in">console</span>.log(p2); <span class="hljs-comment">// 立即输出： Promise &lt;pending&gt;</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-built_in">console</span>.log, <span class="hljs-number">0</span>, p2); <span class="hljs-comment">// 立即输出： Promise &#123;&lt;fulfilled&gt;: &#x27;foo&#x27;&#125;</span><br><span class="hljs-comment">// 100 毫秒后输出： 解决了！</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">setTimeout</span>(<span class="hljs-built_in">console</span>.log, <span class="hljs-number">0</span>, p2), <span class="hljs-number">200</span>); <span class="hljs-comment">// 200 毫秒后输出： Promise &lt;resolved&gt;: foo</span><br></code></pre></td></tr></table></figure>
+
+<p>这个finally返回待定期约的同时会把上一级期约后传的任务挂上队列，即无论返回的这个期约是否落定、是解决还是拒绝，原期约都会后传，且这个后传任务是立刻挂上队列的，导致p2仅仅在待定态停留了很短暂的时间。</p>
+<p>这种情况一般没有太大用，所以一般finally并不会返回一个待定的期约。</p>
+<h3 id="处理程序的执行顺序"><a href="#处理程序的执行顺序" class="headerlink" title="处理程序的执行顺序"></a>处理程序的执行顺序</h3><p>如果给期约添加了多个处理程序，当期约状态变化时，<strong>相关处理程序会按照添加它们的顺序依次执行</strong>。这里的“多个处理程序”既指<strong>多次调用同一个方法绑定的多个处理程序</strong>（如两次调用catch绑定了两个拒绝处理程序）也指<strong>调用不同的方法绑定的处理程序</strong>（如then、catch、finally都为拒绝行为创建了拒绝处理程序）。</p>
+<h2 id="期约连锁与合成"><a href="#期约连锁与合成" class="headerlink" title="期约连锁与合成"></a>期约连锁与合成</h2><h3 id="期约连锁"><a href="#期约连锁" class="headerlink" title="期约连锁"></a>期约连锁</h3><p>把期约逐个地串联起来就是“期约连锁”。能够这样做是因为每个期约方法（<code>then()</code>、<code>catch()</code>和<code>finally()</code>）都会返回一个新的期约对象，而这个新期约又有自己的实例方法。</p>
+<p>期约连锁有用的地方在于让上一个期约的解决处理函数返回一个新的待定期约，再为这个新的待定期约创建处理程序，并且处理程序可能又返回一个新的待定期约，每个待定期约都对应一个异步任务，这样就把若干异步任务串联了起来，下一个异步任务等到上一个异步任务落定之后再开始，如这样的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;期约 1 开始执行&quot;</span>);<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;期约 1 解决为 1&quot;</span>);<br>        resolve(<span class="hljs-number">1</span>);<br>    &#125;, <span class="hljs-number">1000</span>);<br>&#125;);<br>p.then(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;期约 2 开始执行&quot;</span>);<br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> &#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;期约 2 解决为&quot;</span>, val*<span class="hljs-number">2</span>);<br>            resolve(val*<span class="hljs-number">2</span>);<br>        &#125;, <span class="hljs-number">1000</span>, val);<br>    &#125;);<br>&#125;).then(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;期约 3 开始执行&quot;</span>);<br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> &#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;期约 3 解决为&quot;</span>, val*<span class="hljs-number">3</span>);<br>            resolve(val*<span class="hljs-number">3</span>);<br>        &#125;, <span class="hljs-number">1000</span>, val);<br>    &#125;);<br>&#125;).then(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;所有异步任务解决完毕，最终的值为&quot;</span>, val);<br>&#125;);<br><span class="hljs-comment">// 立即输出：期约 1 开始执行</span><br><span class="hljs-comment">// 约 1 秒后：期约 1 解决为 1</span><br><span class="hljs-comment">// 约 1 秒后：期约 2 开始执行</span><br><span class="hljs-comment">// 约 2 秒后：期约 2 解决为 2</span><br><span class="hljs-comment">// 约 2 秒后：期约 3 开始执行</span><br><span class="hljs-comment">// 约 3 秒后：期约 3 解决为 6</span><br><span class="hljs-comment">// 约 3 秒后：所有异步任务解决完毕，最终的值为 6</span><br></code></pre></td></tr></table></figure>
+
+<p>这个例子中，第一个期约取得了值1，后续每个期约都在前一个期约的取得的值的基础上加工，分别乘以2、3得到最终的值，实现了多个异步任务的串联。</p>
+<h3 id="期约合成"><a href="#期约合成" class="headerlink" title="期约合成"></a>期约合成</h3><p>除了让多个期约串联之外，还可以实现期约的并联，就是通过期约合成来实现的。期约的合成方法有这些：</p>
+<p>（1）<code>Promise.race()</code>静态方法：</p>
+<p>它接收一个期约组成的可迭代对象作为参数并返回一个新的期约，当传入期约中任意一个落定时合成的期约也会落定，并且合成期约的落定状态与第一个落定的期约一样，解决值或拒绝理由也一样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> p1 = <span class="hljs-built_in">Promise</span>.race([<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">3</span>),<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">1</span>),<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">2</span>)<br>]);<br>p1.then(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(val)); <span class="hljs-comment">// 3</span><br><span class="hljs-keyword">let</span> p2 = <span class="hljs-built_in">Promise</span>.race([<br>    <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">() =&gt;</span> &#123;&#125;),<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">0</span>),<br>    <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;error!&quot;</span>)),<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">1</span>)<br>]);<br>p2.then(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(val)); <span class="hljs-comment">// 0</span><br><span class="hljs-keyword">let</span> p3 = <span class="hljs-built_in">Promise</span>.race([<br>    <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;error!&quot;</span>)),<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">0</span>),<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">1</span>)<br>]);<br>p3.catch(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(val)); <span class="hljs-comment">// Error: error!</span><br></code></pre></td></tr></table></figure>
+
+<p>（2）<code>Promise.all()</code>静态方法：</p>
+<p>它接收一个期约组成的可迭代对象作为参数并返回一个新的期约，新的期约在传入的这一组期约全部解决后才会解决。只要有任何一个期约处于待定态，合成的期约也会是待定的；只要有任何一个期约被拒绝，合成的期约也会变为拒绝态，拒绝的理由是第一个拒绝的期约给出的理由；只有所有期约都成功解决，合成的期约才会解决，解决值为包含所有期约解决值的数组（按迭代器顺序）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> p1 = <span class="hljs-built_in">Promise</span>.all([<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">3</span>),<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">1</span>),<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">2</span>)<br>]);<br>p1.then(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(val)); <span class="hljs-comment">// [3, 1, 2]</span><br><span class="hljs-keyword">let</span> p2 = <span class="hljs-built_in">Promise</span>.all([<br>    <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">() =&gt;</span> &#123;&#125;),<br>    <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;error!&quot;</span>)),<br>    <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;ignore&quot;</span>)),<br>    <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">0</span>)<br>]);<br>p2.catch(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(val)); <span class="hljs-comment">// Error: error!</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="异步函数"><a href="#异步函数" class="headerlink" title="异步函数"></a>异步函数</h1><h2 id="异步函数语法"><a href="#异步函数语法" class="headerlink" title="异步函数语法"></a>异步函数语法</h2><p>异步函数其实是期约与生成器的语法糖。</p>
+<p>传统异步程序使用期约实现，需要获得解决值的时候需要把所有对于这个值的处理逻辑塞到处理函数中，并通过then绑定到期约上，这样不方便。使用异步函数语法可以在函数逻辑中直接处理解决值，方法是使用生成器特性，需要使用期约返回值的时候就中断函数，将等待返回的断点挂在任务队列，然后跳出函数之外执行继续执行下面的同步代码，同时等待期约返回，期约返回之后再回到断点处继续执行。</p>
+<h3 id="async关键字"><a href="#async关键字" class="headerlink" title="async关键字"></a>async关键字</h3><p>使用async关键字可以定义一个异步函数，可以用在函数声明、函数表达式、箭头函数和方法上。该关键字会让函数具有一部分异步特征，但其总体上仍然是同步的，在参数和闭包方面，异步函数依然有普通函数的正常行为。</p>
+<p>异步函数的返回值会被<code>Promise.resolve()</code>包装成一个期约对象，如果没有显式的return语句则会返回undefined，因此<strong>异步函数始终返回期约对象</strong>。与在期约处理程序中一样，在异步函数中使用throw抛出错误，会返回一个拒绝的期约，拒绝的理由是抛出的错误对象，但拒绝的错误不会被异步函数捕获。</p>
+<h3 id="await关键字"><a href="#await关键字" class="headerlink" title="await关键字"></a>await关键字</h3><p>await关键字就像生成器语法中的yield一样，负责暂停函数执行，等待期约解决并从原处恢复。</p>
+<p>await关键字同样是尝试“解包”对象的值，即可以得到期约解决的值，然后将这个值传给表达式，再异步恢复异步函数的执行。await关键字的用法与JavaScript的一元操作一样（或者说是和yield关键字一样），它可以单独使用，也可以在表达式中使用。</p>
+<p>await必须在直接的异步函数中使用，否则会抛出错误。</p>
+<p>await期待一个期约对象，如果它得到的是抛出异常的同步代码那么就会得到一个对应的拒绝态的期约，如果它得到的是其他值或对象，那么就相当于使用<code>Promise.resolve()</code>包装了这个值或对象。</p>
+<h2 id="停止和恢复执行"><a href="#停止和恢复执行" class="headerlink" title="停止和恢复执行"></a>停止和恢复执行</h2><p>在异步函数中真正起作用的是await，如果没有await，异步函数就和一个普通函数没什么区别。</p>
+<p>在异步函数执行时遇到了await时，会立即中断运行，这时如果await后边的值包装后的期约是已经落定的，那么将它挂到消息队列（微任务队列，因为异步函数本质是期约语法糖），等待当前同步代码结束后，如果await后包装的是一个待定的期约，那就等落定后再挂上队列。</p>
+<h2 id="异步函数策略"><a href="#异步函数策略" class="headerlink" title="异步函数策略"></a>异步函数策略</h2><p>使用异步函数模式来执行异步任务时需要注意一些情况和一些技巧。</p>
+<h3 id="模拟sleep函数"><a href="#模拟sleep函数" class="headerlink" title="模拟sleep函数"></a>模拟sleep函数</h3><p>通过以下方式可以模拟出让程序休眠一定时间的sleep函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sleep</span>(<span class="hljs-params">delay</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> <span class="hljs-built_in">setTimeout</span>(resolve, delay));<br>&#125;<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> t0 = <span class="hljs-built_in">Date</span>.now();<br>    <span class="hljs-keyword">await</span> sleep(<span class="hljs-number">2000</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Date</span>.now() - t0); <span class="hljs-comment">// 2014</span><br>&#125;<br>func();<br></code></pre></td></tr></table></figure>
+
+<p>但是它的局限是，这样的sleep函数只能用于异步函数中使异步函数的执行休眠，并且要使用await和sleep函数搭配使用才可以。</p>
+<h3 id="平行执行"><a href="#平行执行" class="headerlink" title="平行执行"></a>平行执行</h3><p>如果有若干任务希望它们平行执行，如这样的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randomDelay</span>(<span class="hljs-params">id</span>) </span>&#123;<br>    <span class="hljs-comment">// 随机延迟0~1000 毫秒</span><br>    <span class="hljs-keyword">const</span> delay = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">1000</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;id&#125;</span> finished`</span>);<br>        resolve();<br>    &#125;, delay));<br>&#125;<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> t0 = <span class="hljs-built_in">Date</span>.now();<br>    <span class="hljs-keyword">await</span> randomDelay(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">await</span> randomDelay(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">await</span> randomDelay(<span class="hljs-number">2</span>);<br>    <span class="hljs-keyword">await</span> randomDelay(<span class="hljs-number">3</span>);<br>    <span class="hljs-keyword">await</span> randomDelay(<span class="hljs-number">4</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">Date</span>.now() - t0&#125;</span>ms elapsed`</span>);<br>&#125;<br>foo();<br><span class="hljs-comment">// 0 finished</span><br><span class="hljs-comment">// 1 finished</span><br><span class="hljs-comment">// 2 finished</span><br><span class="hljs-comment">// 3 finished</span><br><span class="hljs-comment">// 4 finished</span><br><span class="hljs-comment">// 1733ms elapsed</span><br></code></pre></td></tr></table></figure>
+
+<p>可以发现这些任务并非同时执行了，原因在于异步函数每次等待的并非只是期约的执行，它连带着期约创建也给等待了，也就是第一个期约创建、等待第一个期约解决、第二个期约创建、等待第二个期约返回……它每次中断连带着下一个期约的创建任务也给中断了，下一个期约创建不了就开始不了任务。</p>
+<p>所以应该一口气把所有期约都创建了，让它们先跑着，然后我再去等待它们：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> t0 = <span class="hljs-built_in">Date</span>.now();<br>    <span class="hljs-keyword">const</span> p0 = randomDelay(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">const</span> p1 = randomDelay(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">const</span> p2 = randomDelay(<span class="hljs-number">2</span>);<br>    <span class="hljs-keyword">const</span> p3 = randomDelay(<span class="hljs-number">3</span>);<br>    <span class="hljs-keyword">const</span> p4 = randomDelay(<span class="hljs-number">4</span>);<br>    <span class="hljs-keyword">await</span> p0;<br>    <span class="hljs-keyword">await</span> p1;<br>    <span class="hljs-keyword">await</span> p2;<br>    <span class="hljs-keyword">await</span> p3;<br>    <span class="hljs-keyword">await</span> p4;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-built_in">console</span>.log, <span class="hljs-number">0</span>, <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">Date</span>.now() - t0&#125;</span>ms elapsed`</span>);<br>&#125;<br>foo();<br><span class="hljs-comment">// 3 finished</span><br><span class="hljs-comment">// 4 finished</span><br><span class="hljs-comment">// 0 finished</span><br><span class="hljs-comment">// 1 finished</span><br><span class="hljs-comment">// 2 finished</span><br><span class="hljs-comment">// 893ms elapsed</span><br></code></pre></td></tr></table></figure>
+
+<p>当然这里更加优雅的方式是使用循环包装期约的创建和等待过程。总之一口气创建完所有的期约就可以让异步任务一起开始，然后再分别等待。当然这里只是期约异步任务的执行同时进行了，任务完成得有先有后，可是由于await语句的顺序，await接收这些期约的返回值还是按照顺序接收的。如果想要期约把值返回给主程序的顺序也是随机的，就不能使用await了，需要为期约绑定处理程序：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randomDelay</span>(<span class="hljs-params">id</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> delay = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">1000</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        resolve(id);<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;id&#125;</span> finished`</span>);<br>    &#125;, delay));<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onResolved</span>(<span class="hljs-params">id</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;id&#125;</span> returned`</span>);<br>&#125;<br><span class="hljs-keyword">const</span> t0 = <span class="hljs-built_in">Date</span>.now();<br><span class="hljs-keyword">const</span> p0 = randomDelay(<span class="hljs-number">0</span>).then(onResolved);<br><span class="hljs-keyword">const</span> p1 = randomDelay(<span class="hljs-number">1</span>).then(onResolved);<br><span class="hljs-keyword">const</span> p2 = randomDelay(<span class="hljs-number">2</span>).then(onResolved);<br><span class="hljs-keyword">const</span> p3 = randomDelay(<span class="hljs-number">3</span>).then(onResolved);<br><span class="hljs-keyword">const</span> p4 = randomDelay(<span class="hljs-number">4</span>).then(onResolved);<br><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.all([p0,p1,p2,p3,p4]).then((<span class="hljs-function">(<span class="hljs-params">t0</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-built_in">console</span>.log, <span class="hljs-number">0</span>, <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">Date</span>.now() - t0&#125;</span>ms elapsed`</span>);<br>    &#125;<br>&#125;)(t0));<br><span class="hljs-comment">// 1 finished</span><br><span class="hljs-comment">// 1 returned</span><br><span class="hljs-comment">// 4 finished</span><br><span class="hljs-comment">// 4 returned</span><br><span class="hljs-comment">// 0 finished</span><br><span class="hljs-comment">// 0 returned</span><br><span class="hljs-comment">// 2 finished</span><br><span class="hljs-comment">// 2 returned</span><br><span class="hljs-comment">// 3 finished</span><br><span class="hljs-comment">// 3 returned</span><br><span class="hljs-comment">// 754ms elapsed</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="串行执行异步任务"><a href="#串行执行异步任务" class="headerlink" title="串行执行异步任务"></a>串行执行异步任务</h3><p>之前我们通过期约串联可以执行异步任务，还以那个乘以2、3的例子为例，现在我们使用异步函数也可以实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun1</span>(<span class="hljs-params">x</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;异步任务 1 开始执行&quot;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;等待任务 1 的返回值&quot;</span>);<br>    <span class="hljs-keyword">const</span> r = <span class="hljs-keyword">await</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;异步任务 1 返回了&quot;</span>, r);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;返回加工的值为&quot;</span>, r*x);<br>    <span class="hljs-keyword">return</span> r*x;<br>&#125;<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun2</span>(<span class="hljs-params">x</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;异步任务 2 开始执行&quot;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;等待任务 2 的返回值&quot;</span>);<br>    <span class="hljs-keyword">const</span> r = <span class="hljs-keyword">await</span> <span class="hljs-number">2</span>;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;异步任务 2 返回了&quot;</span>, r);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;返回加工的值为&quot;</span>, r*x);<br>    <span class="hljs-keyword">return</span> r*x;<br>&#125;<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun3</span>(<span class="hljs-params">x</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;异步任务 3 开始执行&quot;</span>);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;等待任务 3 的返回值&quot;</span>);<br>    <span class="hljs-keyword">const</span> r = <span class="hljs-keyword">await</span> <span class="hljs-number">3</span>;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;异步任务 3 返回了&quot;</span>, r);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;返回加工的值为&quot;</span>, r*x);<br>    <span class="hljs-keyword">return</span> r*x;<br>&#125;<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun</span>(<span class="hljs-params">x</span>) </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> fn <span class="hljs-keyword">of</span> [fun1,fun2,fun3]) &#123;<br>        x = <span class="hljs-keyword">await</span> fn(x);<br>    &#125;<br>    <span class="hljs-keyword">return</span> x;<br>&#125;<br>fun(<span class="hljs-number">1</span>).then(<span class="hljs-built_in">console</span>.log);<br><span class="hljs-comment">// 异步任务 1 开始执行</span><br><span class="hljs-comment">// 等待任务 1 的返回值</span><br><span class="hljs-comment">// 异步任务 1 返回了 1</span><br><span class="hljs-comment">// 返回加工的值为 1</span><br><span class="hljs-comment">// 异步任务 2 开始执行</span><br><span class="hljs-comment">// 等待任务 2 的返回值</span><br><span class="hljs-comment">// 异步任务 2 返回了 2</span><br><span class="hljs-comment">// 返回加工的值为 2</span><br><span class="hljs-comment">// 异步任务 3 开始执行</span><br><span class="hljs-comment">// 等待任务 3 的返回值</span><br><span class="hljs-comment">// 异步任务 3 返回了 3</span><br><span class="hljs-comment">// 返回加工的值为 6</span><br><span class="hljs-comment">// 6</span><br></code></pre></td></tr></table></figure>
+
+<p>以上三个函数分别异步请求了三个值，并对初始值1进行加工，请求到的值分别是1、2、3，因此最后加工得到的最终结果为1*1*2*3=6。可以看到三个异步函数是串联执行的。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/12/24/js009/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;24&#x2F;js009&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;24&#x2F;js009&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/12/23/js008/">JavaScript学习笔记（8）：函数 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5"><span class="toc-text">同步和异步</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E7%A8%8B%E5%BA%8F%E5%92%8C%E5%BC%82%E6%AD%A5%E7%A8%8B%E5%BA%8F"><span class="toc-text">同步程序和异步程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F"><span class="toc-text">回调函数模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-text">异步返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86"><span class="toc-text">失败处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83"><span class="toc-text">嵌套异步回调</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%9F%E7%BA%A6"><span class="toc-text">期约</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%9F%E7%BA%A6%E7%8A%B6%E6%80%81"><span class="toc-text">期约状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%9F%E7%BA%A6%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-text">期约状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E5%99%A8%E5%87%BD%E6%95%B0"><span class="toc-text">执行器函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%90%BD%E5%AE%9A%E7%9A%84%E6%9C%9F%E7%BA%A6"><span class="toc-text">创建落定的期约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E9%94%99%E8%AF%AF%E4%B8%8E%E5%BC%82%E6%AD%A5%E9%94%99%E8%AF%AF"><span class="toc-text">同步错误与异步错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%9F%E7%BA%A6%E6%96%B9%E6%B3%95"><span class="toc-text">期约方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#then%E6%96%B9%E6%B3%95"><span class="toc-text">then方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#catch%E6%96%B9%E6%B3%95"><span class="toc-text">catch方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#finally%E6%96%B9%E6%B3%95"><span class="toc-text">finally方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">处理程序的执行顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%9F%E7%BA%A6%E8%BF%9E%E9%94%81%E4%B8%8E%E5%90%88%E6%88%90"><span class="toc-text">期约连锁与合成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%9F%E7%BA%A6%E8%BF%9E%E9%94%81"><span class="toc-text">期约连锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%9F%E7%BA%A6%E5%90%88%E6%88%90"><span class="toc-text">期约合成</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E5%87%BD%E6%95%B0"><span class="toc-text">异步函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95"><span class="toc-text">异步函数语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#async%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">async关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#await%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">await关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2%E5%92%8C%E6%81%A2%E5%A4%8D%E6%89%A7%E8%A1%8C"><span class="toc-text">停止和恢复执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E5%87%BD%E6%95%B0%E7%AD%96%E7%95%A5"><span class="toc-text">异步函数策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9Fsleep%E5%87%BD%E6%95%B0"><span class="toc-text">模拟sleep函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E8%A1%8C%E6%89%A7%E8%A1%8C"><span class="toc-text">平行执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E6%89%A7%E8%A1%8C%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1"><span class="toc-text">串行执行异步任务</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
