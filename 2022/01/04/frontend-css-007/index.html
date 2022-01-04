@@ -1,0 +1,717 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS：深入content - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="
+如果你的灵魂进入了另一个人的身体，那么他是他还是你呢...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">CSS：深入content</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/css.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">CSS：深入content</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 04, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>17299</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p>如果你的灵魂进入了另一个人的身体，那么他是他还是你呢？content属性是一个元素的心，当你偷走了它的心，它就不再像它了，而是像一个——替换元素。</p>
+</blockquote>
+<h1 id="替换元素"><a href="#替换元素" class="headerlink" title="替换元素"></a>替换元素</h1><p>是否为替换元素是CSS中的另一种分类。元素根据其外在盒子被分为<strong>块状元素</strong>和<strong>内联元素</strong>，而根据其内容是否替换分为<strong>替换元素</strong>和<strong>非替换元素</strong>。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>在我看来，替换元素分为两种：</p>
+<p>一种是<strong>内容可替换</strong>的元素，即img、object、video、iframe和表单元素input、textarea、select等等都是内容可替换的，这里的内容可替换是指它们的内容可以通过改变标签的属性值（如src或value）就可以改变，即：可通过属性替换其内容。</p>
+<p>另一种是<strong>内容被替换</strong>的元素，即原本不是替换元素的普通元素，通过content内容生成技术为其生成了内容，使其的表现几乎完全相同于替换元素，那么它们就是内容被替换的元素。</p>
+<p>那么替换元素的特性或者说表现都有哪些？主要有：</p>
+<ul>
+<li>其内容的外观不受页面上CSS的影响。如input单选框或复选框，它们的一些样式是被固定的，你无法通过写CSS来改变它们的这些样式如背景色、内补间等。</li>
+<li>拥有自己的默认尺寸。很多替换元素如video、iframe、canvas等在没有明确规定尺寸时，尺寸表现为300×150px，也有img这样的默认尺寸为0，也有像input这样的有其默认的其他尺寸。</li>
+<li>还有一些与众不同的CSS表现值。比如<code>vertical-align</code>默认为基线，而替换元素则默认元素下边缘。</li>
+</ul>
+<p>那么问题来了，替换元素与非替换元素是独立于块状元素和内联元素的分类体系，那么替换元素是块状元素还是内联元素？实际上，他们中有块状元素也有内联元素，甚至在不同浏览器中也不一样：</p>
+<p><img   class="lazyload" data-original="/images/illustration/2022-01-04-frontend-css-007/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h2><h3 id="尺寸的种类"><a href="#尺寸的种类" class="headerlink" title="尺寸的种类"></a>尺寸的种类</h3><p>替换元素的尺寸由内而外分为以下三种：</p>
+<ul>
+<li>固有尺寸：即替换的内容本身的尺寸，如一张图片的尺寸。</li>
+<li>HTML尺寸：通过HTML原生属性指定的尺寸，如图片的width、height属性，input的size属性，textarea的cols和rows属性。</li>
+<li>CSS尺寸：指使用CSS设定的尺寸，包括了<code>width</code>、<code>height</code>、<code>max/min-width</code>、<code>max/min-height</code>等。</li>
+</ul>
+<p>这些尺寸的优先级关系是<strong>CSS尺寸&gt;HTML尺寸&gt;固有尺寸</strong>，即当没有指定HTML尺寸和CSS尺寸的时候，替换元素表现为固有尺寸，当指定了HTML尺寸则表现为HTML尺寸，当指定了CSS尺寸就表现为CSS尺寸。</p>
+<p>这里要注意HTML尺寸要和行内样式、外部样式的优先级进行区别，这里的HTML尺寸设定的不是行内样式！因此优先级弱于CSS样式。对于CSS样式，依然是行内样式优先级大于外部样式表。</p>
+<h3 id="例外的图片"><a href="#例外的图片" class="headerlink" title="例外的图片"></a>例外的图片</h3><p>上面说到，对于video，没有设定尺寸的默认尺寸是300×150px，在认知中似乎图片应该和视频表现一样才对，而图片的默认尺寸却是0，原因是video我们一般不会让它和文字混在一起排版，而图文混排的情况太多了，甚至还会有文字中掺杂着小图标、小表情的情况出现，这时如果图片加载出了问题，或者意外遗落了img标签，未为它设置样式和加载源，那么它在文字中间突兀地出现了一大片300×150px的空白区域，岂不是很离谱？因此img默认尺寸就是0，遗落的img标签就让它看起来消失而不影响原本的文字排版。</p>
+<p>可是还有个意外，就是IE浏览器，总是表现得和其他主流浏览器与众不同，它的img标签什么都没有时，会使用一个28×30px的占位图标。</p>
+<h1 id="从图片懒加载说起"><a href="#从图片懒加载说起" class="headerlink" title="从图片懒加载说起"></a>从图片懒加载说起</h1><p>图片懒加载其实就是如果一个页面上有很多图片，并不在页面打开时一起加载，而是懒懒地等着用户就要滚动到了它的位置，不得不加载了再去请求图片进行加载，像极了每次任务不到DDL就不会去做的你。</p>
+<p>图片懒加载是一种网页性能优化的方式，它能极大的提升用户体验，提高打开页面的速度，并且如果用户并没有往下翻页，下面的图片不会被加载，节省了用户的流量。图片懒加载就需要使用一个<strong>没有src属性的img标签</strong>来占位。</p>
+<h2 id="占位img"><a href="#占位img" class="headerlink" title="占位img"></a>占位img</h2><p>我们直接用一个裸的img标签来占位即可，同时设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">img</span> &#123; <span class="hljs-attribute">visibility</span>: hidden; &#125;<br><span class="hljs-selector-tag">img</span><span class="hljs-selector-attr">[src]</span> &#123; <span class="hljs-attribute">visibility</span>: visible; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>之后需要加载的时候使用JS为img标签设置src属性即可。</p>
+<p>之所以使用裸的、没有src的标签，是因为很多浏览器只要有src属性就会产生请求，完全不让它产生请求就不可以有src属性，这是最高效的实现方式。</p>
+<p>但是这里问题出现了，我们希望元素按照一定宽高占位，没有内容的img的默认尺寸为0，使用CSS尺寸来为其设定尺寸，这在Chrome和IE浏览器下都没有问题，却在Firefox浏览器下失效了。此时要想解决这个兼容性问题，只需要：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">img</span> &#123; <span class="hljs-attribute">display</span>: inline-block; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于在这种图片懒加载的场景下，为防止占位img标签宽高失效，可以在这个页面上进行这样的全局重置。</p>
+<h2 id="固有尺寸不可改变"><a href="#固有尺寸不可改变" class="headerlink" title="固有尺寸不可改变"></a>固有尺寸不可改变</h2><p>由于图片作为替换元素有上述三种尺寸，那么很多人就会认为好像给img标签设置宽高就改变了图片的固有尺寸一样，实际上不是的，图片的固有尺寸是完全取决于图片文件的本来尺寸的，使用HTML和CSS是无法改变的，但是之所以改变img标签的宽高就能够改变图片的尺寸，是因为图片在标签中的填充模式为<code>fill</code>，即充满标签。</p>
+<p>在CSS3中有一个新的属性可以用来修改替换内容的适配方式，即<code>object-fit</code>，它默认即为<code>fill</code>，它支持的值有：</p>
+<ul>
+<li><code>fill</code>：默认，不保证保持原有的比例，内容拉伸填充整个内容容器。</li>
+<li><code>contain</code>：保持原有尺寸比例，内容被缩放以尽可能利用HTML标签的尺寸但又不会超出。</li>
+<li><code>cover</code>：保持原有尺寸比例，但是会尽可能覆盖标签的空间不留下空隙，而内容可能会被裁剪。</li>
+<li><code>none</code>：保留原有元素内容的固有尺寸，内容尺寸将不受控制。</li>
+<li><code>scale-down</code>：保持原有尺寸比例。内容的尺寸与 <code>none</code> 或 <code>contain</code> 中的一个相同，取决于它们两个之间谁得到的对象尺寸会更小一些。</li>
+</ul>
+<p>那么这么一看，你可能想到了那个东西。对，就是背景图片。</p>
+<p>背景图片的填充模式也是和上述类似的，而背景图片默认的填充模式就是不拉伸，以固有尺寸显示图片，但是会重复背景图片以填满标签。</p>
+<p>实际上，还有一种情况就是在<code>::before</code>或<code>::after</code>伪元素中使用<code>content</code>生成的图片内容，这时候图片就会以固定尺寸来显示，并且你还无法改变它的尺寸：</p>
+<p><img   class="lazyload" data-original="/images/illustration/2022-01-04-frontend-css-007/002.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="替换元素的界限"><a href="#替换元素的界限" class="headerlink" title="替换元素的界限"></a>替换元素的界限</h2><p>实际上，如果非要纠结替换元素和非替换元素之间的界限，无异于纠结替换元素的准确定义，可在不同的浏览器中，替换元素的定义和表现总会有这样那样的差别。因此这部分内容我强烈建议你只用来了解，不必深究，因为这些东西包含了一些反模式的“奇技淫巧”，应当避免使用的（比如把img标签当span来用）。之所以还是要写这部分内容，是因为稍微了解它们也许在你的代码出现莫名其妙的bug时，能够从中找到一些原因。</p>
+<h3 id="典型的替换元素"><a href="#典型的替换元素" class="headerlink" title="典型的替换元素"></a>典型的替换元素</h3><p>典型的替换元素自然是公认的像img标签这样的可替换元素，它们生来就是替换元素……吗？这里我们深究的话，如果你正常使用一张图片，它确实是替换元素，可在某些情况下，它也可以是一个无异于span标签的普通元素。这种情况就是前面说的：没有src属性时。</p>
+<p>在Firefox浏览器中，如果你使用一个裸的、不带src属性的img标签，它的表现完全就像一个裸的span标签一样，表现上没有丝毫不同。这时你如果再给它设置成<code>display: block;</code>，那么它的表现和一个div元素又没有任何不同了，就好像它就是一个普普通通的非替换元素一样。</p>
+<p>而在Chrome浏览器中（截至写本文时），裸的img标签会表现为像span一样的内联标签，而设置了<code>display: block;</code>反而会使它回归替换元素的本性，表现为0×0的尺寸，而无法表现得像div标签一样。</p>
+<p>还有就是，某些浏览器下没有src但是有alt属性的img标签会显示出一个裂开的图片小图标并显示出alt指定的信息，要想在懒加载没有添加src属性时隐藏掉它，可以这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">img</span><span class="hljs-selector-pseudo">:not</span>(<span class="hljs-selector-attr">[src]</span>) &#123; <span class="hljs-attribute">visibility</span>: hidden; &#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="非典型的替换元素"><a href="#非典型的替换元素" class="headerlink" title="非典型的替换元素"></a>非典型的替换元素</h3><p>非典型的替换元素就是你认为它生来不是替换元素，但我们使用CSS的<code>content</code>属性替换了它的内容，替换了之后我们也称它是替换元素了。</p>
+<p>为什么这样说呢？实际上你可以尝试给一个div使用<code>content</code>属性设置一张图片，发现它的表现和一个设置了src属性的img标签没什么两样。甚至上面我们不是说裸的img标签就表现得和一个普普通通的span标签没什么两样了吗？但是我们通过<code>content</code>给它生成一个图片内容，发现它竟然表现得又和设置了src的img标签一样了！</p>
+<p>啊不好意思，实际上说一样了也不完全正确，因为<code>content</code>属性生成的内容始终有一个特性，即无法选中、复制等操作，就好像生成的东西只是一个虚拟的像一样，无法对这些内容进行操作。就好像之前我们也尝试过，在<code>::before</code>和<code>::after</code>伪元素里使用<code>content</code>生成的文字没法选中，也没法获取，它们不是页面内容的一部分，而是样式的一部分。</p>
+<p>因此有了这样的一个例子：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;1.png&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">img</span> &#123; <span class="hljs-attribute">content</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">2.png</span>); &#125;<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<img class="frontend-css-007-example-01" src="../../../../static/img/frontend-css-006-02.png">
+<style>
+    .frontend-css-007-example-01 {
+        content: url(../../../../static/img/frontend-css-006-03.png);
+    }
+</style>
+
+<p>你看它是一个完全没问题的图片对吗，你可以尝试把它保存到本地（鼠标右键另存为）试一试，看看保存下来的图片。</p>
+<p>是不是很有意思？你保存下来的图片竟然和显示的不一样？</p>
+<p>这个例子加工一下就成了这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">img</span><span class="hljs-selector-pseudo">:hover</span> &#123; <span class="hljs-attribute">content</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">2.png</span>); &#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<img class="frontend-css-007-example-02" src="../../../../static/img/frontend-css-006-02.png">
+<style>
+    .frontend-css-007-example-02:hover {
+        content: url(../../../../static/img/frontend-css-006-03.png);
+    }
+</style>
+
+<p>当鼠标经过图片时，图片变成了另一张图片，从笑脸变成了笑哭，原理就是这个img标签原本的src指向的是笑脸，而鼠标经过时使用content替换了其中的内容为一张笑哭的表情，你尝试将这张图片保存下来，你会发现笑哭的图片无论如何都无法保存下来，因为它不属于页面内容，只是一个生成的表面的像，真正保存下来的只能是img标签的src属性指向的图片。</p>
+<h1 id="content内容生成技术"><a href="#content内容生成技术" class="headerlink" title="content内容生成技术"></a>content内容生成技术</h1><p>使用CSS的content属性生成标签内容，我们称其为content内容生成技术，我们可以通过它做到许多非(huā)常(lǐ)有(hú)用(shào)的事情。</p>
+<h2 id="字符内容生成"><a href="#字符内容生成" class="headerlink" title="字符内容生成"></a>字符内容生成</h2><p>字符内容的生成就很简单了，在<code>::before</code>和<code>::after</code>伪元素中我们经常用到（因为这两个伪元素中必须要有<code>content</code>属性，没有的话元素就不会显示，哪怕我们常常将它设置为空字符串，仅仅是为了让伪元素显示出来）。</p>
+<p>此处不再赘述字符生成。</p>
+<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><p>清除浮动我们往往需要多余的标签来设置<code>clear</code>属性，而使用伪元素加上空的<code>content</code>可以生成用来清除浮动的伪元素：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.clear</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;<br>    <span class="hljs-attribute">display</span>: table; <span class="hljs-comment">/* 或block */</span><br>    <span class="hljs-attribute">clear</span>: both;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="辅助对齐"><a href="#辅助对齐" class="headerlink" title="辅助对齐"></a>辅助对齐</h2><p>同样是空的content来生成的伪元素，还能够辅助元素对齐。</p>
+<p>有如下代码：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;box&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">180px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">180px</span>;<br>    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">2px</span> dashed black;<br>    <span class="hljs-attribute">text-align</span>: justify;<br>&#125;<br><span class="hljs-selector-class">.bar</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">20px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">120px</span>;<br>    <span class="hljs-attribute">background-color</span>: blue;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<div class="frontend-css-007-example-03"><i></i>
+    <i></i>
+    <i></i>
+    <i></i>
+</div>
+<style>
+    .frontend-css-007-example-03 {
+        width: 180px;
+        height: 180px;
+        border-bottom: 2px dashed black;
+        text-align: justify;
+    }
+    .frontend-css-007-example-03>i {
+        display: inline-block;
+        width: 20px;
+        height: 120px;
+        background-color: blue;
+    }
+</style>
+
+<p>可以看到四个柱子并排放置，而我们希望绘制出柱状图一样的对齐方式，即四根柱子都靠着容器底部对齐，而不是现在这样靠着容器顶部；还要让它们两端对齐，平均分布，而不是像现在这样靠在左边。那么只需要生成这样的<code>::before</code>和<code>::after</code>伪元素：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span>:before &#123;<br>    content: <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>&#125;<br><span class="hljs-selector-class">.box</span>:after &#123;<br>    content: <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>即可达到效果：</p>
+<div class="frontend-css-007-example-04"><i></i>
+    <i></i>
+    <i></i>
+    <i></i>
+</div>
+<style>
+    .frontend-css-007-example-04 {
+        width: 180px;
+        height: 180px;
+        border-bottom: 2px dashed black;
+        text-align: justify;
+    }
+    .frontend-css-007-example-04>i {
+        display: inline-block;
+        width: 20px;
+        height: 120px;
+        background-color: blue;
+    }
+    .frontend-css-007-example-04:before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+    }
+    .frontend-css-007-example-04:after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+    }
+</style>
+
+<p>我们可以看到是两个伪元素分别撑起了宽和高，但具体的原理我们先按下不表，这不属于本文内容。</p>
+<h2 id="图片生成"><a href="#图片生成" class="headerlink" title="图片生成"></a>图片生成</h2><h3 id="内容与显示"><a href="#内容与显示" class="headerlink" title="内容与显示"></a>内容与显示</h3><p>使用content是可以给普通元素生成图片的，用图片来替换元素原本的内容，那么问题来了，像这样的代码：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>大森的博客<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">3.png</span>);<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<div class="frontend-css-007-example-05">大森的博客</div>
+<style>
+    .frontend-css-007-example-05 {
+        content: url(../../../../static/img/frontend-css-006-01.png);
+        width: 200px;
+    }
+</style>
+
+<p>那么问题来了：替换了div中的内容之后，div中原本的内容哪儿去了？</p>
+<p>实际上这种方式是兼顾了表现效果和SEO的。SEO为搜索引擎优化，也就是搜索引擎在收录你的网站时，会抓取你的页面上的内容作为网站概要，而抓取的内容主要就是文字。</p>
+<p>如果这里完全使用img来代替div标签，将导致搜索引擎抓取不到对应的文字信息，也就无法得到网页的概要；对于屏幕阅读器来说，页面上使用图片来替代文字的内容将无法被阅读，这可能给使用它的人造成困扰。</p>
+<p>如果使用内容生成技术，像这样使用图片代替文字的情况下，原本的h1标签内的文字信息依然能被抓取到，即内容还在HTML中，而CSS提供了单独的显示效果，这样能够同时兼顾显示效果和页面内容不丢失。</p>
+<h3 id="生成内联图片"><a href="#生成内联图片" class="headerlink" title="生成内联图片"></a>生成内联图片</h3><p><code>content</code>通过<code>url()</code>功能符生成图片，而这样并非只能生成外部图片，它还可以生成base64图片，这样的图片是内联在CSS文件中的，因此不会从外部加载，防止了图片从无到有加载过程中的页面抖动。</p>
+<p>如下面的CSS即为使用base64地址生成一张图片：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">data:image/png;base64,iVBORw0KGgoAAAANS...</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>（代码中的地址内容过长，故省略。）</p>
+<p>生成的图片如下：</p>
+<div class="frontend-css-007-example-06"></div>
+<style>
+    .frontend-css-007-example-06 {
+        content: url(data:image/png;base64,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);
+    }
+</style>
+
+<p>但是注意，这种方式生成图片往往比直接加载原图片占用更多的网络资源。</p>
+<h2 id="开启闭合符号生成"><a href="#开启闭合符号生成" class="headerlink" title="开启闭合符号生成"></a>开启闭合符号生成</h2><p>可以像这样指定开始/结束符号：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.ask</span> &#123;<br>    <span class="hljs-attribute">quotes</span>: <span class="hljs-string">&quot;问：“&quot;</span> <span class="hljs-string">&quot;”&quot;</span>;<br>&#125;<br><span class="hljs-selector-class">.answer</span> &#123;<br>    <span class="hljs-attribute">quotes</span>: <span class="hljs-string">&quot;答：“&quot;</span> <span class="hljs-string">&quot;”&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后使用<code>open-quote</code>和<code>close-quote</code>关键字使<code>content</code>生成开始和结束符号。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.ask</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.answer</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">content</span>: open-quote;<br>&#125;<br><span class="hljs-selector-class">.ask</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.answer</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: close-quote;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="属性值内容生成"><a href="#属性值内容生成" class="headerlink" title="属性值内容生成"></a>属性值内容生成</h2><p>可以在<code>content</code>属性中使用<code>attr()</code>功能符，从属性中获取值并生成内容。如可以为img生成描述信息：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">img</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">attr</span>(alt);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="content计数器"><a href="#content计数器" class="headerlink" title="content计数器"></a>content计数器</h2><p>content计数器功能非常强大、实用，是<code>content</code>部分的重中之重。在很多情况下它具有不可替代性，甚至可以实现连JavaScript都不好实现的效果。</p>
+<h3 id="counter-reset属性"><a href="#counter-reset属性" class="headerlink" title="counter-reset属性"></a>counter-reset属性</h3><p>该属性的作用是<strong>重置或初始化</strong>一个计数器，你需要指定计数器的名称以及初始从哪个值开始。如果没有指定初始值，它将从0开始。初始值最好不要设置为负数和小数，因为部分浏览器可能不兼容，不兼容的话依然是默认值0。如下面的属性为<code>.counter</code>元素初始化了一个计数器counter1：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.counter</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: counter1;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>而下面代码是同时指定了两个计数器，并分别从0和1开始：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.counter</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: counter1 <span class="hljs-number">0</span> counter2 <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="counter-功能符"><a href="#counter-功能符" class="headerlink" title="counter()功能符"></a>counter()功能符</h3><p>该功能符引用一个计数器，使用计数器名称作为参数，这样我们就可以使用上面定义的计数器的值了：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;counter&quot;</span>&gt;</span> / <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.counter</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: counter1 <span class="hljs-number">0</span> counter2 <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-selector-class">.counter</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(counter1);<br>&#125;<br><span class="hljs-selector-class">.counter</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(counter2);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<div class="frontend-css-007-example-07"> / </div>
+<style>
+    .frontend-css-007-example-07 {
+        counter-reset: counter1 0 counter2 1;
+    }
+    .frontend-css-007-example-07::before {
+        content: counter(counter1);
+    }
+    .frontend-css-007-example-07::after {
+        content: counter(counter2);
+    }
+</style>
+
+<p>实际上<code>counter()</code>功能符还支持第二个参数，即<code>list-style-type</code>属性所支持的参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs txt">list-style-type: disc | circle | square | decimal <br>    | lower-roman | upper-roman | lower-alpha <br>    | upper-alpha | none | armenian | cjk-ideographic <br>    | georgian | lower-greek | hebrew | hiragana <br>    | hiragana-iroha | katakana | katakana-iroha <br>    | lower-latin | upper-latin<br></code></pre></td></tr></table></figure>
+
+<p>那么我们可以这样使用大写罗马数字来显示计数器内容：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.counter</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(counter1,upper-roman);<br>&#125;<br><span class="hljs-selector-class">.counter</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(counter2,upper-roman);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="counter-increment属性"><a href="#counter-increment属性" class="headerlink" title="counter-increment属性"></a>counter-increment属性</h3><p>我们已经知道了该如何初始化和显示一个计数器，那么最重要的就是如何让这个计数器开始计数？即如何递增。</p>
+<p>此时应当使用<code>counter-increment</code>属性来实现，该属性需要提供计数器名称作为属性值，并可提供第二个可选的递增步长，不指定递增步长的话默认为1。</p>
+<p>在渲染页面元素时，每渲染一次<code>counter-increment</code>属性，都会增加对应的值，如下面的例子：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;counter&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span>No. <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span>No. <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span>No. <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.counter</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: cnt <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.count</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(cnt);<br>    <span class="hljs-attribute">counter-increment</span>: cnt;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<div class="frontend-css-007-example-08">
+    <div>No. </div>
+    <div>No. </div>
+    <div>No. </div>
+</div>
+<style>
+    .frontend-css-007-example-08 {
+        counter-reset: cnt 0;
+    }
+    .frontend-css-007-example-08>div::after {
+        content: counter(cnt);
+        counter-increment: cnt;
+    }
+</style>
+
+<p>需要注意的一些问题：</p>
+<ul>
+<li><code>counter()</code>功能符只能用在伪元素中来生成内容，普通元素无效。</li>
+<li><code>counter-increment</code>属性也可以一次性递增多个计数器的值，和初始化计数器的方式一样。</li>
+<li>递增的值可以为负数，这样就实现了递减。</li>
+<li><code>counter()</code>功能符生成的值是静态的，之后计数器的值改变了并不会影响已生成的值。</li>
+</ul>
+<h3 id="counters-功能符"><a href="#counters-功能符" class="headerlink" title="counters()功能符"></a>counters()功能符</h3><p>通过<code>counters()</code>功能符可以实现<strong>嵌套计数</strong>，实现二级标题。</p>
+<p>该功能符需要两个参数，第一个为计数器名称，第二个为多级标题的连接符，如<code>&quot;1.1&quot;</code>的连接符即为<code>&quot;.&quot;</code>，而<code>&quot;1-1&quot;</code>的连接符为<code>&quot;-&quot;</code>。</p>
+<p>此时你的小小的眼睛一定充满了大大的疑惑：既然是多级计数器，为什么只有一个计数器名称呢，难道不应该是计数器1对应着第一级标题，然后计数器2对应着第二级标题吗？</p>
+<p>这里就要感叹设计者的高明了：如果如你所想，那么有几层标题就得需要几个计数器来单独计数，也不是不行，但是不够灵活，比如说内容是动态加载的，而你实现并不知道有几层标题呢？</p>
+<p>所以这里就要说到<code>counter-reset</code>的本质了——初始化或<strong>重置</strong>——重置的即是嵌套的计数器，有以下例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第一章<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第一章 第一节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第一章 第二节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第二章<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第二章 第一节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第二章 第二节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第三章<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第三章 第一节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第三章 第二节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>对于这样的结构，我们可以看出，每当新开一级目录，都进行reset，即CSS是这样的：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.reset</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: cnt <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.count</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counter</span>(cnt);<br>    <span class="hljs-attribute">counter-increment</span>: cnt;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<div class="frontend-css-007-example-09-reset">
+    <div class="frontend-css-007-example-09-count"> 第一章</div>
+    <div class="frontend-css-007-example-09-reset">
+        <div class="frontend-css-007-example-09-count"> 第一章 第一节</div>
+        <div class="frontend-css-007-example-09-count"> 第一章 第二节</div>
+    </div>
+    <div class="frontend-css-007-example-09-count"> 第二章</div>
+    <div class="frontend-css-007-example-09-reset">
+        <div class="frontend-css-007-example-09-count"> 第二章 第一节</div>
+        <div class="frontend-css-007-example-09-count"> 第二章 第二节</div>
+    </div>
+    <div class="frontend-css-007-example-09-count"> 第三章</div>
+    <div class="frontend-css-007-example-09-reset">
+        <div class="frontend-css-007-example-09-count"> 第三章 第一节</div>
+        <div class="frontend-css-007-example-09-count"> 第三章 第二节</div>
+    </div>
+</div>
+<style>
+    .frontend-css-007-example-09-reset {
+        counter-reset: cnt 0;
+    }
+    .frontend-css-007-example-09-count::before {
+        content: counter(cnt);
+        counter-increment: cnt;
+    }
+</style>
+
+<p>这是我使用的是<code>counter()</code>功能符而非<code>counters()</code>功能符，可以看到显示结果是按照我们已知的规则进行的：即按照页面渲染顺序，遇到reset就重置，遇到increment就递增。如果我改用<code>counters()</code>功能符呢？</p>
+<p>我们把每一个reset都塞进它的上一级的count里面，即把第一章的两个章节构成的reset塞进第一章的count里面，然后使用<code>counters()</code>功能符：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第一章<br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第一章 第一节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第一章 第二节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第二章<br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第二章 第一节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第二章 第二节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第三章<br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第三章 第一节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span> 第三章 第二节<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.reset</span> &#123;<br>    <span class="hljs-attribute">counter-reset</span>: cnt <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">20px</span>;<br>&#125;<br><span class="hljs-selector-class">.count</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counters</span>(cnt, <span class="hljs-string">&quot;-&quot;</span>);<br>    <span class="hljs-attribute">counter-increment</span>: cnt;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<div class="frontend-css-007-example-10-reset">
+    <div class="frontend-css-007-example-10-count"> 第一章
+        <div class="frontend-css-007-example-10-reset">
+            <div class="frontend-css-007-example-10-count"> 第一章 第一节</div>
+            <div class="frontend-css-007-example-10-count"> 第一章 第二节</div>
+        </div>
+    </div>
+    <div class="frontend-css-007-example-10-count"> 第二章
+        <div class="frontend-css-007-example-10-reset">
+            <div class="frontend-css-007-example-10-count"> 第二章 第一节</div>
+            <div class="frontend-css-007-example-10-count"> 第二章 第二节</div>
+        </div>
+    </div>
+    <div class="frontend-css-007-example-10-count"> 第三章
+        <div class="frontend-css-007-example-10-reset">
+            <div class="frontend-css-007-example-10-count"> 第三章 第一节</div>
+            <div class="frontend-css-007-example-10-count"> 第三章 第二节</div>
+        </div>
+    </div>
+</div>
+<style>
+    .frontend-css-007-example-10-reset {
+        counter-reset: cnt 0;
+        padding-left: 20px;
+    }
+    .frontend-css-007-example-10-count::before {
+        content: counters(cnt, "-");
+        counter-increment: cnt;
+    }
+</style>
+
+<p>可以看出一个reset就是一个层级，我给每个层级还加了<code>padding-left</code>便于观察，这时就可以看到完美的二级标题出现了。</p>
+<p>这样只要按照规则去嵌套HTML标签，简单的CSS就可以实现出任意层级的多级标题，完美！</p>
+<p>此外<code>counters()</code>功能符也是支持第三个参数用来指定数字的显示样式的，和<code>counter()</code>功能符的第二个参数一样。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如果你只需要一级计数器，那么你的用来显示<code>content: counter(cnt);</code>的标签应当是互相无嵌套的，这时每次reset都会重置计数器，每次increment都会递增计数器，计数的顺序按照渲染顺序。</p>
+<p>如果你需要多级计数器，那么对于每个显示<code>content: counters(cnt, &quot;-&quot;);</code>的count标签，它的下一级的所有count标签都应当有一个共同的reset父容器，并且这个reset容器应当作为它的直接子标签，下一级的所有count标签又要作为它们reset容器的直接子标签，如此嵌套下去即可。总之reset容器和count标签必须为父子关系，不能以兄弟关系出现，否则必乱套。</p>
+<h2 id="混合内容生成"><a href="#混合内容生成" class="headerlink" title="混合内容生成"></a>混合内容生成</h2><p><code>content</code>是可以生成多个内容的，中间以空格分隔即可。如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">a</span>:after &#123;<br>    content: <span class="hljs-string">&quot;(&quot;</span> <span class="hljs-built_in">attr</span>(href) <span class="hljs-string">&quot;)&quot;</span>;<br>&#125;<br><span class="hljs-selector-tag">q</span>:before &#123;<br>    content: open-quote <span class="hljs-built_in">url</span>(<span class="hljs-string">1.jpg</span>);<br>&#125;<br><span class="hljs-selector-class">.counter</span>:before &#123;<br>    content: <span class="hljs-built_in">counters</span>(wangxiaoer, <span class="hljs-string">&#x27;-&#x27;</span>) <span class="hljs-string">&#x27;. &#x27;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/01/04/frontend-css-007/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;01&#x2F;04&#x2F;frontend-css-007&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;01&#x2F;04&#x2F;frontend-css-007&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/12/24/js009/">JavaScript学习笔记（9）：异步编程 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E5%85%83%E7%B4%A0"><span class="toc-text">替换元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-text">特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8"><span class="toc-text">尺寸</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-text">尺寸的种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%A4%96%E7%9A%84%E5%9B%BE%E7%89%87"><span class="toc-text">例外的图片</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD%E8%AF%B4%E8%B5%B7"><span class="toc-text">从图片懒加载说起</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%A0%E4%BD%8Dimg"><span class="toc-text">占位img</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BA%E6%9C%89%E5%B0%BA%E5%AF%B8%E4%B8%8D%E5%8F%AF%E6%94%B9%E5%8F%98"><span class="toc-text">固有尺寸不可改变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E5%85%83%E7%B4%A0%E7%9A%84%E7%95%8C%E9%99%90"><span class="toc-text">替换元素的界限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%85%83%E7%B4%A0"><span class="toc-text">典型的替换元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%85%B8%E5%9E%8B%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%85%83%E7%B4%A0"><span class="toc-text">非典型的替换元素</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#content%E5%86%85%E5%AE%B9%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF"><span class="toc-text">content内容生成技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%86%85%E5%AE%B9%E7%94%9F%E6%88%90"><span class="toc-text">字符内容生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8"><span class="toc-text">清除浮动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%85%E5%8A%A9%E5%AF%B9%E9%BD%90"><span class="toc-text">辅助对齐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90"><span class="toc-text">图片生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E4%B8%8E%E6%98%BE%E7%A4%BA"><span class="toc-text">内容与显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%86%85%E8%81%94%E5%9B%BE%E7%89%87"><span class="toc-text">生成内联图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E9%97%AD%E5%90%88%E7%AC%A6%E5%8F%B7%E7%94%9F%E6%88%90"><span class="toc-text">开启闭合符号生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%80%BC%E5%86%85%E5%AE%B9%E7%94%9F%E6%88%90"><span class="toc-text">属性值内容生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#content%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-text">content计数器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#counter-reset%E5%B1%9E%E6%80%A7"><span class="toc-text">counter-reset属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#counter-%E5%8A%9F%E8%83%BD%E7%AC%A6"><span class="toc-text">counter()功能符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#counter-increment%E5%B1%9E%E6%80%A7"><span class="toc-text">counter-increment属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#counters-%E5%8A%9F%E8%83%BD%E7%AC%A6"><span class="toc-text">counters()功能符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E5%86%85%E5%AE%B9%E7%94%9F%E6%88%90"><span class="toc-text">混合内容生成</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
