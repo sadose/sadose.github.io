@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>百度前端训练营课程笔记（1）：HTTP协议——同源策略与缓存控制 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="HTTP概述HTTP请求和响应的结构HTTP请求结构：...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">百度前端训练营课程笔记（1）：HTTP协议——同源策略与缓存控制</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/notes/ " class="underline "> 课程笔记</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/baidu.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">百度前端训练营课程笔记（1）：HTTP协议——同源策略与缓存控制</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 13, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6299</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="HTTP概述"><a href="#HTTP概述" class="headerlink" title="HTTP概述"></a>HTTP概述</h1><h2 id="HTTP请求和响应的结构"><a href="#HTTP请求和响应的结构" class="headerlink" title="HTTP请求和响应的结构"></a>HTTP请求和响应的结构</h2><p>HTTP请求结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs txt">Method: GET / POST / OPTIONS ...<br>URL: http://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;?&lt;key-values&gt;#&lt;frag&gt;<br>Version: HTTP/1.1<br>Headers: Content-Type、Referer ...<br>Body: 传输内容<br></code></pre></td></tr></table></figure>
+
+<p>HTTP响应结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs txt">Version<br>Status Code: 200 304 404 500 ...<br>Headers: Content-Type、Cache-Control ...<br>Body<br></code></pre></td></tr></table></figure>
+
+<h2 id="HTTP的应用"><a href="#HTTP的应用" class="headerlink" title="HTTP的应用"></a>HTTP的应用</h2><p>HTTP协议的应用依托于其请求和响应的结构。</p>
+<p>最基本的应用：通过请求体在请求中携带数据、通过响应体从响应中获取数据。</p>
+<p>此外很多HTTP协议的应用场景，都是通过一系列的请求头、响应头来完成的：</p>
+<ul>
+<li>与<strong>同源策略</strong>相关的一系列响应头，如： <code>Access-Control-Allow-Origin</code> 、 <code>Access-Control-Allow-Headers</code> 等。</li>
+<li>与<strong>缓存控制</strong>相关的一系列头，如： <code>Cache-Control</code>、<code>Date</code>、<code>Expires</code> 等。</li>
+<li>与会话相关的 <code>Cookie</code> 请求头。</li>
+<li>与身份验证相关的 <code>Authorization</code> 请求头。</li>
+<li>与内容安全相关的 <code>Content-Security-Policy</code> 响应头。</li>
+</ul>
+<h1 id="跨源与跨域"><a href="#跨源与跨域" class="headerlink" title="跨源与跨域"></a>跨源与跨域</h1><h2 id="跨域的场景"><a href="#跨域的场景" class="headerlink" title="跨域的场景"></a>跨域的场景</h2><ul>
+<li>项目的前后端服务部署在不同的域名下。</li>
+<li>前端接入了部署在不同域名下的第三方服务，如Open API。</li>
+<li>前端本地的开发服务器和后端的测试服务器在不同的机器，联调时会跨域。</li>
+</ul>
+<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>指请求的内容与页面不在<strong>同一协议</strong>、<strong>同一域名</strong>、<strong>同一端口</strong>下，凡协议、域名、端口有一者不同，都是违背了同源策略。我们称这些情况是“跨源(Origin)”，“跨域(Domain)”只是“跨源”的一种情况。</p>
+<p>同源策略只存在于浏览器端，不存在于 Android / iOS / Node.js 等其它环境。</p>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>同源策略的限制主要有以下方面：</p>
+<ul>
+<li>Cookie、LocalStorage、indexDB等浏览器存储无法跨源读取。</li>
+<li>DOM对象无法跨源获取。</li>
+<li>限制跨源AJAX请求。</li>
+</ul>
+<p>其中最重要的是对跨源AJAX的限制。</p>
+<h3 id="同源策略对AJAX的限制"><a href="#同源策略对AJAX的限制" class="headerlink" title="同源策略对AJAX的限制"></a>同源策略对AJAX的限制</h3><p>对于AJAX请求，同源策略限制的是浏览器JavaScript代码对响应的获取，而不会限制请求的发往服务端。即响应会照样发往服务器，但是对于返回的内容，JS代码无法获取到。</p>
+<p>所以同源策略实际上是：</p>
+<ul>
+<li>浏览器发送请求了吗？发了。服务器收到请求了吗？收到了。</li>
+<li>服务器回复了吗？回复了。浏览器收到了吗？也收到了。</li>
+<li>但是偏偏就是在最后一个阶段，浏览器没收了数据，不让JS代码读取。</li>
+</ul>
+<p>如何解决跨域问题呢？</p>
+<p>在 <code>XMLHttpRequest</code> 对象上有 <code>withCredentials</code> 属性，该属性表示在跨域时是否提供凭据信息（cookie、HTTP认证及客户端SSL证明等），为true则在发送请求时携带这些信息。</p>
+<p>此时，后端返回的数据要注意两个响应头 <code>Access-Control-Allow-Origin</code> 和 <code>Access-Control-Allow-Credentials</code> 的值：</p>
+<ul>
+<li><code>Access-Control-Allow-Origin</code> ：允许访问的源，即在这个字段中的源能够从后端获得资源。</li>
+<li><code>Access-Control-Allow-Credentials</code> ：布尔值，表示是否允许发送Cookie。</li>
+</ul>
+<p>那么就有以下规则：</p>
+<ul>
+<li>如果不携带Cookie，即 <code>withCredentials: false</code> ，那么 <code>Access-Control-Allow-Origin</code> 设置为 <code>*</code> 也没有问题，也无需设置 <code>Access-Control-Allow-Credentials</code> 。</li>
+<li>如果携带了Cookie，即 <code>withCredentials: true</code> ，那么 <code>Access-Control-Allow-Origin</code> 必需为具体的Origin，并且 <code>Access-Control-Allow-Credentials</code> 必须为 <code>true</code> 。</li>
+</ul>
+<p>总结来说，就是前后端要一起允许发送Cookie才可以正常使用Cookie，即 <code>withCredentials</code> 和 <code>Access-Control-Allow-Credentials</code> 都要为 <code>true</code> 。</p>
+<p>但要注意，上述规则<strong>适用于简单请求</strong>！</p>
+<p>假设我们有一个跨源请求，会永久修改后端数据（如 <code>Method: DELETE</code> ）。如果该请求被服务端接收并执行成功，但是浏览器端JavaScript代码无法获取响应，那么我们就相当于在一个前端代码不知情的情况下，修改了数据。这显然是不合理的。</p>
+<p>我们把请求会导致后端数据修改这种情况，认为是一种“副作用”。对于无副作用的请求可以直接发，拿不到响应也不会有影响；但对于有副作用的请求，则需要有一个限制的机制防止在获取不到响应的情况下对服务端产生影响。</p>
+<p>这种会产生副作用的请求就不是简单请求，而是非简单请求，或者叫复杂请求。</p>
+<h2 id="简单请求与复杂请求"><a href="#简单请求与复杂请求" class="headerlink" title="简单请求与复杂请求"></a>简单请求与复杂请求</h2><h3 id="判断依据"><a href="#判断依据" class="headerlink" title="判断依据"></a>判断依据</h3><ol>
+<li>请求的结构：</li>
+</ol>
+<ul>
+<li>请求的Method。</li>
+<li>请求头。</li>
+</ul>
+<ol start="2">
+<li>由于同源策略是对浏览器的限制，浏览器请求方式的一些特点也可以作为简单请求的判断依据：</li>
+</ol>
+<ul>
+<li>XMLHttpRequestUpload对象没有事件监听器。</li>
+<li>请求中没有ReadableStream。</li>
+</ul>
+<p>通过如上的判断依据，我们能够将请求根据有无副作用分为两类：<strong>简单请求</strong>与<strong>复杂请求</strong>。</p>
+<p>其中请求的结构更常用于判断依据。</p>
+<h3 id="简单请求的请求结构"><a href="#简单请求的请求结构" class="headerlink" title="简单请求的请求结构"></a>简单请求的请求结构</h3><p>判断一个请求是否为简单请求：</p>
+<ol>
+<li>请求方法是以下三种方法之一：</li>
+</ol>
+<ul>
+<li>HEAD</li>
+<li>GET</li>
+<li>POST</li>
+</ul>
+<ol start="2">
+<li>HTTP的头信息不超出以下几种字段：</li>
+</ol>
+<ul>
+<li><code>Accept</code></li>
+<li><code>Accept-Language</code></li>
+<li><code>Content-Language</code></li>
+<li><code>Last-Event-ID</code></li>
+<li><code>Content-Type</code> 只限于三个值：<code>application/x-www-form-urlencoded</code> 、 <code>multipart/form-data</code> 、 <code>text/plain</code></li>
+</ul>
+<p>除此之外的都是复杂请求。</p>
+<h3 id="预检请求"><a href="#预检请求" class="headerlink" title="预检请求"></a>预检请求</h3><p>对于复杂请求的跨源，则需要<strong>预检请求</strong>来帮忙。</p>
+<p>由于复杂请求的副作用会产生在服务端，因此限制请求发送的限制机制由服务端来制定。</p>
+<p>浏览器通过向服务端发送一个预检请求来<strong>决定是否进一步发送跨源的复杂请求</strong>。</p>
+<p>假设有一个复杂请求需要发送，在这个请求发送前处于等待状态时，进行预检请求的发送，等到预检请求收到回应并且浏览器检查发现要发送的复杂请求符合预检请求中规定的允许的内容，这个复杂请求才会发送出去。</p>
+<p>预检请求是一个<strong>确定不会产生副作用</strong>的请求，通过其响应，浏览器可以得到服务端对于跨源请求的策略，再以这个策略为依据，决定是否进一步发送跨源请求。</p>
+<p>一旦服务器通过了“预检”请求，那么浏览器就知道服务器允许发送什么样的复杂请求了，所以以后每次浏览器就可以正常发送跨源的复杂请求，直到该预检请求的响应达到失效时间，才需要再次发送预检请求。</p>
+<p>通过预检之后再发送符合规则的复杂请求就和发送简单请求一样了，请求会有一个 <code>Origin</code> 头信息字段，服务器的回应也都会有一个 <code>Access-Control-Allow-Origin</code> 头信息字段。</p>
+<p>服务器收到“预检”请求以后，检查了 <code>Origin</code> 、 <code>Access-Control-Request-Method</code> 和 <code>Access-Control-Request-Headers</code> 字段以后，确认允许跨源请求，就可以做出回应，预检请求的作用涉及到以下响应头字段：</p>
+<ul>
+<li><code>Access-Control-Allow-Methods</code> ：允许跨源的HTTP Method列表，多个值由逗号分隔，如 <code>GET, POST, PUT</code> ，允许 <code>*</code> 号。</li>
+<li><code>Access-Control-Allow-Headers</code> ：在跨源的请求中，允许包含的请求头列表，也是个支持多个值逗号分隔的字符串，如 <code>X-Custom-Header</code> ，允许 <code>*</code> 号。</li>
+<li><code>Access-Control-Max-Age</code> ：预检请求的有效期，每个浏览器厂商会拥有其默认值和允许的最大值，对于Chrome该值最大为2小时，单位：秒。</li>
+</ul>
+<p>以上三个字段都是对预检请求的响应中才可以用的，用于服务端向客户端回复允许发送怎样的复杂请求。</p>
+<h3 id="复杂请求的响应头中的额外暴露字段"><a href="#复杂请求的响应头中的额外暴露字段" class="headerlink" title="复杂请求的响应头中的额外暴露字段"></a>复杂请求的响应头中的额外暴露字段</h3><p>此外还有一个响应头首部，是用于非预检请求的响应的：</p>
+<ul>
+<li><code>Access-Control-Expose-Headers</code> ：列出了哪些响应头字段可以作为响应的一部分暴露给外部，允许逗号分隔的多个值。</li>
+</ul>
+<p>在默认情况下，只有以下响应头（即七种简单响应头）允许暴露给客户端访问到：</p>
+<ul>
+<li><code>Cache-Control</code></li>
+<li><code>Content-Language</code></li>
+<li><code>Content-Length</code></li>
+<li><code>Content-Type</code></li>
+<li><code>Expires</code></li>
+<li><code>Last-Modified</code></li>
+<li><code>Pragma</code></li>
+</ul>
+<p>此时在复杂请求中，如果想要让客户端可以访问到其他的首部信息，就可以将它们在 <code>Access-Control-Expose-Headers</code> 里面列出来，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">Access-Control-Expose-Headers: Content-Length, X-Kuma-Revision<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="缓存控制"><a href="#缓存控制" class="headerlink" title="缓存控制"></a>缓存控制</h1><p>缓存是一种保存资源副本并在下次请求时直接使用该副本的技术。通过使用缓存，能够显著的减少等待时间和网络流量，进而提升性能。</p>
+<h2 id="缓存的层次"><a href="#缓存的层次" class="headerlink" title="缓存的层次"></a>缓存的层次</h2><p>浏览器缓存：</p>
+<ul>
+<li>Service Worker：一个服务器与浏览器之间的中间人角色，如果网站中注册了service worker那么它可以拦截当前网站所有的请求，进行判断（需要编写相应的判断程序），如果需要向服务器发起请求的就转给服务器，如果可以直接使用缓存的就直接返回缓存不再转给服务器，从而大大提高浏览体验。<strong>只能用于HTTPS</strong>。</li>
+<li>Memory Cache：内存缓存，不遵循HTTP语义的，由浏览器自行管理的缓存。是浏览器将缓存存储在<strong>内存中</strong>，读取速度快，但当前标签页一被关闭，这部分缓存就释放了。</li>
+<li>Disk Cache：硬盘缓存，遵循HTTP语义的缓存，根据浏览器请求头来触发。由于存储在<strong>硬盘中</strong>，因此速度不如内存缓存快，但是容量大。</li>
+<li>Push Cache：推送缓存，是 HTTP/2 中的内容，当以上三种缓存都没有命中时，它才会被使用。它只在会话（Session）中存在，一旦会话结束就被释放，并且缓存时间也很短暂。不常用。</li>
+</ul>
+<p>网络缓存：</p>
+<ul>
+<li>网络代理。</li>
+<li>CDN。</li>
+</ul>
+<h2 id="缓存的流程"><a href="#缓存的流程" class="headerlink" title="缓存的流程"></a>缓存的流程</h2><p><img   class="lazyload" data-original="/images/illustration/2022-01-13-baidu-notes-001/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>由于这里讲HTTP的缓存机制，因此这里的缓存主要指遵循HTTP语义的Disk Cache。</p>
+<h3 id="如何判断缓存新鲜度"><a href="#如何判断缓存新鲜度" class="headerlink" title="如何判断缓存新鲜度"></a>如何判断缓存新鲜度</h3><p>判断一个缓存是否新鲜可用，那么就需要两个值的比较：资源已存在的时间和资源有效期。</p>
+<p>如果一个资源已存在的时间要大于它的有效期，那么就认为它已经过期了，不再新鲜可用了。否则认为它还是有效的。这时就需要考虑这两个值如何获取。</p>
+<p>如何计算资源有效期(<code>freshness_lifetime</code>)：</p>
+<ol>
+<li>如果 <code>cache-control: no-cache,no-store</code> 或者 <code>pragma: no-cache</code> 存在，则资源有效期直接为0。</li>
+<li>如果响应头中有 <code>max_age</code> 值，那么资源有效期就是 <code>max_age</code> 的值。</li>
+<li>如果响应头里没有 <code>max_age</code> 但有 <code>expires</code> ，那么资源有效期就是 <code>expires</code> 的值减去 <code>date</code> 的值。 <code>date</code> 也是响应中的响应头字段，记录了该响应的创建时间，而响应则是和资源一一对应的。</li>
+<li>如果存在 <code>last_modified</code> 值，且未设置 <code>must_revalidate</code> 时，将会使用 <code>date</code> 的值和上次修改时间 <code>last_modified</code> 估计一个乐观的时间来作为其资源有效期，这里Chrome内核的计算方法是 <code>(date - last_modified) * 0.1</code> 。</li>
+<li>都不符合，那么资源有效期就直接置为0，表示资源失效了，立即重新请求资源。</li>
+</ol>
+<p>如何计算资源已存在的时间(<code>current_age</code>)：</p>
+<p>首先明确以下时间：</p>
+<ul>
+<li><code>age_value</code> ：响应创造的时间到当前的服务器时间之差。</li>
+<li><code>date_value</code> ： <code>date</code> 的值，</li>
+<li><code>now</code> ：当前时间。</li>
+<li><code>request_time</code> ：请求发送的时间。</li>
+<li><code>response_time</code> ：收到响应的时间。</li>
+</ul>
+<p>然后计算：</p>
+<ul>
+<li><code>apparent_age = max(0, response_time - date_value)</code></li>
+<li><code>response_delay = response_time - request_time</code></li>
+<li><code>corrected_age_value = age_value + response_delay</code></li>
+<li><code>corrected_initial_age = max(apparent_age, corrected_age_value)</code></li>
+<li><code>resident_time = now - response_time</code></li>
+<li><code>current_age = corrected_initial_age + resident_time</code></li>
+</ul>
+<p>以上计算过程仅供参考，由于规范有过改动且浏览器的实现可能有差异，只需要知道 <code>freshness_lifetime</code> 和 <code>current_age</code> 的含义和原理即可。</p>
+<h3 id="如何判断资源文件是否有更新"><a href="#如何判断资源文件是否有更新" class="headerlink" title="如何判断资源文件是否有更新"></a>如何判断资源文件是否有更新</h3><p>这一过程称为缓存文件协商，判断资源是否过期的过程是发生在服务端的。</p>
+<p>缓存文件协商的过程是浏览器发送协商请求，服务端发送响应，根据响应的内容得知文件是否过期，具体如下：</p>
+<ol>
+<li>如果缓存中的响应头设置了 <code>cache-control: immutable</code> ，则请求中直接不添加 <code>if-none-match</code> ， <code>if-modified-since</code> 字段（目前仅Firefox和Safari支持 <code>immutable</code> ）。</li>
+<li>如果缓存中的响应头包含etag，则协商请求头中添加 <code>if-none-match</code> 字段，值为缓存响应中的etag。etag认为是资源文件的哈希值，如果哈希没变，那么文件当然就没变。</li>
+<li>如果缓存中的响应头包含 <code>last-modified</code> ，则协商请求头中添加 <code>if-modified-since</code> 字段，值为缓存响应中的 <code>last-modified</code> 。</li>
+<li>缓存是否生效的结果由服务端根据 <code>if-none-match</code> 和 <code>if-modified-since</code> 计算得出，如果可以使用缓存，服务端返回304，否则返回200以及最新的响应内容。</li>
+<li>可以看出：通常先判断etag，然后才是 <code>last-modified</code> ，判断的优先级：<code>etag &gt; last-modified</code> 。</li>
+</ol>
+<h2 id="响应头的缓存控制字段"><a href="#响应头的缓存控制字段" class="headerlink" title="响应头的缓存控制字段"></a>响应头的缓存控制字段</h2><p><code>Cache-Control</code>：</p>
+<ul>
+<li><code>no-store</code>：没有缓存</li>
+<li><code>no-cache</code>：缓存但总是重新验证</li>
+<li><code>max-age=31536000</code>：过期时间，秒</li>
+<li><code>must-revalidate</code>：强制验证</li>
+</ul>
+<p>Pragma:</p>
+<ul>
+<li><code>no-cache</code>：原本只在请求头中定义，但大家也都在响应头中用它。</li>
+</ul>
+<h2 id="常见的静态资源更新策略"><a href="#常见的静态资源更新策略" class="headerlink" title="常见的静态资源更新策略"></a>常见的静态资源更新策略</h2><ol>
+<li>对于低频更新的资源(js/css)，在文件名上添加版本号（通常是ContentHash），并拥有一年甚至更长的 <code>max-age</code> 。</li>
+<li>当低频更新的资源变动了，只用在高频变动的资源文件(html)里做入口的改动。</li>
+</ol>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/01/13/baidu-notes-001/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;01&#x2F;13&#x2F;baidu-notes-001&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;01&#x2F;13&#x2F;baidu-notes-001&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/01/04/frontend-css-007/">CSS：深入content <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E6%A6%82%E8%BF%B0"><span class="toc-text">HTTP概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">HTTP请求和响应的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">HTTP的应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%A8%E6%BA%90%E4%B8%8E%E8%B7%A8%E5%9F%9F"><span class="toc-text">跨源与跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F%E7%9A%84%E5%9C%BA%E6%99%AF"><span class="toc-text">跨域的场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5"><span class="toc-text">同源策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6"><span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E5%AF%B9AJAX%E7%9A%84%E9%99%90%E5%88%B6"><span class="toc-text">同源策略对AJAX的限制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E8%AF%B7%E6%B1%82%E4%B8%8E%E5%A4%8D%E6%9D%82%E8%AF%B7%E6%B1%82"><span class="toc-text">简单请求与复杂请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E4%BE%9D%E6%8D%AE"><span class="toc-text">判断依据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E8%AF%B7%E6%B1%82%E7%9A%84%E8%AF%B7%E6%B1%82%E7%BB%93%E6%9E%84"><span class="toc-text">简单请求的请求结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E6%A3%80%E8%AF%B7%E6%B1%82"><span class="toc-text">预检请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E8%AF%B7%E6%B1%82%E7%9A%84%E5%93%8D%E5%BA%94%E5%A4%B4%E4%B8%AD%E7%9A%84%E9%A2%9D%E5%A4%96%E6%9A%B4%E9%9C%B2%E5%AD%97%E6%AE%B5"><span class="toc-text">复杂请求的响应头中的额外暴露字段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6"><span class="toc-text">缓存控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%9A%84%E5%B1%82%E6%AC%A1"><span class="toc-text">缓存的层次</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-text">缓存的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E7%BC%93%E5%AD%98%E6%96%B0%E9%B2%9C%E5%BA%A6"><span class="toc-text">如何判断缓存新鲜度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E6%9C%89%E6%9B%B4%E6%96%B0"><span class="toc-text">如何判断资源文件是否有更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%A4%B4%E7%9A%84%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6%E5%AD%97%E6%AE%B5"><span class="toc-text">响应头的缓存控制字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5"><span class="toc-text">常见的静态资源更新策略</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
