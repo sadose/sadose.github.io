@@ -197,7 +197,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 13, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11190</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11283</span>
     </div>
   </div>
 </section>
@@ -293,6 +293,9 @@
 <h2 id="扩展操作符"><a href="#扩展操作符" class="headerlink" title="扩展操作符"></a>扩展操作符</h2><p>可迭代对象可以使用扩展操作符将迭代的结果展开，如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br><span class="hljs-keyword">let</span> arr2 = [...arr1];<br><span class="hljs-keyword">let</span> arr3 = [<span class="hljs-number">0</span>, ...arr2, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>];<br><span class="hljs-built_in">console</span>.log(arr1); <span class="hljs-comment">// [1, 2, 3]</span><br><span class="hljs-built_in">console</span>.log(arr2); <span class="hljs-comment">// [1, 2, 3]</span><br><span class="hljs-built_in">console</span>.log(arr3); <span class="hljs-comment">// [0, 1, 2, 3, 4, 5, 6]</span><br></code></pre></td></tr></table></figure>
 <p>展开的结果视为浅复制。</p>
+<p>而不可迭代对象只有一种情况下能被解构，即使用字面量浅复制对象时：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> o = &#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>&#125;;<br><span class="hljs-keyword">let</span> o2 = &#123;...o&#125;<br></code></pre></td></tr></table></figure>
+
 <h1 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h1><h2 id="定义生成器"><a href="#定义生成器" class="headerlink" title="定义生成器"></a>定义生成器</h2><p>生成器的形式是一个函数，函数名称前面加一个星号（*）表示它是一个生成器。只要是可以定义函数的地方，就可以定义生成器，可以把它看成一个特殊的函数，但注意箭头函数不能用来定义生成器函数。标识生成器函数的星号不受两侧空格的影响。</p>
 <p>与迭代器相似，生成器对象也实现了Iterator接口，因此具有<code>next()</code>方法，调用这个方法会让生成器开始或恢复执行。<code>next()</code>方法的返回值类似于迭代器，有一个done属性和一个value属性。函数体为空的生成器函数中间不会停留，调用一次<code>next()</code>就会让生成器到达<code>done: true</code>状态。</p>
 <p>yield关键字可以让生成器停止和开始执行，生成器函数在遇到yield关键字之前会正常执行，遇到这个关键字后，执行会停止并跳出函数执行，但是函数的内部状态会被保存，下次调用next会自动接着上次的状态继续执行。</p>
