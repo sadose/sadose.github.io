@@ -197,7 +197,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 15, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>27607</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>27770</span>
     </div>
   </div>
 </section>
@@ -541,11 +541,13 @@
 <li>应存在于类本身的成员。</li>
 </ul>
 <h3 id="实例成员"><a href="#实例成员" class="headerlink" title="实例成员"></a>实例成员</h3><p>通过类构造函数为this绑定的成员都将成为实例的成员，在其他地方向实例对象添加的成员都将成为实例成员。</p>
+<p>注意：在类块内直接写的数据成员也会成为实例的成员，即直接将一个值赋值给一个名称，那么这个名称会自动成为实例的属性。</p>
 <h3 id="原型成员"><a href="#原型成员" class="headerlink" title="原型成员"></a>原型成员</h3><p>在类块中定义的方法都将位于原型上，但是原型成员只能是方法，也就是说不支持在原型上定义数据成员，但可以定义访问器成员用来包装实例的属性，访问器成员使用get和set关键字来修饰。</p>
 <p><strong>类的原型成员函数都默认开启了局部严格模式！</strong>因此当类的方法被拿到类外调用时，它们的this都为undefined。</p>
 <h3 id="静态类成员"><a href="#静态类成员" class="headerlink" title="静态类成员"></a>静态类成员</h3><p>静态类成员和原型成员一样，只能是方法而不能是数据成员，使用static修饰，直接定义在类块内。</p>
 <p>静态类成员非常适合实例工厂来按照一定规则创建实例。</p>
 <h3 id="共享数据成员"><a href="#共享数据成员" class="headerlink" title="共享数据成员"></a>共享数据成员</h3><p>原型成员和静态类成员虽然都不可以是数据成员，因为数据成员不应该在所有实例中共享，这是一种反模式。</p>
+<p>在类块内直接写的数据成员会成为实例的成员而不会成为静态成员或原型成员，特别地，如果在类块中使用赋值语句将一个函数表达式赋值给一个名称，那么这个方法是实例方法，如果在类块中的是函数声明，那么这个方法是原型方法。</p>
 <p>如果一定需要共享的数据成员，可以在类的外部向原型或者类上添加：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">Person.greeting = <span class="hljs-string">&quot;My name is &quot;</span>;<br>Person.prototype.name = <span class="hljs-string">&quot;Dasen&quot;</span>;<br></code></pre></td></tr></table></figure>
 
