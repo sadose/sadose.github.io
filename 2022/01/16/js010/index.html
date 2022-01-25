@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript学习笔记（10）：BOM - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="window对象在“基本引用类型”章节提到了ES中的G...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">JavaScript学习笔记（10）：BOM</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/notes/ " class="underline "> 课程笔记</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/js.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JavaScript学习笔记（10）：BOM</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 16, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>12246</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h1><p>在“<a href="../../../../2021/12/08/js003/#Global">基本引用类型</a>”章节提到了ES中的Global对象，而在不同的ES实现中，Global对象的存在形式可能是不一样的，在浏览器中的Global对象即window对象，来作为浏览器窗口的JavaScript接口。</p>
+<p>window对象被复用为ECMAScript的Global对象，所以浏览器环境中通过var声明的所有全局变量和函数都会变成window对象的属性和方法。</p>
+<h2 id="窗口与视口"><a href="#窗口与视口" class="headerlink" title="窗口与视口"></a>窗口与视口</h2><h3 id="窗口关系"><a href="#窗口关系" class="headerlink" title="窗口关系"></a>窗口关系</h3><p>一个页面可能会通过<code>window.open()</code>来打开多个子窗口，这样就会存在多个window对象。</p>
+<p>在这些window对象中有以下属性：</p>
+<ul>
+<li>top：始终指向最上层的窗口，即浏览器本身的窗口。</li>
+<li>parent：当前窗口的父窗口。如果窗口是最上层窗口，那么其父窗口为浏览器窗口，即<code>window.top</code>，也即它本身。</li>
+<li>name：窗口的名称。通过<code>window.open()</code>打开的窗口才会有。</li>
+<li>self：指向当前window本身。</li>
+</ul>
+<h3 id="窗口位置"><a href="#窗口位置" class="headerlink" title="窗口位置"></a>窗口位置</h3><p>主要有两个属性：</p>
+<ul>
+<li>screenLeft属性：用于表示窗口相对于屏幕左侧的位置，返回值的单位是CSS像素。</li>
+<li>screenTop属性：用于表示窗口相对于屏幕顶部的位置，返回值的单位是CSS像素。</li>
+</ul>
+<p>以及两个方法来移动浏览器窗口：</p>
+<ul>
+<li><code>moveTo()</code>方法：绝对移动，接收要移动到的新位置的绝对坐标x和y两个参数。</li>
+<li><code>moveBy()</code>方法：相对移动，接收相对当前位置在两个方向上移动的像素数。</li>
+</ul>
+<p>依浏览器而定，这两个方法<strong>可能会被部分或全部禁用</strong>。并且它们<strong>一般无法操作顶级窗口</strong>，而只能用来操作通过<code>window.open()</code>打开的自定义窗口。</p>
+<p>下方显示你的浏览器的窗口位置（数值仅为<code>window.screenLeft</code>和<code>window.screenTop</code>的值）：</p>
+<div class="js010-example-box">
+    <div>你的浏览器窗口距离左侧： <span id="js010-example-01-view1"></span> px</div>
+    <div>你的浏览器窗口距离顶部： <span id="js010-example-01-view2"></span> px</div>
+</div>
+<style>
+    .js010-example-box {
+        border: black solid 1px;
+        padding: 3px;
+    }
+</style>
+<script>
+    document.getElementById("js010-example-01-view1").innerText = window.screenLeft.toString();
+    document.getElementById("js010-example-01-view2").innerText = window.screenTop.toString();
+    window.addEventListener("resize", () => {
+        document.getElementById("js010-example-01-view1").innerText = window.screenLeft.toString();
+        document.getElementById("js010-example-01-view2").innerText = window.screenTop.toString();
+    });
+</script>
+
+<h3 id="窗口像素比"><a href="#窗口像素比" class="headerlink" title="窗口像素比"></a>窗口像素比</h3><p><code>window.devicePixelRatio</code>表示<strong>物理像素与逻辑像素之间的缩放系数</strong>，这就是像素比。</p>
+<p><strong>CSS像素</strong>是Web开发中使用的统一像素单位，即CSS中的px。这个像素<strong>是逻辑像素，而非物理像素</strong>。</p>
+<p>物理像素就是你的屏幕上的一个光点，无数个光点组成了你的屏幕，你的屏幕拥有的光点的数量也就是你的屏幕分辨率。</p>
+<p>那么现在问题来了：</p>
+<p>考虑电脑和手机，大森的电脑屏幕是15.6英寸，1920×1080的分辨率，也就是屏幕上组成图像的小光点有1920×1080这么多，而大森的手机屏幕尺寸才6.7英寸，远小于电脑屏幕，但它的分辨率却有3216×1440，也就是说大森的手机小小的屏幕的像素密度要远远大于电脑的屏幕，小小的屏幕里充满了多多的像素。</p>
+<p>这导致了手机的一个物理像素远小于电脑的一个物理像素，那么一个3px粗的线条，如果使用物理像素来绘制，那么在电脑上这条线的粗细看起来要远远粗于手机上显示的，因此引入了逻辑像素的概念：即<strong>使用若干个物理像素来拼成一个逻辑像素</strong>。</p>
+<p>举个例子，假如手机上的像素很小，16个像素拼起来才有电脑的一个像素大，那么就把手机的16个像素拼成一个像素来用，这样使得手机和电脑上的显示大小看起来差不多，这就是逻辑像素的作用。CSS像素就是一种逻辑像素。</p>
+<p>那么<code>window.devicePixelRatio</code>所表示的像素比就可以认为是CSS像素相对物理像素的缩放比例，它的值为1就代表着你的设备的1个物理像素被用来当作一个逻辑像素了，而我测试的我的Chrome浏览器的该值为1.25，即逻辑像素是物理像素的1.25倍，而搜狗浏览器的该值为1。<br>同时这个<strong>像素比的值是会随着屏幕分辨率以及用户缩放页面而改变的</strong>。</p>
+<p>下方显示你目前所用浏览器的像素比：</p>
+<div class="js010-example-box">
+    <div>你的浏览器的 window.devicePixelRatio 值为：<span id="js010-example-02"></span></div>
+</div>
+<script>
+    document.getElementById("js010-example-02").innerText = window.devicePixelRatio.toString();
+    window.addEventListener("resize", () => {
+        document.getElementById("js010-example-02").innerText = window.devicePixelRatio.toString();
+    });
+</script>
+
+<h3 id="窗口尺寸"><a href="#窗口尺寸" class="headerlink" title="窗口尺寸"></a>窗口尺寸</h3><p>窗口大小涉及到四个属性：</p>
+<ul>
+<li>outerWidth和outerHeight属性：不管是在最外层window上使用，还是在窗格<code>&lt;frame&gt;</code>中使用，都返回浏览器窗口的大小。</li>
+<li>innerWidth和innerHeight属性：返回当前页面视口的大小。</li>
+</ul>
+<p>窗口的innerWidth和innerHeight属性返回页面视口的大小，窗口就是整个浏览器的窗口，包含了浏览器的工具栏等内容，而视口就是页面文档所占的区域（包括滚动条所占的区域）。</p>
+<p>还有两个方法可以用来调整窗口尺寸：</p>
+<ul>
+<li><code>resizeTo()</code>：接收新的宽度和高度值，单位是像素，正值。</li>
+<li><code>resizeBy()</code>：接收宽度和高度各要缩放多少，单位是像素，可正可负。</li>
+</ul>
+<p>同样它们可能被浏览器禁用。</p>
+<h3 id="视口尺寸"><a href="#视口尺寸" class="headerlink" title="视口尺寸"></a>视口尺寸</h3><p>由于浏览器的原因，可能无法得到浏览器窗口的具体位置和尺寸，但页面视口的尺寸是可以精确得到的，涉及到document对象的以下属性：</p>
+<ul>
+<li><code>document.compatMode</code>：可能的值有<code>&quot;BackCompat&quot;</code>表示混杂模式，<code>&quot;CSS1Compat&quot;</code>表示标准模式。</li>
+<li><code>document.documentElement.clientWidth</code>：标准模式下，返回页面视口的宽度。</li>
+<li><code>document.documentElement.clientHeight</code>：标准模式下，返回页面视口的高度。</li>
+<li><code>document.body.clientWidth</code>：混杂模式下，返回页面视口的宽度。</li>
+<li><code>document.body.clientHeight</code>：混杂模式下，返回页面视口的高度。</li>
+</ul>
+<p>标准模式和混杂模式实际上是CSS模式，主要的区别是<strong>盒模型</strong>。</p>
+<p><code>window.innerWidth</code>和<code>window.innerHeight</code>如果有值的话，将会和<code>document.documentElement.clientWidth</code>以及<code>document.documentElement.clientHeight</code>相等，它们都代表视口尺寸。</p>
+<p>因此可通过以下方式来获取浏览器视口尺寸：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> pageWidth = <span class="hljs-built_in">window</span>.innerWidth,<br>    pageHeight = <span class="hljs-built_in">window</span>.innerHeight;<br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> pageWidth != <span class="hljs-string">&quot;number&quot;</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.compatMode == <span class="hljs-string">&quot;CSS1Compat&quot;</span>) &#123;<br>        pageWidth = <span class="hljs-built_in">document</span>.documentElement.clientWidth;<br>        pageHeight = <span class="hljs-built_in">document</span>.documentElement.clientHeight;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        pageWidth = <span class="hljs-built_in">document</span>.body.clientWidth;<br>        pageHeight = <span class="hljs-built_in">document</span>.body.clientHeight;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>或者使用更简单的做法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> pageWidth = <span class="hljs-built_in">window</span>.innerWidth ||<br>    <span class="hljs-built_in">document</span>.documentElement.clientWidth ||<br>    <span class="hljs-built_in">document</span>.body.clientWidth;<br><span class="hljs-keyword">var</span> pageHeight = <span class="hljs-built_in">window</span>.innerHeight ||<br>    <span class="hljs-built_in">document</span>.documentElement.clientHeight ||<br>    <span class="hljs-built_in">document</span>.body.clientHeight;<br></code></pre></td></tr></table></figure>
+
+<p>移动设备上同样有这些值，但代表的内容可能不太一样。</p>
+<p>移动浏览器都是运行在标准模式的，因此在移动设备上不必使用<code>document.body.clientWidth</code>和<code>document.body.clientHeight</code>。</p>
+<p>对于Mobile Internet Explorer浏览器，<code>window.innerWidth</code>、<code>window.innerHeight</code>返回视口的大小和<code>document.documentElement.clientWidth</code>、<code>document.documentElement.clientHeight</code>返回的一样，都是<strong>可见视口</strong>的尺寸，<strong>布局视口</strong>则通过<code>document.body.clientWidth</code>和<code>document.body.clientHeight</code>获取。</p>
+<p>对于其他移动浏览器，<code>window.innerWidth</code>、<code>window.innerHeight</code>代表可见视口尺寸，而<code>document.documentElement.clientWidth</code>、<code>document.documentElement.clientHeight</code>代表布局视口的大小。</p>
+<p>布局视口大小：整个页面文档的大小。</p>
+<p>可见视口大小：是布局视口的一部分，是可见的那一部分。</p>
+<p>同时，当浏览器页面被用户缩放时，这些值也会随之改变，但要注意，当页面被放大时，值反而会变小，当页面被缩小时，值会变大。原因是因为：窗口宽度是一定的，那么视口所占的物理像素是一定的，放大页面会使<code>window.devicePixelRatio</code>变大，意味着使用更多的物理像素来表示一个CSS像素，那么同样数量的物理像素能表示的CSS像素就少了，而视口尺寸又是基于CSS像素统计的，因此放大页面导致视口中的CSS像素变少了，视口尺寸就变小了。</p>
+<h3 id="视口位置"><a href="#视口位置" class="headerlink" title="视口位置"></a>视口位置</h3><p>页面一般比视口大，因此需要通过在页面上滚动视口来查看完整的文档，因此需要调整视口位置。这涉及的属性和方法有：</p>
+<ul>
+<li><code>window.pageXoffset</code> / <code>window.scrollX</code>：视口距页面左侧的位置。</li>
+<li><code>window.pageYoffset</code> / <code>window.scrollY</code>：视口距页面顶部的位置。</li>
+<li><code>scroll()</code>方法：绝对滚动，接受两个参数分别为x、y坐标，表示到滚动到的位置，单位为像素。</li>
+<li><code>scrollTo()</code>方法：同上。</li>
+<li><code>scrollBy()</code>方法：相对滚动，相对当前位置的像素偏移，可正可负。</li>
+</ul>
+<p><code>window.scrollX</code>、<code>window.scrollY</code>和<code>window.pageXoffset</code>、<code>window.pageYoffset</code>中可能有其中一组没有值，建议优先使用<code>window.scrollX</code>、<code>window.scrollY</code>。</p>
+<p>这几个方法也都接收一个ScrollToOptions字典，除了提供偏移值，还可以通过behavior属性告诉浏览器是否平滑滚动，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 正常滚动</span><br><span class="hljs-built_in">window</span>.scrollTo(&#123;<br>    <span class="hljs-attr">left</span>: <span class="hljs-number">100</span>,<br>    <span class="hljs-attr">top</span>: <span class="hljs-number">100</span>,<br>    <span class="hljs-attr">behavior</span>: <span class="hljs-string">&#x27;auto&#x27;</span><br>&#125;);<br><span class="hljs-comment">// 平滑滚动</span><br><span class="hljs-built_in">window</span>.scrollTo(&#123;<br>    <span class="hljs-attr">left</span>: <span class="hljs-number">100</span>,<br>    <span class="hljs-attr">top</span>: <span class="hljs-number">100</span>,<br>    <span class="hljs-attr">behavior</span>: <span class="hljs-string">&#x27;smooth&#x27;</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="跳转与打开"><a href="#跳转与打开" class="headerlink" title="跳转与打开"></a>跳转与打开</h2><h3 id="在窗口中打开链接"><a href="#在窗口中打开链接" class="headerlink" title="在窗口中打开链接"></a>在窗口中打开链接</h3><p>跳转与打开都通过<code>window.open()</code>方法来实现。该方法接收四个参数：要加载的URL、目标窗口、特性字符串和是否替代当前加载页面的布尔值。一般只用到前三个，第四个参数只在不打开新窗口或选项卡时才会用。</p>
+<p>假如我如此使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">window</span>.open(<span class="hljs-string">&quot;https://sadose.github.io/&quot;</span>,<span class="hljs-string">&quot;myFrame&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>那么它就和</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://sadose.github.io/&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;myFrame&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>没有什么区别。即如果有一个窗口名字叫做<code>&quot;myFrame&quot;</code>，那么就在它里面打开链接，否则就新建一个名叫<code>&quot;myFrame&quot;</code>的窗口来打开链接。窗口的名称使用window对象的name属性来保存。</p>
+<p>当然你可能想到了a标签的target属性还有个常用值为<code>&quot;_blank&quot;</code>，代表在新标签页打开链接，在<code>window.open()</code>方法中当然也可使用啦，实际上，<code>_self</code>、<code>_parent</code>、<code>_top</code>或<code>_blank</code>都可以使用，分别代表在本窗口、父窗口、顶级窗口和新窗口打开链接，当然现在浏览器往往不新建窗口，而是新建标签页。</p>
+<p>如果需要打开新窗口而非新选项卡，则需要指定第三个参数，即特性字符串，指定了新窗口的配置。主要有以下配置项：<br><img   class="lazyload" data-original="/images/illustration/2022-01-16-js010/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>多个配置项之间用逗号分隔即可，如以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">window</span>.open(<span class="hljs-string">&quot;https://sadose.github.io/&quot;</span>,<br>    <span class="hljs-string">&quot;blogWindow&quot;</span>,<br>    <span class="hljs-string">&quot;height=800, width=800, top=10, left=10, resizable=yes&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>就在新窗口中打开了800×800大小的窗口，距离屏幕顶部和底部的距离都是10像素，并且窗口可调整大小。</p>
+<h3 id="操纵窗口"><a href="#操纵窗口" class="headerlink" title="操纵窗口"></a>操纵窗口</h3><p><code>window.open()</code>方法的返回值是新打开的窗口（或标签页），那么就可以用一个变量把它保存下来，从而在父窗口中操纵子窗口。</p>
+<p>操纵窗口的方法主要就是window对象上的<code>close()</code>方法，以及移动窗口的<code>moveTo()</code>、<code>moveBy()</code>方法，还有更改窗口尺寸的<code>resizeTo()</code>、<code>resizeBy()</code>方法。</p>
+<p>但要注意：<code>close()</code>方法只能关闭通过<code>open()</code>方法打开的窗口，并且关闭之后，父窗口并不知道子窗口被关闭了，因为它里面可能还保留着对这个子窗口的引用，这时通过该引用的closed属性（布尔值）可判断窗口是否已被关闭。</p>
+<p>同时新创建窗口的window对象有一个属性opener，指向打开它的窗口，但反之不然，窗口不会跟踪记录自己打开的新窗口，因此开发者需要自己记录。</p>
+<p>此外，在某些浏览器中，每个标签页会运行在独立的进程中，而如果一个标签页打开了另一个，则window对象需要跟另一个标签页通信，那么标签便不能运行在独立的进程中。在这些浏览器中，可以将新打开的标签页的opener属性设置为null，表示新打开的标签页可以运行在独立的进程中。</p>
+<h3 id="安全限制"><a href="#安全限制" class="headerlink" title="安全限制"></a>安全限制</h3><p>由于曾经浏览器弹窗被广告滥用，因此很多浏览器对弹窗添加了限制，如需要用户进行允许操作才会弹出窗口，或者干脆使用了弹窗屏蔽。</p>
+<p>如果弹窗失败，<code>window.open()</code>方法将返回null，可以通过它来判断弹窗是否成功。</p>
+<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>定时器相关的函数是window对象上的两对方法：</p>
+<ul>
+<li><code>setTimeout()</code>方法和<code>clearTimeout()</code>方法。</li>
+<li><code>setInterval()</code>方法和<code>clearInterval()</code>方法。</li>
+</ul>
+<p><code>setTimeout()</code>方法接收两个必选参数：要执行的代码和在执行回调函数前等待的时间（毫秒）。</p>
+<p>第一个参数可以是包含JavaScript代码的字符串（类似于传给<code>eval()</code>的字符串），也可以是一个函数。</p>
+<p>如果第一个参数是一个函数时，在两个必选参数之后还可以有任意个可选参数，这些可选参数都将作为参数传递给第一个参数所指定的函数。</p>
+<p>该函数的返回值是一个表示该超时排期的数值ID，这个ID是被排期任务的唯一标识符，可以调用<code>clearTimeout()</code>函数并传入超时ID来取消被排期的任务。</p>
+<p>在任务<strong>未被加入队列之前</strong>调用<code>clearTimeout()</code>函数就可以取消超时任务，在任务加入队列后再调用<code>clearTimeout()</code>是没有效果的。</p>
+<p><code>setInterval()</code>函数与<code>setTimeout()</code>函数类似，只不过指定的任务会每隔指定时间就执行一次，其第二个参数是两次执行的间隔，直到取消循环定时或者页面卸载。</p>
+<p>它也会返回一个ID，可以通过调用<code>clearInterval()</code>函数来取消任务。</p>
+<p>一般来说，最好不要使用<code>setInterval()</code>函数，而应该使用<code>setTimeout()</code>函数来实现功能，因为使用<code>setInterval()</code>函数无法保证两个任务之间的时间间隔，并且不容易管理其在合适停止，而使用<code>setTimeout()</code>函数可以解决这些问题，思路是在某个条件满足时使用<code>setTimeout()</code>函数设置下一周期的任务执行，在条件不满足时就不再设置下一周期的函数了，因此避免了意外地忘记停止循环任务，并且可以保证两个任务之间的时间间隔。</p>
+<p>如对于一个变量num，使其每0.5秒递增1，直到它达到10，可以这样写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> num = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">const</span> id = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    num++;<br>    <span class="hljs-keyword">if</span> (num &gt;= <span class="hljs-number">10</span>) <span class="hljs-built_in">clearInterval</span>(id);<br>&#125;, <span class="hljs-number">500</span>);<br>而使用<span class="hljs-built_in">setTimeout</span>()函数代替<span class="hljs-built_in">setInterval</span>()函数，可以这样写：<br><span class="hljs-keyword">let</span> num = <span class="hljs-number">0</span>;<br>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increace</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        num++;<br>        <span class="hljs-keyword">if</span> (num &lt; <span class="hljs-number">10</span>) increace();<br>    &#125;, <span class="hljs-number">500</span>);<br>&#125;)();<br></code></pre></td></tr></table></figure>
+
+<h2 id="系统对话框"><a href="#系统对话框" class="headerlink" title="系统对话框"></a>系统对话框</h2><p>使用<code>alert()</code>、<code>confirm()</code>和<code>prompt()</code>方法，可以让浏览器调用系统对话框向用户显示消息。这些对话框与浏览器中显示的网页无关，而且也不包含HTML。它们的外观由操作系统或者浏览器决定，无法使用CSS设置。此外，这些对话框都是<strong>同步的</strong>模态对话框，即在它们显示的时候，代码会停止执行，在它们消失以后，代码才会恢复执行。</p>
+<ul>
+<li><code>alert()</code>函数：接收一个字符串作为参数，由浏览器弹窗提示用户，如果参数不是字符串，则会调用其<code>toString()</code>方法转为字符串。</li>
+<li><code>confirm()</code>函数：显示一个确认框，和<code>alert()</code>函数类似，但区别是它会显示“确认”和“取消”两个按钮，其返回值表示了用户的选择，true为确认，false为取消，点击了关闭按钮则默认认为点击了取消。</li>
+<li><code>prompt()</code>方法：显示提示框，用途是提示用户输入消息。提示框会显示一个确认按钮、一个取消按钮和一个文本框，让用户输入内容。它接收两个参数：要显示给用户的文本，以及文本框的默认值（可以是空字符串）。用户点击了确认按钮，函数会返回用户输入的值，点击了取消或关闭按钮则会返回null。</li>
+</ul>
+<p>浏览器可能会允许用户选择屏蔽后续的弹框，因此这些弹框可能会失败。</p>
+<p>JavaScript还可以显示另外两种对话框：<code>find()</code>和<code>print()</code>。这两种对话框都是异步显示的，即控制权会立即返回给脚本。用户在浏览器菜单上选择“查找”和“打印”时显示的就是这两种对话框。通过在window对象上调用<code>find()</code>和<code>print()</code>可以显示它们：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">window</span>.print();<br><span class="hljs-built_in">window</span>.find();<br></code></pre></td></tr></table></figure>
+
+<p>用户选择了<strong>禁用后续弹框不会影响到这两种对话框</strong>。</p>
+<h1 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h1><p>location是最有用的BOM对象之一，提供了当前窗口中加载文档的信息，以及通常的导航功能。它独特的地方在于，它既是window的属性，也是document的属性，即<code>window.location</code>和<code>document.location</code>指向同一个对象。</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>location对象不仅保存着当前加载文档的信息，<strong>也保存着把URL解析为离散片段后能够通过属性访问的信息</strong>。</p>
+<p>对于这样一个URL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">http://foouser:barpassword@www.wrox.com:80/WileyCDA/?q=javascript#contents<br></code></pre></td></tr></table></figure>
+
+<p>以下为location对象的各个属性分别对应的值：<br><img   class="lazyload" data-original="/images/illustration/2022-01-16-js010/002.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="地址操作"><a href="#地址操作" class="headerlink" title="地址操作"></a>地址操作</h2><p>可以通过修改location对象修改浏览器的地址。首先，最常见的是使用<code>assign()</code>方法并传入一个URL：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">location.assign(<span class="hljs-string">&quot;https://sadose.github.io/&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>这样即可将当前页面导航到新URL，同时在浏览器的历史记录中增加一条记录。</p>
+<p>如果给<code>location.href</code>或<code>window.location</code>设置一个URL，本质上也是调用了<code>location.assign()</code>方法。</p>
+<p>修改location对象的属性也会修改当前加载的页面。其中，hash、search、hostname、pathname和port属性被设置为新值之后都会修改当前URL。只要修改location的除了hash之外的一个属性，就会导致页面重新加载新URL。</p>
+<p>在以前面提到的方式修改URL之后，浏览器历史记录中就会增加相应的记录。当用户单击“后退”按钮时，就会导航到前一个页面。如果不希望增加历史记录，可以使用<code>location.replace()</code>方法。这个方法接收一个URL参数，但重新加载后不会增加历史记录。调用<code>location.replace()</code>之后，用户不能回到前一页。<br>最后一个修改地址的方法是<code>location.reload()</code>，它能重新加载当前显示的页面，即刷新操作，它不需要参数。但是注意，刷新之后，后面的脚本可能不会被执行，因此<code>location.reload()</code>应当成为一个过程的最后一行代码。</p>
+<h1 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h1><p>只要浏览器启用JavaScript, navigator对象就一定存在。但是与其他BOM对象一样，每个浏览器都支持自己的属性。navigator对象的属性通常用于确定浏览器的类型。</p>
+<p>navigator对象的方法和属性非常多，因此只主要学习其两个主要用途：检测插件和注册处理程序。</p>
+<h2 id="检测插件"><a href="#检测插件" class="headerlink" title="检测插件"></a>检测插件</h2><p>通过<code>window.navigator.plugins</code>可以访问到浏览器安装的插件的数组，注意，插件数组是一个<strong>类数组对象</strong>，并且浏览器插件不是浏览器安装的扩展程序。可以看到下图为我的Chrome浏览器中安装的插件：<br><img   class="lazyload" data-original="/images/illustration/2022-01-16-js010/003.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>每一个插件都有name属性，可以通过它来判断某个插件是否存在。可以通过以下函数，传入插件名称，来判断插件是否存在：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> hasPlugin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name</span>) </span>&#123;<br>    name = name.toLowerCase();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> plugin <span class="hljs-keyword">of</span> <span class="hljs-built_in">window</span>.navigator.plugins) &#123;<br>        <span class="hljs-keyword">if</span> (plugin.name.toLowerCase().indexOf(name) &gt; -<span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这种方式不能用于IE10及更低版本的浏览器。</p>
+<p>更低版本的浏览器的插件检测已不常用，不再介绍。</p>
+<h2 id="注册处理程序"><a href="#注册处理程序" class="headerlink" title="注册处理程序"></a>注册处理程序</h2><p>navigator对象的<code>registerProtocolHandler()</code>方法可以把一个网站注册为处理某种特定类型信息应用程序。</p>
+<p>要使用<code>registerProtocolHandler()</code>方法，必须传入3个参数：要处理的协议（如<code>&quot;mailto&quot;</code>或<code>&quot;ftp&quot;</code>）、处理该协议的URL，以及应用名称。</p>
+<p>这个API也不是很常使用，更多可参考<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/registerProtocolHandler">MDN</a>。</p>
+<h1 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h1><p>history对象表示当前窗口首次使用以来用户的导航历史记录。因为history是window的属性，所以每个window都有自己的history对象。出于安全考虑，这个对象不会暴露用户访问过的URL，但可以通过它在不知道实际URL的情况下前进和后退。</p>
+<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><p><code>go()</code>方法可以在用户历史记录中沿任何方向导航，可以前进也可以后退。这个方法只接收一个参数，这个参数可以是一个整数，表示前进或后退多少步。负值表示在历史记录中后退（类似点击浏览器的“后退”按钮），而正值表示在历史记录中前进（类似点击浏览器的“前进”按钮）。</p>
+<p><code>go()</code>还有有两个简写方法：<code>back()</code>和<code>forward()</code>，这两个方法模拟了浏览器的后退按钮和前进按钮，即后退一页和前进一页。</p>
+<p>如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 后退一页</span><br>history.go(-<span class="hljs-number">1</span>);<br><span class="hljs-comment">// 前进一页</span><br>history.go(<span class="hljs-number">1</span>);<br><span class="hljs-comment">// 前进两页</span><br>history.go(<span class="hljs-number">2</span>);<br><span class="hljs-comment">// 后退一页</span><br>history.back();<br><span class="hljs-comment">// 前进一页</span><br>history.forward();<br></code></pre></td></tr></table></figure>
+
+<p>history对象还有一个length属性，表示历史记录中有多个条目。这个属性反映了历史记录的数量，包括可以前进和后退的页面。</p>
+<p>对于窗口或标签页中加载的第一个页面，<code>history.length</code>等于1。</p>
+<h2 id="历史状态管理"><a href="#历史状态管理" class="headerlink" title="历史状态管理"></a>历史状态管理</h2><h3 id="hashchange事件"><a href="#hashchange事件" class="headerlink" title="hashchange事件"></a>hashchange事件</h3><p>hashchange事件会在页面URL的散列变化时被触发，开发者可以在此时执行某些操作。</p>
+<p>而状态管理API则可以让开发者改变浏览器URL而不会加载新页面。</p>
+<h3 id="pushState方法"><a href="#pushState方法" class="headerlink" title="pushState方法"></a>pushState方法</h3><p>可以使用<code>history.pushState()</code>方法来改变页面URL地址。</p>
+<p>这个方法接收3个参数：一个state对象、一个新状态的标题和一个（可选的）相对URL。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> stateObject = &#123; <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;这是一个描述&quot;</span> &#125;;<br>history.pushState(stateObject, <span class="hljs-string">&quot;Title&quot;</span>, <span class="hljs-string">&quot;baz.html&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><code>pushState()</code>方法执行后，状态信息就会被推到历史记录中，浏览器地址栏也会改变以反映新的相对URL。</p>
+<p>除了这些变化之外，不会发生其他变化，即URL改变但浏览器不会向服务器发送请求，因此该方法常用于前端路由。</p>
+<p>第二个参数是一个短标题描述，但目前没什么用处。</p>
+<p>第一个参数应该包含正确初始化页面状态所必需的信息对象。为防止滥用，这个状态的对象大小是有限制的，通常在500KB～1MB以内。</p>
+<h3 id="popstate事件"><a href="#popstate事件" class="headerlink" title="popstate事件"></a>popstate事件</h3><p>因为<code>pushState()</code>会创建新的历史记录，所以也会相应地启用“后退”按钮。此时单击“后退”按钮，就会触发window对象上的popstate事件。</p>
+<p>popstate事件的事件对象有一个state属性，它其实就是调用<code>pushState()</code>方法时第一个参数传入的state对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;popstate&quot;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">let</span> state = event.state;<br>    <span class="hljs-keyword">if</span> (state) &#123;<br>        processState(state);<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>基于这个状态，我们应该手动把页面重置为状态对象所表示的状态，浏览器不会自动为你做这些。</p>
+<p>此外，页面初次加载时没有状态，因此点击“后退”按钮直到返回最初页面时，<code>event.state</code>会为null。</p>
+<h3 id="replaceState方法"><a href="#replaceState方法" class="headerlink" title="replaceState方法"></a>replaceState方法</h3><p>可以通过<code>history.state</code>获取当前的状态对象，也可以使用<code>replaceState()</code>并传入与<code>pushState()</code>同样的前两个参数来更新状态。更新状态不会创建新历史记录，只会覆盖当前状态。</p>
+<p>传给<code>pushState()</code>和<code>replaceState()</code>的state对象应该只包含可以被序列化的信息。因此，DOM元素之类并不适合放到状态对象里保存。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>使用HTML5状态管理时，要确保通过<code>pushState()</code>创建的每个“假”URL背后都对应着服务器上一个真实的物理URL，或者前端能够处理这些路由信息，否则单击“刷新”按钮会导致404错误。</p>
+<p>因此所有单页应用程序（SPA）框架都必须通过服务器或客户端的配置来解决这个问题。</p>
+<h1 id="screen对象"><a href="#screen对象" class="headerlink" title="screen对象"></a>screen对象</h1><p>这个对象在编程中很少使用，其中保存的纯粹是客户端能力信息，也就是浏览器窗口外面的客户端显示器的信息，比如像素宽度和像素高度。每个浏览器都会在screen对象上暴露不同的属性：<br><img   class="lazyload" data-original="/images/illustration/2022-01-16-js010/004.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/01/16/js010/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;01&#x2F;16&#x2F;js010&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;01&#x2F;16&#x2F;js010&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/01/13/baidu-notes-001/">百度前端训练营课程笔记（1）：HTTP协议——同源策略与缓存控制 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#window%E5%AF%B9%E8%B1%A1"><span class="toc-text">window对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E4%B8%8E%E8%A7%86%E5%8F%A3"><span class="toc-text">窗口与视口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%85%B3%E7%B3%BB"><span class="toc-text">窗口关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E4%BD%8D%E7%BD%AE"><span class="toc-text">窗口位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%83%8F%E7%B4%A0%E6%AF%94"><span class="toc-text">窗口像素比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%B0%BA%E5%AF%B8"><span class="toc-text">窗口尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E5%B0%BA%E5%AF%B8"><span class="toc-text">视口尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E4%BD%8D%E7%BD%AE"><span class="toc-text">视口位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E8%BD%AC%E4%B8%8E%E6%89%93%E5%BC%80"><span class="toc-text">跳转与打开</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%AA%97%E5%8F%A3%E4%B8%AD%E6%89%93%E5%BC%80%E9%93%BE%E6%8E%A5"><span class="toc-text">在窗口中打开链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E7%BA%B5%E7%AA%97%E5%8F%A3"><span class="toc-text">操纵窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E9%99%90%E5%88%B6"><span class="toc-text">安全限制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-text">定时器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-text">系统对话框</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#location%E5%AF%B9%E8%B1%A1"><span class="toc-text">location对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E6%93%8D%E4%BD%9C"><span class="toc-text">地址操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#navigator%E5%AF%B9%E8%B1%A1"><span class="toc-text">navigator对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E6%8F%92%E4%BB%B6"><span class="toc-text">检测插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-text">注册处理程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#history%E5%AF%B9%E8%B1%A1"><span class="toc-text">history对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA"><span class="toc-text">导航</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-text">历史状态管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hashchange%E4%BA%8B%E4%BB%B6"><span class="toc-text">hashchange事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pushState%E6%96%B9%E6%B3%95"><span class="toc-text">pushState方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#popstate%E4%BA%8B%E4%BB%B6"><span class="toc-text">popstate事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#replaceState%E6%96%B9%E6%B3%95"><span class="toc-text">replaceState方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#screen%E5%AF%B9%E8%B1%A1"><span class="toc-text">screen对象</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
