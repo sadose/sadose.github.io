@@ -197,7 +197,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 17, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>15917</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>16029</span>
     </div>
   </div>
 </section>
@@ -496,6 +496,14 @@
 <h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>观察者模式是使用一个中间人（第三方）作为观察者，在对某个类实例化的时候，将类实例化的消息传递给观察者，这样实例对象就纳入了观察者的管理，再对管理者绑定代理，这样管理者就可以对实例对象进行管理了。</p>
 <p>如下面的例子就是对于每一个新创建的用户加入观察者的观察中，观察者在有新的用户加入时发布消息：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> userList = [];<br><span class="hljs-keyword">const</span> watcher = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(userList, &#123;<br>    <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params">target, p, value</span>)</span> &#123;<br>        <span class="hljs-keyword">const</span> res = <span class="hljs-built_in">Reflect</span>.set(...arguments);<br>        <span class="hljs-keyword">if</span>(p !== <span class="hljs-string">&quot;length&quot;</span> &amp;&amp; res) &#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;欢迎&quot;</span>,value.name,<span class="hljs-string">&quot;的加入！&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">username</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = username;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> userProxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(User, &#123;<br>    <span class="hljs-function"><span class="hljs-title">construct</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">const</span> newUser = <span class="hljs-built_in">Reflect</span>.construct(...arguments);<br>        watcher.push(newUser);<br>        <span class="hljs-keyword">return</span> newUser;<br>    &#125;<br>&#125;);<br><span class="hljs-keyword">new</span> userProxy(<span class="hljs-string">&quot;Dasen&quot;</span>); <span class="hljs-comment">// 欢迎 Dasen 的加入！</span><br><span class="hljs-keyword">new</span> userProxy(<span class="hljs-string">&quot;Three&quot;</span>); <span class="hljs-comment">// 欢迎 Three 的加入！</span><br><span class="hljs-keyword">new</span> userProxy(<span class="hljs-string">&quot;Jack&quot;</span>); <span class="hljs-comment">// 欢迎 Jack 的加入！</span><br></code></pre></td></tr></table></figure>
+
+<style>
+    @media screen and (max-width: 500px) {
+        code {
+            word-wrap: break-word;
+        }
+    }
+</style>
 
       </section>
       <section class="extra">
