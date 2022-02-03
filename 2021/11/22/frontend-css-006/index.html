@@ -198,7 +198,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 22, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>14842</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>14900</span>
     </div>
   </div>
 </section>
@@ -231,12 +231,12 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.inline-table</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-table;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">128px</span>;<br>    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">10px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#cad5eb</span>;<br>&#125;<br><span class="hljs-selector-class">.inline-table</span> &gt; <span class="hljs-selector-tag">p</span> &#123;<br>    <span class="hljs-attribute">display</span>: table-cell;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="内联盒模型"><a href="#内联盒模型" class="headerlink" title="内联盒模型"></a>内联盒模型</h2><h3 id="内联元素"><a href="#内联元素" class="headerlink" title="内联元素"></a>内联元素</h3><p>内联元素不只是display为inline的元素，inline-block和inline-table也应当算作内联元素。从表现上看，内联元素就是可以和文字显示在一行的元素。</p>
-<h3 id="内联盒模型-1"><a href="#内联盒模型-1" class="headerlink" title="内联盒模型"></a>内联盒模型</h3><p>（1）<strong>内容区域</strong>：内联的的内容区域基本可以认为是使用鼠标选中一段文字（或其他内联内容）时，显示出选中底色的部分。本质上内联盒的内容区域就等同于盒模型中的content-box。</p>
+<h3 id="内联盒模型-1"><a href="#内联盒模型-1" class="headerlink" title="内联盒模型"></a>内联盒模型</h3><p>（1）<strong>内容区域</strong>：在IE浏览器和FireFox浏览器下，内联的的内容区域基本可以认为是使用鼠标选中一段文字（或其他内联内容）时，显示出选中底色的部分。本质上内联盒的内容区域就相当于块状盒模型中的content-box。关于内联元素的内容区域，在“CSS：深入内联元素”一文中有更详细说明。</p>
 <p>在IE浏览器和FireFox浏览器下，选中区域就和内容区域的范围一样；而在Chrome浏览器中，在图文混排时，选中区域要明显比内容区域大。</p>
 <p>（2）<strong>内联盒子</strong>：内联标签（如span、a、em等）构成内联盒子，而光秃秃的文字构成匿名内联盒子。</p>
 <p>（3）<strong>行框盒子</strong>：连续个内联盒子排列起来，可能排成一行，也可能排成多行，每行都构成一个行框盒子。</p>
 <p>（4）<strong>包含盒子</strong>：一行行的行框盒子构成包含盒子，主要以标签为分界线，如p标签构成一个包含盒子包含多行。</p>
-<h3 id="支柱strut"><a href="#支柱strut" class="headerlink" title="支柱strut"></a>支柱strut</h3><p>（1）概念：在HTML5文档声明中，内联元素渲染的表现就像每个行框盒子前面都有一个空白节点作为开始一样，这个空白节点永远透明、宽度为0、无法通过脚本获取，但它是确实存在的。规范中将这个空白节点称为strut，即支柱。</p>
+<h3 id="支柱strut"><a href="#支柱strut" class="headerlink" title="支柱strut"></a>支柱strut</h3><p>（1）概念：在HTML5文档声明中，内联元素渲染的表现就像每个内联盒子以及行框盒子前方都有一个空白节点一样，这个空白节点永远透明、宽度为0、无法通过脚本获取，但它是确实存在的。规范中将这个空白节点称为strut，即支柱。</p>
 <p>（2）证明：对于以下例子：</p>
 <p>HTML：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
