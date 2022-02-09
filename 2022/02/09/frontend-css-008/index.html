@@ -1,0 +1,870 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS：深入内联元素 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="
+不想当设计师的前端程序员永远学不会如何优雅地写CSS...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">CSS：深入内联元素</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/notes/ " class="underline "> 课程笔记</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/css.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">CSS：深入内联元素</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 09, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>22898</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p>不想当设计师的前端程序员永远学不会如何优雅地写CSS。</p>
+</blockquote>
+<h1 id="字母x"><a href="#字母x" class="headerlink" title="字母x"></a>字母x</h1><p>还记得我们在小学或初中刚开始学英语的时候吗？那时候我们刚开始学习写26个英文字母，而我们的作业本都是“四线三格”本。</p>
+<p>所谓“四线三格”，其实就是四条线把一行分成了上中下三格，而之所以设计为三格又取决于英文字母的书写方式：即大多字母都有一个“主体”（如字母i的主体），在主体上方有一个“头部”（如字母i上方的一点），在主体下有一个“尾巴”（如字母g的尾巴）。在书写时，主体占在中间的格子里，头部和尾巴分别在上下两格。</p>
+<p>字母可能没有头部和尾巴，但一定有一个主体，其中字母x是一个只有主体的字母，且它在印刷字体中更是像两条对角线一样规定了一个矩形区域，这个矩形区域的高，就是字母“主体”的高，关于字母x的故事就此展开。</p>
+<h2 id="基线"><a href="#基线" class="headerlink" title="基线"></a>基线</h2><p>随着我们逐渐长大，写英语作文时不再使用四线三格，而是在一条横线上写作，这时候我们就会把字母x写在这条线上，而其他的字母主体部分都以这条线为参照，这条线就像四线三格中的第三条线一样，这就是<strong>基线</strong>。</p>
+<p>计算机本就是西方的产物后来传遍全世界，计算机显示文字也是以拉丁文字为参照，那么其基线设计也是参照拉丁字母的基线来规定的，即上述所说的字母的主体部分的下边沿，即四线三格的第三条线。</p>
+<p>除了拉丁字母的基线之外，还有像如下的文字：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>这是印度梵文，它们写在一起就好像上方有一条线连在了一起一样，文字像被挂在了这条线上，这条线就是梵文的基线，叫做悬挂基线，而中文的基线就没有明确的意义了，因此很多人就说中文方块字没有基线。</p>
+<p>但说了这么多，实际上计算机显示中的基线是不考虑像悬挂基线这种东西的，只按照英文字母的基线来，其他文字的基线就完全取决于字体的设计了，一般就是<strong>略高于文字下边沿的位置作为基线</strong>，因此，在CSS中我们将要讨论的基线（baseline），你可以完全参照下图：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/002.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>现在请牢记这四条线：上边沿线、等分线、基线、下边沿线。注意：CSS中的文字并非完全按照四线三格的模式来渲染，但可以类比，并且<strong>基线的概念与此处是相同的</strong>。</p>
+<h2 id="x-height"><a href="#x-height" class="headerlink" title="x-height"></a>x-height</h2><p>x-height就是一个x字母的高度，其实也就是英文字母主体部分的高度。</p>
+<p>如上图所示，x-height其实就是基线与等分线之间的距离，即四线三格中间一格的高度。</p>
+<p>那x-height到底有啥用呢？我们都知道<code>vertical-align:middle;</code>是使文字居中对齐，那么这个“中”是哪里？实际上就是二分之一x-height的位置，可以理解为字母x的那个交叉点。而这个只是个近似的位置，因为不同的字体在盒子中的位置是不一样的，比如“微软雅黑”字体整体的位置就偏下一些，它的二分之一x-height的位置看起来就会比较高（高于字母x的交叉点）。</p>
+<p>重点来了，ex这个CSS单位就是一个完完全全取决于x-height的单位，ex是一个相对单位，就是指的x-height，即字母x的高度，而这个相对单位就是相对于字号，因为字号大了，字母x的高度自然就大了。</p>
+<p>其他的单位如px都是用来规定元素的大小，这个ex看起来好像没什么用，因为谁的元素大小会相对于文字来计算啊？</p>
+<p>谁的大小？还真有，就是图文（图标和文字）混排的时候。</p>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="简单的图标文字居中"><a href="#简单的图标文字居中" class="headerlink" title="简单的图标文字居中"></a>简单的图标文字居中</h3><p>来看以下效果：</p>
+<style>
+    .article .wrap .main .content img.rawimg {
+        display: inline-block; 
+        margin: 0;
+        vertical-align: baseline;
+        box-sizing: content-box;
+    }
+</style>
+
+<div id="frontend-css-008-example-01">
+    <span>大森的博客</span>
+    <img src="/static/img/down.png" alt="" class="rawimg">
+</div>
+<style>
+    #frontend-css-008-example-01 {
+        font-size: 16px;
+    }
+    #frontend-css-008-example-01>img {
+        height: 1ex;
+    }
+</style>
+
+<p>这是一个典型的文字后跟一个小图标的例子，图标是<code>inline-block</code>的，这里直接设置图标的height为1ex即可解决问题，因为文字默认是基线对齐的，而设置图标高度为一个x的高度，就正好把它卡在了四线三格的中间格的位置，天然实现了居中对齐，而就不需要额外设置<code>vertical-align:middle;</code>了。代码如下：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>大森的博客<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;down.png&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>;<br>&#125;<br><span class="hljs-selector-tag">img</span> &#123;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">1ex</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样的好处还不止如此，这仅仅是省略了一个<code>vertical-align</code>而已，优势还不够明显，如果我要改一改div的<code>font-size</code>呢？好兄弟们来看看下面这些：</p>
+<div id="frontend-css-008-example-02">
+    <span>大森的博客</span>
+    <img src="/static/img/down.png" alt="" class="rawimg">
+</div>
+<div id="frontend-css-008-example-03">
+    <span>大森的博客</span>
+    <img src="/static/img/down.png" alt="" class="rawimg">
+</div>
+<div id="frontend-css-008-example-04">
+    <span>大森的博客</span>
+    <img src="/static/img/down.png" alt="" class="rawimg">
+</div>
+<style>
+    #frontend-css-008-example-02 {
+        font-size: 24px;
+    }
+    #frontend-css-008-example-03 {
+        font-size: 32px;
+    }
+    #frontend-css-008-example-04 {
+        font-size: 40px;
+    }
+    #frontend-css-008-example-02>img,
+    #frontend-css-008-example-03>img,
+    #frontend-css-008-example-04>img {
+        height: 1ex;
+    }
+</style>
+
+<p>我们说ex是相对单位，而相对单位的一大好处就是可以<strong>自适应</strong>，当你改变了字号的话，ex单位会自动调整这个图标的大小，并且始终是和文字居中对齐的，那么这些不同字号的例子都是只改了父容器的<code>font-size</code>，字号变了，图标大小自动就跟着变了，完全不需要调整字号的时候还要去单独调整图标的height了，可维护性一下就高了不少。</p>
+<h1 id="line-height"><a href="#line-height" class="headerlink" title="line-height"></a>line-height</h1><p>在“<a href="/2021/11/22/frontend-css-006/#%E5%86%85%E8%81%94%E7%9B%92%E6%A8%A1%E5%9E%8B">CSS：深入盒模型</a>”这篇博客里介绍过关于内联盒模型的内容，<code>line-height</code>（即行高）作为内联元素的最重要属性之一，其表现是离不开内联盒模型的。</p>
+<h2 id="内联元素的尺寸"><a href="#内联元素的尺寸" class="headerlink" title="内联元素的尺寸"></a>内联元素的尺寸</h2><h3 id="行高和字号"><a href="#行高和字号" class="headerlink" title="行高和字号"></a>行高和字号</h3><p>我们知道块状元素和内联元素的最大区别就是块状元素可以设置宽高，内联元素则不可以。但是内联元素明明也在页面上占据了空间，那么它一定是有一个尺寸的，即也是有宽和高的，这个高度就主要取决于<code>line-height</code>。</p>
+<p>可能有人认为这个高度是取决于<code>font-size</code>的，因为觉得好像字号大了内联元素就会变高。但实际上是因为<code>line-height</code>的默认值是normal，会根据字号来自适应，一般是与字号等同的值，因此才导致这种错觉。</p>
+<p>总之，内联盒子渲染在页面上占据多大的高度，就是完全取决于<code>line-height</code>的，padding、border之类的属性也影响不了它在页面上占据的高度。</p>
+<h3 id="行距和半行距"><a href="#行距和半行距" class="headerlink" title="行距和半行距"></a>行距和半行距</h3><p>行距顾名思义就是两行之间的距离，那么很显然，<strong>行高就等于字高加上行距</strong>。由于行高可以小于字号，因此<strong>行距可以是负值</strong>。</p>
+<p>那么为什么要引出半行距的概念呢？因为在网页上，<strong>行距不是完全加在字的上方或下方的，而是均匀分布在字的上下</strong>，而半行距就是行距的一半，就是把行距拆成了两半分别放在了字的上下，因此在追求严格的显示效果的场景应当尽量使得行高减去字号的值为偶数，这样它才能作为行距被平分，如果为奇数不能平分，则可能在不同的浏览器中多出来的1px的位置会不同（不一定是在上方或下方）。</p>
+<h3 id="em-box"><a href="#em-box" class="headerlink" title="em-box"></a>em-box</h3><p>说到了行高等于字高加上行距，那么字高就是文字的高度，这个高度应当是和字号相同，可以认为字高就是字号，而内联元素中除去行距的纯文字的部分就是em-box了，这部分的高度实际上就是1em，我们也知道，em是一个相对单位，1em的文字大小始终和当前的字号相同。</p>
+<p>em-box的高度始终和字高相等，即它只取决于<code>font-size</code>，然而在字体的设计中，很多字体会超出em-box的范围，尤其是一些飘逸的花体字，较长的笔划就有可能伸出到em-box之外，那么能够恰好包含字体的显示区域叫做<strong>内容区域</strong>，由于上述原因，<strong>内容区域很多时候会比em-box高</strong>，对于严格的印刷字体（比如宋体），内容区域是严格等于em-box的。</p>
+<p>这部分内容仅供了解，不必太过深究，只需要知道em-box只取决于<code>font-size</code>，而内容区域则同时取决于<code>font-size</code>和<code>font-family</code>即可。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>由于宋体是一种em-box和内容区域等高的字体，因此借助宋体做个示范，示意图如下：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/003.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>该例为外部的div设置背景色为灰色，内部span的背景色为白色，<code>line-height</code>设置为120px，<code>font-size</code>设置为80px，这时渲染出的span高度就是严格的80px，div就是严格的120px。</p>
+<p>可如果我换了一种字体，如微软雅黑：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/004.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>其他设置不变，可以看出<code>font-family</code>设置为微软雅黑之后，白色的内容区域明显更大了，span实际渲染的高度不是严格的80px，而是约105px，外层的div高度始终是120px不变，这就是微软雅黑字体的可视大小大于em-box导致的，而span的渲染高度是取决于内容区域而非em-box的，而外层div的渲染高度取决于<code>line-height</code>，实际上是取决于span的外在高度，关于外在高度见下文介绍。</p>
+<p>这里有一个小注意事项：例子中是外层div套着一个内层的span，那么我们设置行高、字号、字体时，无论是设置在外层div上还是内层span上在本例中效果都是一样的，因为这些属性都是可以继承的，它们对于块状元素是不起作用的，把它们设置在div上也是层层继承到了内部的内联元素上，再在内联元素上起作用的。</p>
+<h2 id="行高与支柱"><a href="#行高与支柱" class="headerlink" title="行高与支柱"></a>行高与支柱</h2><p>在“<a href="/2021/11/22/frontend-css-006/#%E6%94%AF%E6%9F%B1strut">CSS：深入盒模型</a>”这篇博客中曾说到“支柱”这个概念，并说支柱与<code>line-height</code>行高息息相关，它们的关系在哪里呢？</p>
+<p>回顾在那一篇博客中用于演示支柱的存在的例子，需要说明两个问题，分别是：</p>
+<ul>
+<li>支柱和行高有什么关系？</li>
+<li>为什么给span设置<code>inline-block</code>才能显示出支柱的存在？</li>
+</ul>
+<p>首先是支柱和行高有什么关系？</p>
+<p>前文说到，<strong>行高对块状元素丝毫不起作用</strong>，它只作用在内联元素上，而它是如何影响内联元素的高度的呢？答案是通过支柱影响。</p>
+<p>支柱的高度完全取决于<code>line-height</code>的值，<code>line-height</code>是多少，支柱就有多高。</p>
+<p>但是我们说行高影响内联元素高度或者说支柱影响内联元素高度，实际上都是不准确的，内联元素该是多高就是多高，只取决于其内容区域的高度，而行高则影响的是它的<strong>外在高度</strong>。</p>
+<p>依然以上一节的例子做示范的话，我们为内层span设置行高为0，那么你会发现在浏览器审查元素中，span标签的高度该是多少还是多少，它取决于内容区域的高度，内容区域又取决于<code>font-size</code>和<code>font-family</code>二者；而外层div的高度却变成了0，即外层的div<strong>以为</strong>里面的span高度为0。</p>
+<p>一句话总结：span标签在浏览器审查元素中显示的高度是元素本身的高度，即<strong>内在高度</strong>，内在高度只由其内容决定，而它在文档中占据的空间高度是<strong>外在高度</strong>，外在高度受支柱影响。一般情况下有用的是外在高度。</p>
+<p>因此我们说<code>line-height</code>的值不影响内联元素本身的高度，而是影响它的“对外高度”。至于为什么，我们需要看下一个问题。</p>
+<p>为什么给span设置<code>inline-block</code>才能显示出支柱的存在？</p>
+<p>这实际上取决于三条规则：</p>
+<ul>
+<li>对于纯文字的inline元素，如果它是个空标签，那么它的前方没有支柱，它的高度直接为0（渲染方便，节约资源；防止遗落的空标签影响排版）；如果标签内容非空，那么它的前方有支柱，而标签本身对外没有高度，这样看起来它的<strong>高度完全是由支柱撑起来的，而不是被其中的文字撑起来的</strong>，又由于支柱的高就是<code>line-height</code>的值，因此纯文字内联元素的高度（外在高度）才会完全取决于<code>line-height</code>。</li>
+<li>对于非纯文字的内联元素，如替换元素（内容可替换的元素）或<code>inline-block</code>元素，它的前方会有支柱，但这些元素和纯文字的内联元素的区别是<code>inline-block</code>元素可以设置高度，那么这样的元素最终渲染出来的外在高度是<strong>支柱高度和元素本身高度中较大的那个</strong>。</li>
+<li>对于块状元素，没有支柱，<code>line-height</code>不起作用，其高度完全取决于其本身高度（height）。</li>
+</ul>
+<p>一句话总结：<strong>纯文字内联元素的外在高度取决于支柱高度，非纯文字的内联元素的外在高度取决于支柱高度和元素本身高度中较高的那个；支柱高度取决于line-height。</strong></p>
+<p>因此现在可以回答这个问题了：为什么给span设置<code>inline-block</code>才能显示出支柱的存在？因为空的span标签没有支柱，不管是内在还是外在高度都直接为0。</p>
+<p>至此，整个CSS的高度体系就完善了：</p>
+<ul>
+<li>一个页面由若干内联元素和块状元素组成；</li>
+<li>块状元素会自然占据一行，高度都是确定的；</li>
+<li>并列的内联元素组成行框盒子，整个行框盒子既像块状元素一样占据一行，又像内联元素一样前方具有支柱，即整个行框盒子的高度取决于<strong>其里面的外在高度最高的那个内联元素</strong>和<strong>行框盒子支柱</strong>二者中<strong>较高的那个</strong>（这对解释下文的大值特性非常重要！）；</li>
+<li>块状元素和行框盒子堆砌而成整个文档，构成CSS的高度体系。</li>
+</ul>
+<p>关于行框盒子，见“<a href="/2021/11/22/frontend-css-006/#%E5%86%85%E8%81%94%E7%9B%92%E6%A8%A1%E5%9E%8B-1">CSS：深入盒模型</a>”这篇博客。</p>
+<h2 id="属性值"><a href="#属性值" class="headerlink" title="属性值"></a>属性值</h2><h3 id="支持的属性值"><a href="#支持的属性值" class="headerlink" title="支持的属性值"></a>支持的属性值</h3><p><code>line-height</code>属性支持的属性值如下：</p>
+<ul>
+<li>关键字值：normal，默认值，表示合理的行间距。这个值和字体以及字号都有关系，并不是一个固定的值，但一般可以认为和字号相等。</li>
+<li>数值：最终的计算值是与<code>font-size</code>相乘的结果，如设置为2即为<code>font-size</code>乘以2，即单倍行距。</li>
+<li>百分比值：最终的计算值也是与<code>font-size</code>相乘的结果。</li>
+<li>长度值：即带单位的值，设定的是固定的值。</li>
+</ul>
+<p>那么这时看起来把<code>line-height</code>的值设置为2、200%和2em似乎没什么区别，实际上区别还是有的，就是继承上的区别。<strong>数值作为属性值，它的子元素继承的是数值本身</strong>，即<code>line-height: 2;</code>，<strong>如果是百分比值和em，那么继承的值是计算后的固定值，而不再是相对值</strong>。</p>
+<p>还有就是通配符和继承之间的区别：既然<code>line-height</code>是可继承的属性，那想要全局重置为1.5，是不是只需要给body元素设置就可以了呢？</p>
+<p>看起来似乎可以，页面的所有可视内容一定都在body内，确实可以时所有元素都继承到这个值，但是要注意<strong>继承的优先级是很低的</strong>，对于替换元素，很多都有自己的样式，那么继承的值就可能不生效，因此希望做到真正的全局重置，应当使用通配符。但通配符又会产生过多的性能开销，因此最优的办法就是为body设置需要的<code>line-height</code>值，同时为页面上用到的替换元素设置<code>line-height: inherit;</code>。</p>
+<h3 id="大值特性"><a href="#大值特性" class="headerlink" title="大值特性"></a>大值特性</h3><p>依然是div内套一个span的例子，有以下两种情况：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">96px</span>;<br>&#125;<br><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">span</span> &#123;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">20px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>以及</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">20px</span>;<br>&#125;<br><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">span</span> &#123;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">96px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这两种情况的区别是外层div和内层span的<code>line-height</code>分别为96px和20px，且顺序调换。外层div没有指定高度，因此是通过内部的行高撑起的高度，那么它们两者的高度分别是多少呢？</p>
+<p>不出意外的话应该分别是20px和96px，因为内层指定的<code>line-height</code>覆盖了外层的，然而意外就是出现了，两者的高度都是96px。</p>
+<p>准确地说是在HTML5文档声明中是如此，本质原因是HTML5文档使用的渲染模式为<code>&quot;CSS1Compat&quot;</code>，即标准模式，如果在<code>&quot;BackCompat&quot;</code>兼容模式下渲染出来的就是我们预料的20px和96px的结果——内层覆盖外层。</p>
+<p>这个模式信息可以通过<code>document.compatMode</code>来访问到。如果你不了解这些，请看我的博客“<a href="/2022/01/16/js010/#%E8%A7%86%E5%8F%A3%E5%B0%BA%E5%AF%B8">JavaScript学习笔记（10）：BOM</a>”。</p>
+<p>细心的你可能注意到了，在之前的博客中介绍支柱的地方也说了支柱是存在于HTML5文档中，实际支柱就是存在于标准模式下的。所以你所看到的两个div都i是96px就是支柱在起作用。</p>
+<p>我们说支柱存在于每一个行框盒子和内联盒子前，那么我用红色的线条表示支柱，可以画出以上两种情况下的示意图：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/005.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>可以看到，span前的支柱高度取决于span的行高，它的支柱决定了span实际占据的空间高度，即span的外在高度；而行框盒子前的支柱则取决于div的行高，行框盒子的支柱和它本身的高度取较高者作为行框盒子的外在高度；最终div作为包含盒子，被撑起的高度就总是96px，即它的高度总取决于较高的那个支柱，也就是两个行高中较大的那个值。</p>
+<p>这就是行高的“<strong>大值特性</strong>”。但要注意，这一特性只存在于标准模式下，兼容模式下内联盒子的渲染并不依靠支柱。</p>
+<h2 id="最佳实践-1"><a href="#最佳实践-1" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="内联元素垂直居中"><a href="#内联元素垂直居中" class="headerlink" title="内联元素垂直居中"></a>内联元素垂直居中</h3><p>我们注意到，由支柱撑起的外在高度，使得元素和支柱在垂直方向上都是居中对齐的，因此我们当然可以通过这样的特性来使得内联元素垂直居中，只需要使用<code>line-height</code>使得支柱撑起高度即可。</p>
+<p>有如下例子，其中绿色的<code>inline-block</code>的盒子在容器中是垂直居中的，盒子中白色的文字也是垂直居中的：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;con&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>大森的博客<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.con</span> &#123;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid black;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">40px</span>;<br>&#125;<br><span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">30px</span>;<br>    <span class="hljs-attribute">background-color</span>: green;<br>&#125;<br><span class="hljs-selector-tag">span</span> &#123;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;<br>    <span class="hljs-attribute">color</span>: white;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<div id="frontend-css-008-example-05">
+    <div class="box">
+        <span>大森的博客</span>
+    </div>
+</div>
+<style>
+    #frontend-css-008-example-05 {
+        border: 1px solid black;
+        width: 200px;
+        line-height: 40px;
+    }
+    #frontend-css-008-example-05>.box {
+        display: inline-block;
+        line-height: 30px;
+        background-color: green;
+    }
+    #frontend-css-008-example-05 span {
+        font-size: 12px;
+        color: white;
+    }
+</style>
+
+<p>不知道你是否观察得足够仔细：文字在绿色盒子里确实居中得很完美，但是绿色盒子似乎位置偏下了点，并没有完全居中，这是为什么呢？且看我把span标签去掉，给box宽度和高度：</p>
+<div id="frontend-css-008-example-06">
+    <div class="box"></div>
+</div>
+<style>
+    #frontend-css-008-example-06 {
+        border: 1px solid black;
+        width: 200px;
+        line-height: 40px;
+    }
+    #frontend-css-008-example-06>.box {
+        display: inline-block;
+        line-height: 30px;
+        width: 150px;
+        height: 30px;
+        background-color: green;
+    }
+</style>
+
+<p>这时候完全就失去了居中效果。<br>完美的解决方案是把font-size放在div.con上，而不是span上，这时再看绿色盒子和span文字都是完美地居中的了：</p>
+<div id="frontend-css-008-example-07">
+    <div class="box">
+        <span>大森的博客</span>
+    </div>
+</div>
+<style>
+    #frontend-css-008-example-07 {
+        border: 1px solid black;
+        width: 200px;
+        line-height: 40px;
+        font-size: 12px;
+    }
+    #frontend-css-008-example-07>.box {
+        display: inline-block;
+        line-height: 30px;
+        background-color: green;
+    }
+    #frontend-css-008-example-07 span {
+        color: white;
+    }
+</style>
+
+<p>这是为什么呢？实际上这是<code>vertical-align</code>在背地里偷偷起作用，且看下文。</p>
+<h1 id="vertical-align"><a href="#vertical-align" class="headerlink" title="vertical-align"></a>vertical-align</h1><p>让我们从一个例子开始：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123; <span class="hljs-attribute">line-height</span>: <span class="hljs-number">32px</span>; &#125;<br><span class="hljs-selector-class">.box</span> &gt; <span class="hljs-selector-tag">span</span> &#123; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>; &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>文字<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>问：box在浏览器中渲染的高度是多少？</p>
+<p>你可能回答32px，但实际上，渲染的结果可能是≥32px的值，并不一定恰好是32px，如下图是在我的Chrome浏览器中的结果，渲染出的高度是35.2px：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/006.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>一般来说，所有CSS属性都有默认值，你不显式指定它，它的默认值就会起作用。而这些违背你的直觉的表现，一定是有幕后黑手在起作用，这个幕后黑手就是<code>vertical-align</code>的默认值：baseline，即基线对齐。</p>
+<h2 id="属性值-1"><a href="#属性值-1" class="headerlink" title="属性值"></a>属性值</h2><h3 id="线类关键字"><a href="#线类关键字" class="headerlink" title="线类关键字"></a>线类关键字</h3><p>线类关键字作为<code>vertical-align</code>的属性值有以下几种：</p>
+<ul>
+<li>baseline：默认值，基线对齐。</li>
+<li>top：顶线对齐。</li>
+<li>middle：中线对齐。</li>
+<li>bottom：底线对齐。</li>
+</ul>
+<p>在这些线中，基线是和我们上文讲述的基线是一致的，而顶线则是内联元素的上边沿，底线则是内联元素的下边沿（注意并非文字的上下边沿线，即<strong>包含了外在高度的上下边沿</strong>），中线则是内联元素基线往上一半x-height的位置——注意这个定义，并没有说中线是正中间的水平线，因此<strong>中线和水平等分线是不一样的</strong>！</p>
+<p>中线形象地说就是字符x中间那个叉叉的交点位置，在几乎所有的字体中，这个点的位置都有下沉，因此中线是要略低于水平等分线的。</p>
+<p>最后不要忽视行框盒子的支柱就好了，行框盒子的支柱是受外层容器的<code>vertical-align</code>影响的，如果外层容器没有设置<code>vertical-align</code>，那么就是默认值基线对齐，这个千万不能忽视！那么我们现在就可以愉快地讨论<code>vertical-align</code>的各种线性关键字值的表现了——<code>vertical-align</code>属性的作用是对齐内联元素，那么对齐一定是使得元素以某种方式与其他元素对齐，即使只有一个内联元素，也要注意还有一个行框盒子的支柱可以用来对齐，所以<strong>任何时候“对齐”都是与其他元素（或支柱）的对齐</strong>：</p>
+<p>当设置了<code>vertical-align: baseline;</code>时，将<strong>元素的基线与行框盒子支柱的基线对齐</strong>；</p>
+<p>当设置了<code>vertical-align: top;</code>时，将<strong>元素的顶线与同一行中顶线最高的元素的顶线对齐</strong>（即与行框盒子顶部对齐）；</p>
+<p>当设置了<code>vertical-align: middle;</code>时，实际上与基线对齐一样，也是参照支柱，只不过是<strong>元素的水平平分线与支柱的中线对齐</strong>；</p>
+<p>当设置了<code>vertical-align: bottom;</code>时，将<strong>元素的底线与同一行中底线最低的元素的底线对齐</strong>（即与行框盒子底部对齐）。</p>
+<p>有以下例子来观察几种<code>vertical-align</code>线类关键字值的效果：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/007.gif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>你也可以使用电脑浏览器访问这个<a href="/static/demo/2022-02-09-frontend-css-008/index.html">demo页面</a>配合浏览器审查元素，来方便地观察变化的过程。</p>
+<p>为了表示支柱的存在，区分开外在高度和内在高度，我为容器设置了64px的行高，使得上下空出来的灰色区域更明显。</p>
+<p>宋体在这里起了大作用。宋体是一种标准印刷字体，它的x的交点下沉就不明显，几乎约等于在水平平分线上了。为做参考，我绘制了一条容器div的水平平分线，可以看到它几乎恰好过宋体x的中心交点。</p>
+<p>上例中左边的x为宋体、基线对齐，且它直接在div容器标签里，可以近似类比行框盒子的支柱；接下来三个“Dasenx”为span标签里的内联元素，第一个红色的为顶线对齐，中间的为中线对齐，最后一个绿色的为底线对齐；最后还有一个内联的图片。</p>
+<p>还要注意上文说过白色文字区域是span标签的内容区域，并非外部高度，不要把顶线和底线认为是白色区域的上下边沿。</p>
+<p>在图片尺寸逐渐变大的过程中，注意以下几个时刻：</p>
+<p>（1）中线要低于水平平分线：</p>
+<p><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/008.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>可以看到图片在最小的时候，在水平平分线下的部分要大于在上面的部分，这是中线下沉造成的。因为图片的水平平分线要强行和下沉的支柱中线对齐，因此导致图片下沉。</p>
+<p><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/009.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>在图片放大到了下边沿恰好接触行框盒子底部的时候，上边沿还以一定的距离，这也是中线下沉的表现。</p>
+<p>（2）基线对齐和中线对齐的规则：</p>
+<p><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/010.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ><br>与上图相比，图片变大到上边沿也接触了行框盒子，行框盒子已经被撑大了，即行框盒子底线降低了，那么绿色的“Dasenx”明显降低了，因为它是底线对齐。红色的始终不动也正常，因为它始终和行框盒子上边沿对齐着呢。</p>
+<p>那么剩下的三个元素则是基线对齐和中线对齐的元素了。</p>
+<p>第一个元素x为基线对齐，中间的span元素“Dasenx”和最后的图片元素为中线对齐的元素。分析以下过程：</p>
+<p><strong>过程1——图片从最小逐渐放大到图片的底线恰好接触到行框盒子底部</strong>：在这个过程中，行框盒子大小不变，图片元素在行框盒子的范围内变大，那么行框盒子的支柱也没有变化，因此元素x与支柱基线对齐、span元素与支柱中线对齐，它们都不会发生变化。</p>
+<p><strong>过程2——图片的底线恰好接触到行框盒子底部到图片继续变大，行框盒子被撑大</strong>：行框盒子撑大了，行框盒子的支柱位置也会改变了，支柱和行框盒子是居中对齐的，因此盒子变大，支柱位置下移，元素x和span元素参照支柱对齐，自然也会随之下移。</p>
+<p>基线对齐是最重要的一种对齐，只要理解了基线对齐，就能够理解其他很多类型的对齐，因为其他很多类型的对齐本质上都是基线对齐，只是在基线对齐的基础上加了一定的偏移（对于只包含文字的内联元素来说）。</p>
+<h3 id="数值与百分比"><a href="#数值与百分比" class="headerlink" title="数值与百分比"></a>数值与百分比</h3><p>数值和百分比实际上作用的方式都是一样的，它们<strong>本质上都是基线对齐，并将数值和百分比作为偏移量</strong>。</p>
+<p><code>vertical-align</code>的百分比是根据元素的<code>line-height</code>计算的，最终的计算值作为数值来影响对齐的偏移。</p>
+<p>数值和百分比作为<code>vertical-align</code>的值都是<strong>支持负值</strong>的，值（或计算值）为正值表示在基线对齐的基础上向上偏移，负值则表示向下偏移。</p>
+<p>实际上，对于只包含文字的内联元素，中线对齐就是一种特殊的使用数值作为<code>vertical-align</code>值的情况，中线对齐实际上就是<code>vertical-align: 0.5ex;</code>，即基于基线向上偏移一半x-height高度。但既然有了middle作为关键字值，也就不会使用0.5ex了，因为浏览器可能不支持。</p>
+<h3 id="上下标类关键字"><a href="#上下标类关键字" class="headerlink" title="上下标类关键字"></a>上下标类关键字</h3><p>上下标类的关键字属性值有：</p>
+<ul>
+<li>super：提高盒子的基线到父级合适的上标基线位置。</li>
+<li>sub：降低盒子的基线到父级合适的下标基线位置。</li>
+</ul>
+<p>你会发现规范中竟然用了“合适”这种模棱两可的字眼，那就意味着我们不需要深究这个合适究竟是什么程度了，只需要知道它们把基线提升或降低了。</p>
+<p>实际上这两个属性值对应了两个HTML标签，没错就是<code>&lt;sup&gt;</code>和<code>&lt;sub&gt;</code>标签，它们的<code>vertical-align</code>的默认值就是这两个值，但与此同时，这两个标签还可能会改动字体大小，使得默认的字号为smaller。</p>
+<h3 id="文本类关键字"><a href="#文本类关键字" class="headerlink" title="文本类关键字"></a>文本类关键字</h3><p>文本类属性值指的就是<code>text-top</code>和<code>text-bottom</code>：</p>
+<ul>
+<li><code>text-top</code>：内联盒子的顶部和父级内容区域的顶部对齐。</li>
+<li><code>text-bottom</code>：内联盒子的底部和父级内容区域的底部对齐。</li>
+</ul>
+<p>内容区域是什么在前文已经有说明，不再赘述。</p>
+<p>可以看出这一对属性值主要是为了使内联盒子和外部容器中的文本对齐，而它的表现效果自然是和外部容器中文字的字体有关。来尝试一下下面的例子：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;con&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fontsize16&quot;</span>&gt;</span>16px<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fontsize24&quot;</span>&gt;</span>24px<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fontsize32&quot;</span>&gt;</span>32px<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">img</span> &#123; <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>; <span class="hljs-attribute">vertical-align</span>: text-top; &#125;<br><span class="hljs-selector-tag">span</span> &#123; <span class="hljs-attribute">background-color</span>: lightgreen; &#125;<br><span class="hljs-selector-class">.fontsize16</span> &#123; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>; &#125;<br><span class="hljs-selector-class">.fontsize24</span> &#123; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>; &#125;<br><span class="hljs-selector-class">.fontsize32</span> &#123; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">32px</span>; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<style>
+    #frontend-css-008-example-08-ops {
+        margin-bottom: 15px;
+    }
+    #frontend-css-008-example-08-con {
+        font-size: 16px;
+    }
+    #frontend-css-008-example-08-con>img {
+        width: 100px;
+        vertical-align: text-top;
+    }
+    #frontend-css-008-example-08-con>span {
+        background-color: lightgreen;
+    }
+    .fontsize16 {
+        font-size: 16px;
+    }
+    .fontsize24 {
+        font-size: 24px;
+    }
+    .fontsize32 {
+        font-size: 32px;
+    }
+</style>
+<div id="frontend-css-008-example-08-ops">
+    <input type="radio" name="fontsize" id="fontsize16" checked><label for="fontsize16">16px</label>
+    <input type="radio" name="fontsize" id="fontsize24"><label for="fontsize24">24px</label>
+    <input type="radio" name="fontsize" id="fontsize32"><label for="fontsize32">32px</label>
+</div>
+<div id="frontend-css-008-example-08-con">
+    <img src="/images/post/css.jpg" alt="" class="rawimg">
+    <span class="fontsize16">16px</span>
+    <span class="fontsize24">24px</span>
+    <span class="fontsize32">32px</span>
+</div>
+<script>
+    const con = document.getElementById("frontend-css-008-example-08-con");
+    document.getElementById("fontsize16").addEventListener("click", function () {
+        con.style.fontSize = "16px";
+    });
+    document.getElementById("fontsize24").addEventListener("click", function () {
+        con.style.fontSize = "24px";
+    });
+    document.getElementById("fontsize32").addEventListener("click", function () {
+        con.style.fontSize = "32px";
+    });
+</script>
+
+<p>通过三个选项可以改变容器的<code>font-size</code>。可以看到图片的<code>vertical-align</code>被设置为了<code>text-top</code>，与文字顶部对齐，那么通过改变容器<code>div.con</code>的<code>font-size</code>，就可以使得图片对齐不同字号的文字顶部。</p>
+<p>实际上，这一对属性值比较鸡肋，并不常用。</p>
+<h2 id="作用范围"><a href="#作用范围" class="headerlink" title="作用范围"></a>作用范围</h2><p>我们说<code>vertical-align</code>是作用于内联元素上的，对于块状元素不起作用。但实际上还有一个起作用的场景，就是<code>table-cell</code>的元素，常见的就是<code>&lt;td&gt;</code>标签。</p>
+<p>但注意，浮动和定位会让元素块状化，渲染出来的效果是块状元素，这时候<code>vertical-align</code>就不起作用了。</p>
+<p>还要注意，对于<code>table-cell</code>的元素，即渲染为单元格元素，为它设置<code>vertical-align</code>并不是像其他内联元素一样作用在设置了<code>vertical-align</code>属性的元素本身，而是<strong>将设置的对齐方式作用在了单元格内容元素上</strong>！即便单元里的是块状元素，依然会按照<code>vertical-align</code>设置的方式对齐。</p>
+<p>一句话总结：<code>vertical-align</code>属性对渲染为<code>inline</code>、<code>inline-block</code>、<code>inline-table</code>和<code>table-cell</code>的元素起作用。</p>
+<h2 id="再说基线"><a href="#再说基线" class="headerlink" title="再说基线"></a>再说基线</h2><p>既然<code>inline-block</code>元素也可以设置<code>vertical-align</code>，那它的基线在哪儿？</p>
+<p>元素的基线规则如下：</p>
+<ul>
+<li>对于纯文字内容的内联元素，它的基线就是<strong>文字的基线</strong>。</li>
+<li>对于非纯文字的内联元素，主要有以下情形：<ul>
+<li>替换元素，如img、input等，其基线为<strong>元素下边沿</strong>。</li>
+<li>display为的<code>inline-block</code>元素，有两种情况：<ul>
+<li>元素的overflow为visible且内有内联元素，它的基线为里面的<strong>最后一行内联元素的基线</strong>。</li>
+<li>元素的overflow不为visible或里面没有内联元素，它的基线为<strong>margin的下边沿</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>既然说了基线就一定要说中线，中线是基于基线偏移的，与基线息息相关，那么<strong>中线的规则与基线也是类似的</strong>，具体如下：</p>
+<ul>
+<li>对于纯文字内容的内联元素，它的中线就是<strong>文字的中线</strong>。</li>
+<li>对于非纯文字的内联元素，主要有以下情形：<ul>
+<li>替换元素，如img、input等，其中线为<strong>元素的水平等分线</strong>。</li>
+<li>display为的inline-block元素，有两种情况：<ul>
+<li>元素的overflow为visible且内有内联元素，它的中线为里面的<strong>最后一行内联元素的中线</strong>。</li>
+<li>元素的overflow不为visible或里面没有内联元素，它的基线为<strong>元素外部盒子（包含margin的盒子）的水平平分线</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>来看以下基线对齐的例子：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>文字文字文字文字<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">border</span>: black solid <span class="hljs-number">1px</span>;<br>    <span class="hljs-attribute">background-color</span>: bisque;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<div id="frontend-css-008-example-09-box"></div>
+<div id="frontend-css-008-example-09-box2"><span>文字文字文字文字</span></div>
+<style>
+    #frontend-css-008-example-09-box,
+    #frontend-css-008-example-09-box2 {
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+        border: black solid 1px;
+        background-color: bisque;
+    }
+</style>
+
+<p>可以看出两个盒子对齐方式非常鬼畜，原因就是两个盒子都默认是基线对齐，而第一个盒子里没内联元素，就用盒子的margin下边沿来作为基线，和第二个有内联元素的盒子中最后一行内联元素（文字）的基线对齐，就形成了上面这样的结果。</p>
+<h2 id="莫名其妙的空白"><a href="#莫名其妙的空白" class="headerlink" title="莫名其妙的空白"></a>莫名其妙的空白</h2><h3 id="对不齐的空白"><a href="#对不齐的空白" class="headerlink" title="对不齐的空白"></a>对不齐的空白</h3><p>回收开头的例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123; <span class="hljs-attribute">line-height</span>: <span class="hljs-number">32px</span>; &#125;<br><span class="hljs-selector-class">.box</span> &gt; <span class="hljs-selector-tag">span</span> &#123; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>; &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>文字<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>问：box在浏览器中渲染的高度是多少？</p>
+<p>由于设置了<code>line-height: 32px;</code>，并且span文字的大小也没超过32px，似乎是放得下的，看起来好像不会把容器撑得更大了，但这个例子偏偏就是撑大了容器，原因就是看不见的<code>vertical-align</code>基线对齐在背后起作用。</p>
+<p>只需要注意一点：我为span设置了24px的字号，外层的<code>div.box</code>的字号呢？</p>
+<p>浏览器的默认字号往往小于24px，如我的Chrome浏览器默认字号就是16px，问题就出在这里。一提到外层容器和内层内联元素不一致，你一定想到了这个东西——行框盒子支柱。</p>
+<p><strong>支柱表现得像是一个宽度为0的内联元素一样，内联的文本都向支柱对齐，因此支柱的各项表现都像是一个内联的文本标签，基线也和文字基线一致</strong>，那么我们不妨就把它视为一个文本标签，画出它的参考线来代表它，同时和span标签放在一起比较。你可能认为是这样的：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/011.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>似乎一切都恰到好处，应该为32px才对，为什么渲染出来会比32px高呢？这个图中犯了两个错误，不看下文你能指出错误所在吗？</p>
+<p>首先第一个错误是默认应该是基线对齐，图中的对齐方式不对，应该是如下的对齐方式：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/012.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>让支柱和span标签的基线对齐才对。然而这样来看也没有超出32px的范围啊？这就是第二个错误所在了：span标签继承了<code>div.box</code>的<code>line-height: 32px;</code>，因此span标签的外在高度也应该是32px：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/013.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>这下就可以看出来究竟是哪里超出了32px的范围了吧！</p>
+<p>现在，请先不要往下看，你已经是一个成熟的CSS工程师了，要学会独立思考问题啦！请思考出尽可能多的方案，在显示效果（span的字号）不变的情况下，让<code>div.box</code>渲染成32px，一个像素也不多。</p>
+<p><strong>方法一</strong>：</p>
+<p>要做到最终渲染出来不多于32px，那么实际上就是要做到支柱和span标签的32px区域重合。</p>
+<p>既然是因为支柱字号是16px而span标签的字号是24px导致的问题，那么最简单的方法就是不把字号设置在span标签上，而是把字号设置在<code>div.box</code>上，这样支柱和span标签的32px区域可以完美重合了：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/014.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>即：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">32px</span>;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>方法二</strong>：</p>
+<p>方法一的缺点是改变了容器的字号，因为本例中容器里没别的内容，只有一个看不见的支柱，因此显示效果不会有什么影响。而如果容器里有其他内容，不希望改变显示效果也要把两个32px区域重合，可以给span标签设置<code>vertical-align: bottom;</code>，让两个32px（外在高度）区域的底线（下边沿）对齐，不就可以实现两个32px区域重合了吗：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/015.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>即：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">32px</span>;<br>&#125;<br><span class="hljs-selector-class">.box</span>&gt;<span class="hljs-selector-tag">span</span> &#123;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;<br>    <span class="hljs-attribute">vertical-align</span>: bottom;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>方法三</strong>：</p>
+<p>方法一和方法二的思路是让两个32px区域重合，那么另一个思路就是：span标签的32px区域高出来了一截，那为什么不把它砍掉呢？</p>
+<p>因此我们可以给span设置<code>line-height: 100%;</code>，让它的行高不再继承父容器的32px，而是和字号一样都是24px，那么基线对齐的span就不会超出范围了：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/016.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>即：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">32px</span>;<br>&#125;<br><span class="hljs-selector-class">.box</span>&gt;<span class="hljs-selector-tag">span</span> &#123;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">100%</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>方法四</strong>：</p>
+<p>本着“<em>山不过来，我就过去</em>”的思路，既然可以砍掉span上方多余的行高，当然也可以砍掉支柱下方多余的行高，总之就是砍掉两个32px区域其中之一的高度，只让另一个保持32px来撑起高度，就能够实现最终渲染出32px的高度。</p>
+<p>这里我们可以通过给<code>div.box</code>容器设置<code>line-height: 0;</code>，而把32px的行高加在span上，因为容器里没有别的东西了，而支柱是不可见的，它的行高没啥用处，因此我直接把它砍到0，外在高度没了，那么它的顶线、底线等各种线都被挤到了基线的位置，与基线重合：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/017.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>即：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &#123;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.box</span>&gt;<span class="hljs-selector-tag">span</span> &#123;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">32px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样是一种极端的做法，因为支柱的高度没有用，我们只希望span标签的行高来撑起高度，因此直接将支柱的外在高度变为了0，如果容器内除了该span标签还有其他内容，该方法可能不适用。</p>
+<p>此外，这里所说直接把支柱外在高度变为0是没问题的，但不能说把顶线、底线等各种线都压缩到基线的位置（我愿称之为万线合一），想做到“万线合一”只能通过<code>font-size: 0;</code>，这里通过<code>line-height: 0;</code>仅仅是消除了外在高度，而基线作为一个特殊的存在，和外在高度是无关的。这对本例无影响，在下面的例子有详细的说明。</p>
+<p>总之，只要能弄明白<code>line-height</code>和<code>vertical-align</code>的原理，并理解它们的相互作用，这样不论在何种情况下，遇到内联元素造成的莫名其妙的空白而撑起了不该有的高度，你都能知道该如何解决了。</p>
+<h3 id="更复杂的例子"><a href="#更复杂的例子" class="headerlink" title="更复杂的例子"></a>更复杂的例子</h3><p>我希望一系列图片按照每行三列排布，并在容器中两端对齐，但不使用flex布局，那么我可以这样：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;con&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.con</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">288px</span>;<br>    <span class="hljs-attribute">text-align</span>: justify;<br>&#125;<br><span class="hljs-selector-class">.con</span>&gt;<span class="hljs-selector-tag">img</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">96px</span>;<br>&#125;<br><span class="hljs-selector-class">.con</span>&gt;<span class="hljs-selector-tag">i</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">96px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里之所以使用i标签来补位置，是因为最后一行不够三张图片时，我希望最后一排的图片是靠左排列的而非两端对齐的，因此使用没有高度的看不见的i标签来占位。而没有三个i标签占位时，在非常古老的某些浏览器中可能会有兼容性问题的，可能会导致最后一行多出来的一个标签居中对齐、两个标签两端对齐。此外，这些i标签对于接下来的演示还有大作用。</p>
+<p>然而上面的代码果然出了问题：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/018.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>我希望有三列但实际上是两列，原因就在多个img标签不是紧挨着的，中间有空白符（空格和换行），<strong>在HTML中的连续的若干个空白符被解释为了一个空格</strong>，我在写CSS的时候，容器为288px，项目为96px，卡得死死的，一个像素也不多，但实际上项目之间多了空格，一行可不就放不下三张图片了嘛！因此第三张图片被挤下去了，一行只有两张图片，我把所有的元素都加上outline（<em>小思考：为什么用outline而不是border</em>），并调整容器的大小为300px（稍大一些），就看的清楚了：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/019.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>容器稍大，三张图片放得下了，就可以看出三张图片中间的空白了，那就是空格导致的，解决办法有两种，第一种是去掉那些空白符，让所有的img标签和i标签都紧挨着，这样就可以放心地为容器设置288px的宽度了：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/020.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>你会发现列与列中间的空隙都没了，可是行与行中间竟然还有空隙。在以前你可能不知道为什么，但是在了解了<code>line-height</code>和<code>vertical-align</code>的作用原理之后，你一定能敏锐地察觉：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/021.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>方框框起来的最后一个i标签的位置似乎是在基线的位置？？？</p>
+<p>没错，这里行与行之间的空隙就和上一个例子的情况一模一样：每一行前面都有行框盒子支柱，行框盒子支柱有浏览器决定的默认的字号16px，而默认情况下内联元素又是基线对齐，再加上前文说的<code>inline-block</code>元素的基线是元素的下边沿，也就是这些img和i元素的下边沿都和行框盒子支柱的基线对齐着呢，基线到底线中间的距离，就造成了这些行与行之间的空隙。</p>
+<p>既然知道了问题的来源就好解决了，这里比较合适的方法是设置容器的<code>font-size: 0;</code>。</p>
+<p>有人可能想说既然基线与底部之间有空隙才造成的问题，那么不应该设置<code>vertical-align: bottom;</code>嘛？来看看这样做的效果：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/022.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>解决了，但没完全解决。。。原因就在于最后一行就算设置了底线对齐，可是支柱还是有高度啊，如果我们不需要三个i标签做占位符，那么问题就已经解决了，但此时只能用<code>font-size: 0;</code>来使得支柱的高度也为0才行。</p>
+<p>可能还有人想起来了上一例中提到的<code>line-height: 0;</code>来使得支柱高度为0，这样做可以吗？实际上是不可以的，还是有空隙，只是小了些，这是为什么呢？</p>
+<p>实际上在上例中，设置<code>line-height: 0;</code>确实会使元素的外在高度为0，但是基线的存在，与文字有关，与外在高度无关。当然在上例中使用<code>font-size: 0;</code>也是完全可以的，能够把支柱的高度消除得更彻底。</p>
+<p>试着在最后一个i标签前面加一个字符x，来看为什么<code>line-height: 0;</code>不行：<br><img   class="lazyload" data-original="/images/illustration/2022-02-09-frontend-css-008/023.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p><code>line-height: 0;</code>的效果在上例中也说过，就是近似把顶线、底线都压缩到和基线重合，但这种说法并不准确，真正想把这些线压缩到和基线重合，只有<code>font-size: 0;</code>才能做到。这就要回顾一下<code>line-height</code>的作用方式了——半行距：</p>
+<p><code>line-height</code>减去<code>font-size</code>为行距，其一半为半行距，半行距将被加在内联元素上下。</p>
+<p><code>line-height: 0;</code>意味着行距为-1em，半行距为-0.5em，这里可以类比负margin来理解，就好像<code>margin-top</code>和<code>margin-bottom</code>被设置为负的了一样，结果是内联元素向上移动了0.5em，内联元素下的内容也向上移动了0.5em，那么基线实际上就是与未设置<code>line-height: 0;</code>时相比，向上移动了0.5em而已，即半个字号的高度，自然就还是会有半个字号高度的空隙了。</p>
+<p>你如果还是听不懂，会不会有这么一种可能——是你太笨了（手动狗头）。</p>
+<p>所以真正能完全消除支柱的高度的方式就是<code>font-size: 0;</code>，或者设置<code>line-height: 0;</code>的同时再设置i标签的<code>vertical-align</code>为top、bottom或middle都行，只要不和基线对齐就行。</p>
+<p>一句话总结：<strong>底线和顶线取决于外在高度，但基线与外在高度没什么关系，而行高改变的是外在高度，因此试图通过行高消除高度的影响不应当与基线对齐搭配使用。</strong></p>
+<p>总结下来，<code>font-size: 0;</code>是本例最具有性价比的解决方案，实际上，我们开始说的通过去除标签间的空白符消除列与列之间的空隙也不必要了，因为<code>font-size: 0;</code>也会顺带把空格的大小变为0呀！此举一次性解决了行之间和列之间的所有莫名其妙的空隙，当之无愧的性价比之王！</p>
+<p>最终的版本是这样的：</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;con&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/post/css.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.con</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">288px</span>;<br>    <span class="hljs-attribute">text-align</span>: justify;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.con</span>&gt;<span class="hljs-selector-tag">img</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">96px</span>;<br>&#125;<br><span class="hljs-selector-class">.con</span>&gt;<span class="hljs-selector-tag">i</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">96px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<div id="frontend-css-008-example-10">
+    <img src="/images/post/css.jpg" alt="" class="rawimg">
+    <img src="/images/post/css.jpg" alt="" class="rawimg">
+    <img src="/images/post/css.jpg" alt="" class="rawimg">
+    <img src="/images/post/css.jpg" alt="" class="rawimg">
+    <img src="/images/post/css.jpg" alt="" class="rawimg">
+    <img src="/images/post/css.jpg" alt="" class="rawimg">
+    <img src="/images/post/css.jpg" alt="" class="rawimg">
+    <i></i>
+    <i></i>
+    <i></i>
+</div>
+<style>
+    #frontend-css-008-example-10 {
+        width: 288px;
+        text-align: justify;
+        font-size: 0;
+        border: black solid 1px;
+        box-sizing: content-box;
+    }
+    #frontend-css-008-example-10>img {
+        display: inline-block;
+        width: 96px;
+    }
+    #frontend-css-008-example-10>i {
+        display: inline-block;
+        width: 96px;
+    }
+</style>
+
+<p>完美解决问题，并且与最开始的代码只差了一行<code>font-size: 0;</code>。</p>
+<p>实际上，如果希望使用<code>inline-block</code>元素排版，往往都会在最外的容器上设置<code>font-size: 0;</code>来重置字号，然后在容器里需要用到文字的地方单独设置需要的字号，这样几乎就能避免所有的由于内联元素造成的空隙了！</p>
+<h2 id="最佳实践-2"><a href="#最佳实践-2" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="水平垂直居中弹框"><a href="#水平垂直居中弹框" class="headerlink" title="水平垂直居中弹框"></a>水平垂直居中弹框</h3><p>最后来看一个水平垂直居中弹框的例子吧！核心思想就是通过<code>vertical-align</code>来排版。</p>
+<p>这种方式纯CSS实现，兼容性极佳，无论屏幕尺寸和弹框尺寸多大都能完美居中显示，把伪元素换成普通元素甚至能够连IE7都能兼容。</p>
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>    <span class="hljs-attribute">position</span>: fixed;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, .<span class="hljs-number">5</span>);<br>    <span class="hljs-attribute">text-align</span>: center;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">white-space</span>: nowrap;<br>    <span class="hljs-attribute">overflow</span>: auto;<br>&#125;<br><span class="hljs-selector-class">.container</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">vertical-align</span>: middle;<br>&#125;<br><span class="hljs-selector-class">.dialog</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">vertical-align</span>: middle;<br>    <span class="hljs-attribute">text-align</span>: left;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;<br>    <span class="hljs-attribute">white-space</span>: normal;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>你学会了吗？</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/09/frontend-css-008/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;09&#x2F;frontend-css-008&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;09&#x2F;frontend-css-008&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/02/02/js011/">JavaScript学习笔记（11）：客户端检测 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E6%AF%8Dx"><span class="toc-text">字母x</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%BA%BF"><span class="toc-text">基线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x-height"><span class="toc-text">x-height</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-text">最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%BE%E6%A0%87%E6%96%87%E5%AD%97%E5%B1%85%E4%B8%AD"><span class="toc-text">简单的图标文字居中</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#line-height"><span class="toc-text">line-height</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E8%81%94%E5%85%83%E7%B4%A0%E7%9A%84%E5%B0%BA%E5%AF%B8"><span class="toc-text">内联元素的尺寸</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E9%AB%98%E5%92%8C%E5%AD%97%E5%8F%B7"><span class="toc-text">行高和字号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E8%B7%9D%E5%92%8C%E5%8D%8A%E8%A1%8C%E8%B7%9D"><span class="toc-text">行距和半行距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#em-box"><span class="toc-text">em-box</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E9%AB%98%E4%B8%8E%E6%94%AF%E6%9F%B1"><span class="toc-text">行高与支柱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-text">属性值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-text">支持的属性值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%80%BC%E7%89%B9%E6%80%A7"><span class="toc-text">大值特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-1"><span class="toc-text">最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%81%94%E5%85%83%E7%B4%A0%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">内联元素垂直居中</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vertical-align"><span class="toc-text">vertical-align</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%80%BC-1"><span class="toc-text">属性值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%B1%BB%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">线类关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E4%B8%8E%E7%99%BE%E5%88%86%E6%AF%94"><span class="toc-text">数值与百分比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%A0%87%E7%B1%BB%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">上下标类关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%B1%BB%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">文本类关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="toc-text">作用范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%8D%E8%AF%B4%E5%9F%BA%E7%BA%BF"><span class="toc-text">再说基线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%AB%E5%90%8D%E5%85%B6%E5%A6%99%E7%9A%84%E7%A9%BA%E7%99%BD"><span class="toc-text">莫名其妙的空白</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%B8%8D%E9%BD%90%E7%9A%84%E7%A9%BA%E7%99%BD"><span class="toc-text">对不齐的空白</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%8D%E6%9D%82%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-text">更复杂的例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-2"><span class="toc-text">最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E5%BC%B9%E6%A1%86"><span class="toc-text">水平垂直居中弹框</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

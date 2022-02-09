@@ -197,7 +197,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 16, 2022</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>12357</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>12434</span>
     </div>
   </div>
 </section>
@@ -283,7 +283,7 @@
 <li><code>document.body.clientWidth</code>：混杂模式下，返回页面视口的宽度。</li>
 <li><code>document.body.clientHeight</code>：混杂模式下，返回页面视口的高度。</li>
 </ul>
-<p>标准模式和混杂模式实际上是CSS模式，主要的区别是<strong>盒模型</strong>。</p>
+<p>标准模式和混杂模式实际上是CSS模式，主要的区别是<strong>盒模型</strong>。标准模式的盒模型为标准盒模型，width和height尺寸只包含内容区域，而混杂模式的盒模型为奇异盒模型，其width和height尺寸包含border。</p>
 <p><code>window.innerWidth</code>和<code>window.innerHeight</code>如果有值的话，将会和<code>document.documentElement.clientWidth</code>以及<code>document.documentElement.clientHeight</code>相等，它们都代表视口尺寸。</p>
 <p>因此可通过以下方式来获取浏览器视口尺寸：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> pageWidth = <span class="hljs-built_in">window</span>.innerWidth,<br>    pageHeight = <span class="hljs-built_in">window</span>.innerHeight;<br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> pageWidth != <span class="hljs-string">&quot;number&quot;</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.compatMode == <span class="hljs-string">&quot;CSS1Compat&quot;</span>) &#123;<br>        pageWidth = <span class="hljs-built_in">document</span>.documentElement.clientWidth;<br>        pageHeight = <span class="hljs-built_in">document</span>.documentElement.clientHeight;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        pageWidth = <span class="hljs-built_in">document</span>.body.clientWidth;<br>        pageHeight = <span class="hljs-built_in">document</span>.body.clientHeight;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>

@@ -294,8 +294,8 @@ console.log("%c Github %c", "background:#333333; color:#ffffff", "", "https://gi
       })
     },
     fancybox: function () {
-      $(".fancybox").fancybox();
-      $(".article .content img").each(function () {
+      $(".fancybox:not(.rawimg)").fancybox();
+      $(".article .content img:not(.rawimg)").each(function () {
         var e = document.createElement("a");
         $(e).attr("data-fancybox", "images");
         $(e).attr("href", $(this).attr("src"));

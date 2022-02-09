@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .ops {
+            margin-bottom: 15px;
+        }
+
+        .con {
+            font-size: 16px;
+        }
+
+        img {
+            width: 100px;
+            vertical-align: text-top;
+        }
+
+        span {
+            background-color: lightgreen;
+        }
+
+        .fontsize16 {
+            font-size: 16px;
+        }
+
+        .fontsize24 {
+            font-size: 24px;
+        }
+
+        .fontsize32 {
+            font-size: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ops">
+        <input type="radio" name="fontsize" id="fontsize16" checked><label for="fontsize16">16px</label>
+        <input type="radio" name="fontsize" id="fontsize24"><label for="fontsize24">24px</label>
+        <input type="radio" name="fontsize" id="fontsize32"><label for="fontsize32">32px</label>
+    </div>
+    <div class="con">
+        <img src="https://sadose.github.io/images/post/css.jpg" alt="">
+        <span class="fontsize16">16px</span>
+        <span class="fontsize24">24px</span>
+        <span class="fontsize32">32px</span>
+    </div>
+
+    <script>
+        const con = document.getElementsByClassName("con")[0];
+        document.getElementById("fontsize16").addEventListener("click", function () {
+            con.style.fontSize = "16px";
+        });
+        document.getElementById("fontsize24").addEventListener("click", function () {
+            con.style.fontSize = "24px";
+        });
+        document.getElementById("fontsize32").addEventListener("click", function () {
+            con.style.fontSize = "32px";
+        });
+    </script>
+</body>
+
+</html>
