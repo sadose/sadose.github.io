@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>JavaScript - 大森的博客</title>
+  <title>大森的博客</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
@@ -57,7 +57,7 @@
     var CONFIG = window.CONFIG || {};
     var ZHAOO = window.ZHAOO || {};
     CONFIG = {
-      isHome: false,
+      isHome: true,
       fancybox: true,
       pjax: false,
       lazyload: {
@@ -135,8 +135,6 @@
   <nav class="navbar">
     <div class="left">
       
-        <i class="iconfont iconhome j-navbar-back-home"></i>
-      
       
         <i class="iconfont iconqrcode j-navbar-qrcode"></i>
       
@@ -145,7 +143,7 @@
       
       
     </div>
-    <div class="center">分类</div>
+    <div class="center"> </div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -169,7 +167,7 @@
       </li><li class="menu-item">
         <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
       </li><li class="menu-item">
-        <a href="/categories/js/ " class="underline active"> JavaScript</a>　
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
       </li><li class="menu-item">
         <a href="/categories/notes/ " class="underline "> 课程笔记</a>　
       </li><li class="menu-item">
@@ -185,79 +183,80 @@
   </div>
 </nav>
   <main id="main">
-  <section class="archive">
-    <div class="archive-container">
-      <div class="archive-post">
-        <h3 class="archive-total"># JavaScript 栏目下的文章：</h3>
+  
+    <div class="preview">
+  <!-- <nav class="navbar j-navbar-menu">
+    <i class="iconfont iconmenu"></i>
+  </nav> -->
+  <div class="preview-image">
+    
         
+              <div class="preview-overlay">
+                <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                  <defs>
+                    <path id="gentle-wave"
+                      d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                  </defs>
+                  <g class="preview-parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb),0.7"></use>
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb),0.5)"></use>
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb),0.3)"></use>
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="var(--color-background)"></use>
+                  </g>
+                </svg>
+              </div>
+              
+  </div>
+  <div class="preview-motto-wrapper">
+    <h2 class="preview-motto" id="motto">
+      
+    </h2>
+    
+      <span class="preview-cursor">_</span>
+      
+  </div>
+  <div class="preview-scroll">
+    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
+  </div>
+</div>
+  
+  <div class="container" id="container">
+    <section class="row post">
+  
+    
+
+<div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2021/06/22/hello-world/" class="post-image">
+      <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <div class="post-content-wrap">
+        <h3 class="post-title"><a href="/2021/06/22/hello-world/" title="Hello World" >Hello World</a></h3>
+        <div class="post-excerpt">
+          <p class="substr-3">第一次使用 Hexo + GitHub Pages 来搭建博客，逐渐弄明白了使用 Hexo 创建博客的基本流程，现作记录如下，当作是博客版的“Hello world”吧。  
+一 安装配置Nod...</p>
+        </div>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>June 22, 2021</span>
         
-          
-            <h3 class="archive-year">2022 年</h3>
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2022/02/13/js012/">02/13</a>
-            <a class="archive-title" href="/2022/02/13/js012/">JavaScript学习笔记（12）：DOM基础</a>
-          </div>
-        
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2022/02/02/js011/">02/02</a>
-            <a class="archive-title" href="/2022/02/02/js011/">JavaScript学习笔记（11）：客户端检测</a>
-          </div>
-        
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2022/01/16/js010/">01/16</a>
-            <a class="archive-title" href="/2022/01/16/js010/">JavaScript学习笔记（10）：BOM</a>
-          </div>
-        
-          
-            <h3 class="archive-year">2021 年</h3>
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2021/12/24/js009/">12/24</a>
-            <a class="archive-title" href="/2021/12/24/js009/">JavaScript学习笔记（9）：异步编程</a>
-          </div>
-        
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2021/12/23/js008/">12/23</a>
-            <a class="archive-title" href="/2021/12/23/js008/">JavaScript学习笔记（8）：函数</a>
-          </div>
-        
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2021/12/17/js007/">12/17</a>
-            <a class="archive-title" href="/2021/12/17/js007/">JavaScript学习笔记（7）：代理与反射</a>
-          </div>
-        
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2021/12/15/js006/">12/15</a>
-            <a class="archive-title" href="/2021/12/15/js006/">JavaScript学习笔记（6）：面向对象</a>
-          </div>
-        
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2021/12/13/js005/">12/13</a>
-            <a class="archive-title" href="/2021/12/13/js005/">JavaScript学习笔记（5）：迭代器与生成器</a>
-          </div>
-        
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2021/12/10/js004/">12/10</a>
-            <a class="archive-title" href="/2021/12/10/js004/">JavaScript学习笔记（4）：集合引用类型</a>
-          </div>
-        
-          
-          <div class="archive-item">
-            <a class="archive-date" href="/2021/12/08/js003/">12/08</a>
-            <a class="archive-title" href="/2021/12/08/js003/">JavaScript学习笔记（3）：基本引用类型</a>
-          </div>
-        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>1464</span>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+
+  
+</section>
+    <section class="paginator">
+  
+    <a class="extend prev" rel="prev" href="/page/4/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+  
+</section>
+  </div>
 </main>
   
 
