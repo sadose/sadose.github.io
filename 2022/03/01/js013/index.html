@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript学习笔记（13）：DOM扩展 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="Selectors APISelectors API是...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">JavaScript学习笔记（13）：DOM扩展</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/notes/ " class="underline "> 课程笔记</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/js.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JavaScript学习笔记（13）：DOM扩展</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 01, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6186</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="Selectors-API"><a href="#Selectors-API" class="headerlink" title="Selectors API"></a>Selectors API</h1><p>Selectors API是W3C推荐标准，规定了浏览器原生支持的CSS查询API，即<strong>根据CSS选择符的模式匹配DOM元素</strong>。</p>
+<h2 id="querySelector"><a href="#querySelector" class="headerlink" title="querySelector"></a>querySelector</h2><p><code>querySelector()</code>方法接收CSS选择符参数，返回匹配该模式的第一个后代元素，如果没有匹配项则返回null。</p>
+<p>在Document上使用<code>querySelector()</code>方法时，会从文档元素开始搜索；在Element上使用<code>querySelector()</code>方法时，则只会从当前元素的后代中查询。</p>
+<p>如果选择符有语法错误或碰到不支持的选择符，则<code>querySelector()</code>方法会抛出错误。</p>
+<h2 id="querySelectorAll"><a href="#querySelectorAll" class="headerlink" title="querySelectorAll"></a>querySelectorAll</h2><p><code>querySelectorAll()</code>方法跟<code>querySelector()</code>一样，也接收一个用于查询的参数，但它会返回所有匹配的节点，而不止一个。这个方法返回的是一个<strong>NodeList的静态实例</strong>。因为如果返回动态的，将导致极大的性能开销。</p>
+<p>如果没有匹配项，则返回空的NodeList实例。返回的NodeList对象也可以通过for-of循环、<code>item()</code>方法或中括号语法取得个别元素。</p>
+<p>如果选择符有语法错误或碰到不支持的选择符也会抛出错误。</p>
+<h2 id="matches"><a href="#matches" class="headerlink" title="matches"></a>matches</h2><p>在元素上调用<code>matches()</code>方法并接收一个CSS选择符作为参数，如果元素匹配则该选择符，该方法返回true，否则返回false。</p>
+<p>使用这个方法可以方便地检测某个元素会不会被<code>querySelector()</code>或<code>querySelectorAll()</code>方法返回。</p>
+<h1 id="元素遍历"><a href="#元素遍历" class="headerlink" title="元素遍历"></a>元素遍历</h1><p>IE9之前的版本不会把元素间的空格当成空白节点，而其他浏览器则会。这样就导致了childNodes和firstChild等与子节点相关的属性的差异。</p>
+<p>为了方便地遍历元素，规范为DOM元素添加了以下属性：</p>
+<ul>
+<li>childElementCount：返回子元素数量。</li>
+<li>firstElementChild：指向第一个Element类型的子元素。</li>
+<li>lastElementChild：指向最后一个Element类型的子元素。</li>
+<li>previousElementSibling：指向前一个Element类型的同胞元素。</li>
+<li>nextElementSibling：指向后一个Element类型的同胞元素。</li>
+</ul>
+<p>这些属性都只包含元素节点，而不包含文本节点和注释节点，这样就可以方便地遍历元素了。</p>
+<p>IE9及以上版本，以及所有现代浏览器都支持Element Traversal属性。</p>
+<h1 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h1><p>在HTML5标准中新增了一些和DOM有关的内容。</p>
+<h2 id="CSS类扩展"><a href="#CSS类扩展" class="headerlink" title="CSS类扩展"></a>CSS类扩展</h2><h3 id="getElementsByClassName方法"><a href="#getElementsByClassName方法" class="headerlink" title="getElementsByClassName方法"></a>getElementsByClassName方法</h3><p><code>getElementsByClassName()</code>是HTML5新增的一个方法，暴露在document对象和所有HTML元素上。</p>
+<p><code>getElementsByClassName()</code>方法接收一个参数，即包含一个或多个类名的字符串，返回类名中包含相应类的元素的NodeList。如果提供了多个类名，则顺序是任意的，以空格分隔。</p>
+<p>IE9及以上版本，以及所有现代浏览器都支持<code>getElementsByClassName()</code>方法。</p>
+<h3 id="classList属性"><a href="#classList属性" class="headerlink" title="classList属性"></a>classList属性</h3><p>HTML5通过给所有元素增加classList属性为元素的类名操作提供了更简便的方式。</p>
+<p>classList是一个新的集合类型DOMTokenList的实例，与其他DOM集合类型一样，DOMTokenList也有length属性表示自己包含多少项，也可以通过<code>item()</code>或中括号取得个别的元素。</p>
+<p>DOMTokenList具有以下方法。</p>
+<ul>
+<li><code>add(value)</code>：向类名列表中添加指定的字符串值value。如果这个值已经存在，则什么也不做。</li>
+<li><code>contains(value)</code>：返回布尔值，表示给定的value是否存在。</li>
+<li><code>remove(value)</code>：从类名列表中删除指定的字符串值value。</li>
+<li><code>toggle(value)</code>：如果类名列表中已经存在指定的value，则删除，如果不存在，则添加。</li>
+</ul>
+<p>有了classList属性之后，除非是完全删除或完全重写元素的class属性，否则className属性就用不到了。</p>
+<p>IE10及以上版本部分实现、其他主流浏览器完全实现了classList属性。</p>
+<h2 id="焦点管理"><a href="#焦点管理" class="headerlink" title="焦点管理"></a>焦点管理</h2><h3 id="activeElement属性"><a href="#activeElement属性" class="headerlink" title="activeElement属性"></a>activeElement属性</h3><p><code>document.activeElement</code>始终为当前页面上拥有焦点的DOM元素的引用。</p>
+<p>默认情况下，<code>document.activeElement</code>在页面刚加载完之后会设置为<code>document.body</code>。而在页面完全加载之前，<code>document.activeElement</code>的值为null。</p>
+<h3 id="hasFocus方法"><a href="#hasFocus方法" class="headerlink" title="hasFocus方法"></a>hasFocus方法</h3><p><code>document.hasFocus()</code>方法返回布尔值，表示文档是否拥有焦点。通过它可以帮助确定用户是否在操作页面。</p>
+<p>无障碍Web应用程序的一个重要方面就是焦点管理。</p>
+<h2 id="HTMLDocument扩展"><a href="#HTMLDocument扩展" class="headerlink" title="HTMLDocument扩展"></a>HTMLDocument扩展</h2><p>HTML5扩展了HTMLDocument类型，增加了更多功能。</p>
+<h3 id="readyState属性"><a href="#readyState属性" class="headerlink" title="readyState属性"></a>readyState属性</h3><p>readyState是IE4最早添加到document对象上的属性，最终，HTML5将这个属性写进了标准。</p>
+<p><code>document.readyState</code>属性有两个可能的值：</p>
+<ul>
+<li><code>&quot;loading&quot;</code>：表示文档正在加载。</li>
+<li><code>&quot;complete&quot;</code>：表示文档加载完成。</li>
+</ul>
+<p>可以将<code>document.readState</code>当成一个指示器，以判断文档是否加载完毕。而在没有该属性之前，只能通过onload事件来进行处理。</p>
+<h3 id="compatMode属性"><a href="#compatMode属性" class="headerlink" title="compatMode属性"></a>compatMode属性</h3><p>自从IE6提供了以标准或混杂模式渲染页面的能力之后，检测页面渲染模式成为一个必要的需求。</p>
+<p>IE最早为document添加了compatMode属性，这个属性唯一的任务是指示浏览器当前处于什么渲染模式。</p>
+<p>该属性已经在“<a href="../../../../2022/01/16/js010/#%E8%A7%86%E5%8F%A3%E5%B0%BA%E5%AF%B8">BOM</a>”章节介绍过。</p>
+<p>HTML5最终也把compatMode属性纳入了标准。</p>
+<h3 id="head属性"><a href="#head属性" class="headerlink" title="head属性"></a>head属性</h3><p>HTML5增加了<code>document.head</code>属性，指向文档的<code>&lt;head&gt;</code>元素，作为对<code>document.body</code>指向文档的<code>&lt;body&gt;</code>元素的补充。</p>
+<h2 id="字符集属性"><a href="#字符集属性" class="headerlink" title="字符集属性"></a>字符集属性</h2><p>HTML5增加了几个与文档字符集有关的新属性。</p>
+<p>其中主要为characterSet属性。该属性表示文档实际使用的字符集，也可以用来指定新字符集。这个属性的默认值是<code>&quot;UTF-16&quot;</code>，但可以通过<code>&lt;meta&gt;</code>元素或响应头，以及characterSet属性来修改。</p>
+<p>即<code>document.characterSet</code>属性是一个可读可写的属性。</p>
+<h2 id="自定义数据属性"><a href="#自定义数据属性" class="headerlink" title="自定义数据属性"></a>自定义数据属性</h2><p>HTML5允许给元素指定以前缀<code>data-</code>开始的自定义属性，同时也为它们提供了一个便捷访问的方法。</p>
+<p>在DOM对象上使用dataset属性可以访问到元素上的自定义属性。dataset属性是一个DOMStringMap的实例，包含一组键/值对映射。可以通过它来便捷地访问到这些自定义属性。在访问时使用的键是不需要<code>data-</code>前缀的。</p>
+<p>自定义数据属性非常适合需要给元素附加某些数据的场景，比如链接追踪和在聚合应用程序中标识页面的不同部分。单页应用程序框架也非常多地使用了自定义数据属性。</p>
+<h2 id="插入标签"><a href="#插入标签" class="headerlink" title="插入标签"></a>插入标签</h2><h3 id="innerHTML属性"><a href="#innerHTML属性" class="headerlink" title="innerHTML属性"></a>innerHTML属性</h3><p>innerHTML属性提供了一次性插入大量元素的能力，而不是通过DOM一个一个添加。</p>
+<p>在读取innerHTML属性时，会返回元素所有后代的HTML字符串，包括元素、注释和文本节点。而在写入innerHTML时，则会根据提供的字符串值以新的DOM子树替代元素中原来包含的所有节点。</p>
+<p>innerHTML属性实际返回的文本内容会因浏览器而不同。IE和Opera会把所有元素标签转换为大写，而Safari、Chrome和Firefox则会按照文档源代码的格式返回，包含空格和缩进。</p>
+<p>同样，在写入innerHTML属性时，转换为DOM的结果也会因浏览器不同而不同。</p>
+<p><code>&lt;script&gt;</code>元素与<code>&lt;style&gt;</code>元素和注释一样，都是“<strong>非受控元素</strong>”，也就是<strong>在页面上看不到它们</strong>。而文本节点和其他可见的元素都是“受控元素”。</p>
+<p>在所有现代浏览器中，通过innerHTML插入的<code>&lt;script&gt;</code>标签是不会执行的，而在IE8及之前的版本中，只要这样插入的<code>&lt;script&gt;</code>元素指定了defer属性，且<code>&lt;script&gt;</code>的<strong>前面一个节点是“受控元素”</strong>，那这个<code>&lt;script defer&gt;</code>就是可以执行的。</p>
+<h3 id="outerHTML属性"><a href="#outerHTML属性" class="headerlink" title="outerHTML属性"></a>outerHTML属性</h3><p>读取outerHTML属性时，会返回调用它的元素及所有后代元素的HTML字符串。</p>
+<p>outerHTML属性与innerHTML属性的区别就在于它是否包含了调用的DOM节点，其他都是一样的。</p>
+<h3 id="两个方法"><a href="#两个方法" class="headerlink" title="两个方法"></a>两个方法</h3><p>即<code>insertAdjacentHTML()</code>和<code>insertAdjacentText()</code>方法，用于插入标签。</p>
+<p>这两个方法最早源自IE，在DOM对象上调用它们都需要两个参数：要插入标签的位置和要插入的HTML或文本。</p>
+<p>第一个参数必须是下列值中的一个：</p>
+<ul>
+<li><code>&quot;beforebegin&quot;</code>：插入在当前元素前面，作为前一个兄弟节点。</li>
+<li><code>&quot;afterbegin&quot;</code>：插入在当前元素内部，作为新的子节点（父节点为空）或放在第一个子节点前面（父节点不为空）。</li>
+<li><code>&quot;beforeend&quot;</code>：插入在当前元素内部，作为新的子节点（父节点为空）或放在最后一个子节点后面（父节点不为空）。</li>
+<li><code>&quot;afterend&quot;</code>：插入在当前元素后面，作为下一个兄弟节点。</li>
+</ul>
+<p>注意这几个值是不区分大小写的。第二个参数会作为HTML字符串或者作为纯文本解析（与innerText和outerText相同）。如果是HTML，则会在解析出错时抛出错误。</p>
+<h3 id="性能与限制"><a href="#性能与限制" class="headerlink" title="性能与限制"></a>性能与限制</h3><p>这些插入标签的方法（尤其是innerHTML属性和outerHTML属性）<strong>不应当大量使用</strong>，因为它们会频繁解析和更替DOM，导致巨大的性能开销。</p>
+<p>同时要注意，这样更替了页面DOM之后，被替换掉的DOM包含的事件处理程序、引用关系等仍然存在，可能导致不必要的内存占用，被替换掉的DOM还可能无法被正常垃圾回收。</p>
+<p>因此<strong>应当手动解除这些关系之后再做替换</strong>。</p>
+<p>此外还需要注意不能把innerHTML属性和outerHTML属性直接暴露给用户来设置，因为它虽然无法执行<code>&lt;script&gt;</code>中的标签，但它却可以创建元素并执行onclick之类的事件来进行攻击，导致潜在的安全问题。</p>
+<p><strong>最佳实践</strong>是：对于没有绑定额外的事件处理程序和其他引用关系时，对于需要批量替换其内容的DOM对象，在限制使用频率的前提下，可以放心地使用innerHTML属性和outerHTML属性，同时不能直接提供给用户来使用。</p>
+<h2 id="滚动到视口"><a href="#滚动到视口" class="headerlink" title="滚动到视口"></a>滚动到视口</h2><p><code>scrollIntoView()</code>方法存在于所有HTML元素上，调用元素的这个方法可以滚动浏览器窗口或容器元素以使该元素进入视口。其参数如下：</p>
+<ul>
+<li>alignToTop：一个布尔值，可选，默认值为true。<ul>
+<li>true：默认值，窗口滚动后元素的顶部与视口顶部对齐。</li>
+<li>false：窗口滚动后元素的底部与视口底部对齐。</li>
+</ul>
+</li>
+<li>scrollIntoViewOptions：一个选项对象，可选，其有以下选项属性：<ul>
+<li>behavior：定义过渡动画，可取的值为<code>&quot;smooth&quot;</code>和<code>&quot;auto&quot;</code>，默认为<code>&quot;auto&quot;</code>。</li>
+<li>block：定义垂直方向的对齐，可取的值为<code>&quot;start&quot;</code>、<code>&quot;center&quot;</code>、<code>&quot;end&quot;</code>和<code>&quot;nearest&quot;</code>，默认为<code>&quot;start&quot;</code>。</li>
+<li>inline：定义水平方向的对齐，可取的值为<code>&quot;start&quot;</code>、<code>&quot;center&quot;</code>、<code>&quot;end&quot;</code>和<code>&quot;nearest&quot;</code>，默认为<code>&quot;nearest&quot;</code>。</li>
+</ul>
+</li>
+</ul>
+<p>注意滚动的同时<strong>并不会设置焦点到目标元素</strong>。</p>
+<h1 id="专有扩展"><a href="#专有扩展" class="headerlink" title="专有扩展"></a>专有扩展</h1><p>专有扩展是其他还未被纳入标准的DOM扩展，但这些特性已经被大多浏览器支持。</p>
+<h2 id="children属性"><a href="#children属性" class="headerlink" title="children属性"></a>children属性</h2><p>children属性是一个HTMLCollection，<strong>只包含元素的Element类型的子节点</strong>。如果元素的子节点类型全部是元素类型，那children和childNodes中包含的节点应该是一样的。</p>
+<h2 id="节点关系"><a href="#节点关系" class="headerlink" title="节点关系"></a>节点关系</h2><h3 id="contains方法"><a href="#contains方法" class="headerlink" title="contains方法"></a>contains方法</h3><p>DOM编程中经常需要确定一个元素是不是另一个元素的后代。</p>
+<p>IE首先引入了<code>contains()</code>方法，在要搜索的祖先元素上调用<code>contains()</code>方法，参数是待确定的目标节点。如果目标节点是被搜索节点的后代，该方法返回true，否则返回false。</p>
+<h3 id="compareDocumentPosition方法"><a href="#compareDocumentPosition方法" class="headerlink" title="compareDocumentPosition方法"></a>compareDocumentPosition方法</h3><p><code>compareDocumentPosition()</code>方法是DOM Level 3中规定的，它也可以确定节点间的关系。这个方法会返回表示两个节点关系的位掩码。位掩码的说明如下：</p>
+<p><img   class="lazyload" data-original="/images/illustration/2022-03-01-js013/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>IE9及之后的版本，以及所有现代浏览器都支持<code>contains()</code>和<code>compareDocumentPosition()</code>方法。</p>
+<h2 id="插入文本"><a href="#插入文本" class="headerlink" title="插入文本"></a>插入文本</h2><p>HTML5将IE发明的innerHTML和outerHTML纳入了标准，但还有两个属性没有入选即innerText和outerText。</p>
+<p>显然，这两个属性一看就比较鸡肋。</p>
+<h3 id="innerText属性"><a href="#innerText属性" class="headerlink" title="innerText属性"></a>innerText属性</h3><p>innerText属性对应元素中包含的所有文本内容。</p>
+<p>在用于读取值时，innerText会按照深度优先的顺序将子树中所有文本节点的值拼接起来。在用于写入值时，innerText会移除元素的所有后代并插入一个包含该值的文本节点。</p>
+<p>innerText目前已经得到所有浏览器支持。</p>
+<h3 id="outerText属性"><a href="#outerText属性" class="headerlink" title="outerText属性"></a>outerText属性</h3><p>outerText与innerText是类似的，只不过作用范围包含调用它的节点。</p>
+<p>要读取文本值时，outerText与innerText会返回同样的内容，在写入文本值时，outerText会把它自己一起替代掉。</p>
+<p>outerText是是鸡肋中的鸡肋，没有被标准化的前景，因此不推荐依赖这个属性实现重要的操作。</p>
+<p>除Firefox之外所有主流浏览器都支持outerText属性。</p>
+<h2 id="滚动到视口-1"><a href="#滚动到视口-1" class="headerlink" title="滚动到视口"></a>滚动到视口</h2><p>虽然HTML5把<code>scrollIntoView()</code>标准化了，浏览器中仍有其他专有方法。</p>
+<p>如<code>scrollIntoViewIfNeeded()</code>作为HTMLElement类型的扩展可以在所有元素上调用。</p>
+<p>这个方法会在元素不在视口中的情况下，将其滚动到视口中，使其可见；如果已经在视口中可见，则这个方法什么也不做。</p>
+<p>它有一个可选的参数alingCenter是个布尔值，设置为true则浏览器会尝试将其放在视口中央，默认是true。</p>
+<p>Safari、Chrome和Opera浏览器实现了这个方法。</p>
+<p>因为<code>scrollIntoView()</code>方法是唯一一个所有浏览器都支持的方法，所以建议只用<code>scrollIntoView()</code>方法。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/03/01/js013/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;03&#x2F;01&#x2F;js013&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;03&#x2F;01&#x2F;js013&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/02/13/js012/">JavaScript学习笔记（12）：DOM基础 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Selectors-API"><span class="toc-text">Selectors API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#querySelector"><span class="toc-text">querySelector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#querySelectorAll"><span class="toc-text">querySelectorAll</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#matches"><span class="toc-text">matches</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E9%81%8D%E5%8E%86"><span class="toc-text">元素遍历</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML5"><span class="toc-text">HTML5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E7%B1%BB%E6%89%A9%E5%B1%95"><span class="toc-text">CSS类扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getElementsByClassName%E6%96%B9%E6%B3%95"><span class="toc-text">getElementsByClassName方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#classList%E5%B1%9E%E6%80%A7"><span class="toc-text">classList属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%A6%E7%82%B9%E7%AE%A1%E7%90%86"><span class="toc-text">焦点管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#activeElement%E5%B1%9E%E6%80%A7"><span class="toc-text">activeElement属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hasFocus%E6%96%B9%E6%B3%95"><span class="toc-text">hasFocus方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTMLDocument%E6%89%A9%E5%B1%95"><span class="toc-text">HTMLDocument扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#readyState%E5%B1%9E%E6%80%A7"><span class="toc-text">readyState属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#compatMode%E5%B1%9E%E6%80%A7"><span class="toc-text">compatMode属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head%E5%B1%9E%E6%80%A7"><span class="toc-text">head属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E5%B1%9E%E6%80%A7"><span class="toc-text">字符集属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E5%B1%9E%E6%80%A7"><span class="toc-text">自定义数据属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%A0%87%E7%AD%BE"><span class="toc-text">插入标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#innerHTML%E5%B1%9E%E6%80%A7"><span class="toc-text">innerHTML属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outerHTML%E5%B1%9E%E6%80%A7"><span class="toc-text">outerHTML属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E6%96%B9%E6%B3%95"><span class="toc-text">两个方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%B8%8E%E9%99%90%E5%88%B6"><span class="toc-text">性能与限制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E5%88%B0%E8%A7%86%E5%8F%A3"><span class="toc-text">滚动到视口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%93%E6%9C%89%E6%89%A9%E5%B1%95"><span class="toc-text">专有扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#children%E5%B1%9E%E6%80%A7"><span class="toc-text">children属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E5%85%B3%E7%B3%BB"><span class="toc-text">节点关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#contains%E6%96%B9%E6%B3%95"><span class="toc-text">contains方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#compareDocumentPosition%E6%96%B9%E6%B3%95"><span class="toc-text">compareDocumentPosition方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%87%E6%9C%AC"><span class="toc-text">插入文本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#innerText%E5%B1%9E%E6%80%A7"><span class="toc-text">innerText属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outerText%E5%B1%9E%E6%80%A7"><span class="toc-text">outerText属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E5%88%B0%E8%A7%86%E5%8F%A3-1"><span class="toc-text">滚动到视口</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
