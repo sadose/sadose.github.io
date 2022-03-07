@@ -1,0 +1,656 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript学习笔记（14）：DOM2和DOM3 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="DOM API的组成DOM1（DOM Level 1）...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">JavaScript学习笔记（14）：DOM2和DOM3</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/notes/ " class="underline "> 课程笔记</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/js.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JavaScript学习笔记（14）：DOM2和DOM3</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 07, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>15024</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="DOM-API的组成"><a href="#DOM-API的组成" class="headerlink" title="DOM API的组成"></a>DOM API的组成</h1><p>DOM1（DOM Level 1）主要定义了HTML和XML文档的底层结构。</p>
+<p>DOM2（DOM Level 2）和DOM3（DOM Level 3）在这些结构之上加入更多交互能力，提供了更高级的XML特性。</p>
+<p>实际上，DOM2和DOM3是按照<strong>模块化</strong>的思路来制定标准的，每个模块之间有一定关联，但分别针对某个DOM子集。这些模块主要分为：</p>
+<ul>
+<li>DOM Core：在DOM1核心部分的基础上，为节点增加方法和属性。</li>
+<li>DOM Views：定义基于样式信息的不同视图。</li>
+<li>DOM Events：定义通过事件实现DOM文档交互。</li>
+<li>DOM Style：定义以编程方式访问和修改CSS样式的接口。</li>
+<li>DOM Traversal and Range：新增遍历DOM文档及选择文档内容的接口。</li>
+<li>DOM HTML：在DOM1 HTML部分的基础上，增加属性、方法和新接口。</li>
+<li>DOM Mutation Observers：定义基于DOM变化触发回调的接口。这个模块是DOM4级模块，用于取代Mutation Events。</li>
+</ul>
+<p>在“事件”章节会专门介绍DOM Events，在“<a href="../../../../2022/02/13/js012/#MutationObserver%E6%8E%A5%E5%8F%A3">DOM基础</a>”章节已经介绍过了DOM Mutation Observers。下文将介绍其余所有模块，即核心、视图、HTML、样式、遍历和范围。</p>
+<p>DOM3还有额外的XPath模块和Load and Save模块，将在“JavaScript API”章节介绍。</p>
+<h1 id="核心、视图和HTML"><a href="#核心、视图和HTML" class="headerlink" title="核心、视图和HTML"></a>核心、视图和HTML</h1><p>DOM API的基础组成就是核心、视图和HTML三部分，核心模块的目标是扩展DOM API，在满足XML所有需求的同时提供更好的错误处理和特性检测。</p>
+<p>DOM View和HTML模块也丰富了DOM接口，定义了新的属性和方法，但这两个模块很小，因此合并讨论。</p>
+<h2 id="XML命名空间"><a href="#XML命名空间" class="headerlink" title="XML命名空间"></a>XML命名空间</h2><p>当一个XML文档中使用了多种XML语言时，需要指明标签和属性的命名空间。如在HTML中使用SVG，此时需要使用xmlns属性为svg指明它的命名空间：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Example XHTML page<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;1.1&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;00100100&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100%;height:100%&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;fill:red&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>那么对于这样的文档，如果调用某个方法与节点交互，就会出现一些问题，如：</p>
+<ul>
+<li>创建了一个新元素，那这个元素属于哪个命名空间？</li>
+<li>查询特定标签名时，结果中应该包含哪个命名空间下的元素？</li>
+</ul>
+<p>因此从DOM2开始，引入了一些新的扩展。</p>
+<h3 id="Node扩展"><a href="#Node扩展" class="headerlink" title="Node扩展"></a>Node扩展</h3><p>对于命名空间的支持，Node增加了以下属性：</p>
+<ul>
+<li>localName：不包含命名空间前缀的节点名。</li>
+<li>namespaceURI：节点的命名空间URL，如果未指定则为null。</li>
+<li>prefix：命名空间前缀，如果未指定则为null。</li>
+</ul>
+<p>那么节点的nodeName等于prefix + <code>&quot;:&quot;</code> + localName。</p>
+<p>还有以下方法：</p>
+<ul>
+<li><code>isDefaultNamespace(namespaceURI)</code>：返回布尔值，表示namespaceURI是否为节点的默认命名空间。</li>
+<li><code>lookupNamespaceURI(prefix)</code>：返回给定prefix的命名空间URI。</li>
+<li><code>lookupPrefix(namespaceURI)</code>：返回给定namespaceURI的前缀。</li>
+</ul>
+<h3 id="Document扩展"><a href="#Document扩展" class="headerlink" title="Document扩展"></a>Document扩展</h3><p>DOM2在Document类型上新增了如下命名空间特定的方法：</p>
+<ul>
+<li><code>createElementNS(namespaceURI, tagName)</code>：以给定的标签名tagName创建指定命名空间namespaceURI的一个新元素。</li>
+<li><code>createAttributeNS(namespaceURI, attributeName)</code>：以给定的属性名attributeName创建指定命名空间namespaceURI的一个新属性。</li>
+<li><code>getElementsByTagNameNS(namespaceURI, tagName)</code>：返回指定命名空间namespaceURI中所有标签名为tagName的元素的NodeList。</li>
+</ul>
+<p>使用这些方法都需要传入相应的命名空间URI，如：<code>http://www.w3.org/2000/svg</code>。</p>
+<h3 id="Element扩展"><a href="#Element扩展" class="headerlink" title="Element扩展"></a>Element扩展</h3><p>Element类型上有了以下关于命名空间的扩展：</p>
+<ul>
+<li><code>getAttributeNS(namespaceURI, localName)</code>：取得指定命名空间namespaceURI中名为localName的属性。</li>
+<li><code>getAttributeNodeNS(namespaceURI, localName)</code>：取得指定命名空间namespaceURI中名为localName的属性节点。</li>
+<li><code>getElementsByTagNameNS(namespaceURI, tagName)</code>：取得指定命名空间namespaceURI中标签名为tagName的元素的NodeList。</li>
+<li><code>hasAttributeNS(namespaceURI, localName)</code>：返回布尔值，表示元素中是否有命名空间namespaceURI下名为localName的属性（注意，DOM2 Core也添加不带命名空间的<code>hasAttribute()</code>方法）。</li>
+<li><code>removeAttributeNS(namespaceURI, localName)</code>：删除指定命名空间namespaceURI中名为localName的属性。</li>
+<li><code>setAttributeNS(namespaceURI, qualifiedName, value)</code>：设置指定命名空间namespaceURI中名为qualifiedName的属性为value。</li>
+<li><code>setAttributeNodeNS(attNode)</code>：为元素设置（添加）包含命名空间信息的属性节点attNode。</li>
+</ul>
+<p>这些方法与DOM1中对应的方法行为相同，除<code>setAttributeNodeNS()</code>之外都只是多了一个命名空间参数。</p>
+<h3 id="NamedNodeMap扩展"><a href="#NamedNodeMap扩展" class="headerlink" title="NamedNodeMap扩展"></a>NamedNodeMap扩展</h3><p>NamedNodeMap也增加了以下处理命名空间的方法：</p>
+<ul>
+<li><code>getNamedItemNS(namespaceURI, localName)</code>：取得指定命名空间namespaceURI中名为localName的项。</li>
+<li><code>removeNamedItemNS(namespaceURI, localName)</code>：删除指定命名空间namespaceURI中名为localName的项。</li>
+<li><code>setNamedItemNS(node)</code>：为元素设置（添加）包含命名空间信息的节点。</li>
+</ul>
+<p>因为NamedNodeMap主要表示属性，而我们往往通过元素来访问属性，所以这些方法非常不常用。</p>
+<h2 id="其他扩展"><a href="#其他扩展" class="headerlink" title="其他扩展"></a>其他扩展</h2><p>除了增加了对命名空间的支持之外，DOM2和DOM3还增加了其他的一些特性。</p>
+<h3 id="DocumentType"><a href="#DocumentType" class="headerlink" title="DocumentType"></a>DocumentType</h3><p>DocumentType新增了3个属性：publicId、systemId和internalSubset。</p>
+<p>publicId、systemId属性表示文档类型声明中有效但无法使用DOM1 API访问的数据。</p>
+<p>比如下面这个HTML文档类型声明：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">&lt;! DOCTYPE HTML PUBLIC &quot;-// W3C// DTD HTML 4.01// EN&quot;<br>&quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;<br></code></pre></td></tr></table></figure>
+
+<p>其publicId是<code>&quot;-// W3C// DTD HTML 4.01// EN&quot;</code>，而systemId是<code>&quot;http://www.w3.org/TR/html4/strict.dtd&quot;</code>。</p>
+<p>internalSubset用于访问文档类型声明中可能包含的额外定义，如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">&lt;! DOCTYPE html PUBLIC &quot;-// W3C// DTD XHTML 1.0 Strict// EN&quot;<br>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;<br>[&lt;! ELEMENT name (#PCDATA)&gt;] &gt;<br></code></pre></td></tr></table></figure>
+
+<p>对于以上声明，<code>document.doctype.internalSubset</code>会返回<code>&quot;&lt;! ELEMENT name (#PCDATA)&gt;&quot;</code>。HTML文档中几乎不会涉及文档类型的内部子集，XML文档中稍微常用一些。</p>
+<h3 id="Document"><a href="#Document" class="headerlink" title="Document"></a>Document</h3><p>Document类型的更新中唯一跟命名空间无关的方法是<code>importNode()</code>。</p>
+<p>这个方法的目的是从其他文档获取一个节点并导入到新文档，以便将其插入新文档。</p>
+<p>之所以需要这个方法是因为每个节点都有一个ownerDocument属性，表示所属文档。如果调用<code>appendChild()</code>方法时传入节点的ownerDocument不是指向当前文档，则会发生错误。而调用<code>importNode()</code>导入其他文档的节点会返回一个ownerDocument属性正确的新节点。</p>
+<p><code>importNode()</code>方法跟<code>cloneNode()</code>方法类似，同样接收两个参数：要复制的节点和表示是否同时复制子树的布尔值，返回结果是适合在当前文档中使用的新节点。</p>
+<p>这个方法同样是更常用在XML中。</p>
+<p>DOM2 View给Document类型增加了新属性defaultView，是一个指向拥有当前文档的窗口（或窗格<code>&lt;frame&gt;</code>）的指针。</p>
+<p>DOM2 Core还针对document.implementation对象增加了两个新方法：</p>
+<ul>
+<li><code>createDocumentType()</code>：用于创建DocumentType类型的新节点，接收3个参数分别为文档类型名称、publicId和systemId。</li>
+<li><code>createDocument()</code>：创建新文档，接收3个参数分别为文档元素的namespaceURI、文档元素的标签名和文档类型。</li>
+</ul>
+<p>DOM2 HTML模块也为<code>document.implamentation</code>对象添加了<code>createHTMLDocument()</code>方法。使用这个方法可以创建一个完整的HTML文档，包含<code>&lt;html&gt;</code>、<code>&lt;head&gt;</code>、<code>&lt;title&gt;</code>和<code>&lt;body&gt;</code>元素。这个方法只接收一个参数，即新创建文档的标题。</p>
+<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>DOM3新增了两个用于比较节点的方法：<code>isSameNode()</code>和<code>isEqualNode()</code>。</p>
+<p>这两个方法都接收一个节点参数，如果这个节点与参考节点相同或相等，则返回true。</p>
+<p>节点相同，意味着引用同一个对象；节点相等，意味着节点类型相同，拥有相等的属性（nodeName、nodeValue等），而且attributes和childNodes也相等（即同样的位置包含相等的值）。</p>
+<p>DOM3也增加了给DOM节点附加额外数据的方法：<code>setUserData()</code>方法，接收3个参数：键、值、处理函数，用于给节点追加数据：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">document</span>.body.setUserData(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;Nicholas&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>然后，可以通过相同的键再取得这个信息，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> value = <span class="hljs-built_in">document</span>.body.getUserData(<span class="hljs-string">&quot;name&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><code>setUserData()</code>的处理函数会在包含数据的节点被复制、删除、重命名或导入其他文档的时候执行，可以在这时候决定如何处理用户数据。</p>
+<p>处理函数接收5个参数：表示操作类型的数值（1代表复制，2代表导入，3代表删除，4代表重命名）、数据的键、数据的值、源节点和目标节点。删除节点时，源节点为null；除复制外，目标节点都为null。</p>
+<h3 id="内嵌窗格"><a href="#内嵌窗格" class="headerlink" title="内嵌窗格"></a>内嵌窗格</h3><p>DOM2 HTML给HTMLIFrameElement（即<code>&lt;iframe&gt;</code>，内嵌窗格）类型新增了属性contentDocument。这个属性包含代表子内嵌窗格中内容的document对象的指针。</p>
+<p>contentDocument属性是Document的实例，拥有所有文档属性和方法，因此可以像使用其他HTML文档一样使用它。</p>
+<p>还有一个新增属性contentWindow，返回相应窗格的window对象。</p>
+<h1 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h1><p>HTML中的样式有3种定义方式：</p>
+<ul>
+<li>外部样式表（通过<code>&lt;link&gt;</code>元素）;</li>
+<li>文档样式表（使用<code>&lt;style&gt;</code>元素）;</li>
+<li>元素特定样式（使用style属性）。</li>
+</ul>
+<p>DOM2 Style为这3种应用样式的机制都提供了API。其中使用JS插入<code>&lt;style&gt;</code>元素的相关内容已经在“<a href="../../../../2022/02/13/js012/#%E5%8A%A8%E6%80%81%E6%A0%B7%E5%BC%8F">DOM基础</a>”章节陈述过。</p>
+<h2 id="操作元素内联样式"><a href="#操作元素内联样式" class="headerlink" title="操作元素内联样式"></a>操作元素内联样式</h2><p>任何支持style属性的HTML元素在JavaScript中都会有一个对应的style属性，通过它可以改变元素的内联样式。</p>
+<p>这个style属性是CSSStyleDeclaration类型的实例，其中包含通过HTML style属性为元素设置的所有样式信息，但<strong>不包含通过层叠机制从文档样式和外部样式中继承来的样式</strong>。</p>
+<p>CSSStyleDeclaration中的样式使用<strong>小驼峰表示法</strong>，而非CSS中的连字符表示法，因为JS标识符中无法使用连字符。</p>
+<p>此外，float是JavaScript的保留字，所以不能用作属性名，DOM2 Style规定它在style对象中对应的属性应该是<strong>cssFloat</strong>。</p>
+<p>有以下修改元素内联样式的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 获取元素 DOM</span><br><span class="hljs-keyword">let</span> div = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;myDiv&quot;</span>);<br><span class="hljs-comment">// 设置背景颜色</span><br>div.style.backgroundColor = <span class="hljs-string">&quot;red&quot;</span>;<br><span class="hljs-comment">// 修改大小</span><br>div.style.width = <span class="hljs-string">&quot;100px&quot;</span>;<br>div.style.height = <span class="hljs-string">&quot;200px&quot;</span>;<br><span class="hljs-comment">// 设置边框</span><br>div.style.border = <span class="hljs-string">&quot;1px solid black&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>修改样式后，元素的外观会自动更新。</p>
+<h3 id="style对象"><a href="#style对象" class="headerlink" title="style对象"></a>style对象</h3><p>如上的<code>div.style</code>就是一个style对象，其上除了包含元素的所有内联样式属性之外，还有如下属性：</p>
+<ul>
+<li>cssText，包含style属性中的CSS代码。</li>
+<li>length，应用给元素的CSS属性数量。</li>
+<li>parentRule，表示CSS信息的CSSRule对象（后文介绍CSSRule类型）。</li>
+</ul>
+<p>此外还有以下方法：</p>
+<ul>
+<li><code>getPropertyCSSValue(propertyName)</code>：（已废弃）返回包含CSS属性propertyName值的CSSValue对象。</li>
+<li><code>getPropertyPriority(propertyName)</code>：如果CSS属性propertyName使用了<code>!important</code>则返回<code>&quot;important&quot;</code>，否则返回空字符串。</li>
+<li><code>getPropertyValue(propertyName)</code>：返回属性propertyName的字符串值。</li>
+<li><code>item(index)</code>：返回索引为index的CSS属性名。</li>
+<li><code>removeProperty(propertyName)</code>：从样式中删除CSS属性propertyName，删除意味着该CSS属性被重置为默认值。</li>
+<li><code>setProperty(propertyName, value, priority)</code>：设置CSS属性propertyName的值为value, priority是<code>&quot;important&quot;</code>或空字符串。</li>
+</ul>
+<h3 id="计算样式"><a href="#计算样式" class="headerlink" title="计算样式"></a>计算样式</h3><p>style对象中包含元素的内联样式，但不包含外部样式表或style标签的样式，这样我们很难知道一个元素到底应用了怎样的样式。</p>
+<p>DOM2 Style在<code>document.defaultView</code>上增加了<code>getComputedStyle()</code>方法，这个方法接收两个参数：要取得计算样式的元素和伪元素字符串（如<code>&quot;:after&quot;</code>）。它同样返回一个CSSStyleDeclaration对象，但这个对象描述的是最终生效在这个元素上的样式。</p>
+<p>但要注意这个返回结果中不包含通过样式表规则应用的width和height属性。</p>
+<p>在所有浏览器中计算样式都是只读的，不能通过修改<code>getComputedStyle()</code>方法返回的对象来修改元素的表现样式。</p>
+<h2 id="操作外联样式表"><a href="#操作外联样式表" class="headerlink" title="操作外联样式表"></a>操作外联样式表</h2><p>除了行内样式之外，就是style标签规定的样式以及link标签链接的外部样式表，这两种我都将其称为外联样式表。</p>
+<h3 id="CSSStyleSheet类型"><a href="#CSSStyleSheet类型" class="headerlink" title="CSSStyleSheet类型"></a>CSSStyleSheet类型</h3><p>CSSStyleSheet类型描述了样式表信息，它继承自StyleSheet类型。</p>
+<p>StyleSheet类型用作CSS样式表的基类，有以下属性：</p>
+<ul>
+<li>disabled：布尔值，表示样式表是否被禁用了（这个属性是可读写的，因此将它设置为true会禁用样式表）。</li>
+<li>href：如果是使用<code>&lt;link&gt;</code>包含的样式表，则返回样式表的URL，否则返回null。</li>
+<li>media：样式表支持的媒体类型集合，这个集合有一个length属性和一个<code>item()</code>方法，跟所有DOM集合一样。同样跟所有DOM集合一样，也可以使用中括号访问集合中特定的项。如果样式表可用于所有媒体，则返回空列表。</li>
+<li>ownerNode：指向拥有当前样式表的节点，在HTML中要么是<code>&lt;link&gt;</code>元素要么是<code>&lt;style&gt;</code>元素（在XML中可以是处理指令）。如果当前样式表是通过<code>@import</code>被包含在另一个样式表中，则这个属性值为null。</li>
+<li>parentStyleSheet：如果当前样式表是通过<code>@import</code>被包含在另一个样式表中，则这个属性指向导入它的样式表。</li>
+<li>title：ownerNode的title属性。</li>
+<li>type：字符串，表示样式表的类型。对CSS样式表来说，就是<code>&quot;text/css&quot;</code>。</li>
+</ul>
+<p>以上只有disabled是可写的，其他都是只读的。</p>
+<p>除了上面继承的属性，CSSStyleSheet类型还支持以下属性和方法。</p>
+<ul>
+<li><code>cssRules</code>：当前样式表包含的样式规则的集合。</li>
+<li><code>ownerRule</code>：如果样式表是使用<code>@import</code>导入的，则指向导入规则，否则为null。</li>
+<li><code>deleteRule(index)</code>：在指定位置删除cssRules中的规则。</li>
+<li><code>insertRule(rule, index)</code>：在指定位置向cssRules中插入规则。</li>
+</ul>
+<h3 id="获取文档的外联样式表"><a href="#获取文档的外联样式表" class="headerlink" title="获取文档的外联样式表"></a>获取文档的外联样式表</h3><p><code>document.styleSheets</code>表示文档中可用的样式表集合，包括link和style两种样式表，每个样式表都是一个CSSStyleSheet类型的实例。这个集合的length属性保存着文档中样式表的数量，而每个样式表都可以使用中括号或<code>item()</code>方法获取。</p>
+<p>如以下例子输出每个样式表的href属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> sheet = <span class="hljs-literal">null</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = <span class="hljs-built_in">document</span>.styleSheets.length; i &lt; len; i++) &#123;<br>    sheet = <span class="hljs-built_in">document</span>.styleSheets[i];<br>    <span class="hljs-built_in">console</span>.log(sheet.href);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意只有link元素样式表有该属性，style元素是没有的。</p>
+<h3 id="CSS规则"><a href="#CSS规则" class="headerlink" title="CSS规则"></a>CSS规则</h3><p>描述样式表CSSStyleSheet对象的cssRules属性中包含了该样式表中所有CSS规则的集合，一条CSS规则使用CSSRule类型表示，但是这个类派生了很多类，其中最常用的就是表示样式信息的CSSStyleRule类，它就是一个CSS选择器和大括号括起来的响应CSS属性的集合。</p>
+<p>CSS规则还有<code>@import</code>、<code>@font-face</code>、<code>@page</code>和<code>@charset</code>等，不过这些规则很少需要使用脚本来操作，因此主要介绍CSSStyleRule类。</p>
+<p>CSSStyleRule对象有以下属性：</p>
+<ul>
+<li>cssText：返回整条规则的文本。这里的文本可能与样式表中实际的文本不一样，因为浏览器内部处理样式表的方式也不一样。Safari始终会把所有字母都转换为小写。</li>
+<li>parentRule：如果这条规则被其他规则（如<code>@media</code>）包含，则指向包含规则，否则就是null。</li>
+<li>parentStyleSheet：包含当前规则的样式表。</li>
+<li>selectorText：返回规则的选择符文本。这里的文本可能与样式表中实际的文本不一样，因为浏览器内部处理样式表的方式也不一样。这个属性在Firefox、Safari、Chrome和IE中是只读的，在Opera中是可以修改的。</li>
+<li>style：返回CSSStyleDeclaration对象，可以设置和获取当前规则中的样式。</li>
+<li>type：数值常量，表示规则类型。对于样式规则，它始终为1。</li>
+</ul>
+<p>这些属性中，使用最多的是cssText、selectorText和style。</p>
+<p>这里的cssText属性与之前CSSStyleDeclaration类的cssText属性类似，不过并不完全一样。这里的cssText属性是包含选择符文本和环绕样式声明的大括号的，而CSSStyleDeclaration类的cssText属性不包括。</p>
+<p>可以像这样对样式表内容进行修改：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> sheet = <span class="hljs-built_in">document</span>.styleSheets[<span class="hljs-number">0</span>];<br><span class="hljs-keyword">let</span> rules = sheet.cssRules || sheet.rules; <span class="hljs-comment">// 取得规则集合</span><br><span class="hljs-keyword">let</span> rule = rules[<span class="hljs-number">0</span>]; <span class="hljs-comment">// 取得第一条规则</span><br>rule.style.backgroundColor = <span class="hljs-string">&quot;red&quot;</span>; <span class="hljs-comment">// 修改它</span><br></code></pre></td></tr></table></figure>
+
+<p>但注意这样修改样式表会导致所有被选择器选中的元素样式都被改变。</p>
+<p>可以使用样式表的<code>insertRule()</code>方法向样式表中添加新规则，这个方法接收两个参数：规则的文本（包括一个选择器和大括号包围的样式集合）和表示插入样式表位置的索引值。</p>
+<p>而<code>deleteRule()</code>方法用来从样式表中删除规则，它只接收一个参数：要删除规则的索引。</p>
+<h2 id="元素尺寸"><a href="#元素尺寸" class="headerlink" title="元素尺寸"></a>元素尺寸</h2><p>DOM规范中并没有对元素尺寸的支持。但最早从IE开始率先为DOM对象增加了一些属性，来提供元素的尺寸信息，现在这些尺寸已经得到了所有主流浏览器的支持。</p>
+<h3 id="偏移尺寸"><a href="#偏移尺寸" class="headerlink" title="偏移尺寸"></a>偏移尺寸</h3><p>偏移尺寸即元素在屏幕上占用的所有视觉空间，包括以下四个：</p>
+<ul>
+<li>offsetHeight：元素在垂直方向上占用的像素尺寸，包括它的高度、水平滚动条高度（如果可见）和上、下边框的高度。</li>
+<li>offsetLeft：元素左边框外侧距离包含元素左边框内侧的像素数。</li>
+<li>offsetTop：元素上边框外侧距离包含元素上边框内侧的像素数。</li>
+<li>offsetWidth：元素在水平方向上占用的像素尺寸，包括它的宽度、垂直滚动条宽度（如果可见）和左、右边框的宽度。</li>
+</ul>
+<p>offsetLeft和offsetTop是相对于包含元素的，包含元素保存在offsetParent属性中。</p>
+<p>offsetParent不一定是parentNode，如<code>&lt;td&gt;</code>元素的offsetParent是作为其祖先的<code>&lt;table&gt;</code>元素，因为<code>&lt;table&gt;</code>是节点层级中第一个提供尺寸的元素。</p>
+<p>这些属性都是只读的。</p>
+<p>要确定一个元素在页面中的偏移量，可以把它的offsetLeft和offsetTop属性分别与offsetParent的相同属性相加，一直加到根元素。如以下例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getElementLeft</span>(<span class="hljs-params">element</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> actualLeft = element.offsetLeft;<br>    <span class="hljs-keyword">let</span> current = element.offsetParent;<br>    <span class="hljs-keyword">while</span> (current !== <span class="hljs-literal">null</span>) &#123;<br>        actualLeft += current.offsetLeft;<br>        current = current.offsetParent;<br>    &#125;<br>    <span class="hljs-keyword">return</span> actualLeft;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getElementTop</span>(<span class="hljs-params">element</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> actualTop = element.offsetTop;<br>    <span class="hljs-keyword">let</span> current = element.offsetParent;<br>    <span class="hljs-keyword">while</span> (current !== <span class="hljs-literal">null</span>) &#123;<br>        actualTop += current.offsetTop;<br>        current = current.offsetParent;<br>    &#125;<br>    <span class="hljs-keyword">return</span> actualTop;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="客户端尺寸"><a href="#客户端尺寸" class="headerlink" title="客户端尺寸"></a>客户端尺寸</h3><p>客户端尺寸即元素的<code>padding-box</code>所占的空间。有clientWidth和clientHeight两个。</p>
+<p>客户端尺寸实际上就是元素内部的空间，因此不包含滚动条占用的空间。</p>
+<p>和偏移尺寸一样，客户端尺寸也是只读的。</p>
+<h3 id="滚动尺寸"><a href="#滚动尺寸" class="headerlink" title="滚动尺寸"></a>滚动尺寸</h3><p>滚动尺寸提供了元素内容滚动距离的信息。滚动尺寸相关的属性有如下4个：</p>
+<ul>
+<li>scrollHeight：元素内容的总高度。</li>
+<li>scrollLeft：内容区左侧隐藏的像素数，设置这个属性可以改变元素的滚动位置。</li>
+<li>scrollTop：内容区顶部隐藏的像素数，设置这个属性可以改变元素的滚动位置。</li>
+<li>scrollWidth：元素内容的总宽度。</li>
+</ul>
+<p>有些元素，比如<code>&lt;html&gt;</code>无须任何代码就可以自动滚动，而其他元素则需要使用CSS的overflow属性令其滚动。</p>
+<p>scrollLeft和scrollTop两个属性是可以读写的，其他两个是只读的。设置这两个属性可以控制滚动条滚动的位置。</p>
+<h3 id="确定元素的位置与尺寸"><a href="#确定元素的位置与尺寸" class="headerlink" title="确定元素的位置与尺寸"></a>确定元素的位置与尺寸</h3><p>浏览器在每个元素上都暴露了<code>getBoundingClientRect()</code>方法，可以通过这个方法来确定元素的位置与尺寸。</p>
+<p>它返回一个DOMRect对象，包含6个属性：left、top、right、bottom、height和width。这些属性确定了元素在页面中相对于视口的位置。</p>
+<p>注意这里的位置信息是相对于视口的。</p>
+<h1 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h1><p>DOM2 Traversal and Range模块定义了两个类型NodeIterator和TreeWalker用于顺序遍历DOM结构。</p>
+<p>它们都是对DOM结构的深度优先遍历。</p>
+<p>由于使用不多，本节只简单介绍其API。</p>
+<h2 id="NodeIterator"><a href="#NodeIterator" class="headerlink" title="NodeIterator"></a>NodeIterator</h2><p>可以通过<code>document.createNodeIterator()</code>方法创建NodeIterator类型的实例，这个方法接收以下4个参数：</p>
+<ul>
+<li>root：作为遍历根节点的节点。</li>
+<li>whatToShow：数值代码，表示应该访问哪些节点。</li>
+<li>filter：NodeFilter对象或函数，表示是否接收或跳过特定节点。</li>
+<li>entityReferenceExpansion：布尔值，表示是否扩展实体引用。这个参数在HTML文档中没有效果，因为实体引用永远不扩展。</li>
+</ul>
+<p>NodeIterator的两个主要方法是<code>nextNode()</code>和<code>previousNode()</code>。</p>
+<p><code>nextNode()</code>方法在DOM子树中以深度优先方式进前一步，而<code>previousNode()</code>则是在遍历中后退一步。</p>
+<p>创建NodeIterator对象的时候，会有一个内部指针指向根节点，第一次调用<code>nextNode()</code>返回的是根节点。当遍历到达DOM树最后一个节点时，<code>nextNode()</code>返回null。反之亦然。</p>
+<h2 id="TreeWalker"><a href="#TreeWalker" class="headerlink" title="TreeWalker"></a>TreeWalker</h2><p>TreeWalker对象要调用<code>document.createTreeWalker()</code>方法来创建，这个方法接收与<code>document.createNodeIterator()</code>同样的参数。</p>
+<p>TreeWalker是NodeIterator的高级版，除了包含同样的<code>nextNode()</code>、<code>previousNode()</code>方法，TreeWalker还添加了如下在DOM结构中向不同方向遍历的方法：</p>
+<ul>
+<li><code>parentNode()</code>：遍历到当前节点的父节点。</li>
+<li><code>firstChild()</code>：遍历到当前节点的第一个子节点。</li>
+<li><code>lastChild()</code>：遍历到当前节点的最后一个子节点。</li>
+<li><code>nextSibling()</code>：遍历到当前节点的下一个同胞节点。</li>
+<li><code>previousSibling()</code>：遍历到当前节点的上一个同胞节点。</li>
+</ul>
+<h1 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h1><p>为了支持对页面更细致的控制，DOM2 Traversal and Range模块定义了范围接口。由于使用不多，本节只简单介绍其API。</p>
+<h2 id="DOM范围"><a href="#DOM范围" class="headerlink" title="DOM范围"></a>DOM范围</h2><p>DOM2在Document类型上定义了一个<code>createRange()</code>方法，暴露在document对象上。使用这个方法可以创建一个DOM范围对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> range = <span class="hljs-built_in">document</span>.createRange();<br></code></pre></td></tr></table></figure>
+
+<p>创建的范围对象是与创建它的文档关联的，不能在其他文档中使用。</p>
+<p>可以使用这个范围在后台选择文档特定的部分，创建范围并指定它的位置之后，可以对范围的内容执行一些操作，从而实现对底层DOM树更精细的控制。</p>
+<p>每个范围都是Range类型的实例，有以下属性：</p>
+<ul>
+<li>startContainer：范围起点所在的节点（选区中第一个子节点的父节点）。</li>
+<li>startOffset：范围起点在startContainer中的偏移量。如果startContainer是文本节点、注释节点或CData区块节点，则startOffset指范围起点之前跳过的字符数；否则，表示范围中第一个节点的索引。</li>
+<li>endContainer：范围终点所在的节点（选区中最后一个子节点的父节点）。</li>
+<li>endOffset：范围起点在startContainer中的偏移量（与startOffset中偏移量的含义相同）。</li>
+<li>commonAncestorContainer：文档中以startContainer和endContainer为后代的最深的节点。</li>
+</ul>
+<p>这些属性会在范围被放到文档中特定位置时获得相应的值。</p>
+<h2 id="简单选择"><a href="#简单选择" class="headerlink" title="简单选择"></a>简单选择</h2><p>使用<code>selectNode()</code>或<code>selectNodeContents()</code>方法进行简单选择。</p>
+<p>这两个方法都接收一个节点作为参数，<code>selectNode()</code>方法选择整个节点，包括其后代节点，而<code>selectNodeContents()</code>方法只选择节点的后代。</p>
+<p>选定节点或节点后代之后，还可以在范围上调用相应的方法，实现对范围中选区的更精细控制：</p>
+<ul>
+<li><code>setStartBefore(refNode)</code>：把范围的起点设置到refNode之前，从而让refNode成为选区的第一个子节点。startContainer属性被设置为refNode.parentNode，而startOffset属性被设置为refNode在其父节点childNodes集合中的索引。</li>
+<li><code>setStartAfter(refNode)</code>：把范围的起点设置到refNode之后，从而将refNode排除在选区之外，让其下一个同胞节点成为选区的第一个子节点。startContainer属性被设置为refNode.parentNode, startOffset属性被设置为refNode在其父节点childNodes集合中的索引加1。</li>
+<li><code>setEndBefore(refNode)</code>：把范围的终点设置到refNode之前，从而将refNode排除在选区之外、让其上一个同胞节点成为选区的最后一个子节点。endContainer属性被设置为refNode. parentNode, endOffset属性被设置为refNode在其父节点childNodes集合中的索引。</li>
+<li><code>setEndAfter(refNode)</code>：把范围的终点设置到refNode之后，从而让refNode成为选区的最后一个子节点。endContainer属性被设置为refNode.parentNode, endOffset属性被设置为refNode在其父节点childNodes集合中的索引加1。</li>
+</ul>
+<p>调用这些方法时，所有属性都会自动重新赋值。不过，为了实现复杂的选区，也可以直接修改这些属性的值。</p>
+<h2 id="复杂选择"><a href="#复杂选择" class="headerlink" title="复杂选择"></a>复杂选择</h2><p>复杂选择需要使用<code>setStart()</code>和<code>setEnd()</code>两个方法。</p>
+<p>这两个方法都接收两个参数：参照节点和偏移量。</p>
+<p>对<code>setStart()</code>来说，参照节点会成为startContainer，而偏移量会赋值给startOffset；对<code>setEnd()</code>而言，参照节点会成为endContainer，而偏移量会赋值给endOffset。</p>
+<h2 id="操作范围"><a href="#操作范围" class="headerlink" title="操作范围"></a>操作范围</h2><p>创建范围之后，浏览器会在内部创建一个文档片段节点，用于包含范围选区中的节点。</p>
+<p>为操作范围的内容，选区中的内容必须格式完好。如果范围选择的不是完好的DOM结果，在操作范围时会自动确定缺失的开始和结束标签，从而可以重构出有效的DOM结构，以便后续操作，操作后的DOM结构也会自动补全缺失。</p>
+<p>有以下方法用来操作范围：</p>
+<ul>
+<li><code>deleteContents()</code>：从文档中删除范围包含的节点。</li>
+<li><code>extractContents()</code>：从文档中移除范围选区，但它会返回范围对应的文档片段，这样可以把范围选中的内容插入文档中其他地方。</li>
+<li><code>cloneContents()</code>：创建范围的一个副本，然后可以把这个副本插入到文档其他地方。</li>
+</ul>
+<h2 id="范围插入"><a href="#范围插入" class="headerlink" title="范围插入"></a>范围插入</h2><p>向范围中插入内容有以下方法：</p>
+<ul>
+<li><code>insertNode()</code>：在范围选区的开始位置插入一个节点。</li>
+<li><code>surroundContents()</code>：插入包含范围的内容，接收一个参数，即包含范围内容的节点。</li>
+</ul>
+<h2 id="范围折叠"><a href="#范围折叠" class="headerlink" title="范围折叠"></a>范围折叠</h2><p>如果范围并<strong>没有选择文档的任何部分</strong>，则称为折叠。</p>
+<p>范围的选择有点类似文本框：如果文本框中有文本，那么可以用鼠标选中一些文本，这就对应着范围的选择；如果再单击鼠标，则选区会被移除，光标会落在某两个字符中间，这就对应着范围的折叠。</p>
+<p>在折叠范围时，<strong>有一个折叠位置</strong>，折叠位置会被设置为范围与文档交界的地方，可能是范围选区的开始处或结尾处。</p>
+<p>折叠范围可以使用<code>collapse()</code>方法，这个方法接收一个参数：布尔值，表示折叠到范围哪一端，true表示折叠到起点，false表示折叠到终点。</p>
+<p>要确定范围是否已经被折叠，可以检测范围的collapsed属性。</p>
+<p>测试范围是否被折叠，能够帮助确定范围中的两个节点是否相邻。如两个节点1和2，创建节点1之后到节点2之前的范围，如果这个范围是折叠的，那么两个节点就是相邻的，反之则表明其中间有东西不相邻。</p>
+<h2 id="范围比较"><a href="#范围比较" class="headerlink" title="范围比较"></a>范围比较</h2><p>如果有多个范围，则可以使用<code>compareBoundaryPoints()</code>方法来比较范围的边界。</p>
+<p>它接收的第一个参数来确定比较哪个边界，有以下可选的值：</p>
+<ul>
+<li><code>Range.START_TO_START</code>：（0），比较两个范围的起点；</li>
+<li><code>Range.START_TO_END</code>：（1），比较第一个范围的起点和第二个范围的终点；</li>
+<li><code>Range.END_TO_END</code>：（2），比较两个范围的终点；</li>
+<li><code>Range.END_TO_START</code>：（3），比较第一个范围的终点和第二个范围的起点。</li>
+</ul>
+<p>调用该方法的范围作为参照范围，第二个参数传入的是要和参照范围比较的范围。</p>
+<p>该方法在参照范围的边界点位于比较范围的边界点之前时返回-1，在两个范围的边界点相等时返回0，在参照范围的边界点位于比较范围的边界点之后时返回1。</p>
+<h2 id="清理"><a href="#清理" class="headerlink" title="清理"></a>清理</h2><p>在使用完范围之后，最好调用<code>detach()</code>方法把范围从创建它的文档中剥离。调用<code>detach()</code>之后，就可以放心解除对范围的引用（置为null），以便垃圾回收程序释放它所占用的内存。</p>
+<p>剥离之后的范围就<strong>不能再次使用</strong>了。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/03/07/js014/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;03&#x2F;07&#x2F;js014&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;03&#x2F;07&#x2F;js014&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/03/01/js013/">JavaScript学习笔记（13）：DOM扩展 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM-API%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">DOM API的组成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E3%80%81%E8%A7%86%E5%9B%BE%E5%92%8CHTML"><span class="toc-text">核心、视图和HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XML%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="toc-text">XML命名空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Node%E6%89%A9%E5%B1%95"><span class="toc-text">Node扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Document%E6%89%A9%E5%B1%95"><span class="toc-text">Document扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Element%E6%89%A9%E5%B1%95"><span class="toc-text">Element扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NamedNodeMap%E6%89%A9%E5%B1%95"><span class="toc-text">NamedNodeMap扩展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%89%A9%E5%B1%95"><span class="toc-text">其他扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DocumentType"><span class="toc-text">DocumentType</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Document"><span class="toc-text">Document</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node"><span class="toc-text">Node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%B5%8C%E7%AA%97%E6%A0%BC"><span class="toc-text">内嵌窗格</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F"><span class="toc-text">样式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%85%83%E7%B4%A0%E5%86%85%E8%81%94%E6%A0%B7%E5%BC%8F"><span class="toc-text">操作元素内联样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#style%E5%AF%B9%E8%B1%A1"><span class="toc-text">style对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%A0%B7%E5%BC%8F"><span class="toc-text">计算样式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%A4%96%E8%81%94%E6%A0%B7%E5%BC%8F%E8%A1%A8"><span class="toc-text">操作外联样式表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSSStyleSheet%E7%B1%BB%E5%9E%8B"><span class="toc-text">CSSStyleSheet类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%96%87%E6%A1%A3%E7%9A%84%E5%A4%96%E8%81%94%E6%A0%B7%E5%BC%8F%E8%A1%A8"><span class="toc-text">获取文档的外联样式表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS%E8%A7%84%E5%88%99"><span class="toc-text">CSS规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E5%B0%BA%E5%AF%B8"><span class="toc-text">元素尺寸</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%8F%E7%A7%BB%E5%B0%BA%E5%AF%B8"><span class="toc-text">偏移尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%B0%BA%E5%AF%B8"><span class="toc-text">客户端尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E5%B0%BA%E5%AF%B8"><span class="toc-text">滚动尺寸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E5%85%83%E7%B4%A0%E7%9A%84%E4%BD%8D%E7%BD%AE%E4%B8%8E%E5%B0%BA%E5%AF%B8"><span class="toc-text">确定元素的位置与尺寸</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%81%8D%E5%8E%86"><span class="toc-text">遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NodeIterator"><span class="toc-text">NodeIterator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TreeWalker"><span class="toc-text">TreeWalker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4"><span class="toc-text">范围</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM%E8%8C%83%E5%9B%B4"><span class="toc-text">DOM范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%80%89%E6%8B%A9"><span class="toc-text">简单选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E9%80%89%E6%8B%A9"><span class="toc-text">复杂选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%8C%83%E5%9B%B4"><span class="toc-text">操作范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E6%8F%92%E5%85%A5"><span class="toc-text">范围插入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E6%8A%98%E5%8F%A0"><span class="toc-text">范围折叠</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E6%AF%94%E8%BE%83"><span class="toc-text">范围比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%90%86"><span class="toc-text">清理</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
