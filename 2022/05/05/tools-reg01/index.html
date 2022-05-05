@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>优雅的正则（1）：字符组与量词 - 大森的博客</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="
+万丈高楼平地起，先来看看正则表达式的两个最基本的概念...">
+  <meta name="author" content="Dasen Sun">
+  <link rel="icon" href="/images/icons/logo-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/logo-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/logo-180.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/logo-144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/qrcode/alipay.jpg',
+        wechat: '/images/qrcode/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '人生如逆旅，我亦是行人。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: '/images/qrcode/qrcode.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">优雅的正则（1）：字符组与量词</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>　
+      </li><li class="menu-item">
+        <a href="/categories/cpp/ " class="underline "> C++</a>　
+      </li><li class="menu-item">
+        <a href="/categories/frontend/ " class="underline "> HTML/CSS</a>　
+      </li><li class="menu-item">
+        <a href="/categories/js/ " class="underline "> JavaScript</a>　
+      </li><li class="menu-item">
+        <a href="/categories/notes/ " class="underline "> 课程笔记</a>　
+      </li><li class="menu-item">
+        <a href="/categories/tools/ " class="underline "> 工具</a>　
+      </li><li class="menu-item">
+        <a href="/categories/other/ " class="underline "> 其他</a>　
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>　
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/post/reg.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">优雅的正则（1）：字符组与量词</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>May 05, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6069</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <blockquote>
+<p>万丈高楼平地起，先来看看正则表达式的两个最基本的概念吧！</p>
+</blockquote>
+<h1 id="字符组"><a href="#字符组" class="headerlink" title="字符组"></a>字符组</h1><h2 id="普通字符组"><a href="#普通字符组" class="headerlink" title="普通字符组"></a>普通字符组</h2><h3 id="字符组概述"><a href="#字符组概述" class="headerlink" title="字符组概述"></a>字符组概述</h3><p><strong>一对方括号中间列出所有可能出现的字符</strong>，这些字符中命中一个即为命中，并且一个字符组一定能且只能匹配一个字符，字符组中列举出的字符不分先后顺序。</p>
+<p>范围表示法：可以使用连字符（<code>-</code>）来简略表示连续的ASCII码字符，如<code>[0-9]</code>可表示<code>[0123456789]</code>，同样地，<code>[a-z]</code>可表示26个小写字母，且范围表示法可混合写在字符组中，如<code>[0-9a-zA-Z.]</code>可匹配数字、小写字母、大写字母和小数点。</p>
+<p>十六进制转义字符：通过<code>\x</code>开头后跟两位十六进制数，可以表示一个四字节的字符，十六进制转义字符完全等价于它所表示的字符，因此范围表示法也可以使用在十六进制转义字符中。</p>
+<h3 id="字符转义"><a href="#字符转义" class="headerlink" title="字符转义"></a>字符转义</h3><p>在字符组中，因为像连字符（<code>-</code>）这样的字符具有其他的含义，这些字符称为<strong>元字符</strong>，当希望匹配这些字符时，需要进行转义，转义的方式和各种编程语言一样，即在它的前面加上右斜线（<code>\</code>）。</p>
+<p>转义时要特别注意的元字符有三个：连字符（<code>-</code>）、左方括号（<code>[</code>）、右方括号（<code>]</code>）。</p>
+<ul>
+<li>连字符（<code>-</code>）：它需要注意的点是，连字符可能存在不需要转义的时候，即它出现在字符组的开头时，因为它在字符组开头时不会被解析为一个合法的字符范围。因此<strong>尽可能不通过转义而是把它放在开头来解决连字符的匹配问题</strong>。</li>
+<li>左方括号（<code>[</code>）：左方括号在字符组内时不需要转义，它需要转义的时候反而是字符组外，也就是遇到左方括号会被自动解析为一个字符组的开始，如果只是想匹配左方括号，就需要对它转义，不让它成为字符组的开始，此时的右方括号是不需要转义的，因为左方括号被转义了，孤零零的右方括号本就会被当成一个普通字符。</li>
+<li>右方括号（<code>]</code>）：右方括号在字符组中时需要转义，不转义就会使方括号提前闭合。</li>
+</ul>
+<p>注意，由于大部分编程语言的右斜线（<code>\</code>）在字符串中需要转义，因此在实际编写正则表达式时，某些编程语言可能需要二次转义。这在JS语言中是不需要的，因为JS支持单独的正则表达式类型；而Python则需要双重转义，因为它用字符串来表示正则表达式。</p>
+<h2 id="排除型字符组"><a href="#排除型字符组" class="headerlink" title="排除型字符组"></a>排除型字符组</h2><h3 id="排除型字符组概述"><a href="#排除型字符组概述" class="headerlink" title="排除型字符组概述"></a>排除型字符组概述</h3><p>字符组中以脱字符（<code>^</code>）开头则为排除型字符组，表示<strong>匹配除了列出的字符以外的所有字符</strong>，如<code>[^0-9]</code>就表示匹配除了数字以外的所有字符。</p>
+<p>但是要注意读于以下两种表述：</p>
+<ul>
+<li>表述A：不匹配列出的字符。</li>
+<li>表述B：匹配除了列出字符以外的字符。</li>
+</ul>
+<p>显然符合排除型字符组的是表述B。因为表述A意味着除了表述B以外，还可能在指定位置上不匹配任何字符，显然不符合实际，因此要注意<strong>凡字符组，必定会且仅会匹配一个字符</strong>，因此排除型字符组也一定会匹配一个字符的，只是这个字符不是列出的字符。</p>
+<h3 id="字符转义-1"><a href="#字符转义-1" class="headerlink" title="字符转义"></a>字符转义</h3><p>在排除型字符组中出现的元字符为脱字符（<code>^</code>），如果想把它视为普通字符需要进行转义。而实际上，合法的排除型字符组是在字符组内容的开始使用一个脱字符，只要不把它放在字符组的开头，那么它就是一个普通字符。</p>
+<p>同时要注意需要在排除型字符组中排除连字符（<code>-</code>）的情形，你当然可以对它进行转义，但是更好的解决办法是将连字符放在开头的脱字符后面，这样连字符就被视为一个普通字符了。</p>
+<h2 id="字符组简记法"><a href="#字符组简记法" class="headerlink" title="字符组简记法"></a>字符组简记法</h2><p>对于一些常用的字符组，有以下简记法：</p>
+<ul>
+<li><code>\d</code>等价于<code>[0-9]</code>，表示数字；</li>
+<li><code>\w</code>等价于<code>[0-9a-zA-Z_]</code>，表述数字、字母和下划线；</li>
+<li><code>\s</code>等价于<code>[ \t\r\n\v\f]</code>，表示空白字符（空格、制表符<code>\t</code>、回车符<code>\r</code>、换行符<code>\n</code>、垂直制表符<code>\v</code>、换页符<code>\f</code>）。</li>
+</ul>
+<p><strong>字符组简记法可以单独出现也可以放在字符组中</strong>，放在字符组中表示并入当前字符组。</p>
+<p>此外相对于<code>\d</code>、<code>\w</code>和<code>\s</code>这三个普通字符组简记法，正则表达式也提供了对应排除型字符组的简记法：<code>\D</code>、<code>\W</code>和<code>\S</code>，分别表示三者对应的排除型字符组，它们每对求并集都等于全体字符，即：</p>
+<ul>
+<li><code>\D</code>等价于<code>[^\d]</code>；</li>
+<li><code>\W</code>等价于<code>[^\w]</code>；</li>
+<li><code>\S</code>等价于<code>[^\s]</code>。</li>
+</ul>
+<p>那么我们可以通过<code>[\s\S]</code>、<code>[\w\W]</code>、<code>[\d\D]</code>来匹配任意字符。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><p>点号（<code>.</code>）即为通配符，可以匹配“任意字符”。这里“任意字符”之所以加引号，就是因为它实际上还是有不能匹配的字符的，就是<strong>换行符</strong>（<code>\n</code>）。</p>
+<p>如果要匹配包括换行符在内的任意字符，应当使用<code>[\s\S]</code>、<code>[\w\W]</code>或<code>[\d\D]</code>。</p>
+<h3 id="字符组运算"><a href="#字符组运算" class="headerlink" title="字符组运算"></a>字符组运算</h3><p>字符组运算即对两个字符组求交并补来获得新的字符组，如<code>[[a-z]&amp;&amp;[^aeiou]]</code>可以匹配小写字母中除了元音字母之外的所有辅音字母。</p>
+<p>这种特性并不一定被语言所支持，<strong>JS语言是不支持字符组运算的</strong>。</p>
+<h3 id="POSIX规范"><a href="#POSIX规范" class="headerlink" title="POSIX规范"></a>POSIX规范</h3><p><code>[:digit:]</code>可以匹配数字，<code>[:lower:]</code>可以匹配小写字母。类似于这种写法的字符组就是POSIX字符组。</p>
+<p>除了POSIX字符组之外POSIX规范还规定了一些其他的规则，但这里不再展开说明，因为<strong>POSIX规范不被JS所支持</strong>。在Linux/UNIX下的各种工具可能会使用POSIX规范。</p>
+<h1 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h1><h2 id="一般量词"><a href="#一般量词" class="headerlink" title="一般量词"></a>一般量词</h2><h3 id="量词概述"><a href="#量词概述" class="headerlink" title="量词概述"></a>量词概述</h3><p>一个字符组只能匹配单个字符，那么量词就是<strong>指定数量</strong>，也就可以<strong>让一个匹配单元连续匹配若干次</strong>。</p>
+<p>注意这里表述的是“匹配单元”，不止包括字符组，也包括普通字符，还包括后面要介绍的括号分组等结构。</p>
+<h3 id="使用量词"><a href="#使用量词" class="headerlink" title="使用量词"></a>使用量词</h3><p>一般量词只需要使用花括号来表示，即<code>&#123;m,n&#125;</code>的形式，这样就可以让量词前面的匹配单元匹配m~n次。</p>
+<p>如<code>\d&#123;4,6&#125;</code>表示匹配最短4位、最长6位的数字。</p>
+<p>如果要匹配固定的次数，可以直接把m和n合写，如<code>a&#123;3&#125;</code>只能匹配<code>aaa</code>。</p>
+<h3 id="省略上下限"><a href="#省略上下限" class="headerlink" title="省略上下限"></a>省略上下限</h3><p>如果不规定上限n，则可以直接不写，如<code>\d&#123;4,&#125;</code>匹配至少4位数字，上不封顶。</p>
+<p>如果不规定下限n，实际上下限就是0，也就是一个也不匹配。你可以在某些语言中写类似于<code>\d&#123;,4&#125;</code>这样的，来匹配至多4位数字，但是这种写法可能不被某些语言支持（<strong>JS也是不支持的</strong>），因此不推荐使用这种写法，这种情况下<strong>不应该省略</strong>，而应该写作<code>\d&#123;0,4&#125;</code>。</p>
+<h2 id="常用量词"><a href="#常用量词" class="headerlink" title="常用量词"></a>常用量词</h2><h3 id="简写量词"><a href="#简写量词" class="headerlink" title="简写量词"></a>简写量词</h3><p>简写量词就是最常用的三种量词：</p>
+<ul>
+<li>星号（<code>*</code>）等价于<code>&#123;0,&#125;</code>，表示匹配任意次（包括匹配0次）；</li>
+<li>加号（<code>+</code>）等价于<code>&#123;1,&#125;</code>，表示至少匹配一次；</li>
+<li>问号（<code>?</code>）等价于<code>&#123;0,1&#125;</code>，表示匹配0次或1次。</li>
+</ul>
+<p>之所以把它们简写就是因为它们使用的频率太高了，在实际使用中会常常用到。</p>
+<h3 id="匹配优先量词"><a href="#匹配优先量词" class="headerlink" title="匹配优先量词"></a>匹配优先量词</h3><p>先说结论：<strong>上述三种简写量词都是匹配优先量词</strong>。</p>
+<p>什么是匹配优先量词？先来举个案例：</p>
+<p>我希望匹配一个双引号表示的字符串，也就是第一个字符是双引号，最后一个字符也是双引号，那么请看<code>&quot;.*&quot;</code>这种写法有没有问题：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> reg = <span class="hljs-regexp">/&quot;.*&quot;/</span>;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;&quot;str&quot;&#x27;</span>.search(reg) &gt;= <span class="hljs-number">0</span>); <span class="hljs-comment">// true</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;&quot;&quot;&#x27;</span>.search(reg) &gt;= <span class="hljs-number">0</span>); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<p>看似是没有问题，开头和结尾都是双引号，中间是零到多个任意字符，可是问题就在于它不光能完整匹配<code>&quot;str&quot;</code>和<code>&quot;&quot;</code>这样的合法字符串，<code>&quot;str&quot;str&quot;</code>这样的有三个引号的非法字符串格式它也能完整匹配，这显然不应该。</p>
+<p>之所以出现这样的问题就是在于：星号（<code>*</code>）量词是匹配优先量词，它<strong>遇到一个字符会先尝试匹配上，后面遇到失配了才会回溯</strong>。也就是说它是“贪心的”，所以也被称为“贪婪量词”。</p>
+<p><code>&quot;.*&quot;</code>这个正则表达式在匹配<code>&quot;str&quot;str&quot;</code>时是这样的：<br><img   class="lazyload" data-original="/images/illustration/2022-05-05-tools-reg01/001.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>也就是<code>.*</code>贪心地匹配了<code>str&quot;str</code>，连中间的第二个引号也匹配上了，而最后一个引号也刚好能匹配上，所以它认为匹配成功了，这就导致了匹配出来的不是个合法的字符串。</p>
+<p>设想如果要匹配的是<code>&quot;str&quot;str</code>，没有最后一个引号，首先<code>.*</code>贪心地匹配了<code>str&quot;str</code>，然后发现了最后一个引号没得匹配了（失配），然后开始回溯，当回溯到<code>.*</code>匹配了<code>str</code>时，发现最后一个引号也能匹配上，这时匹配成功，匹配到的是<code>&quot;str&quot;</code>，即以下过程：<br><img   class="lazyload" data-original="/images/illustration/2022-05-05-tools-reg01/002.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>可以看到这样的匹配方式就是：尽可能地匹配（贪心）——失配——回溯——失配——回溯——（……）——匹配成功或失败，这也就导致了<code>&quot;.*&quot;</code>这种写法遇到大于两个引号时就无法正确匹配出一个正确的字符串。</p>
+<p>那么如何修改才能正确匹配呢，答案是这样：<code>&quot;[^&quot;]*&quot;</code>，也就是在一对引号之间的内容排除掉引号。</p>
+<h3 id="忽略优先量词"><a href="#忽略优先量词" class="headerlink" title="忽略优先量词"></a>忽略优先量词</h3><p>对于三种简写量词星号（<code>*</code>）、加号（<code>+</code>）和问号（<code>?</code>），它们<strong>默认都是匹配优先量词</strong>，是贪心的，实际上它们有对应的“懒惰版本”，只需要在它们后面加一个问号即可，即<code>*?</code>、<code>+?</code>和<code>??</code>，它们也被称为懒惰量词。</p>
+<p>从微观上看：</p>
+<ul>
+<li>匹配优先会<strong>先尝试着匹配</strong>，对于需要匹配不定次数的匹配单元，会一直匹配到无法再匹配下去，才会尝试下一个匹配单元，直到遇到某个匹配单元失配，就回退一步，继续尝试直到匹配成功，或者回退完了还是失配，那就是匹配失败。</li>
+<li>忽略优先恰好相反，当一个需要匹配不定次数的匹配单元，<strong>匹配成功了下限次数，就不再贪心地继续匹配了</strong>，只保个下限就行了，然后就开始尝试匹配下一个匹配单元，同样每个匹配单元都见好就收，只要匹配够了下限次数，就让出匹配权，交给下一个匹配单元匹配，直到遇到失配，就往前回溯到<strong>最近的、可增加匹配次数的</strong>那个匹配单元，增加一次匹配，然后继续匹配，直到匹配成功或失败。</li>
+</ul>
+<p>从宏观上看：</p>
+<ul>
+<li>对于ABC这样的正则表达式，假设A的匹配是确定的，<strong>B可匹配的内容包含了C可匹配的内容</strong>，那么B是把C可以匹配的内容匹配了还是不匹配呢？</li>
+<li>对于匹配优先，B会尽可能匹配多的内容，<strong>只给C留下最后一个可匹配内容</strong>。</li>
+<li>对于忽略优先，B会尽可能少地匹配内容，<strong>把第一个能给C匹配的内容交给C匹配</strong>。</li>
+</ul>
+<p>此外注意，不光对于对于三种简写量词有对应的忽略优先版本，对于<strong>任意</strong>的普通量词，在后面加上一个问号（<code>?</code>）都会变成忽略优先的。也就是说，<strong>任意量词在默认情况下都是匹配优先的</strong>，只有在后面加了问号（<code>?</code>）才会变为忽略优先的，如<code>&#123;4,6&#125;?</code>表示忽略优先地匹配4~6次。</p>
+<h3 id="两个栗子"><a href="#两个栗子" class="headerlink" title="两个栗子"></a>两个栗子</h3><p>（1）第一个例子：<code>&quot;str&quot;str&quot;</code></p>
+<p>使用<code>&quot;.*&quot;</code>匹配时：</p>
+<p>套用ABC格式，A为第一个引号（<code>&quot;</code>），B为<code>.*</code>，它是匹配优先的，C为最后的引号（<code>&quot;</code>），那么对于字符串<code>&quot;str&quot;str&quot;</code>，有以下示意图：<br><img   class="lazyload" data-original="/images/illustration/2022-05-05-tools-reg01/003.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>引号①是A确定匹配的，而引号②和引号③都是C能匹配的，可是B也能匹配引号，所以满足了条件——<strong>B能匹配的内容包含C能匹配的内容</strong>，那么B就会贪婪地匹配，只给C留下最后一个引号③匹配，前面的内容B照单全收了，匹配结果如下：<br><img   class="lazyload" data-original="/images/illustration/2022-05-05-tools-reg01/004.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>而使用<code>&quot;.*?&quot;</code>匹配时：</p>
+<p>B就会见好就收，它虽然能匹配引号，但是它不匹配，留给C来匹配，也就是遇到的第一个能给C匹配的内容（引号②）就交给C匹配，匹配结果如下：<br><img   class="lazyload" data-original="/images/illustration/2022-05-05-tools-reg01/005.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>（2）第二个例子：匹配HTML中的JS脚本</p>
+<p>对于以下HTML中内嵌的JS脚本：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span><br><span class="javascript">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);</span><br><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span><br><span class="javascript">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);</span><br><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>我们希望把两个script标签匹配出来，很显然我们写正则表达式时，ABC模式中的A匹配开始标签<code>&lt;script type=&quot;text/javascript&quot;&gt;</code>，C匹配的是闭合标签<code>&lt;/script&gt;</code>，而中间的B则需要使用<code>[\s\S]*?</code>来懒惰匹配所有的JS代码。</p>
+<p>此时如果使用匹配优先，那么就会误把两个标签当成一个标签来匹配，即匹配为了以下错误的模式：<br><img   class="lazyload" data-original="/images/illustration/2022-05-05-tools-reg01/006.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>显然这种贪婪的匹配方式总容易把成对的东西匹配错，因为它会把跨越了多对标签的开始标签和闭合标签当成内容去匹配，只给C留下了最后一个可以匹配的闭合标签。</p>
+<p>具体原理就不再展开，与上例是一样的道理。</p>
+<p>注意这样的ABC模式只是大森假设出来的最简单的匹配模式，只用于方便介绍匹配优先和忽略优先的区别，正则表达式的最大特点就是灵活，因此不要被死板的固定模式束缚住了，实际使用中的正则表达式可不会是这么简单的ABC模式，重点在于理解和领悟贪心匹配和非贪心匹配的原理和区别。</p>
+<h1 id="大森给你出一些题吧！"><a href="#大森给你出一些题吧！" class="headerlink" title="大森给你出一些题吧！"></a>大森给你出一些题吧！</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>1、匹配一个字符，这个字符只有可能是小写元音字母（<code>a</code>、<code>e</code>、<code>i</code>、<code>o</code>、<code>u</code>）中的一个。</p>
+<p>2、匹配两个字符，其中第一个字符可能为数字、大小写字母、下划线，第二个字符可能为<code>3</code>、<code>4</code>、<code>5</code>、<code>6</code>、<code>r</code>、<code>s</code>、<code>t</code>、<code>u</code>、<code>v</code>、<code>w</code>。</p>
+<p>3、匹配三个字符，第一个字符不能是空白符，第二个字符为数字或大小写字母，第三个字符不能为数字。</p>
+<p>4、匹配一个字符，这个字符可能为左方括号（<code>[</code>）、右方括号（<code>]</code>）、连字符（<code>-</code>）、脱字符（<code>^</code>）或右斜线（<code>\</code>），尽可能以最简洁的方式编写正则表达式。</p>
+<p>5、匹配一个合法的标识符：允许以字母或下划线开始，但是不允许以数字开始，除了第一个位置外，其余位置支持下划线、字母、数字。</p>
+<p>6、匹配一个大驼峰表示法的标识符，如<code>HandsomeDasen</code>，如果出现数字，只能出现在末尾，如<code>HandsomeDasen1</code>。</p>
+<p>7、匹配一个小驼峰表示法的标识符，如<code>handsomeDasen</code>、<code>dasen</code>，如果出现数字，只能出现在末尾，如<code>dasen1</code>。</p>
+<p>8、匹配一个科学计数法表示的数值，如<code>1e3</code>、<code>2e-5</code>、<code>-3e3</code>。</p>
+<p>9、编写一个正则表达式用来匹配<code>&lt;script type=&quot;text/javascript&quot;&gt;……&lt;/script&gt;</code>标签及其中的内容。</p>
+<p>注意：只需要按照规则书写，不需要关心匹配位置。</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>1、<code>[aeiou]</code></p>
+<p>2、<code>\w[3-6r-w]</code></p>
+<p>3、<code>\S[0-9a-zA-z]\D</code></p>
+<p>4、<code>[-^[\]\\]</code></p>
+<p>5、<code>[a-zA-Z_]\w*</code></p>
+<p>6、<code>[A-Z][a-zA-Z]*\d*</code></p>
+<p>7、<code>[a-z][a-zA-Z]*\d*</code></p>
+<p>8、<code>-?\d+e-?\d+</code></p>
+<p>9、<code>&lt;script type=&quot;text\/javascript&quot;&gt;[\s\S]*?&lt;\/script&gt;</code></p>
+<p>注意：答案按照JavaScript格式的正则表达式语法书写。</p>
+
+      </section>
+      <section class="extra">
+        <!-- 
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Dasen Sun</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/05/05/tools-reg01/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;05&#x2F;05&#x2F;tools-reg01&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;05&#x2F;05&#x2F;tools-reg01&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+         -->
+        
+          <br>
+          <center><hr></center>
+          <br>
+          <center>* 你好，我是大森。如果文章内容帮到了你，你可通过下方付款二维码支持作者 *</center>
+          <br>
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="/images/qrcode/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+          <center><hr></center>
+          <br>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/03/11/js015/">JavaScript学习笔记（15）：事件 <i class="iconfont iconright"></i><i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      <!--  -->
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BB%84"><span class="toc-text">字符组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E5%AD%97%E7%AC%A6%E7%BB%84"><span class="toc-text">普通字符组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BB%84%E6%A6%82%E8%BF%B0"><span class="toc-text">字符组概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89"><span class="toc-text">字符转义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%99%A4%E5%9E%8B%E5%AD%97%E7%AC%A6%E7%BB%84"><span class="toc-text">排除型字符组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E9%99%A4%E5%9E%8B%E5%AD%97%E7%AC%A6%E7%BB%84%E6%A6%82%E8%BF%B0"><span class="toc-text">排除型字符组概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89-1"><span class="toc-text">字符转义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BB%84%E7%AE%80%E8%AE%B0%E6%B3%95"><span class="toc-text">字符组简记法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="toc-text">通配符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BB%84%E8%BF%90%E7%AE%97"><span class="toc-text">字符组运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POSIX%E8%A7%84%E8%8C%83"><span class="toc-text">POSIX规范</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8F%E8%AF%8D"><span class="toc-text">量词</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E9%87%8F%E8%AF%8D"><span class="toc-text">一般量词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8F%E8%AF%8D%E6%A6%82%E8%BF%B0"><span class="toc-text">量词概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%87%8F%E8%AF%8D"><span class="toc-text">使用量词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%81%E7%95%A5%E4%B8%8A%E4%B8%8B%E9%99%90"><span class="toc-text">省略上下限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%87%8F%E8%AF%8D"><span class="toc-text">常用量词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%86%99%E9%87%8F%E8%AF%8D"><span class="toc-text">简写量词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E4%BC%98%E5%85%88%E9%87%8F%E8%AF%8D"><span class="toc-text">匹配优先量词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E4%BC%98%E5%85%88%E9%87%8F%E8%AF%8D"><span class="toc-text">忽略优先量词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E6%A0%97%E5%AD%90"><span class="toc-text">两个栗子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%A3%AE%E7%BB%99%E4%BD%A0%E5%87%BA%E4%B8%80%E4%BA%9B%E9%A2%98%E5%90%A7%EF%BC%81"><span class="toc-text">大森给你出一些题吧！</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%94%E6%A1%88"><span class="toc-text">答案</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="https://www.instagram.com/zhangsiyu_2/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sadose/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:sadose@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  孙大森 - 2021</p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
